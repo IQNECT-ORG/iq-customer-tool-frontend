@@ -129,6 +129,12 @@ module.exports = grunt => {
         dest: 'public',
         filter: 'isFile'
       }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
   // Default task(s).
