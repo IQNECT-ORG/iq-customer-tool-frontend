@@ -135,6 +135,15 @@ module.exports = grunt => {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+
+    jshint: {
+      options: {
+          reporter: require('jshint-stylish'),
+          jshintrc: true
+      },
+
+      all: ['Gruntfile.js', 'src/assets/js']
     }
   });
   // Default task(s).
