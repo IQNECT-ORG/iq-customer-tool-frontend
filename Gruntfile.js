@@ -144,7 +144,13 @@ module.exports = grunt => {
       },
 
       all: ['Gruntfile.js', 'src/assets/js']
-    }
+    },
+
+    webdriver: {
+      test: {
+        configFile: 'tools/wdio.conf.js'
+      }
+    },
   });
   // Default task(s).
   //grunt.registerTask('default', []);
