@@ -3,3 +3,4 @@
 /.sass-cache/
 /.vagrant/
 /coverage/
+npm-debug.log
