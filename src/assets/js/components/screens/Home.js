@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DrawNav from '../layout/DrawNav';
 import DrawNavController from '../hoc/DrawNavController';
 import SysAlertManager from '../common/SysAlertManager';
+import AuthRequired from '../hoc/AuthRequired';
 
 class Home extends Component {
   render() {
@@ -16,4 +17,4 @@ class Home extends Component {
   }
 };
 
-export default DrawNavController(Home);
+export default AuthRequired(DrawNavController(Home));

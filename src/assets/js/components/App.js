@@ -15,7 +15,7 @@ class App extends Component {
 
   static get contextTypes() {
     return {
-      store: React.PropTypes.object,
+      store: React.PropTypes.object
     };
   }
 
