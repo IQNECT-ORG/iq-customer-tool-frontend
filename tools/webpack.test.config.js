@@ -22,6 +22,7 @@ const loaders = [
 ];
 
 module.exports = Object.assign({}, webpackConfig, {
+  devtool: 'source-map'
   isparta: {
     embedSource: true,
     noAutoWrap: true,
