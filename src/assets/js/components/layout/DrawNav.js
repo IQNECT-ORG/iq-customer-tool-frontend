@@ -13,8 +13,15 @@ class DrawNav extends Component {
             WebkitTransform: `translate3d(${x}px, 0, 0)`,
             transform: `translate3d(${x}px, 0, 0)`,
           }}>
-            <button type="button" onClick={this.props.onToggleMenuClick}>Toggle Menu</button>
             <AccountSummary/>
+
+            <div>
+              <span>Notications</span>
+              <span>Settings</span>
+            </div>
+
+            <Link to="/">Create Campaign</Link>
+
             <Menu/>
           </nav>
         }

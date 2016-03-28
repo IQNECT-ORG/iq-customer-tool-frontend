@@ -5,6 +5,7 @@ class AccountSummary extends Component {
   render() {
     return (
       <div>
+        <span>Avatar</span>
         <span>Bob</span>
       </div>
     );
