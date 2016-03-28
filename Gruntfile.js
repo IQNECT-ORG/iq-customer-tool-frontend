@@ -134,6 +134,11 @@ module.exports = grunt => {
     karma: {
       unit: {
         configFile: 'karma.conf.js'
+      },
+      unitWatch: {
+        configFile: 'karma.conf.js',
+        autoWatch: true,
+        singleRun: false,
       }
     },
 
