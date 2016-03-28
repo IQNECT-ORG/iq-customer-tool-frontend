@@ -7,7 +7,7 @@ const initialState = Immutable.fromJS({
   locationBeforeTransitions: null
 });
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = undefined) => {
   if (action.type === LOCATION_CHANGE) {
     return state.merge({
        locationBeforeTransitions: action.payload

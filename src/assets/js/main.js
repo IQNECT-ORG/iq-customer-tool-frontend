@@ -9,7 +9,7 @@ import { IntlProvider } from 'react-intl';
 // Store
 const store = createAppStore();
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => { return state.get('routing').toJS() }
+  selectLocationState: (state) => { return state.get('routing').toJS(); }
 });
 
 // Action Creators
@@ -18,7 +18,7 @@ const Root = class extends Component {
   static get childContextTypes() {
     return {
       store: PropTypes.object
-    }
+    };
   }
 
   getChildContext() {
