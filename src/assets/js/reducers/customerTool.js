@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux-immutable';
 import routeReducer from './routeReducer';
+import drawNav from './drawNav';
 
 const customerTool = combineReducers({
-  test: function() {
-    return {};
-  },
+  drawNav: drawNav,
   routing: routeReducer
 });
 

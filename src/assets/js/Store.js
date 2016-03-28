@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import customerToolReducer from './reducers/customer-tool';
+import customerToolReducer from './reducers/customerTool';
 
 export const createAppStore = function() {
   const finalCreateStore = compose(
