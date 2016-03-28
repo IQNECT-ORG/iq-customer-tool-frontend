@@ -9,7 +9,7 @@ class DrawNav extends Component {
     return (
       <Motion style={{x: spring(this.props.isOpen ? 0 : -400)}}>
         {({x}) =>
-          <nav role="navigation" style={{
+          <nav className="draw-nav" role="navigation" style={{
             WebkitTransform: `translate3d(${x}px, 0, 0)`,
             transform: `translate3d(${x}px, 0, 0)`,
           }}>
