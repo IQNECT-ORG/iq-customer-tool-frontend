@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <SysAlertManager/>
+        <SysAlertManager alerts={this.props.alerts}/>
         <DrawNav
           isOpen={this.props.drawNav.get('isOpen')}
           onToggleMenuClick={this.props.onDrawNavToggleMenuClick}/>

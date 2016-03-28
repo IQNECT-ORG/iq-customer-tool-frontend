@@ -24,7 +24,7 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <SysAlertManager/>
+        <SysAlertManager alerts={this.props.alerts}/>
         <LoginForm onSubmit={this.props.onLoginFormSubmit}/>
       </div>
     );
