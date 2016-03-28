@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { IntlProvider } from 'react-intl';
 
 // Store
 const store = createAppStore();
@@ -37,8 +38,10 @@ const Root = class extends Component {
 
 ReactDOM.render((
   <Root>
-    <Router history={history}>
-      {routes}
-    </Router>
+    <IntlProvider locale="en">
+      <Router history={history}>
+        {routes}
+      </Router>
+    </IntlProvider>
   </Root>
 ), document.getElementById('app'));
