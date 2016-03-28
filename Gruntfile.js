@@ -105,6 +105,13 @@ module.exports = grunt => {
         },
         files: ['src/assets/fonts/**/*'],
         tasks: ['copy:fonts']
+      },
+      js: {
+        options: {
+          atBegin: true
+        },
+        files: ['src/assets/js/**/*.js'],
+        tasks: ['jshint']
       }
     },
     copy: {
