@@ -13,16 +13,36 @@ class DrawNav extends Component {
             WebkitTransform: `translate3d(${x}px, 0, 0)`,
             transform: `translate3d(${x}px, 0, 0)`,
           }}>
-            <AccountSummary/>
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-xs-12">
+                  <AccountSummary/>
+                </div>
+              </div>
 
-            <div>
-              <span>Notications</span>
-              <span>Settings</span>
+              <hr/>
+              
+              <div className="row">
+                <div className="col-xs-12">
+                  <div>
+                    <span>Notications</span>
+                    <span>Settings</span>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+
+              <div className="row">
+                <div className="col-xs-12">
+                  <Link to="/" className="btn btn-primary">Create Campaign</Link>
+                </div>
+              </div>
+
+              <hr/>
+
+              <Menu/>
             </div>
-
-            <Link to="/">Create Campaign</Link>
-
-            <Menu/>
           </nav>
         }
       </Motion>

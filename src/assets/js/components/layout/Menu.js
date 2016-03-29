@@ -11,7 +11,7 @@ class Menu extends Component {
           <li><Link to="/">Analytics</Link></li>
         </ul>
 
-        ----
+        <hr/>
 
         <ul>
           <li><Link to="/">Help</Link></li>
