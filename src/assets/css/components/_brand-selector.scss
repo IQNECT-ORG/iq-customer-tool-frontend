@@ -1,15 +1,14 @@
 .brand-selector {
   @include element('list') {
+    //@extend %selector-list;
 
     @include element('item') {
-      @extend %aspect-1-1-container;
+      @extend %selector-list-item;
     }
   }
 
   @include element('brand') {
-    @extend %aspect-item;
-    background: #fff;
-    border-radius: 5px;
+    @extend %selector-list-content;
 
     > button {
       @extend %btn-hollow;

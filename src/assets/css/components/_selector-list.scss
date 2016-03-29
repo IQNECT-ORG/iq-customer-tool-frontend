@@ -1,0 +1,13 @@
+%selector-list {
+
+}
+
+%selector-list-item {
+  @extend %aspect-1-1-container;
+}
+
+%selector-list-content {
+  @extend %aspect-item;
+  background: #fff;
+  border-radius: 5px;
+}
