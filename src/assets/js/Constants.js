@@ -6,6 +6,8 @@ export default {
     AUTH_LOGIN: null,
     AUTH_LOGIN_SUCCESS: null,
     AUTH_LOGIN_FAILURE: null,
-    SYS_ALERT_CREATE: null
+    SYS_ALERT_CREATE: null,
+    MODAL_OPEN: null,
+    MODAL_CLOSE: null
   })
 };

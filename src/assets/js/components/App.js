@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
+import ModalManager from './ModalManager';
+
+import AddBrandModal from './modals/AddBrand';
 
 class App extends Component {
   constructor(props, context) {
@@ -35,6 +38,11 @@ class App extends Component {
     return (
       <div>
         {childrenWithProps}
+        <ModalManager
+          path={this.state.modal.get('path')}
+          paths={{
+            addBrand: AddBrandModal
+          }}/>
       </div>
     );
   }
