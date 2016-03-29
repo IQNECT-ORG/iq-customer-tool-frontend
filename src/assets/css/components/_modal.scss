@@ -1,0 +1,12 @@
+.ReactModalPortal {
+}
+
+.ReactModal__Overlay {
+  @extend .modal;
+  display: block;
+  background-color: rgba(38, 50, 56, 0.95);
+}
+
+.ReactModal__Content {
+
+}
