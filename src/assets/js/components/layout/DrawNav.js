@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Menu from './Menu';
 import AccountSummary from './AccountSummary';
+import QuickActions from './QuickActions';
 import {Motion, spring} from 'react-motion';
 
 class DrawNav extends Component {
@@ -24,10 +25,7 @@ class DrawNav extends Component {
 
               <div className="row">
                 <div className="col-xs-12">
-                  <div>
-                    <Link to="/">Notications</Link>
-                    <Link to="/">Settings</Link>
-                  </div>
+                  <QuickActions/>
                 </div>
               </div>
 
