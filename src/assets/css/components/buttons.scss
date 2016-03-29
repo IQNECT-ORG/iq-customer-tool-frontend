@@ -1,0 +1,19 @@
+.btn-primary {
+  background-color: $active;
+  border-color: $active;
+  color: $active-contrast;
+
+  &:hover {
+    //@TODO: Add hover color
+  }
+}
+
+.btn-secondary {
+  background-color: #afbdc5;
+  border-color: #afbdc5;
+  color: #fff;
+
+  &:hover {
+    //@TODO: Add hover color
+  }
+}
