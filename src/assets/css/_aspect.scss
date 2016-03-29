@@ -1,0 +1,18 @@
+%aspect-1-1-container {
+  position: relative;
+  &::before {
+    display: block;
+    content: ' ';
+    margin-top: 100%;
+  }
+}
+
+%aspect-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: $grid-gutter-width / 2;
+  right: $grid-gutter-width / 2;
+  margin-bottom: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,23 @@
+.form--content {
+  label {
+    color: $active;
+  }
+
+  .input-group-addon {
+    background-color: #fff;
+    border-color: #afbdc5;
+    color: #afbdc5;
+  }
+
+  .form-control {
+    border-color: #afbdc5;
+    &:focus {
+      border-color: $active;
+    }
+    color: #475862;
+  }
+
+  input::-webkit-input-placeholder {
+    color: #bcc9d0;
+  }
+}
