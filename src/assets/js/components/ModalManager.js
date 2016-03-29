@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class ModalManager extends Component {
   static get contextTypes() {
@@ -6,19 +7,22 @@ class ModalManager extends Component {
     };
   }
 
-  _getComponent() {
-    return this.props.paths[this.props.path] || null;
-  }
-
   render() {
-    const Component = this._getComponent();
+    const components = _(this.props.paths)
+      .map((component, path) => {
+        return React.createElement(component, {
+          key: path,
+          isOpen: path === this.props.path
+        });
+      })
+      .values()
+      .value();
 
-    if(Component == null) {
-      return null;
-    }
-
-
-    return <Component/>;
+    return (
+      <div>
+        {components}
+      </div>
+    );
   }
 };
 
