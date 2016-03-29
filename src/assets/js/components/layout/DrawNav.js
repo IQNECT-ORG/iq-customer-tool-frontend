@@ -25,8 +25,8 @@ class DrawNav extends Component {
               <div className="row">
                 <div className="col-xs-12">
                   <div>
-                    <span>Notications</span>
-                    <span>Settings</span>
+                    <Link to="/">Notications</Link>
+                    <Link to="/">Settings</Link>
                   </div>
                 </div>
               </div>
