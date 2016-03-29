@@ -21,7 +21,7 @@ class DrawNav extends Component {
               </div>
 
               <hr/>
-              
+
               <div className="row">
                 <div className="col-xs-12">
                   <div>
@@ -35,7 +35,7 @@ class DrawNav extends Component {
 
               <div className="row">
                 <div className="col-xs-12">
-                  <Link to="/" className="btn btn-primary">Create Campaign</Link>
+                  <Link to="/" className="btn btn-primary btn-block">Create Campaign</Link>
                 </div>
               </div>
 
