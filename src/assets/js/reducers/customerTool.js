@@ -11,8 +11,10 @@ const customerTool = combineReducers({
   drawNav,
   alerts,
   modal,
-  catalogue,
-  routing: routeReducer
+  routing: routeReducer,
+  modules: combineReducers({
+    catalogue,
+  })
 });
 
 export default customerTool;
