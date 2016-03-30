@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import SelectorList from '../selector/SelectorList';
 
-class FeatureSelectorOptions extends Component {
+class BrandSelectorOptions extends Component {
   render() {
     return (
       <div className="selector__option">
@@ -14,4 +14,4 @@ class FeatureSelectorOptions extends Component {
   }
 };
 
-export default FeatureSelectorOptions;
+export default BrandSelectorOptions;

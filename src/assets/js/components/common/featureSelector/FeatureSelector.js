@@ -21,7 +21,7 @@ class FeatureSelector extends Component {
             label: 'Coupons'
           }
         ]}
-        renderOption={this._renderOption}
+        renderOption={this._renderOption.bind(this)}
         listItem={{
           className: 'col-xs-4'
         }}/>
@@ -30,7 +30,7 @@ class FeatureSelector extends Component {
 
   _renderOption(item, index) {
     return (
-      <FeatureSelectorOption label={item.label}/>
+      <FeatureSelectorOption label={item.label} onOptionClick={ e => this.props.onOptionClick(e, item, index) }/>
     );
   }
 };
