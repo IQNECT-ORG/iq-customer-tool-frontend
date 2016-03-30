@@ -29,6 +29,20 @@ module.exports = grunt => {
         }
       }
     },
+    postcss: {
+      options: {
+        processors: [
+          //require('pixrem')(), // add fallbacks for rem units
+          //require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+          //require('cssnano')() // minify the result
+          //require('')
+        ]
+      },
+      dev: {
+        src: 'public/assets/css/main.css',
+        dest: 'public/assets/css/main.css'
+      }
+    },
     sass: {
       prd: {
         options: {
