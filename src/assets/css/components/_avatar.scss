@@ -7,6 +7,12 @@
   overflow: hidden;
   z-index: 1; // This is to fix a bug with translate ignoring border-radius
 
+
+  @include modifier('image') {
+  }
+  @include modifier('icon') {
+  }
+
   @include element('image-container') {
     border-radius: 50px;
     overflow: hidden;
