@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-class FeatureSelectorOptions extends Component {
+class CampaignTypeSelectorOptions extends Component {
   render() {
     return (
       <div className="selector__option">
@@ -13,4 +13,4 @@ class FeatureSelectorOptions extends Component {
   }
 };
 
-export default FeatureSelectorOptions;
+export default CampaignTypeSelectorOptions;

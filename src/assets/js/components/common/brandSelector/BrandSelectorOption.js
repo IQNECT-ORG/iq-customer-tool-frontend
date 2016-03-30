@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import SelectorList from '../selector/SelectorList';
 
 class BrandSelectorOptions extends Component {
   render() {
