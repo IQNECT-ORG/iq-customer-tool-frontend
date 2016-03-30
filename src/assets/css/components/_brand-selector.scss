@@ -3,12 +3,12 @@
     //@extend %selector-list;
 
     @include element('item') {
-      @extend %selector-list-item;
+      @extend .selector__list__item;
     }
   }
 
   @include element('brand') {
-    @extend %selector-list-content;
+    @extend .selector__option;
 
     > button {
       @extend %btn-hollow;

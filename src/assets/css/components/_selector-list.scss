@@ -1,12 +1,16 @@
-%selector-list {
+.selector {
 
 }
 
-%selector-list-item {
+.selector__list {
+
+}
+
+.selector__list__item {
   @extend %aspect-1-1-container;
 }
 
-%selector-list-content {
+.selector__option {
   @extend %aspect-item;
   @extend %pane;
   @extend %pane--filled;
