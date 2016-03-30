@@ -6,3 +6,15 @@
 %pane--filled {
   background: #fff;
 }
+
+.pane {
+  @extend %pane;
+
+  @include modifier('filled') {
+    @extend %pane--filled;
+  }
+
+  @include element('body') {
+    padding: $grid-gutter-width / 2;
+  }
+}
