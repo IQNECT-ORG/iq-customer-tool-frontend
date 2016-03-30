@@ -4,7 +4,9 @@ import React, { Component, PropTypes } from 'react';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, addLocaleData, defineMessages } from 'react-intl';
+import enUS from './locales/en-us';
+import enLocaleData from 'react-intl/locale-data/en';
 
 // Store
 const store = createAppStore();
@@ -12,7 +14,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => { return state.get('routing').toJS(); }
 });
 
-// Action Creators
+addLocaleData(enLocaleData);
 
 const Root = class extends Component {
   static get childContextTypes() {
@@ -38,7 +40,7 @@ const Root = class extends Component {
 
 ReactDOM.render((
   <Root>
-    <IntlProvider locale="en">
+    <IntlProvider locale="en" messages={enUS.messages}>
       <Router history={history}>
         {routes}
       </Router>
