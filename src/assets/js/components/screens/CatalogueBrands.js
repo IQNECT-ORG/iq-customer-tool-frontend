@@ -4,6 +4,7 @@ import DrawNavController from '../hoc/DrawNavController';
 import SysAlertManager from '../common/SysAlertManager';
 import AuthRequired from '../hoc/AuthRequired';
 import Titlebar from '../layout/Titlebar';
+import BrandSelectorController from '../hoc/BrandSelectorController';
 import BrandSelector from '../common/brandSelector/BrandSelector';
 import Immutable from 'immutable';
 
@@ -39,9 +40,11 @@ class CatalogueBrands extends Component {
           </div>
 
           <div className="container">
-            <BrandSelector brands={new Immutable.List(new Immutable.Map({
-              name: 'hello'
-            }))}/>
+            <BrandSelector
+              brands={new Immutable.List(new Immutable.Map({
+                name: 'hello'
+              }))}
+              onOptionClick={this.props.onBrandClick}/>
           </div>
         </main>
       </div>
@@ -49,4 +52,4 @@ class CatalogueBrands extends Component {
   }
 };
 
-export default AuthRequired(DrawNavController(CatalogueBrands));
+export default AuthRequired(DrawNavController(BrandSelectorController(CatalogueBrands)));
