@@ -6,7 +6,7 @@ class AccountSummary extends Component {
   render() {
     return (
       <div>
-        <UserAvatar src="https://placeimg.com/640/480/any"/>
+        <UserAvatar src="http://placehold.it/350x150"/>
         <span>Bob</span>
       </div>
     );
