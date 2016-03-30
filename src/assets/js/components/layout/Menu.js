@@ -7,14 +7,14 @@ class Menu extends Component {
       <div>
         <ul className="list-unstyled">
           <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/">Catalogue</Link></li>
-          <li><Link to="/">Analytics</Link></li>
+          <li><Link to="/catalogue">Catalogue</Link></li>
+          <li><Link to="/analytics">Analytics</Link></li>
         </ul>
 
         <hr/>
 
         <ul className="list-unstyled">
-          <li><Link to="/">Help</Link></li>
+          <li><Link to="/help">Help</Link></li>
         </ul>
       </div>
     );
