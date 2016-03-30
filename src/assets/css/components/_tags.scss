@@ -1,0 +1,27 @@
+
+.tag__item {
+
+}
+
+@include media-breakpoint-up(sm) {
+  .tag__item {
+    width: auto;
+  }
+}
+
+.tag {
+  background-color: #37464f;
+  color: #fff;
+  border-radius: 10px;
+
+  @include element('remove') {
+    @extend .close;
+    @extend %btn-hollow;
+    color: #fff;
+    opacity: 1;
+  }
+
+  @include element('text') {
+    margin-right: 25px;
+  }
+}
