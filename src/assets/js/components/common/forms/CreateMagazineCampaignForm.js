@@ -67,6 +67,8 @@ class CreateMagazineCampaignForm extends Component {
                       </div>
                     </div>
 
+                    <hr/>
+                    
                     <div className="row">
                       <div className="col-xs-6">
                         <button type="button" className="btn btn-block btn-secondary">Back</button>
@@ -76,8 +78,6 @@ class CreateMagazineCampaignForm extends Component {
                         <button type="submit" className="btn btn-block btn-primary">Next</button>
                       </div>
                     </div>
-
-                    <hr/>
                   </div>
                 </div>
               </div>
