@@ -63,6 +63,7 @@
     "history": "^2.0.1",
     "immutable": "^3.7.6",
     "keymirror": "^0.1.1",
+    "joid": "^1.0.0",
     "lodash": "^4.6.1",
     "react": "^0.14.7",
     "react-dnd": "^2.1.3",
