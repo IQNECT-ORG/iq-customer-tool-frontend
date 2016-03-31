@@ -7,7 +7,7 @@ import { Combobox } from 'react-input-enhancements';
 import AssetInput from 'app/common/components/forms/AssetInput';
 import AssetPreview from 'app/common/components/AssetPreview';
 
-class CreateMagazineCampaignForm extends Component {
+class BasicDetailsForm extends Component {
   render() {
     return (
       <div className="row">
@@ -104,4 +104,4 @@ class CreateMagazineCampaignForm extends Component {
   }
 };
 
-export default CreateMagazineCampaignForm;
+export default BasicDetailsForm;

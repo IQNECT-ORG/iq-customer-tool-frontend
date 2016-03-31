@@ -5,7 +5,9 @@ import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import CreateMagazineCampaignController from 'app/common/components/hoc/CreateMagazineCampaignController';
+
 import BasicDetailsForm from '../forms/BasicDetailsForm';
+import AllPagesForm from '../forms/AllPagesForm';
 
 class CreateCampaign extends Component {
   static get contextTypes() {
@@ -40,6 +42,7 @@ class CreateCampaign extends Component {
 
           <div className="container">
             <BasicDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
+            <AllPagesForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
           </div>
         </main>
       </div>
