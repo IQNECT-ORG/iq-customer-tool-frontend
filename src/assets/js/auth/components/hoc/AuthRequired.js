@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { toggleMenu } from '../../actions/drawNav';
 
 const DrawNavController = Component => class extends Component {
   static get contextTypes() {

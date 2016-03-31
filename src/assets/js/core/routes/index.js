@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import App from '../components/App';
 import Home from '../components/screens/Home';
-import Auth from '../components/screens/Auth';
+import Auth from 'app/auth/components/screens/Auth';
 import Catalogue from '../components/screens/Catalogue';
 import CatalogueBrands from '../components/screens/CatalogueBrands';
 import CreateCampaign from 'app/campaigns/print/components/screens/CreateCampaign';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
 import DrawNavController from 'app/common/components/hoc/DrawNavController';
 import SysAlertManager from 'app/common/components/SysAlertManager';
-import AuthRequired from 'app/common/components/hoc/AuthRequired';
+import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import FeatureSelectorController from 'app/common/components/hoc/FeatureSelectorController';
 import FeatureSelector from 'app/common/components/featureSelector/FeatureSelector';
