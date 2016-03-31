@@ -4,6 +4,7 @@ import DrawNavController from '../../hoc/DrawNavController';
 import SysAlertManager from '../../common/SysAlertManager';
 import AuthRequired from '../../hoc/AuthRequired';
 import Titlebar from '../../layout/Titlebar';
+import CreateMagazineCampaignController from '../../hoc/CreateMagazineCampaignController';
 import CreateMagazineCampaignForm from '../../common/forms/CreateMagazineCampaignForm';
 
 class CreateCampaign extends Component {
@@ -38,7 +39,7 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            <CreateMagazineCampaignForm/>
+            <CreateMagazineCampaignForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
           </div>
         </main>
       </div>
@@ -46,4 +47,4 @@ class CreateCampaign extends Component {
   }
 };
 
-export default AuthRequired(DrawNavController(CreateCampaign));
+export default AuthRequired(DrawNavController(CreateMagazineCampaignController(CreateCampaign)));
