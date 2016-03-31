@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import joid from 'joid';
+import $ from 'jquery';
+import ReactDOM from 'react-dom';
+import { Combobox } from 'react-input-enhancements';
+
+//import DropdownPlugin from 'bootstrap/dist/js/umd/dropdown';
 
 class CreateMagazineCampaignForm extends Component {
+
+  componentDidMount() {
+    //const el = ReactDOM.findDOMNode(this);
+
+    //$('.dropdown-toggle', el).dropdown();
+  }
+
   render() {
-
-
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.onSubmit}>
@@ -29,8 +39,20 @@ class CreateMagazineCampaignForm extends Component {
 
                     <fieldset className="form-group">
                       <label htmlFor={joid.link(true, 'input')}>Magazine Language</label>
-                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="English"/>
+                      <Combobox defaultValue={'English'}
+                        options={['English', 'Korean']}
+                        dropdownProps={{ style: { width: '100%' } }}
+                        autocomplete>
+                        {inputProps =>
+                          <input {...inputProps}
+                            id={joid.link(false, 'input')}
+                            type='text'
+                            className={`${inputProps.className} form-control`}
+                            placeholder='English' />
+                        }
+                      </Combobox>
                     </fieldset>
+
 
                     <div className="row">
                       <div className="col-xs-12">

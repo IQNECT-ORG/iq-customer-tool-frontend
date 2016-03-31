@@ -4,6 +4,7 @@ import Home from '../components/screens/Home';
 import Auth from '../components/screens/Auth';
 import Catalogue from '../components/screens/Catalogue';
 import CatalogueBrands from '../components/screens/CatalogueBrands';
+import CreateCampaign from '../components/screens/campaign/CreateCampaign';
 import { Route, IndexRoute } from 'react-router';
 
 export default (
@@ -12,5 +13,6 @@ export default (
     <Route path="signin" component={Auth}/>
     <Route path="catalogue" component={Catalogue}/>
     <Route path="catalogue/brands" component={CatalogueBrands}/>
+    <Route path="campaign/create" component={CreateCampaign}/>
   </Route>
 );
