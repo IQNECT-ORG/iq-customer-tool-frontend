@@ -8,6 +8,7 @@ import CreateMagazineCampaignController from 'app/common/components/hoc/CreateMa
 
 import BasicDetailsForm from '../forms/BasicDetailsForm';
 import AllPagesForm from '../forms/AllPagesForm';
+import PageDetailsForm from '../forms/PageDetailsForm';
 
 class CreateCampaign extends Component {
   static get contextTypes() {
@@ -43,6 +44,7 @@ class CreateCampaign extends Component {
           <div className="container">
             <BasicDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
             <AllPagesForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
+            <PageDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
           </div>
         </main>
       </div>
