@@ -5,6 +5,7 @@ import auth from './auth';
 import alerts from './alerts';
 import modal from './modal';
 import catalogue from './catalogue';
+import campaign from './campaign';
 
 const customerTool = combineReducers({
   auth,
@@ -12,9 +13,9 @@ const customerTool = combineReducers({
   alerts,
   modal,
   routing: routeReducer,
-  modules: combineReducers({
-    catalogue,
-  })
+  //entities
+  catalogue,
+  campaign
 });
 
 export default customerTool;

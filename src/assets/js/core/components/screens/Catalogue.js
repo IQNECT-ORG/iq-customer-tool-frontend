@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import DrawNav from '../../layout/DrawNav';
-import DrawNavController from '../../hoc/DrawNavController';
-import SysAlertManager from '../../common/SysAlertManager';
-import AuthRequired from '../../hoc/AuthRequired';
-import Titlebar from '../../layout/Titlebar';
-import CreateMagazineCampaignController from '../../hoc/CreateMagazineCampaignController';
-import CreateMagazineCampaignForm from '../../common/forms/CreateMagazineCampaignForm';
+import DrawNav from 'app/common/components/layout/DrawNav';
+import DrawNavController from 'app/common/components/hoc/DrawNavController';
+import SysAlertManager from 'app/common/components/SysAlertManager';
+import AuthRequired from 'app/common/components/hoc/AuthRequired';
+import Titlebar from 'app/common/components/layout/Titlebar';
+import FeatureSelectorController from 'app/common/components/hoc/FeatureSelectorController';
+import FeatureSelector from 'app/common/components/featureSelector/FeatureSelector';
 
-class CreateCampaign extends Component {
+class Catalogue extends Component {
   static get contextTypes() {
     return {
       store: React.PropTypes.object
@@ -31,7 +31,7 @@ class CreateCampaign extends Component {
               <Titlebar className="col-xs-12">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h1>Create Campaign</h1>
+                    <h1>Catalogue</h1>
                   </div>
                 </div>
               </Titlebar>
@@ -39,7 +39,7 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            <CreateMagazineCampaignForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
+            <FeatureSelector onOptionClick={this.props.onFeatureClick}/>
           </div>
         </main>
       </div>
@@ -47,4 +47,4 @@ class CreateCampaign extends Component {
   }
 };
 
-export default AuthRequired(DrawNavController(CreateMagazineCampaignController(CreateCampaign)));
+export default AuthRequired(DrawNavController(FeatureSelectorController(Catalogue)));

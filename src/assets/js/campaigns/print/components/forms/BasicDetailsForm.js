@@ -4,8 +4,8 @@ import joid from 'joid';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
-import AssetInput from './AssetInput';
-import AssetPreview from '../AssetPreview';
+import AssetInput from 'app/common/components/forms/AssetInput';
+import AssetPreview from 'app/common/components/AssetPreview';
 
 class CreateMagazineCampaignForm extends Component {
   render() {

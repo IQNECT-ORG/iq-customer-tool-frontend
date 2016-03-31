@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import DrawNav from '../layout/DrawNav';
-import DrawNavController from '../hoc/DrawNavController';
-import SysAlertManager from '../common/SysAlertManager';
-import AuthRequired from '../hoc/AuthRequired';
-import Titlebar from '../layout/Titlebar';
-import BrandSelectorController from '../hoc/BrandSelectorController';
-import BrandSelector from '../common/brandSelector/BrandSelector';
-import Immutable from 'immutable';
+import DrawNav from 'app/common/components/layout/DrawNav';
+import DrawNavController from 'app/common/components/hoc/DrawNavController';
+import SysAlertManager from 'app/common/components/SysAlertManager';
+import AuthRequired from 'app/common/components/hoc/AuthRequired';
+import Titlebar from 'app/common/components/layout/Titlebar';
+import CreateMagazineCampaignController from 'app/common/components/hoc/CreateMagazineCampaignController';
+import BasicDetailsForm from '../forms/BasicDetailsForm';
 
-class CatalogueBrands extends Component {
+class CreateCampaign extends Component {
   static get contextTypes() {
     return {
       store: React.PropTypes.object
@@ -32,7 +31,7 @@ class CatalogueBrands extends Component {
               <Titlebar className="col-xs-12">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h1>Catalogue / Brands</h1>
+                    <h1>Create Campaign</h1>
                   </div>
                 </div>
               </Titlebar>
@@ -40,11 +39,7 @@ class CatalogueBrands extends Component {
           </div>
 
           <div className="container">
-            <BrandSelector
-              brands={new Immutable.List(new Immutable.Map({
-                name: 'hello'
-              }))}
-              onOptionClick={this.props.onBrandClick}/>
+            <BasicDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
           </div>
         </main>
       </div>
@@ -52,4 +47,4 @@ class CatalogueBrands extends Component {
   }
 };
 
-export default AuthRequired(DrawNavController(BrandSelectorController(CatalogueBrands)));
+export default AuthRequired(DrawNavController(CreateMagazineCampaignController(CreateCampaign)));

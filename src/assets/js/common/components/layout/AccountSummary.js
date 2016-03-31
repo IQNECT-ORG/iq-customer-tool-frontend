@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import UserAvatar from '../common/UserAvatar';
+import UserAvatar from '../UserAvatar';
 
 class AccountSummary extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
-import ModalManager from './ModalManager';
+import ModalManager from 'app/common/components/ModalManager';
 
 import AddBrandModal from './modals/AddBrand';
 

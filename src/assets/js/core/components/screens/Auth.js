@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SysAlertManager from '../common/SysAlertManager';
-import LoginForm from '../common/forms/LoginForm';
-import LoginFormController from '../hoc/LoginFormController';
+import SysAlertManager from 'app/common/components/SysAlertManager';
+import LoginForm from 'app/common/components/forms/LoginForm';
+import LoginFormController from 'app/common/components/hoc/LoginFormController';
 
 class Auth extends Component {
   static get contextTypes() {

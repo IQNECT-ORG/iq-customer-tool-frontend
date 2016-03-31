@@ -39,6 +39,7 @@ module.exports = {
   resolve: {
     alias: {
       react: path.resolve('./node_modules/react'),
+      app: path.resolve('./src/assets/js')
     },
   }
 };

@@ -21,7 +21,7 @@ const DrawNavController = Component => class extends Component {
     if(this.props.auth.get('token')) {
 
     } else {
-      this.context.router.push('/signin');
+      //this.context.router.push('/signin');
     }
   }
 };
