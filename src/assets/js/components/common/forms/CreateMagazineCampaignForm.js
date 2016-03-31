@@ -4,24 +4,17 @@ import joid from 'joid';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
-
-//import DropdownPlugin from 'bootstrap/dist/js/umd/dropdown';
+import AssetInput from './AssetInput';
+import AssetPreview from '../AssetPreview';
 
 class CreateMagazineCampaignForm extends Component {
-
-  componentDidMount() {
-    //const el = ReactDOM.findDOMNode(this);
-
-    //$('.dropdown-toggle', el).dropdown();
-  }
-
   render() {
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
-            <div className="pane">
-
+            <div className="pane pane--filled">
+              <AssetPreview src="http://placehold.it/350x150"/>
             </div>
           </div>
 
