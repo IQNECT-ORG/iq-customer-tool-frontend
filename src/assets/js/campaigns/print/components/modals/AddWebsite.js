@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Modal from '../Modal';
-import ModalController from '../hoc/ModalController';
-import AddWebsiteForm from '../common/forms/AddWebsiteForm'
+import Modal from 'app/common/components/Modal';
+import ModalController from 'app/common/components/hoc/ModalController';
+import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm'
 
 class AddBrand extends Component {
   static get contextTypes() {

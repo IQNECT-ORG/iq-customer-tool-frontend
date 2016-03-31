@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ModalManager from 'app/common/components/ModalManager';
 
 import AddBrandModal from './modals/AddBrand';
+import AddWebsiteModal from 'app/campaigns/print/components/modals/AddWebsite';
 
 class App extends Component {
   constructor(props, context) {
@@ -41,7 +42,8 @@ class App extends Component {
         <ModalManager
           path={this.state.modal.get('path')}
           paths={{
-            addBrand: AddBrandModal
+            addBrand: AddBrandModal,
+            addWebsite: AddWebsiteModal
           }}/>
       </div>
     );
