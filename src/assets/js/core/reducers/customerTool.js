@@ -1,21 +1,17 @@
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux-immutablejs';
 import routeReducer from './routeReducer';
 import drawNav from './drawNav';
 import auth from './auth';
 import alerts from './alerts';
-import modal from 'app/modal/reducers';
-import catalogue from './catalogue';
-import campaign from './campaign';
+import campaignPrint from 'app/campaigns/print/reducers';
 
 const customerTool = combineReducers({
   auth,
   drawNav,
   alerts,
-  modal,
   routing: routeReducer,
   //entities
-  catalogue,
-  campaign
+  campaignPrint
 });
 
 export default customerTool;

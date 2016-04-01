@@ -15,8 +15,6 @@ import Steptracker from 'app/common/components/Steptracker';
 
 import { FormattedMessage } from 'react-intl';
 
-import { openModal } from 'app/modal/actions/modal';
-
 class Home extends Component {
   static get contextTypes() {
     return {

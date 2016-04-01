@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { closeModal } from '../../actions/modal';
 
-const ModalController = Component => class extends Component {
+const ModalController = (Component, closeAction) => class extends Component {
   static get contextTypes() {
     return {
       store: React.PropTypes.object.isRequired,
@@ -21,7 +20,7 @@ const ModalController = Component => class extends Component {
   }
 
   handleModalClose(e) {
-    this.context.store.dispatch(closeModal());
+    this.context.store.dispatch(closeAction());
   }
 };
 

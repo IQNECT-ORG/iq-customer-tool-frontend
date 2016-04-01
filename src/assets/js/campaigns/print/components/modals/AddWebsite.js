@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
 import ModalController from 'app/modal/components/hoc/ModalController';
-import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm'
+import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm';
+import serialize from 'form-serialize';
+import { addWebsite, closeAddWebsiteModal } from '../../actions';
 
-class AddBrand extends Component {
+class AddWebsite extends Component {
   static get contextTypes() {
     return {
+      store: React.PropTypes.object.isRequired,
     };
   }
 
@@ -22,12 +25,18 @@ class AddBrand extends Component {
           </div>
 
           <div className="modal-body">
-            <AddWebsiteForm/>
+            <AddWebsiteForm onSubmit={this.handleSubmit.bind(this)}/>
           </div>
         </div>
       </Modal>
     );
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = serialize(e.currentTarget, { hash: true });
+    this.context.store.dispatch(addWebsite(data.url));
+  }
 };
 
-export default ModalController(AddBrand);
+export default ModalController(AddWebsite, closeAddWebsiteModal);

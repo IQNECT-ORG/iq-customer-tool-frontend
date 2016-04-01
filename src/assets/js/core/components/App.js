@@ -3,9 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
 import ModalManager from 'app/modal/components/ModalManager';
-
-import AddBrandModal from './modals/AddBrand';
-import AddWebsiteModal from 'app/campaigns/print/components/modals/AddWebsite';
+import CampaignPrintModalRouter from 'app/campaigns/print/components/ModalRouter'
 
 class App extends Component {
   constructor(props, context) {
@@ -35,16 +33,13 @@ class App extends Component {
     var childrenWithProps = React.Children.map(this.props.children, child => {
       return React.cloneElement(child, this.state);
     });
-    
+
     return (
       <div>
         {childrenWithProps}
-        <ModalManager
-          path={this.state.modal.get('path')}
-          paths={{
-            addBrand: AddBrandModal,
-            addWebsite: AddWebsiteModal
-          }}/>
+        <ModalManager>
+          <CampaignPrintModalRouter campaignPrint={this.state.campaignPrint}/>
+        </ModalManager>
       </div>
     );
   }
