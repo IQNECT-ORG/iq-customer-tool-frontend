@@ -35,7 +35,10 @@ const CreateMagazineCampaignController = Component => class extends Component {
   }
 
   handleBackClick(e) {
-    this.context.store.dispatch(prevStep());
+    const step = this.props.campaignPrint.getIn(['create','ui','step']);
+    if(step > 1) {
+      this.context.store.dispatch(prevStep());
+    }
   }
 
   handleSubmit(e) {
