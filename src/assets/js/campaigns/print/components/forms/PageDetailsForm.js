@@ -21,13 +21,22 @@ class PageDetailForm extends Component {
                   <div className="col-xs-12">
                     <h2>Page X</h2>
 
+                    <button type="button" className="btn btn-secondary-outline">Prev</button>
+                    <button type="button" className="btn btn-secondary-outline">Next</button>
+                    <button type="button" className="btn btn-secondary-outline">All</button>
+
                     <hr/>
 
                     <fieldset className="form-group">
                       <label>Target Type</label>
                       <div className="row">
                         <div className="col-xs-6">
-                          <button type="button" className="btn btn-block btn-secondary-outline btn-decision">Add Website</button>
+                          <button
+                            type="button"
+                            className="btn btn-block btn-secondary-outline btn-decision"
+                            onClick={this.props.onAddWebsiteClick}>
+                              Add Website
+                          </button>
                         </div>
 
                         <div className="col-xs-6">

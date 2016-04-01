@@ -27,7 +27,12 @@ class AllPagesForm extends Component {
                       <label>Target Type</label>
                       <div className="row">
                         <div className="col-xs-6">
-                          <button type="button" className="btn btn-block btn-secondary-outline btn-decision">Add Website</button>
+                          <button
+                            type="button"
+                            className="btn btn-block btn-secondary-outline btn-decision"
+                            onClick={this.props.onAddWebsiteClick}>
+                              Add Website
+                          </button>
                         </div>
 
                         <div className="col-xs-6">
