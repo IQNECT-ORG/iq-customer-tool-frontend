@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
-import ModalManager from 'app/common/components/ModalManager';
+import ModalManager from 'app/modal/components/ModalManager';
 
 import AddBrandModal from './modals/AddBrand';
 import AddWebsiteModal from 'app/campaigns/print/components/modals/AddWebsite';
@@ -35,7 +35,7 @@ class App extends Component {
     var childrenWithProps = React.Children.map(this.props.children, child => {
       return React.cloneElement(child, this.state);
     });
-
+    
     return (
       <div>
         {childrenWithProps}

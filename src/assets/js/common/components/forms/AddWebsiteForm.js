@@ -5,6 +5,8 @@ class AddWebsiteForm extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>
+        <h1>Add Website</h1>
+
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')} className="sr-only">Website URL</label>
           <input type="url" className="form-control" id={joid.link(false, 'input')} placeholder="http://www.example.com/"/>

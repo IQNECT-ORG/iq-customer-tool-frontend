@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Modal from 'app/common/components/Modal';
-import ModalController from 'app/common/components/hoc/ModalController';
+import Modal from 'app/modal/components/Modal';
+import ModalController from 'app/modal/components/hoc/ModalController';
 import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm'
 
 class AddBrand extends Component {

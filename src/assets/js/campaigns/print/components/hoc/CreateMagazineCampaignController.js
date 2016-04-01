@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { openModal } from 'app/modal/actions/modal';
 //import { login } from '../../actions/auth';
 //import serialize from 'form-serialize';
 
@@ -37,7 +38,7 @@ const CreateMagazineCampaignController = Component => class extends Component {
   }
 
   handleAddWebsiteClick(e) {
-    console.log('add website click');
+    this.context.store.dispatch(openModal('addWebsite'));
   }
 
   handleAddCouponClick(e) {
