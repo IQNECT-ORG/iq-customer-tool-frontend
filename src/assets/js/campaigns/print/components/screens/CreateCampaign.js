@@ -4,7 +4,7 @@ import DrawNavController from 'app/common/components/hoc/DrawNavController';
 import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import CreateMagazineCampaignController from 'app/common/components/hoc/CreateMagazineCampaignController';
+import CreateMagazineCampaignController from '../hoc/CreateMagazineCampaignController';
 
 import BasicDetailsForm from '../forms/BasicDetailsForm';
 import AllPagesForm from '../forms/AllPagesForm';
@@ -42,9 +42,9 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            <BasicDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
-            <AllPagesForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
-            <PageDetailsForm onSubmit={this.props.onCreateMagazineCampaignSubmit}/>
+            <BasicDetailsForm {...this.props.createMagazineCamaign}/>
+            <AllPagesForm {...this.props.createMagazineCamaign}/>
+            <PageDetailsForm {...this.props.createMagazineCamaign}/>
           </div>
         </main>
       </div>

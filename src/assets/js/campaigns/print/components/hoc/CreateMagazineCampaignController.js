@@ -14,16 +14,34 @@ const CreateMagazineCampaignController = Component => class extends Component {
     super(props, context);
 
     _.bindAll(this, [
-      'handleSubmit'
+      'handleSubmit',
+      'handleAddWebsiteClick',
+      'handleAddCouponClick'
     ]);
   }
   render() {
-    return <Component onCreateMagazineCampaignSubmit={this.handleSubmit} {...this.props}/>;
+    return (
+      <Component
+        createMagazineCamaign={{
+          onSubmit: this.handleSubmit,
+          onAddWebsiteClick: this.handleAddWebsiteClick,
+          onAddCouponClick: this.handleAddCouponClick
+        }}
+        {...this.props}/>
+    );
   }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log('submit');
+  }
+
+  handleAddWebsiteClick(e) {
+    console.log('add website click');
+  }
+
+  handleAddCouponClick(e) {
+
   }
 };
 
