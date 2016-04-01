@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { openAddWebsiteModal } from '../../actions';
+import { openAddWebsiteModal, nextStep, prevStep } from '../../actions';
 //import { login } from '../../actions/auth';
 //import serialize from 'form-serialize';
 
@@ -17,13 +17,15 @@ const CreateMagazineCampaignController = Component => class extends Component {
     _.bindAll(this, [
       'handleSubmit',
       'handleAddWebsiteClick',
-      'handleAddCouponClick'
+      'handleAddCouponClick',
+      'handleBackClick'
     ]);
   }
   render() {
     return (
       <Component
         createMagazineCamaign={{
+          onBackClick: this.handleBackClick,
           onSubmit: this.handleSubmit,
           onAddWebsiteClick: this.handleAddWebsiteClick,
           onAddCouponClick: this.handleAddCouponClick
@@ -32,9 +34,16 @@ const CreateMagazineCampaignController = Component => class extends Component {
     );
   }
 
+  handleBackClick(e) {
+    this.context.store.dispatch(prevStep());
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submit');
+    const step = this.props.campaignPrint.getIn(['create','ui','step']);
+    if(step < 3) {
+      this.context.store.dispatch(nextStep());
+    }
   }
 
   handleAddWebsiteClick(e) {

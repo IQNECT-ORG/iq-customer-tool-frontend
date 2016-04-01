@@ -42,13 +42,24 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            <BasicDetailsForm {...this.props.createMagazineCamaign}/>
-            <AllPagesForm {...this.props.createMagazineCamaign}/>
-            <PageDetailsForm {...this.props.createMagazineCamaign}/>
+            {this._renderForm()}
           </div>
         </main>
       </div>
     );
+  }
+
+  _renderForm() {
+    const create = this.props.campaignPrint.get('create');
+
+    switch(create.getIn(['ui', 'step'])) {
+      case 1:
+        return <BasicDetailsForm {...this.props.createMagazineCamaign}/>;
+      case 2:
+        return <AllPagesForm {...this.props.createMagazineCamaign}/>;
+      case 3:
+        return <PageDetailsForm {...this.props.createMagazineCamaign}/>;
+    }
   }
 };
 
