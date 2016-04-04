@@ -8,7 +8,7 @@ class PageDetailForm extends Component {
   render() {
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
+        <form className="form--content" onSubmit={this.props.handleSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
             </div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AllPagesForm from '../components/forms/AllPagesForm';
 import { openModal, updateModalPath } from 'app/modal/actions';
+import ui from 'redux-ui/transpiled';
+import { reduxForm } from 'redux-form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,10 +12,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onBackClick: () => {
+    onBackClick: (e) => {
+      ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
-    onSubmit: () => {
+    onSubmit: (...args) => {
+      ownProps.updateUI('step', ownProps.ui.step + 1);
     },
 
     onAddWebsiteClick: (e) => {
@@ -27,4 +31,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllPagesForm);
+const fields = [];
+
+let DecoratedComponent = AllPagesForm;
+DecoratedComponent = reduxForm({
+  form: 'campaignPrintAllPages',
+  fields
+})(DecoratedComponent);
+DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = ui()(DecoratedComponent);
+
+export default DecoratedComponent;
