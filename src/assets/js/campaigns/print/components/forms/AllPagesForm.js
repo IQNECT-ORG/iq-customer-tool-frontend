@@ -8,7 +8,7 @@ class AllPagesForm extends Component {
   render() {
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit}>
+        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
             </div>
@@ -23,24 +23,8 @@ class AllPagesForm extends Component {
 
                     <hr/>
 
-                    <fieldset className="form-group">
-                      <label>Target Type</label>
-                      <div className="row">
-                        <div className="col-xs-6">
-                          <button
-                            type="button"
-                            className="btn btn-block btn-secondary-outline btn-decision"
-                            onClick={this.props.onAddWebsiteClick}>
-                              Add Website
-                          </button>
-                        </div>
-
-                        <div className="col-xs-6">
-                          <button type="button" className="btn btn-block btn-secondary-outline btn-decision">Add Coupon</button>
-                        </div>
-                      </div>
-                    </fieldset>
-
+                    {this._renderTargetType()}
+                    
                     <hr/>
 
                     <fieldset className="form-group">
@@ -66,6 +50,42 @@ class AllPagesForm extends Component {
           </div>
         </form>
       </div>
+    );
+  }
+
+  _renderTargetType() {
+    if(this.props.values.website == null) {
+      return (
+        <fieldset className="form-group">
+          <label>Target Type</label>
+          <div className="row">
+            <div className="col-xs-6">
+              <button
+                type="button"
+                className="btn btn-block btn-secondary-outline btn-decision"
+                onClick={this.props.onAddWebsiteClick}>
+                  Add Website
+              </button>
+            </div>
+
+            <div className="col-xs-6">
+              <button type="button" className="btn btn-block btn-secondary-outline btn-decision">Add Coupon</button>
+            </div>
+          </div>
+        </fieldset>
+      );
+    }
+
+    return (
+      <fieldset className="form-group">
+        <label htmlFor={joid.link(true, 'input')}>Target Type</label>
+        <div className="input-group">
+          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.website}/>
+          <span className="input-group-btn">
+            <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>Delete</button>
+          </span>
+        </div>
+      </fieldset>
     );
   }
 };
