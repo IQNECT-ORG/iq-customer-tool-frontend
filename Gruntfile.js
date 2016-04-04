@@ -139,7 +139,7 @@ module.exports = grunt => {
       fonts: {
         expand: true,
         cwd: 'src/assets/fonts/',
-        src: '*',
+        src: '**/*',
         dest: 'public/assets/fonts/',
         filter: 'isFile'
       },

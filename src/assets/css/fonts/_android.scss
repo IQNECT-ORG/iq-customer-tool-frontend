@@ -1,0 +1,70 @@
+//
+// Icon Font: android
+//
+
+@font-face {
+  font-family: 'androidregular';
+  src: url("#{$font-base}/android.eot");
+  src: url("#{$font-base}/android.eot?#iefix") format("embedded-opentype"),
+       url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAuEAA0AAAAAEPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAALaAAAABoAAAAcd+RrJk9TLzIAAAGgAAAASgAAAGBAqlyMY21hcAAAAiAAAABCAAABQgAP9LxjdnQgAAACZAAAAAQAAAAEABEBRGdhc3AAAAtgAAAACAAAAAj//wADZ2x5ZgAAApQAAAdBAAAKeO8UPr5oZWFkAAABMAAAADAAAAA2B0Tat2hoZWEAAAFgAAAAHwAAACQDmwHYaG10eAAAAewAAAA0AAAAVBzbAAhsb2NhAAACaAAAACwAAAAsGwAcyG1heHAAAAGAAAAAIAAAACAAYwD5bmFtZQAACdgAAAEbAAAB++gCDqpwb3N0AAAK9AAAAGkAAADcfuky43jaY2BkYGAA4g/35sXH89t8ZeBmYgCBy+pnZWH0/9//XzPeZpwK5HIwgKUBcM0NonjaY2BkYGCc+v81gx7j9f+/gezbDEARFCAKAKPWBnQAAAEAAAAVAMgADAAAAAAAAgAAAAEAAQAAAEAALgAAAAB42mNgYWxjnMDAysDA6MOYxsDA4A6lvzJIMrQwMDAxsDIzwIEAgskQkOaawtDwkeGjIOOB/wcY9BinMogChRmRlCgwMAIAM4wLygAAeNpj2M0gyAACqxgYGEOBuAGIV0PpqVA2CK+EyoPY2VD+/P+/Ga4iqdEG4uv//wAAGR0P8XjaY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+R8H//4Ekw////MxQlQyMbAwwJgMjE5BgYkAFjAzDHgAATtsGvQAAABEBRAAAACoAKgAqAGQAjgEgAVgBjgHIAuQC/AM+A4IDzAPkBEoEVgSQBNIE/AU8eNp1Vk1sG8cVnjczO8Nd/ix3ubNL6ocUuTJZ78hSwuWSaWTJrAPIdtT0kJZ2oVwCVAnQCEhPQU8K2FMDNKhRpDq08bEXRxfbBXpWTznmJKNNA+RuoYceeqpB9c1KVlQYXe4O52/ne/Pme99bQolHCPkDTAgjkqw+BrJ2/Ynk5J/9x8L65voTRrFKHjPTbZnuJ1LA8+tPwPSnXur1Ui/2Pvnl++/DZHboQYqr2fgomMBevmaRuKRGIjJPWiQmxEtVPDp/rP9Tn0ym+X1KXq7B3l1zJZdKhCOUkNMTmMIBYjUI8fvhIjRhESLVzkbZYIgPSwPR6f55rpbe1LOpvpkW78515uCgVq4U387efbXRePXd7O1ipTz7zGvgGqSUr3mIa0r0UoM0yTUyIK+TMdkiPyIT8k6OYxYdjDoiCNP+cNCVTYhkpxv3ItkbtkCGKp8wTPth2osqgL1RGMluT+KETbAWId4AKw1CJQddKxKmU+YT9h99/PGj/eOt3d2tW7u713mVcVZmmvt28PP4B6yxXK/7wOBnZVqklfK3Nq1R+e+aVCChFc5OFFUU3JrkNVp4xgqeTeFg/9H+/qMf7/52971P3wuAgqI1JQNZaexIx280lhtwx6M2dcudimVLR9g1ydwVV8qyh9AWr14RnoVoVbtQrlj/6/cW6RJSS1Wa4WPc38vaxvm4/7jd6WbeYLgOViSzOEvH+gut/IaePYVEN/zZUwT3FZDxeIpLJUnS8A8SfRImY99sUvuNw/FYJxd4By/jKe8MZwNSRG2rODN4eAAGb6IPk9AsNTtGVNCzY0RV+hIcDuDweHwyObgA4zmPD5HHhsELpI147e+QzI4ir+2JfgtCF3ojPNE40zDx5uY8jAUsYfIR5yHn1U613vlFB/bmvFOSD2CpTwmQq1zZ3O24Ufxhx/iTX+Jcl3xGvrzMMRdEk6ahCoUKorS/CSO8h/mvKzvS9IYR8g85h2UTdx+oMBpmL2b1Br1V2luFXrenodsbxF3R62aD0RCpG+GJBSnOxFgZhqNNM09WeNxFDNwfcjsb4HvdqELRjChIo74MYuQzooaBFBKrZ3eQm5D/sIKvnRPZEQCMFSgFi1OsUaSUKNpcwNJHleJtcDw2Z3FeAOAA3qJFS8xhVFhMMK9oIdOZv+BaDkeCUhs8wJIjh12bCmp7VcaCEhW8ZDNX0sgu8ArnjihZf2GWgJLFsMGpUIjNCxTwKgK+SEXMHQDJOViwfR4h76AJaINPke0eR4OpQ3lRlG1ZWuKjnxZFpURtISJRKnPmMtxK0ZaUutRi1HdsgaZaFprJBHUFmkgtaTOLsgqnVmjZPsM+VnALpSoCUUewwJ5Dx3BaMDYWwCpADe00d02gJZRytKJIRWAUwGfoAItCWHV4hY12fmJ4A8ibf8FDuE8cZGkkMfQiuQajr5qfw73Zw8+bR64L95sPkgemRoiV82yS62WEsfQ9smLY7SlN1TpVeSBd8PuMf1E/bAHG1VCiRGtIEn18rJOz2AXyad33634zWBJiWrt6iAyeHSVhUvdDwCBOZs8g7Phmzsi2OL4x1pe4HpA6WSRrJp5NMC3Siwi7AUPcTM/y2hsg17kxRVMcGQzvPVfuK/ws0viaqxqwNjf7G0z+bs52YpfL9oTa5RIcqO2S/ZspSroHxWLhLZVoffeUTKdJ2S+VUMjOfbGHdphcFZFXUOUxT7VT5am4HWdehHkuSk0jazNjBIaKa1yB5mWx+Y/QJahfYXhKlD4ea9RfIOeWlEpNXWppc6ExsyOlYKyMP8LZoUpAl+yxa7kFhcVidM37nX75PFtg9AXRe1/j6R21Hswewr0HcN80zJmiLp7+B/fwJ9zDOnmDkCsRKpJYA+FCoKGTYeRKbHZvgHEdNtGvLRjegME69BVG6miYixgqRwVMGsN8Bh+uSK65nVbqsjgpisAf2ExL+xql15yC5oVBpS5wQAZ+anMtnRVK/7rV72+lhx1Z2C7wqOi85jivCTfizrZjLQkXg6XDSjikis7wbMgqvhh6o29ePts7mZJjcmLUPkvl8Qcne+e55lyP58kV3GOec9UL2TdWG9FPjUTL3mgNfRbJEeRCfEaTs5oR6N97r7/VbP7w+97NE/wGyBV78qLy9Z1Ubm3JdPsq4rELjpovGJ1nnHVAYmiI4l4s45GGzMvWQWLWkZhuei6sYXkDRXN0pL8Iw1/fym7JW8Pbnyh1eACTvWrSXNhy3YX5lnar81tICXVKwg/wCsGQ57hT0S0zY36+qbHcOo8TDdP8O0SZ75taGpk0l8o2JiM84C7m2TwRZnsTdXd2PBkDaXi45bHWCUyV1uPZMxMCT4/wMvs6fU40/AO/+xqY166aLNNkUYiK31llPRR9Fhr3Gqeeh/+Xt98crAbMtlmwOnjz9p3vGn/c2djY2fzVytLSSgsmC8u6bpXLVl0vLywsr0SmHq0sVzZ3Njd3Cq2VVguV5r89oqLQAAAAeNp1j7FuwkAQROfAgNKg1KlOUQqQsHUgB0W0JO6Tgt6yLXMS8qGzKSjzQ/mN/Es+IVXGx6agwNLp3q53Z+YATPEFhcv3gLWwwgS58IB8Fh7iEd/CEfu/wiPcqyfhMSbqjZMqumOVhq2eFb3ehQdkKzzEKz6FI/Z/hEfQaiA8xlQ9YwuHI7N47tbYo4PGDAXmvFcwWDL/gmzZc2jQ4gXYuuPZ23rf6Vkx1yuzXC+0LVzT8l/OoZJyjisly6b0zhI+UNHghAMnPMuqPh1yQhZku3B7TlTBOKG1xobnWu/SSxGH8x8QmWu6zPm60qvE6I0WV1Iap3Ef8HawHS0932VDEE3JXjQJdx8Cu8q31jXamGVijNE3pf4AqH9LawB42m3NOw6CYBRE4Xt+UHyDGgt3wVV8lYiwFxo69+fOxOCUnGTylWPBhr4fO9pYh9+wQCAiZsKUhBlzFixZsWZDSsaWHfvk3bWN57l0eZJnWciLvMqbvMuHLOVTVvIla9n8df2790tOKlsAAAAAAAAB//8AAnjaY2BgYGQAgotTLrwG0ZfVz8rCaABT0AbqAAA=),
+       url("#{$font-base}/android.woff2") format("woff2"),
+       url("#{$font-base}/android.woff") format("woff"),
+       url("#{$font-base}/android.ttf") format("truetype"),
+       url("#{$font-base}/android.svg#androidregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icons8-activity-grid-2:before,
+.icons8-appointment-reminders:before,
+.icons8-dashboard:before,
+.icons8-date-from:before,
+.icons8-date-to:before,
+.icons8-edit-image:before,
+.icons8-globe:before,
+.icons8-left:before,
+.icons8-magazine:before,
+.icons8-package:before,
+.icons8-questions:before,
+.icons8-right:before,
+.icons8-settings:before,
+.icons8-sort-down:before,
+.icons8-starred-ticket:before,
+.icons8-statistics:before,
+.icons8-trash:before,
+.icons8-visible:before {
+  display: inline-block;
+  font-family: "androidregular";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.icons8-activity-grid-2:before { content: "\f100"; }
+.icons8-appointment-reminders:before { content: "\f101"; }
+.icons8-dashboard:before { content: "\f102"; }
+.icons8-date-from:before { content: "\f103"; }
+.icons8-date-to:before { content: "\f104"; }
+.icons8-edit-image:before { content: "\f105"; }
+.icons8-globe:before { content: "\f106"; }
+.icons8-left:before { content: "\f107"; }
+.icons8-magazine:before { content: "\f108"; }
+.icons8-package:before { content: "\f109"; }
+.icons8-questions:before { content: "\f10a"; }
+.icons8-right:before { content: "\f10b"; }
+.icons8-settings:before { content: "\f10c"; }
+.icons8-sort-down:before { content: "\f10d"; }
+.icons8-starred-ticket:before { content: "\f10e"; }
+.icons8-statistics:before { content: "\f10f"; }
+.icons8-trash:before { content: "\f110"; }
+.icons8-visible:before { content: "\f111"; }
