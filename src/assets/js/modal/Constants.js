@@ -2,6 +2,8 @@ import keyMirror from 'keymirror';
 
 export default {
   ActionTypes: keyMirror({
-    MODAL_CLOSE: null
+    MODAL_CLOSE: null,
+    MODAL_OPEN: null,
+    MODAL_UPDATE_PATH: null
   })
 };

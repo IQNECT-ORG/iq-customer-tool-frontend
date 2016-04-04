@@ -9,9 +9,11 @@ import AssetPreview from 'app/common/components/AssetPreview';
 
 class BasicDetailsForm extends Component {
   render() {
+    const fields = this.props.fields;
+
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
+        <form className="form--content" onSubmit={this.props.handleSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <AssetPreview src="http://placehold.it/350x150"/>
@@ -27,7 +29,7 @@ class BasicDetailsForm extends Component {
 
                     <fieldset className="form-group">
                       <label htmlFor={joid.link(true, 'input')}>Campaign Title</label>
-                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name"/>
+                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name" {...fields.campaignTitle}/>
                     </fieldset>
 
                     <fieldset className="form-group">
@@ -41,7 +43,8 @@ class BasicDetailsForm extends Component {
                             id={joid.link(false, 'input')}
                             type='text'
                             className={`${inputProps.className} form-control`}
-                            placeholder='English' />
+                            placeholder='English'
+                            {...fields.magazineLanguage}/>
                         }
                       </Combobox>
                     </fieldset>
@@ -54,7 +57,7 @@ class BasicDetailsForm extends Component {
                       <div className="col-xs-12 col-sm-6">
                         <fieldset className="form-group">
                           <div className="input-group">
-                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="From"/>
+                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="From" {...fields.campaignPeriodFrom}/>
                             <div className="input-group-addon">i</div>
                           </div>
                         </fieldset>
@@ -63,7 +66,7 @@ class BasicDetailsForm extends Component {
                         <fieldset className="form-group">
                           <label className="sr-only" htmlFor={joid.link(true, 'input')}>From</label>
                           <div className="input-group">
-                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="To"/>
+                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="To" {...fields.campaignPeriodTo}/>
                             <div className="input-group-addon">i</div>
                           </div>
                         </fieldset>
@@ -74,7 +77,7 @@ class BasicDetailsForm extends Component {
                       <label htmlFor={joid.link(true, 'input')}>Default Target</label>
                       <div className="row">
                         <div className="col-xs-8 col-md-9 col-lg-10">
-                          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Amount"/>
+                          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
                         </div>
                         <div className="col-xs-4 col-md-3 col-lg-2">
                           <button type="button" className="btn btn-block btn-secondary-outline">i</button>

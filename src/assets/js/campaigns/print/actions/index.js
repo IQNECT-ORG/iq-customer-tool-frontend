@@ -1,34 +1,15 @@
 import Constants from '../Constants';
+import { closeModal } from 'app/modal/actions';
 
 const Actions = Constants.ActionTypes;
 
 export function addWebsite(url) {
-  return {
-    type: Actions.CAMPAIGN_PRINT_ADD_WEBSITE,
-    url
+  return (dispatch) => {
+    dispatch({
+      type: Actions.CAMPAIGN_PRINT_ADD_WEBSITE,
+      url
+    });
+
+    dispatch(closeModal());
   };
 };
-
-export function openAddWebsiteModal() {
-  return {
-    type: Actions.CAMPAIGN_PRINT_ADD_WEBSITE_MODAL_OPEN
-  };
-};
-
-export function closeAddWebsiteModal() {
-  return {
-    type: Actions.CAMPAIGN_PRINT_ADD_WEBSITE_MODAL_CLOSE
-  };
-};
-
-export function nextStep() {
-  return {
-    type: Actions.CAMPAIGN_PRINT_NEXT_STEP
-  }
-};
-
-export function prevStep() {
-  return {
-    type: Actions.CAMPAIGN_PRINT_PREV_STEP
-  };
-}

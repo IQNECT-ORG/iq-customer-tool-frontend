@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
-import ModalManager from 'app/modal/components/ModalManager';
-import CampaignPrintModalRouter from 'app/campaigns/print/components/ModalRouter'
+import ModalManager from 'app/modal/containers/ModalManager';
+
+import AddWebsiteModal from 'app/campaigns/print/modals/AddWebsite';
 
 class App extends Component {
   constructor(props, context) {
     super(props);
-    this.state = context.store.getState().toObject();
+    this.state = context.store.getState();
 
     _.bindAll(this, [
       'handleStoreChange'
@@ -37,15 +38,15 @@ class App extends Component {
     return (
       <div>
         {childrenWithProps}
-        <ModalManager>
-          <CampaignPrintModalRouter campaignPrint={this.state.campaignPrint}/>
-        </ModalManager>
+        <ModalManager paths={{
+          addWebsite: AddWebsiteModal
+        }}/>
       </div>
     );
   }
 
   handleStoreChange() {
-    this.setState(this.context.store.getState().toObject());
+    this.setState(this.context.store.getState());
   }
 };
 

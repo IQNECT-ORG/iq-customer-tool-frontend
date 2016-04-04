@@ -7,43 +7,21 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { IntlProvider, addLocaleData, defineMessages } from 'react-intl';
 import enUS from './core/locales/en-us';
 import enLocaleData from 'react-intl/locale-data/en';
+import { Provider } from 'react-redux';
 
 // Store
 const store = createAppStore();
-const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => { return state.get('routing').toJS(); }
-});
+const history = syncHistoryWithStore(browserHistory, store);
 
 addLocaleData(enLocaleData);
 
-const Root = class extends Component {
-  static get childContextTypes() {
-    return {
-      store: PropTypes.object
-    };
-  }
-
-  getChildContext() {
-    return {
-      store
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
-};
 
 ReactDOM.render((
-  <Root>
+  <Provider store={store}>
     <IntlProvider locale="en" messages={enUS.messages}>
       <Router history={history}>
         {routes}
       </Router>
     </IntlProvider>
-  </Root>
+  </Provider>
 ), document.getElementById('app'));

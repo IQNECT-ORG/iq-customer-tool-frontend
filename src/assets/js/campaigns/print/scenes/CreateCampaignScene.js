@@ -4,11 +4,9 @@ import DrawNavController from 'app/common/components/hoc/DrawNavController';
 import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import CreateMagazineCampaignController from '../hoc/CreateMagazineCampaignController';
+import ui from 'redux-ui/transpiled';
 
-import BasicDetailsForm from '../forms/BasicDetailsForm';
-import AllPagesForm from '../forms/AllPagesForm';
-import PageDetailsForm from '../forms/PageDetailsForm';
+import CreateCampaignContainer from '../containers/CreateCampaignContainer';
 
 class CreateCampaign extends Component {
   static get contextTypes() {
@@ -42,25 +40,22 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            {this._renderForm()}
+            <CreateCampaignContainer/>
           </div>
         </main>
       </div>
     );
   }
-
-  _renderForm() {
-    const create = this.props.campaignPrint.get('create');
-
-    switch(create.getIn(['ui', 'step'])) {
-      case 1:
-        return <BasicDetailsForm {...this.props.createMagazineCamaign}/>;
-      case 2:
-        return <AllPagesForm {...this.props.createMagazineCamaign}/>;
-      case 3:
-        return <PageDetailsForm {...this.props.createMagazineCamaign}/>;
-    }
-  }
 };
 
-export default AuthRequired(DrawNavController(CreateMagazineCampaignController(CreateCampaign)));
+let DecoratedComponent = CreateCampaign;
+
+DecoratedComponent = AuthRequired(DecoratedComponent);
+DecoratedComponent = DrawNavController(DecoratedComponent);
+DecoratedComponent = ui({
+  state: {
+    step: 1
+  }
+})(DecoratedComponent);
+
+export default DecoratedComponent;

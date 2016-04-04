@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
-import ModalController from 'app/modal/components/hoc/ModalController';
 import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm';
 import serialize from 'form-serialize';
-import { addWebsite, closeAddWebsiteModal } from '../../actions';
+import { addWebsite } from '../actions';
 
 class AddWebsite extends Component {
   static get contextTypes() {
@@ -16,10 +15,10 @@ class AddWebsite extends Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
-        onRequestClose={this.props.onModalClose}>
+        onRequestClose={this.props.onCloseClick}>
         <div className="modal-content">
           <div className="modal-header">
-            <button type="button" className="close" aria-label="Close" onClick={this.props.onModalClose}>
+            <button type="button" className="close" aria-label="Close" onClick={this.props.onCloseClick}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -39,4 +38,4 @@ class AddWebsite extends Component {
   }
 };
 
-export default ModalController(AddWebsite, closeAddWebsiteModal);
+export default AddWebsite;
