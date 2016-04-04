@@ -69,7 +69,12 @@ class AllPagesForm extends Component {
             </div>
 
             <div className="col-xs-6">
-              <button type="button" className="btn btn-block btn-secondary-outline btn-decision">Add Coupon</button>
+              <button
+                type="button"
+                className="btn btn-block btn-secondary-outline btn-decision"
+                onClick={this.props.onAddCouponClick}>
+                Add Coupon
+              </button>
             </div>
           </div>
         </fieldset>

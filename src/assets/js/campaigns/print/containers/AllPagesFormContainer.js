@@ -30,7 +30,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onAddCouponClick: (e) => {
-
+      dispatch(updateModalPath('addCoupon'));
+      dispatch(updateModalData({
+        form: 'campaignPrintAllPages'
+      }));
+      dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {

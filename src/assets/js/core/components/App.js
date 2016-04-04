@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ModalManager from 'app/modal/containers/ModalManager';
 
 import AddWebsiteModal from 'app/campaigns/print/modals/AddWebsite';
+import AddCouponModal from 'app/campaigns/print/modals/AddCoupon';
 
 class App extends Component {
   constructor(props, context) {
@@ -39,7 +40,8 @@ class App extends Component {
       <div>
         {childrenWithProps}
         <ModalManager paths={{
-          addWebsite: AddWebsiteModal
+          addWebsite: AddWebsiteModal,
+          addCoupon: AddCouponModal
         }}/>
       </div>
     );

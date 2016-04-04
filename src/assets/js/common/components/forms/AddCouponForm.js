@@ -4,12 +4,17 @@ class AddCouponForm extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>
-        <fieldset className="form-group">
-          <label htmlFor="exampleInputEmail1" className="sr-only">Email address</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
-        </fieldset>
+        <h1>Add Coupon</h1>
 
-        <button type="submit" className="btn btn-primary">Add Brand</button>
+        <div className="row">
+          <div className="col-xs-6">
+            <button type="button" className="btn btn-block btn-secondary">Browse</button>
+          </div>
+
+          <div className="col-xs-6">
+            <button type="submit" className="btn btn-block btn-primary">Create New</button>
+          </div>
+        </div>
       </form>
     );
   }
