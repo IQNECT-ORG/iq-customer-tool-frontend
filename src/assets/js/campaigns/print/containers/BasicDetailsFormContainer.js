@@ -25,12 +25,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const fields = ['campaignTitle', 'magazineLanguage', 'campaignPeriodFrom', 'campaignPeriodTo', 'defaultTarget'];
 
 let DecoratedComponent = BasicDetailsForm;
+DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm({
   form: 'campaignPrintBasicDetails',
   fields
 })(DecoratedComponent);
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
-
 
 export default DecoratedComponent;

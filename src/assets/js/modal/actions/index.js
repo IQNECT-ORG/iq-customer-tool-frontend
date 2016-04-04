@@ -21,3 +21,10 @@ export function updateModalPath(path) {
     }
   };
 };
+
+export function updateModalData(data) {
+  return {
+    type: Actions.MODAL_UPDATE_DATA,
+    payload: data
+  };
+}

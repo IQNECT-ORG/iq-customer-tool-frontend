@@ -53,9 +53,6 @@ let DecoratedComponent = CreateCampaign;
 DecoratedComponent = AuthRequired(DecoratedComponent);
 DecoratedComponent = DrawNavController(DecoratedComponent);
 DecoratedComponent = ui({
-  state: {
-    step: 1
-  }
 })(DecoratedComponent);
 
 export default DecoratedComponent;

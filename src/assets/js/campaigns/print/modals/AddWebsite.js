@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
 import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm';
 import serialize from 'form-serialize';
-import { addWebsite } from '../actions';
+import { closeModal } from 'app/modal/actions';
+import { change } from 'redux-form/lib/actions';
 
 class AddWebsite extends Component {
   static get contextTypes() {
@@ -34,7 +35,12 @@ class AddWebsite extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const data = serialize(e.currentTarget, { hash: true });
-    this.context.store.dispatch(addWebsite(data.url));
+    const dispatch = this.context.store.dispatch;
+    const changeAction = change('website', data.url);
+    changeAction.form = this.props.data.form;
+
+    dispatch(closeModal());
+    dispatch(changeAction);
   }
 };
 

@@ -23,6 +23,7 @@ class ModalManager extends Component {
         <Modal
           key={key}
           isOpen={this.getCurrentPathOpen(key)}
+          data={this.props.data}
           onCloseClick={this.props.onCloseClick}/>
         );
     });
@@ -36,7 +37,8 @@ class ModalManager extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     path: state.modal.get('path'),
-    isOpen: state.modal.get('isOpen')
+    isOpen: state.modal.get('isOpen'),
+    data: state.modal.get('data')
   };
 }
 

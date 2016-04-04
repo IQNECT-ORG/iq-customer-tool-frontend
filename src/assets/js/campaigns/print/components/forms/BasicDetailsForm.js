@@ -13,7 +13,7 @@ class BasicDetailsForm extends Component {
 
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit}>
+        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <AssetPreview src="http://placehold.it/350x150"/>

@@ -31,14 +31,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 }
 
-const fields = [];
+const fields = ['website'];
 
 let DecoratedComponent = PageDetailsForm;
+DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm({
   form: 'campaignPrintPageDetails',
   fields
 })(DecoratedComponent);
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

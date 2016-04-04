@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'tester',
+  key: 'createCampaign',
   state: {
     step: 1
   }
