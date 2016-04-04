@@ -31,11 +31,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     onAddCouponClick: (e) => {
 
+    },
+
+    onWebsiteDeleteClick: (e) => {
+      const changeAction = change('website', null);
+      changeAction.form = 'campaignPrintAllPages';
+      dispatch(changeAction);
     }
   };
 }
 
-const fields = [];
+const fields = ['website'];
 
 let DecoratedComponent = AllPagesForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
