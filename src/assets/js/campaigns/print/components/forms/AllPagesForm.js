@@ -87,7 +87,9 @@ class AllPagesForm extends Component {
         <div className="input-group">
           <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.website}/>
           <span className="input-group-btn">
-            <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>Delete</button>
+            <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
+              <i className="icons8-trash"/>
+            </button>
           </span>
         </div>
       </fieldset>

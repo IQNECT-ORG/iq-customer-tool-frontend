@@ -5,8 +5,8 @@ class QuickActions extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Notications</Link>
-        <Link to="/">Settings</Link>
+        <Link to="/"><i className="icons8-appointment-reminders"/></Link>
+        <Link to="/"><i className="icons8-settings"/></Link>
       </div>
     );
   }
