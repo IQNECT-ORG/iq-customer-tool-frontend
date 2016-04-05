@@ -59,12 +59,11 @@ class BasicDetailsForm extends Component {
                         <fieldset className="form-group">
                           <div className="input-group">
                             <DateTimeField
+                              mode="date"
                               id={joid.link(false, 'input')}
                               placeholder="From"
                               {...fields.campaignPeriodFrom}
-                              buttonIcon={() => {
-                                return 'icons8-date-from';
-                              }}/>
+                              buttonIcon="icons8-date-from"/>
                           </div>
                         </fieldset>
                       </div>
@@ -72,10 +71,12 @@ class BasicDetailsForm extends Component {
                         <fieldset className="form-group">
                           <label className="sr-only" htmlFor={joid.link(true, 'input')}>From</label>
                           <div className="input-group">
-                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="To" {...fields.campaignPeriodTo}/>
-                            <div className="input-group-addon">
-                              <i className="icons8-date-to"/>
-                            </div>
+                            <DateTimeField
+                              mode="date"
+                              id={joid.link(false, 'input')}
+                              placeholder="To"
+                              {...fields.campaignPeriodTo}
+                              buttonIcon="icons8-date-to"/>
                           </div>
                         </fieldset>
                       </div>
