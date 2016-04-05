@@ -58,7 +58,13 @@ class BasicDetailsForm extends Component {
                       <div className="col-xs-12 col-sm-6">
                         <fieldset className="form-group">
                           <div className="input-group">
-                            <DateTimeField id={joid.link(false, 'input')} placeholder="From" {...fields.campaignPeriodFrom} buttonIcon="icons8-date-from"/>
+                            <DateTimeField
+                              id={joid.link(false, 'input')}
+                              placeholder="From"
+                              {...fields.campaignPeriodFrom}
+                              buttonIcon={() => {
+                                return 'icons8-date-from';
+                              }}/>
                           </div>
                         </fieldset>
                       </div>
