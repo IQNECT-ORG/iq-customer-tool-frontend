@@ -9,7 +9,6 @@ import BrandSelectorController from 'app/common/components/hoc/BrandSelectorCont
 import Immutable from 'immutable';
 import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
 
-import Tags from 'app/common/components/tag/Tags';
 import Avatar from 'app/common/components/Avatar';
 import Steptracker from 'app/common/components/Steptracker';
 
@@ -108,12 +107,6 @@ class Home extends Component {
               <FormattedMessage
                 id='test'
                 values={{name: 'Eric'}}/>
-
-              <Tags tags={[
-                {
-                  text: 'Testing'
-                }
-              ]}/>
           </div>
         </main>
       </div>

@@ -3,6 +3,8 @@ import _ from 'lodash';
 import joid from 'joid';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
+import TagsInput from 'react-tagsinput';
+import classNames from 'classnames';
 
 class AllPagesForm extends Component {
   render() {
@@ -24,12 +26,32 @@ class AllPagesForm extends Component {
                     <hr/>
 
                     {this._renderTargetType()}
-                    
                     <hr/>
 
                     <fieldset className="form-group">
+                      <select multiple hidden>
+                        <option>Hello</option>
+                        <option>World!</option>
+                      </select>
                       <label htmlFor={joid.link(true, 'input')}>Add Tags</label>
-                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="#example"/>
+                      <TagsInput
+                        value={[]}
+                        renderInput={(props) => {
+                          const {onChange, value, className, ...other} = props;
+                          return (
+                            <input
+                              type="text"
+                              id={joid.link(false, 'input')}
+                              className={classNames(className, 'form-control')}
+                              placeholder="#example"
+                              onChange={onChange}
+                              value={value}
+                              {...other}/>
+                          );
+                        }}
+                        onChange={(tags) => {
+                          console.log(tags);
+                        }} />
                     </fieldset>
 
                     <hr/>
