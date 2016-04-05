@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
 import AssetInput from 'app/common/components/forms/AssetInput';
 import AssetPreview from 'app/common/components/AssetPreview';
+import DateTimeField from "react-bootstrap-datetimepicker";
 
 class BasicDetailsForm extends Component {
   render() {
@@ -57,8 +58,7 @@ class BasicDetailsForm extends Component {
                       <div className="col-xs-12 col-sm-6">
                         <fieldset className="form-group">
                           <div className="input-group">
-                            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="From" {...fields.campaignPeriodFrom}/>
-                            <div className="input-group-addon">i</div>
+                            <DateTimeField id={joid.link(false, 'input')} placeholder="From" {...fields.campaignPeriodFrom} buttonIcon="icons8-date-from"/>
                           </div>
                         </fieldset>
                       </div>
@@ -67,7 +67,9 @@ class BasicDetailsForm extends Component {
                           <label className="sr-only" htmlFor={joid.link(true, 'input')}>From</label>
                           <div className="input-group">
                             <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="To" {...fields.campaignPeriodTo}/>
-                            <div className="input-group-addon">i</div>
+                            <div className="input-group-addon">
+                              <i className="icons8-date-to"/>
+                            </div>
                           </div>
                         </fieldset>
                       </div>
@@ -80,7 +82,9 @@ class BasicDetailsForm extends Component {
                           <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
                         </div>
                         <div className="col-xs-4 col-md-3 col-lg-2">
-                          <button type="button" className="btn btn-block btn-secondary-outline">i</button>
+                          <button type="button" className="btn btn-block btn-secondary-outline">
+                            <i className="icons8-visible"/>
+                          </button>
                         </div>
                       </div>
                     </div>
