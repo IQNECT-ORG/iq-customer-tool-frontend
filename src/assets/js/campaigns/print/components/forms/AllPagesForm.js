@@ -8,6 +8,8 @@ import classNames from 'classnames';
 
 class AllPagesForm extends Component {
   render() {
+    const fields = this.props.fields;
+
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
@@ -26,16 +28,13 @@ class AllPagesForm extends Component {
                     <hr/>
 
                     {this._renderTargetType()}
+
                     <hr/>
 
                     <fieldset className="form-group">
-                      <select multiple hidden>
-                        <option>Hello</option>
-                        <option>World!</option>
-                      </select>
                       <label htmlFor={joid.link(true, 'input')}>Add Tags</label>
                       <TagsInput
-                        value={[]}
+                        value={fields.tags.value || []}
                         renderInput={(props) => {
                           const {onChange, value, className, ...other} = props;
                           return (
@@ -49,9 +48,15 @@ class AllPagesForm extends Component {
                               {...other}/>
                           );
                         }}
-                        onChange={(tags) => {
-                          console.log(tags);
-                        }} />
+                        renderLayout={(tagComponents, inputComponent) => {
+                          return (
+                            <span>
+                              {inputComponent}
+                              {tagComponents}
+                            </span>
+                          )
+                        }}
+                        onChange={this.props.onTagsChange} />
                     </fieldset>
 
                     <hr/>

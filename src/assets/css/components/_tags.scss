@@ -1,27 +1,27 @@
 
-.tag__item {
-
-}
-
-@include media-breakpoint-up(sm) {
-  .tag__item {
-    width: auto;
-  }
-}
-
-.tag {
-  background-color: #37464f;
+.react-tagsinput-tag {
+  background-color: rgb(55, 58, 64);
+  border-radius: 2px;
+  border: 1px solid rgb(55, 58, 64);
   color: #fff;
-  border-radius: 10px;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
 
-  @include element('remove') {
-    @extend .close;
-    @extend %btn-hollow;
-    color: #fff;
-    opacity: 1;
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    text-decoration: none;
   }
+}
 
-  @include element('text') {
-    margin-right: 25px;
-  }
+.react-tagsinput-tag a::before {
+  content: " ×";
+  color: #fff;
 }
