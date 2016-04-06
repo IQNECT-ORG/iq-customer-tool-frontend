@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import joid from 'joid';
+import AssetField from './AssetField';
 
 class CreateCouponForm extends Component {
   render() {
@@ -8,6 +9,12 @@ class CreateCouponForm extends Component {
     return (
       <form className="form--modal" onSubmit={this.props.onSubmit}>
         <h1>Create New Coupon</h1>
+
+        <fieldset className="form-group">
+          <AssetField
+            onChange={fields.artwork.onChange}
+            value={fields.artwork.value}/>
+        </fieldset>
 
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')}>Coupon Name</label>

@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const fields = ['couponName', 'discountCode', 'validityFrom', 'validityTo'];
+const fields = ['artwork', 'couponName', 'discountCode', 'validityFrom', 'validityTo'];
 
 let DecoratedComponent = CreateCouponForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
