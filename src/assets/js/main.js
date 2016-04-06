@@ -11,10 +11,11 @@ import { Provider } from 'react-redux';
 
 // Store
 const store = createAppStore();
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: (state) => { return state.routing.toJS(); }
+});
 
 addLocaleData(enLocaleData);
-
 
 ReactDOM.render((
   <Provider store={store}>

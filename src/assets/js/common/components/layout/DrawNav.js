@@ -33,7 +33,7 @@ class DrawNav extends Component {
 
               <div className="row">
                 <div className="col-xs-12">
-                  <Link to="/" className="btn btn-primary btn-block">Create Campaign</Link>
+                  <Link to="/campaign/create" className="btn btn-primary btn-block">Create Campaign</Link>
                 </div>
               </div>
 

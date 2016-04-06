@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
 import AssetInput from 'app/common/components/forms/AssetInput';
 import AssetPreview from 'app/common/components/AssetPreview';
-import DateTimeField from "react-bootstrap-datetimepicker";
+import DateTimeField from 'react-bootstrap-datetimepicker';
 
 class BasicDetailsForm extends Component {
   render() {
