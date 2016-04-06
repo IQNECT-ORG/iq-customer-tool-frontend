@@ -13,7 +13,6 @@ class CreateCouponForm extends Component {
           <label htmlFor={joid.link(true, 'input')}>Coupon Name</label>
           <input
             type="text"
-            name="couponName"
             className="form-control"
             id={joid.link(false, 'input')}
             placeholder="Buy 1 Get 1 Free (1 For 1)"
@@ -29,9 +28,13 @@ class CreateCouponForm extends Component {
               <div className="input-group">
                 <DateTimeField
                   mode="date"
-                  id={joid.link(false, 'input')}
                   placeholder="From"
-                  buttonIcon="icons8-date-from"/>
+                  buttonIcon="icons8-date-from"
+                  onChange={fields.validityFrom.onChange}
+                  defaultText={fields.validityFrom.value}
+                  inputProps={{
+                    id: joid.link(false, 'input')
+                  }}/>
               </div>
             </fieldset>
           </div>
@@ -41,9 +44,13 @@ class CreateCouponForm extends Component {
               <div className="input-group">
                 <DateTimeField
                   mode="date"
-                  id={joid.link(false, 'input')}
                   placeholder="To"
-                  buttonIcon="icons8-date-to"/>
+                  buttonIcon="icons8-date-to"
+                  onChange={fields.validityTo.onChange}
+                  defaultText={fields.validityTo.value}
+                  inputProps={{
+                    id: joid.link(false, 'input')
+                  }}/>
               </div>
             </fieldset>
           </div>
@@ -53,10 +60,10 @@ class CreateCouponForm extends Component {
           <label htmlFor={joid.link(true, 'input')}>Discount Code</label>
           <input
             type="text"
-            name="discountCode"
             className="form-control"
             id={joid.link(false, 'input')}
-            placeholder="B1G1F"/>
+            placeholder="B1G1F"
+            {...fields.discountCode}/>
         </fieldset>
 
         <div className="row">

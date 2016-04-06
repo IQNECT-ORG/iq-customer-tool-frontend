@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import CreateCouponForm from '../components/forms/CreateCouponForm';
 import ui from 'redux-ui/transpiled';
 import { reduxForm } from 'redux-form';
+import _ from 'lodash';
+import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -10,14 +12,28 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const fields = _.cloneDeep(ownProps.fields);
+  fields.validityFrom.onChange = (value) => {
+    const changeAction = change('validityFrom', value);
+    changeAction.form = 'createCoupon';
+    dispatch(changeAction);
+  };
+
+  fields.validityTo.onChange = (value) => {
+    const changeAction = change('validityTo', value);
+    changeAction.form = 'createCoupon';
+    dispatch(changeAction);
+  };
+
   return {
+    fields,
     onSubmit: ownProps.handleSubmit((...args) => {
       console.log(args);
     })
   };
 };
 
-const fields = ['couponName'];
+const fields = ['couponName', 'discountCode', 'validityFrom', 'validityTo'];
 
 let DecoratedComponent = CreateCouponForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
