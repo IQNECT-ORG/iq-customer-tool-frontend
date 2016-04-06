@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
-import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm';
+import CreateCouponForm from 'app/common/components/forms/CreateCouponForm';
 import serialize from 'form-serialize';
-import { closeModal } from 'app/modal/actions';
-import { change } from 'redux-form/lib/actions';
+import {  } from '../actions';
 
-class AddWebsite extends Component {
+class CreateCoupon extends Component {
   static get contextTypes() {
     return {
       store: React.PropTypes.object.isRequired,
@@ -25,23 +24,12 @@ class AddWebsite extends Component {
           </div>
 
           <div className="modal-body">
-            <AddWebsiteForm onSubmit={::this.handleSubmit}/>
+            <CreateCouponForm/>
           </div>
         </div>
       </Modal>
     );
   }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const data = serialize(e.currentTarget, { hash: true });
-    const dispatch = this.context.store.dispatch;
-    const changeAction = change('website', data.url);
-    changeAction.form = this.props.data.form;
-
-    dispatch(closeModal());
-    dispatch(changeAction);
-  }
 };
 
-export default AddWebsite;
+export default CreateCoupon;

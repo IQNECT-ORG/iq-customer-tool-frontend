@@ -3,8 +3,9 @@ import Modal from 'app/modal/components/Modal';
 import AddCouponForm from 'app/common/components/forms/AddCouponForm';
 import serialize from 'form-serialize';
 import {  } from '../actions';
+import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
-class AddWebsite extends Component {
+class AddCoupon extends Component {
   static get contextTypes() {
     return {
       store: React.PropTypes.object.isRequired,
@@ -24,12 +25,22 @@ class AddWebsite extends Component {
           </div>
 
           <div className="modal-body">
-            <AddCouponForm/>
+            <AddCouponForm  onSubmit={::this.handleSubmit}/>
           </div>
         </div>
       </Modal>
     );
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const dispatch = this.context.store.dispatch;
+    dispatch(updateModalPath('createCoupon'));
+    // dispatch(updateModalData({
+    //   form: 'campaignPrintAllPages'
+    // }));
+    // dispatch(openModal());
+  }
 };
 
-export default AddWebsite;
+export default AddCoupon;
