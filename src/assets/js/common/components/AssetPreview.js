@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class AssetPreview extends Component {
   render() {
     return (
-      <div>
+      <div className="asset-preview">
         <img src={this.props.src}/>
       </div>
     );
