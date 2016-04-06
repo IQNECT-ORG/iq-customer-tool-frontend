@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { change } from 'redux-form/lib/actions';
+import { closeModal } from 'app/modal/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fields,
     onSubmit: ownProps.handleSubmit((...args) => {
       console.log(args);
+      dispatch(closeModal());
     })
   };
 };
