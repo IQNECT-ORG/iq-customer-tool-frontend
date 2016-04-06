@@ -4,6 +4,7 @@ import joid from 'joid';
 
 class CreateCouponForm extends Component {
   render() {
+    const fields = this.props.fields;
     return (
       <form className="form--modal" onSubmit={this.props.onSubmit}>
         <h1>Create New Coupon</h1>
@@ -15,7 +16,8 @@ class CreateCouponForm extends Component {
             name="couponName"
             className="form-control"
             id={joid.link(false, 'input')}
-            placeholder="Buy 1 Get 1 Free (1 For 1)"/>
+            placeholder="Buy 1 Get 1 Free (1 For 1)"
+            {...fields.couponName}/>
         </fieldset>
 
         <div className="row">
