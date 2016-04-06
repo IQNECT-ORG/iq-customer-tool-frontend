@@ -41,11 +41,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const changeAction = change('website', null);
       changeAction.form = 'campaignPrintAllPages';
       dispatch(changeAction);
+    },
+
+    onTagsChange: (tags) => {
+      const changeAction = change('tags', tags);
+      changeAction.form = 'campaignPrintAllPages';
+      dispatch(changeAction);
     }
   };
 }
 
-const fields = ['website'];
+const fields = ['website', 'tags'];
 
 let DecoratedComponent = AllPagesForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
