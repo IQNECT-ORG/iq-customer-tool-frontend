@@ -7,9 +7,6 @@ class AssetField extends Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.props.onRemoveClick}>
-          Remove
-        </button>
         <AssetInput onChange={this.props.onChange} value={this.props.value}/>
         {this._renderPreviews()}
       </div>
