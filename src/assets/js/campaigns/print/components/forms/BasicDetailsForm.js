@@ -4,9 +4,8 @@ import joid from 'joid';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
-import AssetInput from 'app/common/components/forms/AssetInput';
-import AssetPreview from 'app/common/components/AssetPreview';
 import DateTimeField from 'react-bootstrap-datetimepicker';
+import MediaUploaderFieldContainer from 'app/common/containers/MediaUploaderFieldContainer';
 
 class BasicDetailsForm extends Component {
   render() {
@@ -17,7 +16,10 @@ class BasicDetailsForm extends Component {
         <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
-              <AssetPreview src="http://placehold.it/350x150"/>
+              <MediaUploaderFieldContainer
+                onChange={fields.media.onChange}
+                value={fields.media.value}
+                name={fields.media.name}/>
             </div>
           </div>
 
