@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
-import CreateCouponForm from 'app/common/components/forms/CreateCouponForm';
+import CreateCouponForm from 'app/common/containers/CreateCouponFormContanier';
 import serialize from 'form-serialize';
 import {  } from '../actions';
 
