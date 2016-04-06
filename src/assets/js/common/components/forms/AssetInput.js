@@ -4,10 +4,10 @@ class AssetInput extends Component {
   render() {
     return (
       <div>
-        <div>
-          <button type="button" onClick={this.handleBrowseClick.bind(this)}>Test</button>
-        </div>
-        <input type="file" ref="input" onClick={this.props.onClick} onChange={this.props.onChange}/>
+        <button type="button" onClick={::this.handleBrowseClick}>
+          Upload Artwork
+        </button>
+        <input type="file" ref="input" onChange={this.props.onChange} hidden/>
       </div>
     );
   }
