@@ -14,7 +14,7 @@ class AssetField extends Component {
     return (
       <div className={className}>
         {this._renderPreviews()}
-        <AssetInput onChange={this.props.onChange} value={this.props.value}/>
+        <AssetInput name={this.props.name} onChange={this.props.onChange} value={this.props.value}/>
       </div>
     );
   }

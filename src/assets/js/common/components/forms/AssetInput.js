@@ -9,7 +9,13 @@ class AssetInput extends Component {
           <i className="icons8-dashboard"/>
           <span>Upload Artwork</span>
         </button>
-        <input className="asset-input__input" type="file" ref="input" onChange={this.props.onChange} hidden/>
+        <input
+          className="asset-input__input"
+          type="file"
+          ref="input"
+          name={this.props.name}
+          onChange={this.props.onChange}
+          hidden/>
       </div>
     );
   }
