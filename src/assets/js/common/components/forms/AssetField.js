@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AssetInput from './AssetInput';
-import AssetPreview from '../../containers/AssetPreviewContainer';
+import LocalFileAssetPreviewContainer from '../../containers/LocalFileAssetPreviewContainer';
 import _ from 'lodash';
 import classNames from 'classnames';
 
@@ -22,7 +22,7 @@ class AssetField extends Component {
   _renderPreviews() {
     return _.map(this.props.value, (source, index) => {
       return (
-        <AssetPreview src={source} key={index}/>
+        <LocalFileAssetPreviewContainer src={source} key={index}/>
       );
     });
   }
