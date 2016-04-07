@@ -17,8 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: (...args) => {
+    onSubmit: ownProps.handleSubmit((...args) => {
       ownProps.updateUI('step', ownProps.ui.step + 1);
-    }
+    })
   };
 };
 
