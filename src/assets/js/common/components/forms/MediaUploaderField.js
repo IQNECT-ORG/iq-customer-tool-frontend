@@ -6,8 +6,8 @@ import classNames from 'classnames';
 class MediaUploaderField extends Component {
   render() {
     const className = classNames('media-uploader', this.props.className, {
-      'media-uploader--empty': this.props.value == null || this.props.value.length === 0,
-      'media-uploader--populated': this.props.value && this.props.value.length
+      'media-uploader--empty': this.props.value == null,
+      'media-uploader--populated': this.props.value
     });
 
     return (

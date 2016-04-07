@@ -1,0 +1,20 @@
+.media-uploader {
+  position: relative;
+  width: 200px;
+  height: 200px;
+
+  @include modifier('empty') {
+    background-color: #fff;
+    color: #afbdc5;
+    border: 1px #afbdc5 dashed;
+  }
+
+  @include modifier('populated') {
+    .asset-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+  }
+}
