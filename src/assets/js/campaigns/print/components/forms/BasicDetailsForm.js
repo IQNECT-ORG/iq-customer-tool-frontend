@@ -16,9 +16,7 @@ class BasicDetailsForm extends Component {
         <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
-              <AssetField
-                onChange={fields.media.onChange}
-                value={fields.media.value}/>
+              {this._renderMedia()}
             </div>
           </div>
 
@@ -136,7 +134,22 @@ class BasicDetailsForm extends Component {
         </Combobox>
       );
     }
+  }
 
+  _renderMedia() {
+    const fields = this.props.fields;
+
+    if(fields.id.value) {
+      return (
+        <div>@TODO</div>
+      );
+    } else {
+      return (
+        <AssetField
+          onChange={fields.media.onChange}
+          value={fields.media.value}/>
+      );
+    }
   }
 };
 
