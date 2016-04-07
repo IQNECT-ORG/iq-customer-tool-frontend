@@ -23,6 +23,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 const fields = ['media', 'campaignTitle', 'magazineLanguage', 'campaignPeriodFrom', 'campaignPeriodTo', 'defaultTarget'];
+const fields = [
+  'id',
+  'media',
+  'campaignTitle',
+  'magazineLanguage',
+  'campaignPeriodFrom',
+  'campaignPeriodTo',
+  'defaultTarget'
+];
 
 let DecoratedComponent = BasicDetailsForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);

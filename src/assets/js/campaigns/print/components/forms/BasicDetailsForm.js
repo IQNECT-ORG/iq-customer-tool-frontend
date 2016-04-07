@@ -13,7 +13,7 @@ class BasicDetailsForm extends Component {
 
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+        <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <AssetField
@@ -36,19 +36,7 @@ class BasicDetailsForm extends Component {
 
                     <fieldset className="form-group">
                       <label htmlFor={joid.link(true, 'input')}>Magazine Language</label>
-                      <Combobox defaultValue={'English'}
-                        options={['English', 'Korean']}
-                        dropdownProps={{ style: { width: '100%' } }}
-                        autocomplete>
-                        {inputProps =>
-                          <input {...inputProps}
-                            id={joid.link(false, 'input')}
-                            type='text'
-                            className={`${inputProps.className} form-control`}
-                            placeholder='English'
-                            {...fields.magazineLanguage}/>
-                        }
-                      </Combobox>
+                      {this._renderLanguageSelector()}
                     </fieldset>
 
 
@@ -98,7 +86,7 @@ class BasicDetailsForm extends Component {
                     </div>
 
                     <hr/>
-                    
+
                     <div className="row">
                       <div className="col-xs-6">
                         <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onBackClick}>Back</button>
@@ -116,6 +104,39 @@ class BasicDetailsForm extends Component {
         </form>
       </div>
     );
+  }
+
+  _renderLanguageSelector() {
+    const fields = this.props.fields;
+
+    if(fields.id.value) {
+      return (
+        <input
+          id={joid.link(true, 'input')}
+          className="form-control"
+          type="text"
+          placeholder="Language"
+          value={fields.magazineLanguage.value}
+          readOnly/>
+      );
+    } else {
+      return (
+        <Combobox defaultValue={'English'}
+          options={['English', 'Korean']}
+          dropdownProps={{ style: { width: '100%' } }}
+          autocomplete>
+          {inputProps =>
+            <input {...inputProps}
+              id={joid.link(false, 'input')}
+              type='text'
+              className={`${inputProps.className} form-control`}
+              placeholder='English'
+              {...fields.magazineLanguage}/>
+          }
+        </Combobox>
+      );
+    }
+
   }
 };
 
