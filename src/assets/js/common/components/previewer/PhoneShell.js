@@ -4,7 +4,9 @@ class PhoneShell extends Component {
   render() {
     return (
       <div className="phone-shell">
-        {this.props.children}
+        <div className="phone-shell__window">
+          {this.props.children}
+        </div>
       </div>
     );
   }

@@ -7,13 +7,14 @@ import campaignPrint from 'app/campaigns/print/reducers';
 import { reducer as ui } from 'redux-ui/transpiled';
 import { reducer as form }  from 'redux-form';
 import modal from 'app/modal/reducer';
+import entities from './entities';
 
 const customerTool = combineReducers({
   auth,
   drawNav,
   alerts,
   routing: routeReducer,
-  //entities
+  entities,
   campaignPrint,
   ui,
   form,
