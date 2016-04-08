@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PageDetailsForm from '../components/forms/PageDetailsForm';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import ui from 'redux-ui/transpiled';
+import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
