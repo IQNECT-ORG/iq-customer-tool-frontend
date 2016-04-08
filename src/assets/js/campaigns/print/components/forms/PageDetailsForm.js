@@ -19,7 +19,7 @@ class PageDetailForm extends Component {
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h2>Page X</h2>
+                    <h2>Page {this.props.page}</h2>
 
                     <button type="button" className="btn btn-secondary-outline">Prev</button>
                     <button type="button" className="btn btn-secondary-outline">Next</button>

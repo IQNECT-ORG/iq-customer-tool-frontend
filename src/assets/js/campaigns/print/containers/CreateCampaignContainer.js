@@ -5,6 +5,7 @@ import CreateCampaign from '../components/CreateCampaign';
 import BasicDetailsFormContainer from './BasicDetailsFormContainer';
 import AllPagesFormContainer from './AllPagesFormContainer';
 import PageDetailsFormContainer from './PageDetailsFormContainer';
+import { reduxForm } from 'redux-form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -22,12 +23,33 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+const fields = [
+  'id',
+  'media',
+  'campaignTitle',
+  'magazineLanguage',
+  'campaignPeriodFrom',
+  'campaignPeriodTo',
+  'defaultTarget',
+
+  'fallback.website',
+  'fallback.tags',
+
+  'pages[].website',
+  'pages[].tags'
+];
+
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = reduxForm({
+  form: 'createCampaignPrint',
+  fields
+})(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'createCampaign',
+  key: 'createCampaignPrint',
   state: {
-    step: 1
+    step: 1,
+    page: null
   }
 })(DecoratedComponent);
 

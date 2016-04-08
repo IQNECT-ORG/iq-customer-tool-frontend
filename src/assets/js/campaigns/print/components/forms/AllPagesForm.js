@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 class AllPagesForm extends Component {
   render() {
-    const fields = this.props.fields;
+    const fields = this.props.fields.fallback;
 
     return (
       <div className="row">
@@ -81,7 +81,7 @@ class AllPagesForm extends Component {
   }
 
   _renderTargetType() {
-    if(this.props.values.website == null) {
+    if(this.props.values.fallback.website == null) {
       return (
         <fieldset className="form-group">
           <label>Target Type</label>

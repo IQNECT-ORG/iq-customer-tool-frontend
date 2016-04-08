@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BasicDetailsForm from '../components/forms/BasicDetailsForm';
 import ui from 'redux-ui/transpiled';
-import { reduxForm } from 'redux-form';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -17,6 +17,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((...args) => {
+      // Reset all of the pages just in case
+      _.times(ownProps.fields.pages.length, ownProps.fields.pages.removeField);
+
+      // Fake number of pages extracted from magazine length
+      _.times(5, n => ownProps.fields.pages.addField());
+
       ownProps.updateUI('step', ownProps.ui.step + 1);
     }),
 
@@ -30,22 +36,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const fields = [
-  'id',
-  'media',
-  'campaignTitle',
-  'magazineLanguage',
-  'campaignPeriodFrom',
-  'campaignPeriodTo',
-  'defaultTarget'
-];
 
 let DecoratedComponent = BasicDetailsForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = reduxForm({
-  form: 'campaignPrintBasicDetails',
-  fields
-})(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;
