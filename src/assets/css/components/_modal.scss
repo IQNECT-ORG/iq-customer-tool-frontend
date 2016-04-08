@@ -14,3 +14,10 @@
 .modal-header {
   border-bottom-color: transparent;
 }
+
+.modal-content {
+  @include modifier('hollow') {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}

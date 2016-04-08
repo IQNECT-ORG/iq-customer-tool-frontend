@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import AllPagesForm from '../components/forms/AllPagesForm';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import ui from 'redux-ui/transpiled';
-import { reduxForm } from 'redux-form';
 import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,17 +13,28 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onBackClick: (e) => {
-      ownProps.updateUI('step', ownProps.ui.step - 1);
+      ownProps.updateUI('step', 0);
     },
 
-    onSubmit: (...args) => {
-      ownProps.updateUI('step', ownProps.ui.step + 1);
+    onSubmit: ownProps.handleSubmit((...args) => {
+      ownProps.updateUI({
+        step: 2,
+        page: null,
+        pageView: null
+      });
+    }),
+
+    onSwitchViewClick: (e) => {
+      ownProps.updateUI({
+        pageView: 'DETAIL'
+      });
     },
 
     onAddWebsiteClick: (e) => {
       dispatch(updateModalPath('addWebsite'));
       dispatch(updateModalData({
-        form: 'campaignPrintAllPages'
+        form: 'createCampaignPrint',
+        field: 'fallback.website'
       }));
       dispatch(openModal());
     },
@@ -32,33 +42,27 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onAddCouponClick: (e) => {
       dispatch(updateModalPath('addCoupon'));
       dispatch(updateModalData({
-        form: 'campaignPrintAllPages'
+        form: 'createCampaignPrint'
       }));
       dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change('website', null);
-      changeAction.form = 'campaignPrintAllPages';
+      const changeAction = change('fallback.website', null);
+      changeAction.form = 'createCampaignPrint';
       dispatch(changeAction);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change('tags', tags);
-      changeAction.form = 'campaignPrintAllPages';
+      const changeAction = change('fallback.tags', tags);
+      changeAction.form = 'createCampaignPrint';
       dispatch(changeAction);
     }
   };
 }
 
-const fields = ['website', 'tags'];
-
 let DecoratedComponent = AllPagesForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = reduxForm({
-  form: 'campaignPrintAllPages',
-  fields
-})(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

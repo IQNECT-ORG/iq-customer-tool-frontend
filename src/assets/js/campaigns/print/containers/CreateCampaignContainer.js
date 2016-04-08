@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
 import CreateCampaign from '../components/CreateCampaign';
-import BasicDetailsFormContainer from './BasicDetailsFormContainer';
-import AllPagesFormContainer from './AllPagesFormContainer';
-import PageDetailsFormContainer from './PageDetailsFormContainer';
+import { reduxForm } from 'redux-form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     step: ownProps.ui.step,
-    components: [
-      BasicDetailsFormContainer,
-      AllPagesFormContainer,
-      PageDetailsFormContainer
-    ]
+    page: ownProps.ui.page,
+    pageView: ownProps.ui.pageView
   };
 };
 
@@ -22,12 +17,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+const fields = [
+  'id',
+  'media',
+  'campaignTitle',
+  'magazineLanguage',
+  'campaignPeriodFrom',
+  'campaignPeriodTo',
+  'defaultTarget',
+
+  'fallback.website',
+  'fallback.tags',
+
+  'pages[].website',
+  'pages[].tags'
+];
+
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = reduxForm({
+  form: 'createCampaignPrint',
+  fields
+})(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'createCampaign',
+  key: 'createCampaignPrint',
   state: {
-    step: 1
+    step: 0,
+    page: null,
+    pageView: null
   }
 })(DecoratedComponent);
 

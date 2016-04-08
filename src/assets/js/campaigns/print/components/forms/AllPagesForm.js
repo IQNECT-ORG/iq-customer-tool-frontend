@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import joid from 'joid';
-import $ from 'jquery';
-import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
 
 class AllPagesForm extends Component {
   render() {
-    const fields = this.props.fields;
+    const fields = this.props.fields.fallback;
 
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+        <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
+              <ul className="row list-unstyled">
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -24,6 +39,10 @@ class AllPagesForm extends Component {
                 <div className="row">
                   <div className="col-xs-12">
                     <h2>All Pages</h2>
+
+                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
+                      <i className="icons8-edit-image"/>
+                    </button>
 
                     <hr/>
 
@@ -67,7 +86,7 @@ class AllPagesForm extends Component {
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary">Next</button>
+                        <button type="submit" className="btn btn-block btn-primary">Summary</button>
                       </div>
                     </div>
                   </div>
@@ -81,7 +100,7 @@ class AllPagesForm extends Component {
   }
 
   _renderTargetType() {
-    if(this.props.values.website == null) {
+    if(this.props.values.fallback.website == null) {
       return (
         <fieldset className="form-group">
           <label>Target Type</label>
@@ -112,7 +131,7 @@ class AllPagesForm extends Component {
       <fieldset className="form-group">
         <label htmlFor={joid.link(true, 'input')}>Target Type</label>
         <div className="input-group">
-          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.website}/>
+          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.fallback.website}/>
           <span className="input-group-btn">
             <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
               <i className="icons8-trash"/>

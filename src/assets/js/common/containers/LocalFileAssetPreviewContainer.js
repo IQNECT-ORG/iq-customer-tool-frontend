@@ -24,7 +24,7 @@ class AssetPreviewContainer extends Component {
 
   render() {
     return (
-      <AssetPreview src={this.props.ui.parsedSrc}/>
+      <AssetPreview type={this.props.src.type} src={this.props.ui.parsedSrc}/>
     );
   }
 }

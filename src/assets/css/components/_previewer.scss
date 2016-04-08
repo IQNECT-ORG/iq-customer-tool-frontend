@@ -1,0 +1,14 @@
+
+.phone-shell {
+  width: 249px;
+  height: 507px;
+  background: url(/assets/images/phone-preview.svg);
+  padding-top: 62px;
+
+  @include element('window') {
+    width: 215px;
+    height: 382px;
+    margin: 0 auto;
+    overflow: scroll;
+  }
+}

@@ -4,9 +4,8 @@ import joid from 'joid';
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
-import AssetInput from 'app/common/components/forms/AssetInput';
-import AssetPreview from 'app/common/components/AssetPreview';
 import DateTimeField from 'react-bootstrap-datetimepicker';
+import AssetField from 'app/common/components/forms/AssetField';
 
 class BasicDetailsForm extends Component {
   render() {
@@ -14,10 +13,10 @@ class BasicDetailsForm extends Component {
 
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+        <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
-              <AssetPreview src="http://placehold.it/350x150"/>
+              {this._renderMedia()}
             </div>
           </div>
 
@@ -35,19 +34,7 @@ class BasicDetailsForm extends Component {
 
                     <fieldset className="form-group">
                       <label htmlFor={joid.link(true, 'input')}>Magazine Language</label>
-                      <Combobox defaultValue={'English'}
-                        options={['English', 'Korean']}
-                        dropdownProps={{ style: { width: '100%' } }}
-                        autocomplete>
-                        {inputProps =>
-                          <input {...inputProps}
-                            id={joid.link(false, 'input')}
-                            type='text'
-                            className={`${inputProps.className} form-control`}
-                            placeholder='English'
-                            {...fields.magazineLanguage}/>
-                        }
-                      </Combobox>
+                      {this._renderLanguageSelector()}
                     </fieldset>
 
 
@@ -89,7 +76,7 @@ class BasicDetailsForm extends Component {
                           <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
                         </div>
                         <div className="col-xs-4 col-md-3 col-lg-2">
-                          <button type="button" className="btn btn-block btn-secondary-outline">
+                          <button type="button" className="btn btn-block btn-secondary-outline" onClick={this.props.onPreviewWebsiteClick}>
                             <i className="icons8-visible"/>
                           </button>
                         </div>
@@ -97,7 +84,7 @@ class BasicDetailsForm extends Component {
                     </div>
 
                     <hr/>
-                    
+
                     <div className="row">
                       <div className="col-xs-6">
                         <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onBackClick}>Back</button>
@@ -115,6 +102,54 @@ class BasicDetailsForm extends Component {
         </form>
       </div>
     );
+  }
+
+  _renderLanguageSelector() {
+    const fields = this.props.fields;
+
+    if(fields.id.value) {
+      return (
+        <input
+          id={joid.link(true, 'input')}
+          className="form-control"
+          type="text"
+          placeholder="Language"
+          value={fields.magazineLanguage.value}
+          readOnly/>
+      );
+    } else {
+      return (
+        <Combobox defaultValue={'English'}
+          options={['English', 'Korean']}
+          dropdownProps={{ style: { width: '100%' } }}
+          autocomplete>
+          {inputProps =>
+            <input {...inputProps}
+              id={joid.link(false, 'input')}
+              type='text'
+              className={`${inputProps.className} form-control`}
+              placeholder='English'
+              {...fields.magazineLanguage}/>
+          }
+        </Combobox>
+      );
+    }
+  }
+
+  _renderMedia() {
+    const fields = this.props.fields;
+
+    if(fields.id.value) {
+      return (
+        <div>@TODO</div>
+      );
+    } else {
+      return (
+        <AssetField
+          onChange={fields.media.onChange}
+          value={fields.media.value}/>
+      );
+    }
   }
 };
 
