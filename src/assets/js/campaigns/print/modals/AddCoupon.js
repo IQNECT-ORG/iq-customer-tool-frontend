@@ -36,9 +36,11 @@ class AddCoupon extends Component {
     e.preventDefault();
     const dispatch = this.context.store.dispatch;
     dispatch(updateModalPath('createCoupon'));
-    // dispatch(updateModalData({
-    //   form: 'campaignPrintAllPages'
-    // }));
+    // @TODO: Make this come from the prior data
+    dispatch(updateModalData({
+      form: 'createCampaignPrint',
+      field: 'fallback.coupon'
+    }));
     // dispatch(openModal());
   }
 };

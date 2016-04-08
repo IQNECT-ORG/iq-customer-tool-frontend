@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
 import CreateCouponForm from 'app/common/containers/CreateCouponFormContanier';
 import serialize from 'form-serialize';
-import {  } from '../actions';
+import { connect } from 'react-redux';
+import { closeModal } from 'app/modal/actions';
+import { change } from 'redux-form/lib/actions';
 
 class CreateCoupon extends Component {
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object.isRequired,
-    };
-  }
-
   render() {
     return (
       <Modal
@@ -24,7 +20,7 @@ class CreateCoupon extends Component {
           </div>
 
           <div className="modal-body">
-            <CreateCouponForm/>
+            <CreateCouponForm onFormSubmit={this.props.onSubmit}/>
           </div>
         </div>
       </Modal>
@@ -32,4 +28,25 @@ class CreateCoupon extends Component {
   }
 };
 
-export default CreateCoupon;
+const mapStateToProps = (state, ownProps) => {
+  return {
+  };
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onSubmit: () => {
+      // @TODO: Get the coupon that was saved
+      const changeAction = change(ownProps.data.field, '1');
+      changeAction.form = ownProps.data.form;
+
+      dispatch(changeAction);
+      dispatch(closeModal());
+    }
+  };
+}
+
+let DecoratedComponent = CreateCoupon;
+DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+
+export default DecoratedComponent;
