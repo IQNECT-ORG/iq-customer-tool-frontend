@@ -10,6 +10,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    onBackClick: e => {
+      ownProps.updateUI({
+        step: 1,
+        pageView: 'ALL',
+        page: 1
+      });
+    }
   };
 }
 
