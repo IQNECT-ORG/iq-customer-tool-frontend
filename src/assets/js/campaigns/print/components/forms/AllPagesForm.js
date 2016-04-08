@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import joid from 'joid';
-import $ from 'jquery';
-import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
 
@@ -12,7 +10,7 @@ class AllPagesForm extends Component {
 
     return (
       <div className="row">
-        <form className="form--content" onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+        <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
             </div>
@@ -24,6 +22,10 @@ class AllPagesForm extends Component {
                 <div className="row">
                   <div className="col-xs-12">
                     <h2>All Pages</h2>
+
+                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
+                      Detail
+                    </button>
 
                     <hr/>
 
@@ -67,7 +69,7 @@ class AllPagesForm extends Component {
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary">Next</button>
+                        <button type="submit" className="btn btn-block btn-primary">Summary</button>
                       </div>
                     </div>
                   </div>

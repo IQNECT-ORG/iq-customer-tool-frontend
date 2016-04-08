@@ -16,10 +16,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
-    onSubmit: (...args) => {
+    onSubmit: ownProps.handleSubmit((...args) => {
       ownProps.updateUI({
-        step: ownProps.ui.step + 1,
-        page: 1
+        step: 2,
+        page: null,
+        pageView: null
+      });
+    }),
+
+    onSwitchViewClick: (e) => {
+      ownProps.updateUI({
+        pageView: 'DETAIL'
       });
     },
 

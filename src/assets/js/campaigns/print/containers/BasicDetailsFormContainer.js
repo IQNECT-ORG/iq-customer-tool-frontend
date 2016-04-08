@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onBackClick: (e) => {
-      ownProps.updateUI('step', ownProps.ui.step - 1);
+      //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
     onSubmit: ownProps.handleSubmit((...args) => {
@@ -23,7 +23,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // Fake number of pages extracted from magazine length
       _.times(5, n => ownProps.fields.pages.addField());
 
-      ownProps.updateUI('step', ownProps.ui.step + 1);
+      ownProps.updateUI({
+        pageView: 'ALL',
+        step: 1,
+        page: 0
+      });
     }),
 
     onPreviewWebsiteClick: (e) => {
