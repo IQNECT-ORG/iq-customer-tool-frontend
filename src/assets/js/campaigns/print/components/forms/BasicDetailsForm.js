@@ -76,7 +76,7 @@ class BasicDetailsForm extends Component {
                           <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
                         </div>
                         <div className="col-xs-4 col-md-3 col-lg-2">
-                          <button type="button" className="btn btn-block btn-secondary-outline">
+                          <button type="button" className="btn btn-block btn-secondary-outline" onClick={this.props.onPreviewWebsiteClick}>
                             <i className="icons8-visible"/>
                           </button>
                         </div>

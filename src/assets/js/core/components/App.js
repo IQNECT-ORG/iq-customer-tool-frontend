@@ -6,6 +6,7 @@ import ModalManager from 'app/modal/containers/ModalManager';
 
 import AddWebsiteModal from 'app/campaigns/print/modals/AddWebsite';
 import AddCouponModal from 'app/campaigns/print/modals/AddCoupon';
+import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
 
 class App extends Component {
   constructor(props, context) {
@@ -41,7 +42,8 @@ class App extends Component {
         {childrenWithProps}
         <ModalManager paths={{
           addWebsite: AddWebsiteModal,
-          addCoupon: AddCouponModal
+          addCoupon: AddCouponModal,
+          previewWebsite: PreviewWebsiteModal
         }}/>
       </div>
     );
