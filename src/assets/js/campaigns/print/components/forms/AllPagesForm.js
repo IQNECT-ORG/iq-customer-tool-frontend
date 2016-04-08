@@ -100,7 +100,7 @@ class AllPagesForm extends Component {
   }
 
   _renderTargetType() {
-    if(this.props.values.fallback.website == null) {
+    if(this.props.values.fallback.website == null && this.props.values.fallback.coupon == null) {
       return (
         <fieldset className="form-group">
           <label>Target Type</label>
@@ -127,19 +127,33 @@ class AllPagesForm extends Component {
       );
     }
 
-    return (
-      <fieldset className="form-group">
-        <label htmlFor={joid.link(true, 'input')}>Target Type</label>
-        <div className="input-group">
-          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.fallback.website}/>
-          <span className="input-group-btn">
-            <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
-              <i className="icons8-trash"/>
-            </button>
-          </span>
+    if(this.props.values.fallback.website) {
+      return (
+        <fieldset className="form-group">
+          <label htmlFor={joid.link(true, 'input')}>Target Type</label>
+          <div className="input-group">
+            <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Website" {...this.props.fields.fallback.website}/>
+            <span className="input-group-btn">
+              <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
+                <i className="icons8-trash"/>
+              </button>
+            </span>
+          </div>
+        </fieldset>
+      );
+    }
+
+    if(this.props.values.fallback.coupon) {
+      return (
+        <div>
+          <span>Coupon</span>
+          <button type="button" onClick={this.props.onCouponDeleteClick}>
+            <i className="icons8-trash"/>
+          </button>
         </div>
-      </fieldset>
-    );
+      );
+    }
+
   }
 };
 

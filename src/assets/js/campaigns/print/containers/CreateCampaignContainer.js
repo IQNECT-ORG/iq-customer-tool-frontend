@@ -28,9 +28,11 @@ const fields = [
 
   'fallback.website',
   'fallback.tags',
+  'fallback.coupon',
 
   'pages[].website',
-  'pages[].tags'
+  'pages[].tags',
+  'pages[].coupon'
 ];
 
 let DecoratedComponent = CreateCampaign;

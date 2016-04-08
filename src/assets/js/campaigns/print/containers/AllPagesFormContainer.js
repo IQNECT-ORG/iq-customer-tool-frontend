@@ -53,6 +53,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(changeAction);
     },
 
+    onCouponDeleteClick: (e) => {
+      const changeAction = change('fallback.coupon', null);
+      changeAction.form = 'createCampaignPrint';
+      dispatch(changeAction);
+    },
+
     onTagsChange: (tags) => {
       const changeAction = change('fallback.tags', tags);
       changeAction.form = 'createCampaignPrint';
