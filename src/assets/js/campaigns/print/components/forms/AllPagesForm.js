@@ -13,6 +13,23 @@ class AllPagesForm extends Component {
         <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
+              <ul className="row list-unstyled">
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+                <li className="col-xs-4">
+                  <img className="img-fluid" src="http://placehold.it/600x800"/>
+                </li>
+              </ul>
             </div>
           </div>
 
