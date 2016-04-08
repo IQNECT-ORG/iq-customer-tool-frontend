@@ -14,7 +14,10 @@ class CreateCampaign extends Component {
   }
 
   _renderForm() {
-    return React.createElement(this.props.components[this.props.step - 1]);
+    return React.createElement(
+      this.props.components[this.props.step - 1],
+      this.props
+    );
   }
 };
 
