@@ -36,7 +36,7 @@ class AddWebsite extends Component {
     e.preventDefault();
     const data = serialize(e.currentTarget, { hash: true });
     const dispatch = this.context.store.dispatch;
-    const changeAction = change('website', data.url);
+    const changeAction = change(this.props.data.field, data.url);
     changeAction.form = this.props.data.form;
 
     dispatch(closeModal());
