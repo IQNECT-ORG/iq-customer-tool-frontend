@@ -7,6 +7,7 @@ export default {
     MODAL_UPDATE_PATH: null,
     MODAL_UPDATE_DATA: null,
     MODAL_UNDO: null,
-    MODAL_REDO: null
+    MODAL_REDO: null,
+    MODAL_JUMP: null
   })
 };

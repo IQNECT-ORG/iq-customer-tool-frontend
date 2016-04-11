@@ -28,3 +28,16 @@ export function updateModalData(data) {
     payload: data
   };
 }
+
+export function undoModal() {
+  return {
+    type: Actions.MODAL_UNDO
+  };
+};
+
+export function jumpModal(index) {
+  return {
+    type: Actions.MODAL_JUMP,
+    index
+  };
+};

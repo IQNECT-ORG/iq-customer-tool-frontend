@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { closeModal } from '../actions';
+import { closeModal, jumpModal } from '../actions';
 
 class ModalManager extends Component {
-  static get contextTypes() {
-    return {
-    };
-  }
-
   render() {
     return (
       <div>
@@ -24,7 +19,8 @@ class ModalManager extends Component {
           key={key}
           isOpen={this.getCurrentPathOpen(key)}
           data={this.props.data}
-          onCloseClick={this.props.onCloseClick}/>
+          onCloseClick={this.props.onCloseClick}
+          onRestoreClick={this.props.onRestoreClick}/>
         );
     });
   }
@@ -36,16 +32,17 @@ class ModalManager extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    path: state.modal.get('path'),
-    isOpen: state.modal.get('isOpen'),
-    data: state.modal.get('data')
+    path: state.modal.present.get('path'),
+    isOpen: state.modal.present.get('isOpen'),
+    data: state.modal.present.get('data')
   };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onCloseClick: _ => dispatch(closeModal())
+    onCloseClick: _ => dispatch(closeModal()),
+    onRestoreClick: _ => dispatch(jumpModal(-2))
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalManager);

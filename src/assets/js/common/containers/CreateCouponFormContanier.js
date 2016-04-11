@@ -30,14 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fields,
     onSubmit: ownProps.handleSubmit((...args) => {
       ownProps.onFormSubmit(...args);
-    }),
-    onPreviewClick: e => {
-      dispatch(updateModalPath('previewCoupon'));
-      // @TODO: Need a means of holding the hold data and restoring
-      dispatch(updateModalData({
-      }));
-      dispatch(openModal());
-    }
+    })
   };
 };
 

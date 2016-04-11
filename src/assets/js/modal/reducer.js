@@ -19,7 +19,8 @@ let reducer = createReducer(initialState, {
 
 reducer = undoable(reducer, {
   undoType: Actions.MODAL_UNDO,
-  redoType: Actions.MODAL_REDO
+  redoType: Actions.MODAL_REDO,
+  jumpType: Actions.MODAL_JUMP
 });
 
 export default reducer;

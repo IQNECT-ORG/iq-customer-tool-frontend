@@ -13,7 +13,7 @@ class PreviewCouponModal extends Component {
           <div className="modal-body">
             <PreviewCoupon/>
 
-            <button type="button" className="btn btn-primary" onClick={this.props.onCloseClick}>
+            <button type="button" className="btn btn-primary" onClick={this.props.onRestoreClick}>
               Close Preview
             </button>
           </div>

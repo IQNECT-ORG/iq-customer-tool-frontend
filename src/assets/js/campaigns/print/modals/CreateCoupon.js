@@ -5,6 +5,7 @@ import serialize from 'form-serialize';
 import { connect } from 'react-redux';
 import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
+import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 class CreateCoupon extends Component {
   render() {
@@ -20,7 +21,7 @@ class CreateCoupon extends Component {
           </div>
 
           <div className="modal-body">
-            <CreateCouponForm onFormSubmit={this.props.onSubmit}/>
+            <CreateCouponForm onFormSubmit={this.props.onSubmit} onPreviewClick={this.props.onPreviewClick}/>
           </div>
         </div>
       </Modal>
@@ -42,6 +43,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       dispatch(changeAction);
       dispatch(closeModal());
+    },
+    onPreviewClick: () => {
+      dispatch(updateModalPath('previewCoupon'));
+      dispatch(updateModalData({
+      }));
     }
   };
 }
