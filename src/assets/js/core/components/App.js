@@ -6,51 +6,24 @@ import ModalManager from 'app/modal/containers/ModalManager';
 
 import AddWebsiteModal from 'app/campaigns/print/modals/AddWebsite';
 import AddCouponModal from 'app/campaigns/print/modals/AddCoupon';
+import CreateCouponModal from 'app/campaigns/print/modals/CreateCoupon';
 import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
+import PreviewCouponModal from 'app/common/modals/PreviewCoupon';
 
 class App extends Component {
-  constructor(props, context) {
-    super(props);
-    this.state = context.store.getState();
-
-    _.bindAll(this, [
-      'handleStoreChange'
-    ]);
-  }
-
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object
-    };
-  }
-
-  componentWillMount() {
-    this.unsubscribe = this.context.store.subscribe(this.handleStoreChange);
-  }
-
-  componentWillUnmount() {
-    this.context.store.unsubscribe(this.unsubscribe);
-  }
-
   render() {
-    var childrenWithProps = React.Children.map(this.props.children, child => {
-      return React.cloneElement(child, this.state);
-    });
-
     return (
       <div>
-        {childrenWithProps}
+        {this.props.children}
         <ModalManager paths={{
           addWebsite: AddWebsiteModal,
           addCoupon: AddCouponModal,
-          previewWebsite: PreviewWebsiteModal
+          previewWebsite: PreviewWebsiteModal,
+          createCoupon: CreateCouponModal,
+          previewCoupon: PreviewCouponModal
         }}/>
       </div>
     );
-  }
-
-  handleStoreChange() {
-    this.setState(this.context.store.getState());
   }
 };
 
