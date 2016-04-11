@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import classNames from 'classnames';
 
 class Modal extends Component {
   static get contextTypes() {
@@ -8,9 +9,9 @@ class Modal extends Component {
   }
 
   render() {
+    const className = classNames('Modal__Bootstrap modal-dialog', this.props.className);
     return (
       <ReactModal
-        className="Modal__Bootstrap modal-dialog"
         style={{
           overlay: {
             position: null,
@@ -35,7 +36,8 @@ class Modal extends Component {
             padding: null
           }
         }}
-        {...this.props}>
+        {...this.props}
+        className={className}>
         {this.props.children}
       </ReactModal>
     );
