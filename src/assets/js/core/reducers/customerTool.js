@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import routeReducer from './routeReducer';
-import drawNav from './drawNav';
 import auth from './auth';
 import alerts from './alerts';
 import campaignPrint from 'app/campaigns/print/reducers';
@@ -11,7 +10,6 @@ import entities from './entities';
 
 const customerTool = combineReducers({
   auth,
-  drawNav,
   alerts,
   routing: routeReducer,
   entities,

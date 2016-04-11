@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require("path");
 
 module.exports = {
-  entry: './src/assets/js/main.js',
+  entry: ['babel-polyfill', './src/assets/js/main.js'],
   output: {
     path: path.resolve(__dirname, '../public/assets/js'),
     publicPath: '/assets/js/',

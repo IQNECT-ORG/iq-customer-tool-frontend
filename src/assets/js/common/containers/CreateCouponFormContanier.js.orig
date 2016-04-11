@@ -5,7 +5,10 @@ import ui from 'redux-ui/transpiled';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { change } from 'redux-form/lib/actions';
+<<<<<<< HEAD
+=======
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+>>>>>>> develop
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -30,6 +33,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fields,
     onSubmit: ownProps.handleSubmit((...args) => {
       ownProps.onFormSubmit(...args);
+<<<<<<< HEAD
+    })
+=======
     }),
     onPreviewClick: e => {
       dispatch(updateModalPath('previewCoupon'));
@@ -38,6 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }));
       dispatch(openModal());
     }
+>>>>>>> develop
   };
 };
 

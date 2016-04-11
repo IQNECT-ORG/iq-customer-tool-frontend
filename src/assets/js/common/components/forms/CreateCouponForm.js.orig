@@ -75,7 +75,11 @@ class CreateCouponForm extends Component {
 
         <div className="row">
           <div className="col-xs-6">
+<<<<<<< HEAD
+            <button type="button" className="btn btn-block btn-secondary">Preview</button>
+=======
             <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onPreviewClick}>Preview</button>
+>>>>>>> develop
           </div>
 
           <div className="col-xs-6">

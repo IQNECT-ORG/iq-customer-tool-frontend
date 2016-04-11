@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
-import DrawNavController from 'app/common/components/hoc/DrawNavController';
 import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
@@ -52,4 +51,4 @@ class CatalogueBrands extends Component {
   }
 };
 
-export default AuthRequired(DrawNavController(BrandSelectorController(CatalogueBrands)));
+export default AuthRequired(BrandSelectorController(CatalogueBrands));
