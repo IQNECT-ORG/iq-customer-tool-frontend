@@ -5,6 +5,8 @@ export default {
     MODAL_CLOSE: null,
     MODAL_OPEN: null,
     MODAL_UPDATE_PATH: null,
-    MODAL_UPDATE_DATA: null
+    MODAL_UPDATE_DATA: null,
+    MODAL_UNDO: null,
+    MODAL_REDO: null
   })
 };
