@@ -7,6 +7,7 @@ import { reducer as ui } from 'redux-ui/transpiled';
 import { reducer as form }  from 'redux-form';
 import modal from 'app/modal/reducer';
 import entities from './entities';
+import errors from './errors';
 
 const customerTool = combineReducers({
   auth,
@@ -16,7 +17,8 @@ const customerTool = combineReducers({
   campaignPrint,
   ui,
   form,
-  modal
+  modal,
+  errors
 });
 
 export default customerTool;
