@@ -5,8 +5,18 @@ import * as brandsApi from '../services/api/brands';
 
 function* brandsFetchAsync() {
   try {
-    let brands = yield brandsApi.getBrands();
-    yield put(brandActions.brandsFetchSuccess(brands));
+    //let brands = yield brandsApi.getBrands();
+    //yield put(brandActions.brandsFetchSuccess(brands));
+    yield put(brandActions.brandsFetchSuccess([
+      {
+        id: 1,
+        name: 'McDonalds'
+      },
+      {
+        id: 2,
+        name: 'Esquire'
+      }
+    ]));
   } catch(err) {
     yield put(brandActions.brandsFetchFailure(err));
   }
