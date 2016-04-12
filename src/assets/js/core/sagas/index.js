@@ -1,9 +1,15 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork } from 'redux-saga/effects';
 import * as brandActions from 'app/common/actions/brands';
+import * as brandsApi from '../services/api/brands';
 
 function* brandsFetchAsync() {
-  yield put(brandActions.brandsFetchSuccess());
+  try {
+    let brands = yield brandsApi.getBrands();
+    yield put(brandActions.brandsFetchSuccess(brands));
+  } catch(err) {
+    yield put(brandActions.brandsFetchFailure(err));
+  }
 };
 
 
