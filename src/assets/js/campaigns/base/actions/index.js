@@ -3,4 +3,5 @@ import { createAction } from 'redux-actions';
 
 const Actions = Constants.ActionTypes;
 
-export const loadCampaignCreate = createAction(Actions.CAMPAIGN_PRINT_LOAD);
+export const loadCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_LOAD);
+export const selectBrand = createAction(Actions.CAMPAIGN_CREATE_BRAND_SELECT);

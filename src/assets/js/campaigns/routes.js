@@ -3,9 +3,7 @@ import baseRoutes from './base/routes';
 import printRoutes from './print/routes';
 
 export default [
-  React.cloneElement(baseRoutes, {
-    key: 'campaignsBaseRoutes'
-  }),
+  baseRoutes,
   React.cloneElement(printRoutes, {
     key: 'campaignsPrintRoutes'
   })

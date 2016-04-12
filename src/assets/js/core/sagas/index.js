@@ -1,7 +1,10 @@
 import { takeEvery, takeLatest } from 'redux-saga';
-import { call, put, take, fork } from 'redux-saga/effects';
+import { call, put, take, fork, select } from 'redux-saga/effects';
 import * as brandActions from 'app/common/actions/brands';
 import * as brandsApi from '../services/api/brands';
+import * as routerActions from 'react-router-redux/lib/actions';
+//import { getPathname } from '../selectors/routing';
+//import { getParams } from 'react-router/lib/PatternUtils'
 
 function* brandsFetchAsync() {
   try {
@@ -24,12 +27,23 @@ function* brandsFetchAsync() {
 
 
 function* startup() {
-  console.log('startup');
+  
 };
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
+
+// function* watchNavigation() {
+//   while(true) {
+//     const { payload } = yield take('@@route/LOCATION_CHANGE');
+//     console.log(getParams('/campaign/create/:brandId', payload.pathname));
+
+//     // if(payload.pathname === '/campaign/create/') {
+
+//     // }
+//   }
+// };
 
 function* watchBrandsFetchRequest() {
   yield takeLatest('BRANDS_FETCH_REQUEST', brandsFetchAsync);
@@ -37,15 +51,22 @@ function* watchBrandsFetchRequest() {
 
 function* watchLoadCampaignPrintCreate() {
   while(true) {
-    yield take('CAMPAIGN_PRINT_LOAD');
+    yield take('CAMPAIGN_CREATE_LOAD');
     yield fork(function* () {
       yield put(brandActions.brandsFetchRequest());
     });
   }
 };
 
+function* watchCampaignCreateBrandSelect() {
+  yield takeLatest('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
+    yield put(routerActions.push(`/campaign/create/${action.payload}`));
+  });
+}
+
 export default function* root() {
   yield fork(startup);
   yield fork(watchLoadCampaignPrintCreate);
   yield fork(watchBrandsFetchRequest);
+  yield fork(watchCampaignCreateBrandSelect);
 };

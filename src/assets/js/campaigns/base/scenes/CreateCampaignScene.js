@@ -5,11 +5,11 @@ import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
-import { loadCampaignCreate } from '../actions';
+import { loadCampaignCreate, selectBrand } from '../actions';
 
 class CreateCampaign extends Component {
-
   componentDidMount() {
+    this.props.actions.selectBrand(this.props.routeParams.brandId);
     this.props.actions.load();
   }
 
@@ -18,27 +18,35 @@ class CreateCampaign extends Component {
   }
 
   render() {
-    return (
-      <DefaultLayout
-        titleRender={_ => {
-          return (
-            <div className="container-fluid">
-              <div className="row">
-                <Titlebar className="col-xs-12">
-                  <div className="row">
-                    <div className="col-xs-12">
-                      <h1>Select a Brand</h1>
+    if(this.props.selectedBrandId == null) {
+      return (
+        <DefaultLayout
+          titleRender={_ => {
+            return (
+              <div className="container-fluid">
+                <div className="row">
+                  <Titlebar className="col-xs-12">
+                    <div className="row">
+                      <div className="col-xs-12">
+                        <h1>Select a Brand</h1>
+                      </div>
                     </div>
-                  </div>
-                </Titlebar>
+                  </Titlebar>
+                </div>
               </div>
-            </div>
-          );
-        }}>
-        <div className="container">
-          <BrandSelectorContainer/>
-        </div>
-      </DefaultLayout>
+            );
+          }}>
+          <div className="container">
+            <BrandSelectorContainer/>
+          </div>
+        </DefaultLayout>
+      );
+    }
+
+    return (
+      <div>
+        Now pick the campaign type
+      </div>
     );
   }
 
@@ -55,6 +63,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     actions: {
       load: () => {
         dispatch(loadCampaignCreate());
+      },
+      selectBrand: (brandId) => {
+        dispatch(selectBrand(brandId));
       }
     }
   };

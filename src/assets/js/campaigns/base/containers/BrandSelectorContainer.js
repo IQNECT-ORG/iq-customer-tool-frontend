@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
 import BrandSelectorList from 'app/common/components/brandSelector/BrandSelectorList';
 import { getBrands } from 'app/core/selectors/entities/brands';
+import { selectBrand } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,6 +13,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    onOptionClick: (e, brand, brandId) => {
+      dispatch(selectBrand(brandId));
+    }
   };
 }
 

@@ -2,6 +2,7 @@ import keyMirror from 'keymirror';
 
 export default {
   ActionTypes: keyMirror({
-    CAMPAIGN_PRINT_LOAD: null
+    CAMPAIGN_CREATE_LOAD: null,
+    CAMPAIGN_CREATE_BRAND_SELECT: null
   })
 };
