@@ -4,10 +4,12 @@ import { combineReducers, createReducer } from 'redux-immutablejs';
 
 const Actions = Constants.ActionTypes;
 
-const create = combineReducers({
+const create = createReducer(new Immutable.Map({
+  selectedBrandId: null
+}), {
 
 });
 
 export default combineReducers({
-  test: (state) => new Immutable.Map()
+  create
 });

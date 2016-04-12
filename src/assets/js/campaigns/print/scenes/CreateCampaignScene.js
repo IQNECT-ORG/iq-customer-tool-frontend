@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import DrawNav from 'app/common/containers/DrawNavContainer';
 import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import ui from 'redux-ui/transpiled';
+import { loadCampaignPrintCreate } from '../actions';
 
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
 
 class CreateCampaign extends Component {
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object
-    };
+
+  componentDidMount() {
+    this.props.actions.load();
+  }
+
+  componentWillUpdate(nextProps) {
+    //nextProps.actions.load();
   }
 
   render() {
@@ -37,16 +43,44 @@ class CreateCampaign extends Component {
           </div>
 
           <div className="container">
-            <CreateCampaignContainer/>
+            {this._renderContent()}
           </div>
         </main>
       </div>
     );
   }
+
+  _renderContent() {
+    if(this.props.selectedBrandId == null) {
+      return (
+        <BrandSelector/>
+      );
+    }
+
+    return (
+      <CreateCampaignContainer/>
+    );
+  }
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    selectedBrandId: state.campaignPrint.getIn(['create', 'selectedBrandId'])
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    actions: {
+      load: () => {
+        dispatch(loadCampaignPrintCreate())
+      }
+    }
+  };
 };
 
 let DecoratedComponent = CreateCampaign;
-
+DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = AuthRequired(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);

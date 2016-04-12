@@ -7,7 +7,7 @@ class BrandSelector extends Component {
   render() {
     return (
       <SelectorList
-        items={this.props.brands.toJS()}
+        items={this.props.brands}
         renderOption={this._renderOption.bind(this)}
         listItem={{
           className: 'col-xs-2'

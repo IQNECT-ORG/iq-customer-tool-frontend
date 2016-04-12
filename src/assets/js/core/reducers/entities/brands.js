@@ -1,15 +1,11 @@
 import Immutable from 'immutable';
 import Constants from '../Constants';
+import { combineReducers, createReducer } from 'redux-immutablejs';
 
 const Actions = Constants.ActionTypes;
 
-export default (state, action) => {
-  if(state == null) {
-    return new Immutable.Map({
-    });
-  }
+export default createReducer(new Immutable.Map({
 
-  switch(action.type) {
-  }
-  return state;
-};
+}), {
+
+});
