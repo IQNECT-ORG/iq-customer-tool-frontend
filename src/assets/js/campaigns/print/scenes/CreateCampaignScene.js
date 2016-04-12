@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DrawNav from 'app/common/containers/DrawNavContainer';
-import SystemAlertMessagesContainer from 'app/common/containers/SystemAlertMessagesContainer';
+import DefaultLayout from 'app/common/components/layouts/Default';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import ui from 'redux-ui/transpiled';
@@ -22,31 +21,23 @@ class CreateCampaign extends Component {
 
   render() {
     return (
-      <div>
-        <DrawNav/>
-
-        <main className="page-content" role="main">
-          <div className="container-fluid">
-            <SystemAlertMessagesContainer/>
-          </div>
-
-          <div className="container-fluid">
-            <div className="row">
-              <Titlebar className="col-xs-12">
-                <div className="row">
-                  <div className="col-xs-12">
-                    <h1>Create Campaign</h1>
-                  </div>
+      <DefaultLayout>
+        <div className="container-fluid">
+          <div className="row">
+            <Titlebar className="col-xs-12">
+              <div className="row">
+                <div className="col-xs-12">
+                  <h1>Create Campaign</h1>
                 </div>
-              </Titlebar>
-            </div>
+              </div>
+            </Titlebar>
           </div>
+        </div>
 
-          <div className="container">
-            {this._renderContent()}
-          </div>
-        </main>
-      </div>
+        <div className="container">
+          {this._renderContent()}
+        </div>
+      </DefaultLayout>
     );
   }
 
