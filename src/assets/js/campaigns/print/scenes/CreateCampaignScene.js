@@ -8,7 +8,7 @@ import ui from 'redux-ui/transpiled';
 import { loadCampaignPrintCreate } from '../actions';
 
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
-import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
+import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 
 class CreateCampaign extends Component {
 
@@ -53,7 +53,7 @@ class CreateCampaign extends Component {
   _renderContent() {
     if(this.props.selectedBrandId == null) {
       return (
-        <BrandSelector/>
+        <BrandSelectorContainer/>
       );
     }
 
