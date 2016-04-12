@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-const DrawNavController = Component => class extends Component {
+const DrawNavController = DecoratedComponent => class extends Component {
   static get contextTypes() {
     return {
       router: React.PropTypes.object,
+      store: React.PropTypes.object
     };
   }
 
@@ -13,15 +14,15 @@ const DrawNavController = Component => class extends Component {
   }
 
   render() {
-    return <Component {...this.props}/>;
+    return <DecoratedComponent {...this.props}/>;
   }
 
   _checkAuth() {
-    if(this.props.auth.get('token')) {
+    //if(this.props.auth.get('token')) {
 
-    } else {
+    //} else {
       //this.context.router.push('/signin');
-    }
+    //}
   }
 };
 
