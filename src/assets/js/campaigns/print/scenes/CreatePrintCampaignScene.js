@@ -7,9 +7,8 @@ import ui from 'redux-ui/transpiled';
 import { loadCampaignPrintCreate } from '../actions';
 
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
-import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 
-class CreateCampaign extends Component {
+class CreatePrintCampaign extends Component {
 
   componentDidMount() {
     this.props.actions.load();
@@ -35,21 +34,9 @@ class CreateCampaign extends Component {
         </div>
 
         <div className="container">
-          {this._renderContent()}
+          <CreateCampaignContainer/>
         </div>
       </DefaultLayout>
-    );
-  }
-
-  _renderContent() {
-    if(this.props.selectedBrandId == null) {
-      return (
-        <BrandSelectorContainer/>
-      );
-    }
-
-    return (
-      <CreateCampaignContainer/>
     );
   }
 };
@@ -70,7 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = CreateCampaign;
+let DecoratedComponent = CreatePrintCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = AuthRequired(DecoratedComponent);
 DecoratedComponent = ui({

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import BrandSelectorController from 'app/common/components/hoc/BrandSelectorController';
-import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
+
 import Immutable from 'immutable';
 
 class CatalogueBrands extends Component {
@@ -37,11 +36,6 @@ class CatalogueBrands extends Component {
           </div>
 
           <div className="container">
-            <BrandSelector
-              brands={new Immutable.List(new Immutable.Map({
-                name: 'hello'
-              }))}
-              onOptionClick={this.props.onBrandClick}/>
           </div>
         </main>
       </div>
@@ -49,4 +43,4 @@ class CatalogueBrands extends Component {
   }
 };
 
-export default AuthRequired(BrandSelectorController(CatalogueBrands));
+export default AuthRequired(CatalogueBrands);

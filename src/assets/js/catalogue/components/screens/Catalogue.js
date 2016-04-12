@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import FeatureSelectorController from 'app/common/components/hoc/FeatureSelectorController';
-import FeatureSelector from 'app/common/components/featureSelector/FeatureSelector';
 
 class Catalogue extends Component {
   static get contextTypes() {
@@ -36,7 +34,6 @@ class Catalogue extends Component {
           </div>
 
           <div className="container">
-            <FeatureSelector onOptionClick={this.props.onFeatureClick}/>
           </div>
         </main>
       </div>
@@ -44,4 +41,4 @@ class Catalogue extends Component {
   }
 };
 
-export default AuthRequired(FeatureSelectorController(Catalogue));
+export default AuthRequired(Catalogue);

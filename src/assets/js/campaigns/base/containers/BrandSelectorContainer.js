@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
-import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
+import BrandSelectorList from 'app/common/components/brandSelector/BrandSelectorList';
 import { getBrands } from 'app/core/selectors/entities/brands';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 }
 
-let DecoratedComponent = BrandSelector;
+let DecoratedComponent = BrandSelectorList;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 

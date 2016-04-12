@@ -27,7 +27,7 @@ function* watchBrandsFetchRequest() {
 
 function* watchLoadCampaignPrintCreate() {
   while(true) {
-    yield take('CAMPAIGN_PRINT_CREATE_LOAD');
+    yield take('CAMPAIGN_PRINT_LOAD');
     yield fork(function* () {
       yield put(brandActions.brandsFetchRequest());
     });

@@ -3,9 +3,7 @@ import DrawNav from 'app/common/components/layout/DrawNav';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 
-import BrandSelectorController from 'app/common/components/hoc/BrandSelectorController';
 import Immutable from 'immutable';
-import BrandSelector from 'app/common/components/brandSelector/BrandSelector';
 
 import Avatar from 'app/common/components/Avatar';
 import Steptracker from 'app/common/components/Steptracker';
@@ -91,16 +89,6 @@ class Home extends Component {
               </div>
             </div>
 
-
-            <BrandSelector
-              brands={new Immutable.List([
-                new Immutable.Map({
-                  id: 1,
-                  name: 'test'
-                })
-              ])}
-              onOptionClick={this.props.onBrandClick}/>
-
               <FormattedMessage
                 id='test'
                 values={{name: 'Eric'}}/>
@@ -111,4 +99,4 @@ class Home extends Component {
   }
 };
 
-export default AuthRequired(BrandSelectorController(Home));
+export default AuthRequired(Home);
