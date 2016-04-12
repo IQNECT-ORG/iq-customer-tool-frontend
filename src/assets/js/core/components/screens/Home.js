@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
-import SysAlertManager from 'app/common/components/SysAlertManager';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 
@@ -29,7 +28,6 @@ class Home extends Component {
 
         <main className="page-content" role="main">
           <div className="container-fluid">
-            <SysAlertManager alerts={this.props.alerts}/>
           </div>
 
           <div className="container-fluid">

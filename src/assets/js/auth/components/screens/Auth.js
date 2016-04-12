@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SysAlertManager from 'app/common/components/SysAlertManager';
 import LoginForm from 'app/common/components/forms/LoginForm';
 import LoginFormController from '../hoc/LoginFormController';
 
@@ -24,7 +23,6 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <SysAlertManager alerts={this.props.alerts}/>
         <LoginForm onSubmit={this.props.onLoginFormSubmit}/>
       </div>
     );

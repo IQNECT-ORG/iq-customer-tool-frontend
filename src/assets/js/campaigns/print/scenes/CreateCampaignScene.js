@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DrawNav from 'app/common/containers/DrawNavContainer';
-import SysAlertManager from 'app/common/components/SysAlertManager';
+import SystemAlertMessagesContainer from 'app/common/containers/SystemAlertMessagesContainer';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import ui from 'redux-ui/transpiled';
@@ -27,7 +27,7 @@ class CreateCampaign extends Component {
 
         <main className="page-content" role="main">
           <div className="container-fluid">
-            <SysAlertManager alerts={this.props.alerts}/>
+            <SystemAlertMessagesContainer/>
           </div>
 
           <div className="container-fluid">
