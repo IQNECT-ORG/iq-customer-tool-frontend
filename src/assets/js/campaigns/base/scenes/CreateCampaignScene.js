@@ -7,6 +7,8 @@ import Titlebar from 'app/common/components/layout/Titlebar';
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import { loadCampaignCreate, selectBrand } from '../actions';
 
+import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
+
 class CreateCampaign extends Component {
   componentDidMount() {
     this.props.actions.selectBrand(this.props.routeParams.brandId);
@@ -44,9 +46,26 @@ class CreateCampaign extends Component {
     }
 
     return (
-      <div>
-        Now pick the campaign type
-      </div>
+      <DefaultLayout
+        titleRender={_ => {
+          return (
+            <div className="container-fluid">
+              <div className="row">
+                <Titlebar className="col-xs-12">
+                  <div className="row">
+                    <div className="col-xs-12">
+                      <h1>Choose a Campaign Type</h1>
+                    </div>
+                  </div>
+                </Titlebar>
+              </div>
+            </div>
+          );
+        }}>
+        <div className="container">
+          <CampaignTypeSelectorContainer/>
+        </div>
+      </DefaultLayout>
     );
   }
 

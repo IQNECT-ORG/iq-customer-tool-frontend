@@ -60,7 +60,16 @@ function* watchLoadCampaignPrintCreate() {
 
 function* watchCampaignCreateBrandSelect() {
   yield takeLatest('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
-    yield put(routerActions.push(`/campaign/create/${action.payload}`));
+    yield put(routerActions.push(`/campaign/create/${action.payload || ''}`));
+  });
+}
+
+function* watchCampaignCreateCampaignTypeSelect() {
+  yield takeLatest('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
+    const selectedBrandId = yield select((state) => {
+      return state.campaigns.getIn(['create', 'selectedBrandId']);
+    });
+    yield put(routerActions.push(`/campaign/create/${selectedBrandId}/${action.payload}`));
   });
 }
 
@@ -69,4 +78,5 @@ export default function* root() {
   yield fork(watchLoadCampaignPrintCreate);
   yield fork(watchBrandsFetchRequest);
   yield fork(watchCampaignCreateBrandSelect);
+  yield fork(watchCampaignCreateCampaignTypeSelect);
 };

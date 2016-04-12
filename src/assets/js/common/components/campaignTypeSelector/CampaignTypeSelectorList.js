@@ -8,8 +8,10 @@ class CampaignTypeSelector extends Component {
     return (
       <SelectorList
         items={[
-          id: 'magazine',
-          label: 'Magazine Campaign'
+          {
+            id: 1,
+            label: 'Magazine Campaign'
+          }
         ]}
         renderOption={this._renderOption.bind(this)}
         listItem={{

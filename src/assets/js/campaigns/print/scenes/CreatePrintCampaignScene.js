@@ -43,7 +43,7 @@ class CreatePrintCampaign extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    selectedBrandId: state.campaignPrint.getIn(['create', 'selectedBrandId'])
+    selectedBrandId: state.campaigns.getIn(['create', 'selectedBrandId'])
   };
 };
 
