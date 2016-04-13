@@ -37,7 +37,7 @@ const fields = [
 
 const validate = (values, props) => {
   return {
-    'campaignTitle': 'Incorrect!'
+    //'campaignTitle': 'Incorrect!'
   };
 };
 
