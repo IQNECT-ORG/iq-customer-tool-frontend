@@ -4,9 +4,11 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import ui from 'redux-ui/transpiled';
-import { loadCampaignPrintCreate } from '../actions';
+import { loadCampaignPrintCreate } from '../../actions';
 
-import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
+
+// DEPRECATED
 
 class CreatePrintCampaign extends Component {
 

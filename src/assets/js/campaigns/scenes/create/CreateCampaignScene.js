@@ -4,10 +4,10 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import BrandSelectorContainer from '../containers/BrandSelectorContainer';
-import { loadCampaignCreate, selectBrand } from '../actions';
+import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
+import { loadCampaignCreate, selectBrand } from '../../actions';
 
-import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
+import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
 
 class CreateCampaign extends Component {
   componentDidMount() {

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import routeReducer from './routeReducer';
 import auth from './auth';
 import alerts from './alerts';
-import campaigns from 'app/campaigns/base/reducers';
+import campaigns from 'app/campaigns/reducers';
 import { reducer as ui } from 'redux-ui/transpiled';
 import { reducer as form }  from 'redux-form';
 import modal from 'app/modal/reducer';
