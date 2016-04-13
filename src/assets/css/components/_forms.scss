@@ -21,4 +21,8 @@
   input::-webkit-input-placeholder {
     color: #bcc9d0;
   }
+
+  .has-danger {
+    @include form-control-validation($brand-danger);
+  }
 }

@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import AssetField from 'app/common/components/forms/AssetField';
+import classNames from 'classnames';
 
 class BasicDetailsForm extends Component {
   render() {
@@ -27,7 +28,9 @@ class BasicDetailsForm extends Component {
                   <div className="col-xs-12">
                     <h2>Basic Details</h2>
 
-                    <fieldset className="form-group">
+                    <fieldset className={classNames('form-group', {
+                      'has-danger': fields.campaignTitle.error
+                    })}>
                       <label htmlFor={joid.link(true, 'input')}>Campaign Title</label>
                       <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name" {...fields.campaignTitle}/>
                     </fieldset>

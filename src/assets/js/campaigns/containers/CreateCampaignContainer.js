@@ -35,11 +35,18 @@ const fields = [
   'pages[].coupon'
 ];
 
+const validate = (values, props) => {
+  return {
+    'campaignTitle': 'Incorrect!'
+  };
+};
+
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm({
   form: 'createCampaignPrint',
-  fields
+  fields,
+  validate
 })(DecoratedComponent);
 DecoratedComponent = ui({
   key: 'createCampaignPrint',
