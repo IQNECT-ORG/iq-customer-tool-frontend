@@ -8,3 +8,4 @@ export const loadCampaignPrintCreate = createAction(Actions.CAMPAIGN_PRINT_CREAT
 export const loadCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_LOAD);
 export const selectBrand = createAction(Actions.CAMPAIGN_CREATE_BRAND_SELECT);
 export const selectCampaignType = createAction(Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT);
+export const resetCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_RESET);

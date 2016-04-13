@@ -4,7 +4,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import { loadCampaignCreate, selectBrand, selectCampaignType } from '../../actions';
+import { loadCampaignCreate, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
 
 import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
@@ -12,17 +12,39 @@ import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
 
 class CreateCampaign extends Component {
   componentDidMount() {
-    this.props.actions.selectBrand(this.props.routeParams.brandId);
-    this.props.actions.selectCampaignType(this.props.routeParams.campaignTypeId);
+    if(this.props.routeParams.brandId) {
+      this.props.actions.selectBrand(this.props.routeParams.brandId);
+    }
+
+    if(this.props.routeParams.campaignTypeId) {
+      this.props.actions.selectCampaignType(this.props.routeParams.campaignTypeId);
+    }
+
+    if(this.props.routeParams.brandId == null && this.props.routeParams.campaignTypeId == null) {
+      this.props.actions.reset();
+    }
+
     this.props.actions.load();
   }
 
   componentWillUpdate(nextProps) {
-    //nextProps.actions.load();
+    if(nextProps.routeParams.brandId && nextProps.routeParams.brandId !== this.props.routeParams.brandId) {
+      nextProps.actions.selectBrand(nextProps.routeParams.brandId);
+    }
+
+    if(nextProps.routeParams.campaignTypeId && nextProps.routeParams.campaignTypeId !== this.props.routeParams.campaignTypeId) {
+      nextProps.actions.selectCampaignType(nextProps.routeParams.campaignTypeId);
+    }
+
+    if(nextProps.routeParams.brandId == null && nextProps.routeParams.campaignTypeId == null) {
+      if(this.props.selectedBrandId || this.props.selectedCampaignTypeId) {
+        nextProps.actions.reset();
+      }
+    }
+
   }
 
   render() {
-    console.log(this.props.selectedBrandId, this.props.selectedCampaignTypeId);
     if(this.props.selectedBrandId == null) {
       return (
         <DefaultLayout
@@ -117,7 +139,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       selectCampaignType: (campaignTypeId) => {
         dispatch(selectCampaignType(campaignTypeId));
-      }
+      },
+      reset: _ => dispatch(resetCampaignCreate())
     }
   };
 };

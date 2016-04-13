@@ -59,13 +59,13 @@ function* watchLoadCampaignPrintCreate() {
 };
 
 function* watchCampaignCreateBrandSelect() {
-  yield takeLatest('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
+  yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
     yield put(routerActions.push(`/campaign/create/${action.payload || ''}`));
   });
 }
 
 function* watchCampaignCreateCampaignTypeSelect() {
-  yield takeLatest('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
+  yield takeEvery('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
     const selectedBrandId = yield select((state) => {
       return state.campaigns.getIn(['create', 'selectedBrandId']);
     });
