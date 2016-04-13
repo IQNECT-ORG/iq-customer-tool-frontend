@@ -69,7 +69,16 @@ function* watchCampaignCreateCampaignTypeSelect() {
     const selectedBrandId = yield select((state) => {
       return state.campaigns.getIn(['create', 'selectedBrandId']);
     });
-    yield put(routerActions.push(`/campaign/create/${selectedBrandId}/${action.payload}`));
+
+    let url;
+    if(selectedBrandId == null) {
+      url = '/campaign/create';
+    } else if(action.payload == null) {
+      url = `/campaign/create/${selectedBrandId}`;
+    } else {
+      url = `/campaign/create/${selectedBrandId}/${action.payload}`;
+    }
+    yield put(routerActions.push(url));
   });
 }
 

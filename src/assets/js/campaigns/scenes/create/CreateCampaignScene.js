@@ -4,14 +4,16 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
-import { loadCampaignCreate, selectBrand } from '../../actions';
+import { loadCampaignCreate, selectBrand, selectCampaignType } from '../../actions';
 
+import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
+import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
 
 class CreateCampaign extends Component {
   componentDidMount() {
     this.props.actions.selectBrand(this.props.routeParams.brandId);
+    this.props.actions.selectCampaignType(this.props.routeParams.campaignTypeId);
     this.props.actions.load();
   }
 
@@ -20,6 +22,7 @@ class CreateCampaign extends Component {
   }
 
   render() {
+    console.log(this.props.selectedBrandId, this.props.selectedCampaignTypeId);
     if(this.props.selectedBrandId == null) {
       return (
         <DefaultLayout
@@ -45,6 +48,31 @@ class CreateCampaign extends Component {
       );
     }
 
+    if(this.props.selectedCampaignTypeId == null) {
+      return (
+        <DefaultLayout
+          titleRender={_ => {
+            return (
+              <div className="container-fluid">
+                <div className="row">
+                  <Titlebar className="col-xs-12">
+                    <div className="row">
+                      <div className="col-xs-12">
+                        <h1>Choose a Campaign Type</h1>
+                      </div>
+                    </div>
+                  </Titlebar>
+                </div>
+              </div>
+            );
+          }}>
+          <div className="container">
+            <CampaignTypeSelectorContainer/>
+          </div>
+        </DefaultLayout>
+      );
+    }
+
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -54,7 +82,7 @@ class CreateCampaign extends Component {
                 <Titlebar className="col-xs-12">
                   <div className="row">
                     <div className="col-xs-12">
-                      <h1>Choose a Campaign Type</h1>
+                      <h1>Create Campaign</h1>
                     </div>
                   </div>
                 </Titlebar>
@@ -63,7 +91,7 @@ class CreateCampaign extends Component {
           );
         }}>
         <div className="container">
-          <CampaignTypeSelectorContainer/>
+          <CreateCampaignContainer/>
         </div>
       </DefaultLayout>
     );
@@ -73,7 +101,8 @@ class CreateCampaign extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    selectedBrandId: state.campaigns.getIn(['create', 'selectedBrandId'])
+    selectedBrandId: state.campaigns.getIn(['create', 'selectedBrandId']),
+    selectedCampaignTypeId: state.campaigns.getIn(['create', 'selectedCampaignTypeId'])
   };
 };
 
@@ -85,6 +114,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       selectBrand: (brandId) => {
         dispatch(selectBrand(brandId));
+      },
+      selectCampaignType: (campaignTypeId) => {
+        dispatch(selectCampaignType(campaignTypeId));
       }
     }
   };

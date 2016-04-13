@@ -6,10 +6,10 @@ const Actions = Constants.ActionTypes;
 
 const create = createReducer(new Immutable.Map({
   selectedBrandId: null,
-  selectedCampaignType: null
+  selectedCampaignTypeId: null
 }), {
   [Actions.CAMPAIGN_CREATE_BRAND_SELECT]: (state, action) => state.set('selectedBrandId', action.payload),
-  [Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT]: (state, action) => state.set('selectedCampaignType', action.payload)
+  [Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT]: (state, action) => state.set('selectedCampaignTypeId', action.payload)
 });
 
 export default combineReducers({
