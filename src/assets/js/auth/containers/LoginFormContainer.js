@@ -13,10 +13,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onSubmit: ownProps.handleSubmit((...args) => {
+    onSubmit: ownProps.handleSubmit((values) => {
       dispatch(authLogin({
-        email: '',
-        password: '',
+        email: values.email,
+        password: values.password,
         remember: 0
       }));
     })

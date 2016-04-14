@@ -20,9 +20,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <DrawNav
-          isOpen={this.props.drawNav.get('isOpen')}
-          onToggleMenuClick={this.props.onDrawNavToggleMenuClick}/>
+        <DrawNav/>
 
         <main className="page-content" role="main">
           <div className="container-fluid">
