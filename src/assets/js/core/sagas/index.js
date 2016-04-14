@@ -4,26 +4,38 @@ import * as brandActions from 'app/common/actions/brands';
 import * as brandsApi from '../services/api/brands';
 import * as routerActions from 'react-router-redux/lib/actions';
 //import { getPathname } from '../selectors/routing';
-//import { getParams } from 'react-router/lib/PatternUtils'
+//import { getParams } from 'react-router/lib/PatternUtils';
+import * as sessionsApi from '../services/api/sessions';
+import * as authActions from 'app/auth/actions';
 
 function* brandsFetchAsync() {
   try {
-    //let brands = yield brandsApi.getBrands();
-    //yield put(brandActions.brandsFetchSuccess(brands));
-    yield put(brandActions.brandsFetchSuccess([
-      {
-        id: 1,
-        name: 'McDonalds'
-      },
-      {
-        id: 2,
-        name: 'Esquire'
-      }
-    ]));
+    let brands = yield brandsApi.getBrands();
+    yield put(brandActions.brandsFetchSuccess(brands));
+    // yield put(brandActions.brandsFetchSuccess([
+    //   {
+    //     id: 1,
+    //     name: 'McDonalds'
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Esquire'
+    //   }
+    // ]));
   } catch(err) {
     yield put(brandActions.brandsFetchFailure(err));
   }
 };
+
+function* authLoginAsync(action) {
+  try {
+    let user = yield sessionsApi.createSession(action.payload);
+    yield put(authActions.authLoginSuccess(user));
+    yield put(routerActions.push('/'));
+  } catch(err) {
+    yield put(authActions.authLoginFailure(err));
+  }
+}
 
 
 function* startup() {
@@ -44,6 +56,10 @@ function* startup() {
 //     // }
 //   }
 // };
+
+function* watchAuthLoginRequest() {
+  yield takeLatest('AUTH_LOGIN_REQUEST', authLoginAsync);
+};
 
 function* watchBrandsFetchRequest() {
   yield takeLatest('BRANDS_FETCH_REQUEST', brandsFetchAsync);
@@ -84,6 +100,7 @@ function* watchCampaignCreateCampaignTypeSelect() {
 
 export default function* root() {
   yield fork(startup);
+  yield fork(watchAuthLoginRequest);
   yield fork(watchLoadCampaignPrintCreate);
   yield fork(watchBrandsFetchRequest);
   yield fork(watchCampaignCreateBrandSelect);

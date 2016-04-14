@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import routeReducer from './routeReducer';
-import auth from './auth';
+import auth from 'app/auth/reducers';
 import alerts from './alerts';
 import campaigns from 'app/campaigns/reducers';
 import { reducer as ui } from 'redux-ui/transpiled';

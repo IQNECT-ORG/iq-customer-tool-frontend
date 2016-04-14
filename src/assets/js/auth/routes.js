@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Auth from './components/screens/Auth';
+import Auth from './scenes/Auth';
 import { Route, IndexRoute } from 'react-router';
 
 export default (

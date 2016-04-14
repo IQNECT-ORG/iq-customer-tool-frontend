@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import LoginForm from 'app/common/components/forms/LoginForm';
-import LoginFormController from '../hoc/LoginFormController';
-
+import LoginFormContainer from '../containers/LoginFormContainer';
 class Auth extends Component {
   static get contextTypes() {
     return {
@@ -15,18 +13,18 @@ class Auth extends Component {
       return;
     }
 
-    if(props.auth.get('token')) {
-      this.context.router.push('/');
-    }
+    // if(props.auth.get('token')) {
+    //   this.context.router.push('/');
+    // }
   }
 
   render() {
     return (
       <div>
-        <LoginForm onSubmit={this.props.onLoginFormSubmit}/>
+        <LoginFormContainer/>
       </div>
     );
   }
 };
 
-export default LoginFormController(Auth);
+export default Auth;
