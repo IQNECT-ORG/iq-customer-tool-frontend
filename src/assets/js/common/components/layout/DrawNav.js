@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Menu from './Menu';
+import MenuContainer from '../../containers/MenuContainer';
 import AccountSummary from './AccountSummary';
 import QuickActions from './QuickActions';
-import {Motion, spring} from 'react-motion';
+import { Motion, spring } from 'react-motion';
 
 class DrawNav extends Component {
   render() {
@@ -39,7 +39,7 @@ class DrawNav extends Component {
 
               <hr/>
 
-              <Menu/>
+              <MenuContainer/>
             </div>
           </nav>
         }
