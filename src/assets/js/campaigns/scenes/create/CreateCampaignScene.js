@@ -112,7 +112,9 @@ class CreateCampaign extends Component {
           );
         }}>
         <div className="container">
-          <CreateCampaignContainer/>
+          <CreateCampaignContainer
+            selectedBrandId={this.props.selectedBrandId}
+            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
         </div>
       </DefaultLayout>
     );

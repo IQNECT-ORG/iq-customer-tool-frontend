@@ -9,6 +9,8 @@ import * as sessionsApi from '../services/api/sessions';
 import * as authActions from 'app/auth/actions';
 import _ from 'lodash';
 import * as usersApi from '../services/api/users';
+import * as campaignsApi from '../services/api/campaigns';
+import * as campaignActions from 'app/campaigns/actions';
 
 function* brandsFetchAsync() {
   try {
@@ -47,7 +49,19 @@ function* authResetPasswordAsync(action) {
   } catch(err) {
     yield put(authActions.authResetPasswordFailure(err));
   }
-}
+};
+
+function* campaignCreateAsync(action) {
+  try {
+    let result = yield campaignsApi.create(action.payload.values);
+    yield put(campaignActions.createCampaignSuccess(result));
+    action.payload.resolve(result);
+    //yield put(routerActions.push('/signin'));
+  } catch(err) {
+    yield put(campaignActions.createCampaignFailure(err));
+    action.payload.reject(err);
+  }
+};
 
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
@@ -120,7 +134,7 @@ function* watchCampaignCreateBrandSelect() {
   yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
     yield put(routerActions.push(`/campaign/create/${action.payload || ''}`));
   });
-}
+};
 
 function* watchCampaignCreateCampaignTypeSelect() {
   yield takeEvery('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
@@ -138,7 +152,11 @@ function* watchCampaignCreateCampaignTypeSelect() {
     }
     yield put(routerActions.push(url));
   });
-}
+};
+
+function* watchCampaignCreate() {
+  yield takeLatest('CAMPAIGN_CREATE_REQUEST', campaignCreateAsync);
+};
 
 export default function* root() {
   yield fork(startup);
@@ -154,4 +172,5 @@ export default function* root() {
 
   yield fork(watchCampaignCreateBrandSelect);
   yield fork(watchCampaignCreateCampaignTypeSelect);
+  yield fork(watchCampaignCreate);
 };
