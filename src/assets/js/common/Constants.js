@@ -11,7 +11,6 @@ export default {
   }),
 
   CampaignTypes: {
-    KEYWORD: 0,
     IMAGE: 1,
     VIDEO: 4,
     PDF: 6

@@ -8,7 +8,7 @@ class BrandSelector extends Component {
     return (
       <SelectorList
         items={this.props.brands}
-        renderOption={this._renderOption.bind(this)}
+        renderOption={::this._renderOption}
         listItem={{
           className: 'col-xs-2'
         }}/>

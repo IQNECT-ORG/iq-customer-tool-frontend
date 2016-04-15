@@ -7,13 +7,8 @@ class CampaignTypeSelector extends Component {
   render() {
     return (
       <SelectorList
-        items={[
-          {
-            id: 1,
-            label: 'Magazine Campaign'
-          }
-        ]}
-        renderOption={this._renderOption.bind(this)}
+        items={this.props.campignTypes}
+        renderOption={::this._renderOption}
         listItem={{
           className: 'col-xs-4'
         }}/>
@@ -22,7 +17,7 @@ class CampaignTypeSelector extends Component {
 
   _renderOption(item, index) {
     return (
-      <CampaignTypeSelectorOption label={item.label} onOptionClick={ e => this.props.onOptionClick(e, item, index) }/>
+      <CampaignTypeSelectorOption campaignType={item} onOptionClick={ e => this.props.onOptionClick(e, item, index) }/>
     );
   }
 };
