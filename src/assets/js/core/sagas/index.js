@@ -30,7 +30,9 @@ function* authLoginAsync(action) {
 
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
-    '/signin'
+    '/signin',
+    '/forgotten-password',
+    '/reset-password'
   ];
 
   if(_.includes(whiteList, pathname) === false) {
