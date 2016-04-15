@@ -6,7 +6,7 @@ class BrandSelectorOptions extends Component {
     return (
       <div className="selector__option">
         <button type="button" onClick={this.props.onOptionClick}>
-          {this.props.label}
+          <img src={this.props.imgSrc}/>
         </button>
       </div>
     );

@@ -15,9 +15,11 @@ class BrandSelector extends Component {
     );
   }
 
-  _renderOption(item, index) {
+  _renderOption(brand, index) {
     return (
-      <BrandSelectorOption label={item.label} onOptionClick={ e => this.props.onOptionClick(e, item, index) }/>
+      <BrandSelectorOption
+        imgSrc={brand.imgPreview}
+        onOptionClick={ e => this.props.onOptionClick(e, brand, index) }/>
     );
   }
 };
