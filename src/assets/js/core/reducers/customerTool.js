@@ -8,6 +8,7 @@ import { reducer as form }  from 'redux-form';
 import modal from 'app/modal/reducer';
 import entities from './entities';
 import errors from './errors';
+import catalogue from './catalogue';
 
 const customerTool = combineReducers({
   auth,
@@ -18,7 +19,8 @@ const customerTool = combineReducers({
   ui,
   form,
   modal,
-  errors
+  errors,
+  catalogue
 });
 
 export default customerTool;

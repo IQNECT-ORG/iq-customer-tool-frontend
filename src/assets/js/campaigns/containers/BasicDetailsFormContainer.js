@@ -4,7 +4,7 @@ import BasicDetailsForm from '../components/forms/BasicDetailsForm';
 import ui from 'redux-ui/transpiled';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import _ from 'lodash';
-import { createCampaign } from '../actions';
+import { createCampaign } from 'app/common/actions/campaigns';
 
 const mapStateToProps = (state, ownProps) => {
   return {

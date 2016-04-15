@@ -1,15 +1,22 @@
 import Immutable from 'immutable';
-import Constants from '../Constants';
+import Constants from '../../Constants';
+import { combineReducers, createReducer } from 'redux-immutablejs';
+import crudReducer from '../crud';
 
 const Actions = Constants.ActionTypes;
 
-export default (state, action) => {
-  if(state == null) {
-    return new Immutable.Map({
-    });
-  }
+let reducer = createReducer(new Immutable.Map({
 
-  switch(action.type) {
-  }
-  return state;
-};
+}), {
+
+});
+reducer = crudReducer(reducer, {
+  idKey: 'campaignId',
+  path: ['payload', 'entities', 'campaigns'],
+  create: 'CAMPAIGN_CREATE_REQUEST',
+  read: 'CAMPAIGN_FETCH_SUCCESS',
+  update: 'CAMPAIGN_UPDATE_SUCCESS',
+  delete: 'CAMPAIGN_DELETE_SUCCESS'
+});
+
+export default reducer;

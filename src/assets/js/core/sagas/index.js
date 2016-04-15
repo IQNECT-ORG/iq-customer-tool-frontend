@@ -1,16 +1,19 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+// Actions
 import * as brandActions from 'app/common/actions/brands';
-import * as brandsApi from '../services/api/brands';
+import * as campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { getPathname } from '../selectors/routing';
-//import { getParams } from 'react-router/lib/PatternUtils';
-import * as sessionsApi from '../services/api/sessions';
 import * as authActions from 'app/auth/actions';
-import _ from 'lodash';
+// API
+import * as brandsApi from '../services/api/brands';
+import * as sessionsApi from '../services/api/sessions';
 import * as usersApi from '../services/api/users';
 import * as campaignsApi from '../services/api/campaigns';
-import * as campaignActions from 'app/campaigns/actions';
+// Selectors
+import { getPathname } from '../selectors/routing';
+//import { getParams } from 'react-router/lib/PatternUtils';
+import _ from 'lodash';
 
 function* brandsFetchAsync() {
   try {
@@ -60,6 +63,15 @@ function* campaignCreateAsync(action) {
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));
     action.payload.reject(err);
+  }
+};
+
+function* campaignFetchAsync(action) {
+  try {
+    let result = yield campaignsApi.get(action.payload);
+    yield put(campaignActions.fetchCampaignsSuccess(result));
+  } catch(err) {
+    yield put(campaignActions.fetchCampaignsFailure(err));
   }
 };
 
@@ -158,6 +170,10 @@ function* watchCampaignCreate() {
   yield takeLatest('CAMPAIGN_CREATE_REQUEST', campaignCreateAsync);
 };
 
+function* watchCampaignFetch() {
+  yield takeLatest('CAMPAIGN_FETCH_REQUEST', campaignFetchAsync);
+}
+
 export default function* root() {
   yield fork(startup);
 
@@ -173,4 +189,5 @@ export default function* root() {
   yield fork(watchCampaignCreateBrandSelect);
   yield fork(watchCampaignCreateCampaignTypeSelect);
   yield fork(watchCampaignCreate);
+  yield fork(watchCampaignFetch);
 };

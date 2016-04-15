@@ -10,7 +10,3 @@ export const loadCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_LOAD);
 export const selectBrand = createAction(Actions.CAMPAIGN_CREATE_BRAND_SELECT);
 export const selectCampaignType = createAction(Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT);
 export const resetCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_RESET);
-
-export const createCampaign = createAction(Actions.CAMPAIGN_CREATE_REQUEST);
-export const createCampaignSuccess = createAction(Actions.CAMPAIGN_CREATE_SUCCESS);
-export const createCampaignFailure = createAction(Actions.CAMPAIGN_CREATE_FAILURE);
