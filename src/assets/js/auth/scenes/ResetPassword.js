@@ -14,6 +14,10 @@ class ResetPassword extends Component {
         <div className="pane pane--filled">
           <ResetPasswordFormContainer/>
         </div>
+
+        <span>
+          <Link to="/signin">Back to log in</Link>
+        </span>
       </FocusLayout>
     );
   }
