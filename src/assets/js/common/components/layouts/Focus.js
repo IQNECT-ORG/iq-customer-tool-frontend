@@ -2,24 +2,19 @@ import React, { Component } from 'react';
 import DrawNav from 'app/common/containers/DrawNavContainer';
 import SystemAlertMessagesContainer from 'app/common/containers/SystemAlertMessagesContainer';
 
-class DefaultLayout extends Component {
+class FocusLayout extends Component {
   render() {
     const layoutRender = this.props.layoutRender || ::this.defaultLayoutRender;
-    const asideRender = this.props.asideRender || ::this.defaultAsideRender;
-    const titleRender = this.props.titleRender || ::this.defaultTitleRender;
     const messageRender = this.props.messageRender || ::this.defaultMessageRender;
     const contentRender = this.props.contentRender || ::this.defaultContentRender;
 
-    return layoutRender(asideRender, titleRender, messageRender, contentRender);
+    return layoutRender(messageRender, contentRender);
   }
 
-  defaultLayoutRender(asideRender, titleRender, messageRender, contentRender) {
+  defaultLayoutRender(messageRender, contentRender) {
     return (
-      <div className="default-layout">
-        {asideRender()}
+      <div className="focus-layout">
         <main className="page-content" role="main">
-          {titleRender()}
-
           <div className="container-fluid">
             {messageRender()}
           </div>
@@ -28,16 +23,6 @@ class DefaultLayout extends Component {
         </main>
       </div>
     );
-  }
-
-  defaultAsideRender() {
-    return (
-      <DrawNav/>
-    );
-  }
-
-  defaultTitleRender() {
-    return null;
   }
 
   defaultMessageRender() {
@@ -51,4 +36,4 @@ class DefaultLayout extends Component {
   }
 };
 
-export default DefaultLayout;
+export default FocusLayout;

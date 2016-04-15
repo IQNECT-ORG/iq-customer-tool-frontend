@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import LoginFormContainer from '../containers/LoginFormContainer';
+import FocusLayout from 'app/common/components/layouts/Focus';
+
 class Auth extends Component {
   static get contextTypes() {
     return {
@@ -20,9 +22,11 @@ class Auth extends Component {
 
   render() {
     return (
-      <div>
-        <LoginFormContainer/>
-      </div>
+      <FocusLayout>
+        <div>
+          <LoginFormContainer/>
+        </div>
+      </FocusLayout>
     );
   }
 };
