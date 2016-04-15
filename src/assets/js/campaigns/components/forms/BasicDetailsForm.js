@@ -11,7 +11,7 @@ import classNames from 'classnames';
 class BasicDetailsForm extends Component {
   render() {
     const fields = this.props.fields;
-
+    
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.onSubmit}>

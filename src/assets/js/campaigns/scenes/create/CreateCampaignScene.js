@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
-import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignCreate, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
@@ -147,7 +146,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = AuthRequired(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
 

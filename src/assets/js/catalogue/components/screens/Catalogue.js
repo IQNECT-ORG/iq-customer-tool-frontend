@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
-import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 
 class Catalogue extends Component {
@@ -41,4 +40,4 @@ class Catalogue extends Component {
   }
 };
 
-export default AuthRequired(Catalogue);
+export default Catalogue;

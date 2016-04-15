@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DrawNav from 'app/common/components/layout/DrawNav';
-import AuthRequired from 'app/auth/components/hoc/AuthRequired';
 import Titlebar from 'app/common/components/layout/Titlebar';
 
 import Immutable from 'immutable';
@@ -43,4 +42,4 @@ class CatalogueBrands extends Component {
   }
 };
 
-export default AuthRequired(CatalogueBrands);
+export default CatalogueBrands;
