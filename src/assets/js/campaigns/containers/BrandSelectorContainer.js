@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onOptionClick: (e, brand) => {
-      dispatch(selectBrand(brand.id));
+      dispatch(selectBrand(brand.brandId));
     }
   };
 }
