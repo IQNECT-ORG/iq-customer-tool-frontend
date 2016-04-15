@@ -11,6 +11,18 @@ import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
 import PreviewCouponModal from 'app/common/modals/PreviewCoupon';
 
 class App extends Component {
+  static get contextTypes() {
+    return {
+      store: React.PropTypes.object
+    };
+  }
+
+  componentWillMount() {
+    this.context.store.dispatch({
+      type: 'APP_STARTUP'
+    });
+  }
+
   render() {
     return (
       <div>

@@ -3,10 +3,11 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import * as brandActions from 'app/common/actions/brands';
 import * as brandsApi from '../services/api/brands';
 import * as routerActions from 'react-router-redux/lib/actions';
-//import { getPathname } from '../selectors/routing';
+import { getPathname } from '../selectors/routing';
 //import { getParams } from 'react-router/lib/PatternUtils';
 import * as sessionsApi from '../services/api/sessions';
 import * as authActions from 'app/auth/actions';
+import _ from 'lodash';
 
 function* brandsFetchAsync() {
   try {
@@ -37,25 +38,45 @@ function* authLoginAsync(action) {
   }
 }
 
+function* checkForbiddenNavigation(pathname) {
+  const whiteList = [
+    '/signin'
+  ];
+
+  if(_.includes(whiteList, pathname) === false) {
+    let isLoggedIn = yield select((state) => {
+      return state.auth.get('isLoggedIn');
+    });
+
+    if(isLoggedIn !== true) {
+      yield put(routerActions.push('/signin'));
+    }
+  }
+};
+
 
 function* startup() {
-  
 };
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-// function* watchNavigation() {
-//   while(true) {
-//     const { payload } = yield take('@@route/LOCATION_CHANGE');
-//     console.log(getParams('/campaign/create/:brandId', payload.pathname));
-
-//     // if(payload.pathname === '/campaign/create/') {
-
-//     // }
-//   }
-// };
+function* watchForbiddenNavigation() {
+  yield fork(function* () {
+    while(true) {
+      yield take('APP_STARTUP');
+      const pathname = yield select(getPathname);
+      yield checkForbiddenNavigation(pathname);
+    }
+  });
+  yield fork(function* () {
+    while(true) {
+      const { payload } = yield take('@@route/LOCATION_CHANGE');
+      yield checkForbiddenNavigation(payload.pathname);
+    }
+  });
+};
 
 function* watchAuthLoginRequest() {
   yield takeLatest('AUTH_LOGIN_REQUEST', authLoginAsync);
@@ -100,6 +121,7 @@ function* watchCampaignCreateCampaignTypeSelect() {
 
 export default function* root() {
   yield fork(startup);
+  yield fork(watchForbiddenNavigation);
   yield fork(watchAuthLoginRequest);
   yield fork(watchLoadCampaignPrintCreate);
   yield fork(watchBrandsFetchRequest);
