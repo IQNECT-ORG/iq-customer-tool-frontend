@@ -8,5 +8,12 @@ export default {
     BRANDS_FETCH_REQUEST: null,
     BRANDS_FETCH_SUCCESS: null,
     BRANDS_FETCH_FAILURE: null
-  })
+  }),
+
+  CampaignTypes: {
+    KEYWORD: 0,
+    IMAGE: 1,
+    VIDEO: 4,
+    PDF: 6
+  }
 };
