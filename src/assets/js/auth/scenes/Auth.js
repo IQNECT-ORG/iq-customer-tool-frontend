@@ -23,7 +23,7 @@ class Auth extends Component {
   render() {
     return (
       <FocusLayout>
-        <div>
+        <div className="pane pane--filled">
           <LoginFormContainer/>
         </div>
       </FocusLayout>
