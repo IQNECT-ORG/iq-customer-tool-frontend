@@ -75,6 +75,15 @@ function* campaignFetchAsync(action) {
   }
 };
 
+function* campaignDeleteAsync(action) {
+  try {
+    let result = yield campaignsApi.del(action.payload);
+    yield put(campaignActions.deleteCampaignSuccess(result));
+  } catch(err) {
+    yield put(campaignActions.deleteCampaignFailure(err));
+  }
+};
+
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
     '/signin',
@@ -172,6 +181,10 @@ function* watchCampaignCreate() {
 
 function* watchCampaignFetch() {
   yield takeLatest('CAMPAIGN_FETCH_REQUEST', campaignFetchAsync);
+};
+
+function* watchCampaignDelete() {
+  yield takeLatest('CAMPAIGN_DELETE_REQUEST', campaignDeleteAsync);
 }
 
 export default function* root() {
@@ -190,4 +203,5 @@ export default function* root() {
   yield fork(watchCampaignCreateCampaignTypeSelect);
   yield fork(watchCampaignCreate);
   yield fork(watchCampaignFetch);
+  yield fork(watchCampaignDelete);
 };

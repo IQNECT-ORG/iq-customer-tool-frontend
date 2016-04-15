@@ -17,6 +17,9 @@ export default {
     CAMPAIGN_FETCH_REQUEST: null,
     CAMPAIGN_FETCH_SUCCESS: null,
     CAMPAIGN_FETCH_FAILURE: null,
+    CAMPAIGN_DELETE_REQUEST: null,
+    CAMPAIGN_DELETE_SUCCESS: null,
+    CAMPAIGN_DELETE_FAILURE: null,
   }),
 
   CampaignTypes: {

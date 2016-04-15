@@ -37,3 +37,20 @@ export const get = async function(data) {
     throw err;
   }
 };
+
+export const del = async function(id) {
+  try {
+    let response = await fetch(`https://iq.api/api/campaign/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    return await response.json();
+  } catch(err) {
+    throw err;
+  }
+};

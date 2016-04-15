@@ -32,7 +32,7 @@ export const del = (state, action, path, idKey = 'id') => {
 
   return state.filterNot(entity => {
     const id = entity.get(idKey);
-    return _.includes(ids, id);
+    return _.includes(_.get(action, path), id);
   });
 };
 

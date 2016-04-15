@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CampaignList from 'app/common/components/campaignList/CampaignList';
 import ui from 'redux-ui/transpiled';
-import { fetchCampaigns } from 'app/common/actions/campaigns';
+import { fetchCampaigns, deleteCampaign } from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import _ from 'lodash';
 
@@ -41,6 +41,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
+    },
+    onDeleteClick: (campaign) => {
+      dispatch(deleteCampaign(campaign.campaignId));
     }
   };
 }

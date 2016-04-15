@@ -23,12 +23,16 @@ class CampaignList extends Component {
     );
   }
   _renderRows() {
-    return _.map(this.props.campaigns, this._renderRow);
+    return _.map(this.props.campaigns, ::this._renderRow);
   }
 
   _renderRow(campaign, index) {
     return (
-      <CampaignListRow campaign={campaign} key={index}/>
+      <CampaignListRow campaign={campaign} key={index} onDeleteClick={
+        _ => {
+          this.props.onDeleteClick(campaign);
+        }
+      }/>
     );
   }
 };

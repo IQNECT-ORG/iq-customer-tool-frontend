@@ -13,7 +13,14 @@ class CampaignListRow extends Component {
         <span>{campaign.name}</span>
         <span>NI - NI</span>
         <span>NI</span>
-        <span>trash</span>
+        <span>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={this.props.onDeleteClick}>
+            Delete
+          </button>
+        </span>
       </li>
     );
   }
