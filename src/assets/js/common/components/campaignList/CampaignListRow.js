@@ -3,15 +3,16 @@ import CampaignListThumbnail from './CampaignListThumbnail';
 
 class CampaignListRow extends Component {
   render() {
+    const { campaign } = this.props;
     return (
       <li>
         <span>
           <CampaignListThumbnail/>
         </span>
-        <span>Magazine</span>
-        <span>GQ Magazine 01/2016</span>
-        <span>31/3/16 - 17/5/16</span>
-        <span>Approved</span>
+        <span>{campaign.type}</span>
+        <span>{campaign.name}</span>
+        <span>NI - NI</span>
+        <span>NI</span>
         <span>trash</span>
       </li>
     );

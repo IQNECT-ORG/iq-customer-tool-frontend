@@ -26,9 +26,9 @@ class CampaignList extends Component {
     return _.map(this.props.campaigns, this._renderRow);
   }
 
-  _renderRow(item, index) {
+  _renderRow(campaign, index) {
     return (
-      <CampaignListRow key={index}/>
+      <CampaignListRow campaign={campaign} key={index}/>
     );
   }
 };
