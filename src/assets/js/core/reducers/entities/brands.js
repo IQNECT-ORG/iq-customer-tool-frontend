@@ -11,7 +11,8 @@ let reducer = createReducer(new Immutable.Map({
 
 });
 reducer = crudReducer(reducer, {
-  idKey: 'id',
+  idKey: 'brandId',
+  path: ['payload', 'entities', 'brands'],
   create: 'BRANDS_CREATE_SUCCESS',
   read: 'BRANDS_FETCH_SUCCESS',
   update: 'BRANDS_UPDATE_SUCCESS',
