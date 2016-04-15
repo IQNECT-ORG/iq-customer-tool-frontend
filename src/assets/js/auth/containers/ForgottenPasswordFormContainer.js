@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ForgottenPasswordForm from '../components/forms/ForgottenPasswordForm';
-import {  } from '../actions';
+import { authForgottenPassword } from '../actions';
 import ui from 'redux-ui/transpiled';
 import { change } from 'redux-form/lib/actions';
 import { reduxForm } from 'redux-form';
@@ -14,7 +14,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: ownProps.handleSubmit((values) => {
-
+      dispatch(authForgottenPassword({
+        email: values.email
+      }));
     })
   };
 };

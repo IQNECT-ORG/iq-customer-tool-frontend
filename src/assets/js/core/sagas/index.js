@@ -8,6 +8,7 @@ import { getPathname } from '../selectors/routing';
 import * as sessionsApi from '../services/api/sessions';
 import * as authActions from 'app/auth/actions';
 import _ from 'lodash';
+import * as usersApi from '../services/api/users';
 
 function* brandsFetchAsync() {
   try {
@@ -25,6 +26,26 @@ function* authLoginAsync(action) {
     yield put(routerActions.push('/'));
   } catch(err) {
     yield put(authActions.authLoginFailure(err));
+  }
+};
+
+function* authForgottenPasswordAsync(action) {
+  try {
+    let result = yield usersApi.forgottenPassword(action.payload);
+    yield put(authActions.authForgottenPasswordSuccess(result));
+    yield put(routerActions.push('/reset-password'));
+  } catch(err) {
+    yield put(authActions.authForgottenPasswordFailure(err));
+  }
+};
+
+function* authResetPasswordAsync(action) {
+  try {
+    let result = yield usersApi.resetPassword(action.payload);
+    yield put(authActions.authResetPasswordSuccess(result));
+    yield put(routerActions.push('/signin'));
+  } catch(err) {
+    yield put(authActions.authResetPasswordFailure(err));
   }
 }
 
@@ -74,6 +95,14 @@ function* watchAuthLoginRequest() {
   yield takeLatest('AUTH_LOGIN_REQUEST', authLoginAsync);
 };
 
+function* watchAuthForgottenPasswordRequest() {
+  yield takeLatest('AUTH_FORGOTTEN_PASSWORD_REQUEST', authForgottenPasswordAsync);
+};
+
+function* watchAuthResetPasswordRequest() {
+  yield takeLatest('AUTH_RESET_PASSWORD_REQUEST', authResetPasswordAsync);
+}
+
 function* watchBrandsFetchRequest() {
   yield takeLatest('BRANDS_FETCH_REQUEST', brandsFetchAsync);
 };
@@ -113,10 +142,16 @@ function* watchCampaignCreateCampaignTypeSelect() {
 
 export default function* root() {
   yield fork(startup);
+
   yield fork(watchForbiddenNavigation);
+
   yield fork(watchAuthLoginRequest);
+  yield fork(watchAuthForgottenPasswordRequest);
+  yield fork(watchAuthResetPasswordRequest);
+
   yield fork(watchLoadCampaignPrintCreate);
   yield fork(watchBrandsFetchRequest);
+
   yield fork(watchCampaignCreateBrandSelect);
   yield fork(watchCampaignCreateCampaignTypeSelect);
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ResetPasswordForm from '../components/forms/ResetPasswordForm';
-import { } from '../actions';
+import { authResetPassword } from '../actions';
 import ui from 'redux-ui/transpiled';
 import { change } from 'redux-form/lib/actions';
 import { reduxForm } from 'redux-form';
@@ -14,7 +14,11 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: ownProps.handleSubmit((values) => {
-
+      dispatch(authResetPassword({
+        code: values.token,
+        password: values.password,
+        rePassword: values.passwordMatch
+      }));
     })
   };
 };
