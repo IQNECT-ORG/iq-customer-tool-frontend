@@ -11,6 +11,7 @@ export const create = async function(data) {
       method: 'POST',
       credentials: 'include',
       headers: {
+        'Accept': 'application/json'
       },
       body: body,
     });
