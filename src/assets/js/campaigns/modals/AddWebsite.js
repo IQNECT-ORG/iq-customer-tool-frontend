@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Modal from 'app/modal/components/Modal';
-import AddWebsiteForm from 'app/common/components/forms/AddWebsiteForm';
+import AddWebsiteFormContainer from 'app/common/containers/AddWebsiteFormContainer';
 import serialize from 'form-serialize';
 import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
 
-class AddWebsite extends Component {
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object.isRequired,
-    };
-  }
+const mapStateToProps = (state, ownProps) => {
+  return {
+  };
+};
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onSubmit: values => {
+      const changeAction = change(ownProps.data.field, values.website);
+      changeAction.form = ownProps.data.form;
+
+      dispatch(closeModal());
+      dispatch(changeAction);
+    }
+  };
+};
+
+class AddWebsite extends Component {
   render() {
     return (
       <Modal
@@ -25,23 +37,17 @@ class AddWebsite extends Component {
           </div>
 
           <div className="modal-body">
-            <AddWebsiteForm onSubmit={::this.handleSubmit}/>
+            <AddWebsiteFormContainer
+              referenceForm={this.props.data.form}
+              referenceField={this.props.data.field}
+              onFormSubmit={this.props.onSubmit}/>
           </div>
         </div>
       </Modal>
     );
   }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const data = serialize(e.currentTarget, { hash: true });
-    const dispatch = this.context.store.dispatch;
-    const changeAction = change(this.props.data.field, data.url);
-    changeAction.form = this.props.data.form;
-
-    dispatch(closeModal());
-    dispatch(changeAction);
-  }
 };
 
-export default AddWebsite;
+let DecoractedComponent = AddWebsite;
+DecoractedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoractedComponent);
+export default DecoractedComponent;

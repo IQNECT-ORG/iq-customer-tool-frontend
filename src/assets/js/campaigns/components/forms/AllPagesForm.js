@@ -138,7 +138,8 @@ class AllPagesForm extends Component {
               id={joid.link(false, 'input')}
               placeholder="Website"
               readOnly
-              {...this.props.fields.fallback.website}/>
+              {...this.props.fields.fallback.website}
+              onClick={this.props.onAddWebsiteClick}/>
             <span className="input-group-btn">
               <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
                 <i className="icons8-trash"/>
