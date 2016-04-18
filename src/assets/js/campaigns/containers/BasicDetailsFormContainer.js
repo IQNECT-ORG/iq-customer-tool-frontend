@@ -24,11 +24,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // // Fake number of pages extracted from magazine length
       // _.times(5, n => ownProps.fields.pages.addField());
 
-      // ownProps.updateUI({
-      //   pageView: 'ALL',
-      //   step: 1,
-      //   page: 0
-      // });
       return new Promise((resolve, reject) => {
         dispatch(createCampaign({
           values: {
@@ -37,10 +32,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             name: values.campaignTitle,
             url: values.defaultTarget,
             language: values.magazineLanguage,
-            image: values.media,
+            image: values.media[0],
             periodFrom: values.campaignPeriodFrom,
             periodTo: values.campaignPeriodTo
           },
+          updateUI: ownProps.updateUI,
           resolve,
           reject
         }));

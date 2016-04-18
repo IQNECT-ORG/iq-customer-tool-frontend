@@ -59,7 +59,11 @@ function* campaignCreateAsync(action) {
     let result = yield campaignsApi.create(action.payload.values);
     yield put(campaignActions.createCampaignSuccess(result));
     action.payload.resolve(result);
-    //yield put(routerActions.push('/signin'));
+    action.payload.updateUI({
+      pageView: 'ALL',
+      step: 1,
+      page: 0
+    });
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));
     action.payload.reject(err);
