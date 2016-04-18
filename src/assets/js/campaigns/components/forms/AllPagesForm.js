@@ -11,7 +11,7 @@ class AllPagesForm extends Component {
     const images = _.map(this.props.images, (image, index) => {
       return (
         <li className="col-xs-4" key={index}>
-          <button type="button" onClick={ _ => this.props.updatePage(index) }>
+          <button type="button" onClick={ _ => this.props.gotoPage(index) }>
             <img className="img-fluid" src={image}/>
           </button>
         </li>

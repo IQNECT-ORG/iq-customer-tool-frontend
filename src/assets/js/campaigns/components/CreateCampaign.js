@@ -4,7 +4,7 @@ import joid from 'joid';
 import BasicDetailsFormContainer from '../containers/BasicDetailsFormContainer';
 import AllPagesFormContainer from '../containers/AllPagesFormContainer';
 import PageDetailsFormContainer from '../containers/PageDetailsFormContainer';
-import SummaryContainer from '../containers/SummaryContainer';
+import SummaryFormContainer from '../containers/SummaryFormContainer';
 
 class CreateCampaign extends Component {
   render() {
@@ -36,11 +36,9 @@ class CreateCampaign extends Component {
 
     if(this.props.step === 2) {
       return (
-        <SummaryContainer {...this.props}/>
+        <SummaryFormContainer {...this.props}/>
       );
     }
-
-    // Step 2 = Summary
   }
 };
 

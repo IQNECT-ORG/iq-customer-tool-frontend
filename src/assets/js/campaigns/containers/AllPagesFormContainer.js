@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updatePage: (page) => {
+    gotoPage: (page) => {
       ownProps.updateUI({
         pageView: 'DETAIL',
         page

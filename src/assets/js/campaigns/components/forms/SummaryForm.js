@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
-class Summary extends Component {
+class SummaryForm extends Component {
   render() {
     // I am not using a table here as screw tables
     // Even for tabulated data they cause more problem than
     // they are worth
+
+    const rows = _.map(this.props.pages, page => {
+      return (
+        <li className="row" key={page.index}>
+          <div className="col-xs-2">Page {page.index + 1}</div>
+          <div className="col-xs-4">{page.website}</div>
+          <div className="col-xs-6">{page.tags}</div>
+          <div className="col-xs-6">
+            <button type="button" onClick={ _ => this.props.gotoPage(page.index) }>
+              Edit
+            </button>
+          </div>
+        </li>
+      );
+    });
+
+
     return (
       <div className="row">
         <div className="col-xs-12">
@@ -18,11 +36,7 @@ class Summary extends Component {
                 <div className="col-xs-6">Tags</div>
               </div>
               <ol className="list-unstyled">
-                <li className="row">
-                  <div className="col-xs-2">Page 2</div>
-                  <div className="col-xs-4">Target</div>
-                  <div className="col-xs-6">Tags</div>
-                </li>
+                {rows}
               </ol>
             </div>
 
@@ -46,4 +60,4 @@ class Summary extends Component {
   }
 };
 
-export default Summary;
+export default SummaryForm;
