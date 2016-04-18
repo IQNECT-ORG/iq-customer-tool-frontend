@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             periodTo: values.campaignPeriodTo
           },
           updateUI: ownProps.updateUI,
+          pagesAddField: ownProps.fields.pages.addField,
           resolve,
           reject
         }));

@@ -76,6 +76,12 @@ function* campaignCreateAsync(action) {
         let trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
         yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
 
+        // Sync all of the pages
+        _.times(
+          trainingResultsResult.result.length,
+          n => action.payload.pagesAddField()
+        );
+
         // Now go to the correct screen.
         action.payload.updateUI({
           pageView: 'ALL',
