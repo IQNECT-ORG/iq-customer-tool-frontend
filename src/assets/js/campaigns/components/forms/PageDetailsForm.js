@@ -127,7 +127,7 @@ class PageDetailForm extends Component {
             id={joid.link(false, 'input')}
             placeholder="Website"
             readOnly
-            {...this.props.fields.pages[this.props.pages].website}
+            {...this.props.fields.pages[this.props.page].website}
             onClick={this.props.onAddWebsiteClick}/>
           <span className="input-group-btn">
             <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>

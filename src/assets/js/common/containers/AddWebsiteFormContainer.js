@@ -26,9 +26,11 @@ DecoratedComponent = reduxForm({
   fields,
 },
 (state, ownProps) => {
+  const form = state.form[ownProps.referenceForm];
+
   return {
     initialValues: {
-      website: _.get(state.form[ownProps.referenceForm], ownProps.referenceField).value
+      website: _.get(form, ownProps.referenceField).value
     }
   };
 }

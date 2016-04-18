@@ -100,7 +100,7 @@ function* campaignCreateAsync(action) {
     // Sync all of the pages
     _.times(
       trainingResultsResult.result.length,
-      n => action.payload.pagesAddField()
+      n => action.payload.pagesAddField({})
     );
 
     // Now go to the correct screen.

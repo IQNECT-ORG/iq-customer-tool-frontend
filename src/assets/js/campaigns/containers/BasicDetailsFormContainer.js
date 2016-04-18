@@ -18,6 +18,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
+      if(values.id) {
+        // Has already been uploaded, so it can be skipped.
+        // Might just need to update the edited values.
+        return;
+      }
+
       return new Promise((resolve, reject) => {
         dispatch(createCampaign({
           values: {
