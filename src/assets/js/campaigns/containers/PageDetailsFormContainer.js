@@ -4,10 +4,16 @@ import PageDetailsForm from '../components/forms/PageDetailsForm';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import ui from 'redux-ui/transpiled';
 import { change } from 'redux-form/lib/actions';
+import { getTrainingResults } from 'app/core/selectors/entities/trainingResults';
+import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
+  const trainingResults = getTrainingResults(state);
+  const page = ownProps.ui.page;
+
   return {
-    page: ownProps.ui.page
+    imageSrc: _.find(trainingResults, x => x.frame === page).images.default,
+    page
   };
 }
 

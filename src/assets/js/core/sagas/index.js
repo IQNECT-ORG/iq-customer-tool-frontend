@@ -1,6 +1,7 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 // Actions
+import { change } from 'redux-form/lib/actions';
 import * as brandActions from 'app/common/actions/brands';
 import * as campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
@@ -36,7 +37,6 @@ function* authLoginAsync(action) {
   } catch(err) {
     yield put(authActions.authLoginFailure(err));
   }
-  
 };
 
 function* authForgottenPasswordAsync(action) {
@@ -47,7 +47,6 @@ function* authForgottenPasswordAsync(action) {
   } catch(err) {
     yield put(authActions.authForgottenPasswordFailure(err));
   }
-  
 };
 
 function* authResetPasswordAsync(action) {
@@ -56,8 +55,9 @@ function* authResetPasswordAsync(action) {
     yield put(authActions.authResetPasswordSuccess(result));
   } catch(err) {
     yield put(authActions.authResetPasswordFailure(err));
+    return;
   }
-  
+
   yield put(routerActions.push('/signin'));
 };
 
@@ -69,6 +69,14 @@ function* campaignCreateAsync(action) {
   try {
     campaignResult = yield campaignsApi.create(action.payload.values);
     yield put(campaignActions.createCampaignSuccess(campaignResult));
+
+    // Setting the id field to that of the campaign
+    // this will allow us to know if the data is new or old
+    // as well as be able to retrieve data on step changes
+    const changeAction = change('id', campaignResult.result);
+    changeAction.form = action.payload.form;
+
+    yield put(changeAction);
     action.payload.resolve(campaignResult);
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));

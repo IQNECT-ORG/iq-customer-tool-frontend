@@ -18,12 +18,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
-      // // Reset all of the pages just in case
-      // _.times(ownProps.fields.pages.length, ownProps.fields.pages.removeField);
-
-      // // Fake number of pages extracted from magazine length
-      // _.times(5, n => ownProps.fields.pages.addField());
-
       return new Promise((resolve, reject) => {
         dispatch(createCampaign({
           values: {
@@ -38,6 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
           updateUI: ownProps.updateUI,
           pagesAddField: ownProps.fields.pages.addField,
+          form: 'createCampaignPrint',
           resolve,
           reject
         }));

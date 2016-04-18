@@ -14,9 +14,10 @@ export const getByRaw = async function(raw, triggerId) {
 
     let result = await response.json();
 
-    _.each(result, item => {
+    _.each(result, (item, index) => {
       item.trainingResultId = _.uniqueId();
       item.triggerId = triggerId;
+      item.frame = index;
     });
 
     return normalize(result, arrayOf(schemas.trainingResult));

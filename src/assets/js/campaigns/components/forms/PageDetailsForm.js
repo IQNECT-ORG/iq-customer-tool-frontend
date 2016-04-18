@@ -13,7 +13,7 @@ class PageDetailForm extends Component {
         <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
-              <img className="img-fluid" src="http://placehold.it/600x800"/>
+              <img className="img-fluid" src={this.props.imageSrc}/>
             </div>
           </div>
 
