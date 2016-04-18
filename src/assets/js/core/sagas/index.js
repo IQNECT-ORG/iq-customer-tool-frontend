@@ -5,11 +5,15 @@ import * as brandActions from 'app/common/actions/brands';
 import * as campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
 import * as authActions from 'app/auth/actions';
+import * as triggerActions from 'app/common/actions/triggers';
+import * as trainingResultActions from 'app/common/actions/trainingResults';
 // API
 import * as brandsApi from '../services/api/brands';
 import * as sessionsApi from '../services/api/sessions';
 import * as usersApi from '../services/api/users';
 import * as campaignsApi from '../services/api/campaigns';
+import * as triggersApi from '../services/api/triggers';
+import * as trainingResultsApi from '../services/api/trainingResults';
 // Selectors
 import { getPathname } from '../selectors/routing';
 //import { getParams } from 'react-router/lib/PatternUtils';
@@ -32,6 +36,7 @@ function* authLoginAsync(action) {
   } catch(err) {
     yield put(authActions.authLoginFailure(err));
   }
+  
 };
 
 function* authForgottenPasswordAsync(action) {
@@ -42,28 +47,48 @@ function* authForgottenPasswordAsync(action) {
   } catch(err) {
     yield put(authActions.authForgottenPasswordFailure(err));
   }
+  
 };
 
 function* authResetPasswordAsync(action) {
   try {
     let result = yield usersApi.resetPassword(action.payload);
     yield put(authActions.authResetPasswordSuccess(result));
-    yield put(routerActions.push('/signin'));
   } catch(err) {
     yield put(authActions.authResetPasswordFailure(err));
   }
+  
+  yield put(routerActions.push('/signin'));
 };
 
 function* campaignCreateAsync(action) {
   try {
-    let result = yield campaignsApi.create(action.payload.values);
-    yield put(campaignActions.createCampaignSuccess(result));
-    action.payload.resolve(result);
-    action.payload.updateUI({
-      pageView: 'ALL',
-      step: 1,
-      page: 0
-    });
+    let campaignResult = yield campaignsApi.create(action.payload.values);
+    yield put(campaignActions.createCampaignSuccess(campaignResult));
+    action.payload.resolve(campaignResult);
+    // Now fetch the triggers for the campaign.
+    try {
+      let triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
+      yield put(triggerActions.fetchTriggersSuccess(triggerResult));
+
+      try {
+        const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
+        let trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
+        yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
+
+        // Now go to the correct screen.
+        action.payload.updateUI({
+          pageView: 'ALL',
+          step: 1,
+          page: 0
+        });
+      } catch(err) {
+        yield put(trainingResultActions.fetchTrainingResultsFailure(err));
+      }
+
+    } catch(err) {
+      yield put(triggerActions.fetchTriggersFailure(err));
+    }
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));
     action.payload.reject(err);

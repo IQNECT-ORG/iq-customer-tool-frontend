@@ -10,7 +10,7 @@ export default {
     BRANDS_FETCH_REQUEST: null,
     BRANDS_FETCH_SUCCESS: null,
     BRANDS_FETCH_FAILURE: null,
-    //Campaigns
+    // Campaigns
     CAMPAIGN_CREATE_REQUEST: null,
     CAMPAIGN_CREATE_SUCCESS: null,
     CAMPAIGN_CREATE_FAILURE: null,
@@ -20,6 +20,15 @@ export default {
     CAMPAIGN_DELETE_REQUEST: null,
     CAMPAIGN_DELETE_SUCCESS: null,
     CAMPAIGN_DELETE_FAILURE: null,
+    // Triggers
+    TRIGGERS_FETCH_REQUEST: null,
+    TRIGGERS_FETCH_SUCCESS: null,
+    TRIGGERS_FETCH_FAILURE: null,
+
+    // Training Results
+    TRAINING_RESULTS_FETCH_REQUEST: null,
+    TRAINING_RESULTS_FETCH_SUCCESS: null,
+    TRAINING_RESULTS_FETCH_FAILURE: null,
   }),
 
   CampaignTypes: {

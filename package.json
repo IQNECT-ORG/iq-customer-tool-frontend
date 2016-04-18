@@ -69,6 +69,7 @@
     "keymirror": "^0.1.1",
     "lodash": "^4.6.1",
     "normalizr": "^2.0.1",
+    "query-string": "^4.1.0",
     "react": "^0.14.8",
     "react-bootstrap-datetimepicker": "jshthornton/react-bootstrap-datetimepicker",
     "react-collapse": "^2.1.0",

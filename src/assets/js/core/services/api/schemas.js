@@ -7,3 +7,11 @@ export const brand = new Schema('brands', {
 export const campaign = new Schema('campaigns', {
   idAttribute: 'campaignId'
 });
+
+export const trigger = new Schema('triggers', {
+  idAttribute: 'triggerId'
+});
+
+export const trainingResult = new Schema('trainingResults', {
+  idAttribute: 'trainingResultId'
+});

@@ -11,12 +11,12 @@ let reducer = createReducer(new Immutable.Map({
 
 });
 reducer = crudReducer(reducer, {
-  idKey: 'campaignId',
-  path: ['payload', 'entities', 'campaigns'],
-  create: 'CAMPAIGN_CREATE_SUCCESS',
-  read: 'CAMPAIGN_FETCH_SUCCESS',
-  update: 'CAMPAIGN_UPDATE_SUCCESS',
-  delete: 'CAMPAIGN_DELETE_SUCCESS'
+  idKey: 'triggerId',
+  path: ['payload', 'entities', 'triggers'],
+  create: 'TRIGGERS_CREATE_SUCCESS',
+  read: 'TRIGGERS_FETCH_SUCCESS',
+  update: 'TRIGGERS_UPDATE_SUCCESS',
+  delete: 'TRIGGERS_DELETE_SUCCESS'
 });
 
 export default reducer;
