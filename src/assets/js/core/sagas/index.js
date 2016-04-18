@@ -62,42 +62,48 @@ function* authResetPasswordAsync(action) {
 };
 
 function* campaignCreateAsync(action) {
+  var campaignResult,
+    triggerResult,
+    trainingResultsResult;
+
   try {
-    let campaignResult = yield campaignsApi.create(action.payload.values);
+    campaignResult = yield campaignsApi.create(action.payload.values);
     yield put(campaignActions.createCampaignSuccess(campaignResult));
     action.payload.resolve(campaignResult);
-    // Now fetch the triggers for the campaign.
-    try {
-      let triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
-      yield put(triggerActions.fetchTriggersSuccess(triggerResult));
-
-      try {
-        const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
-        let trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
-        yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
-
-        // Sync all of the pages
-        _.times(
-          trainingResultsResult.result.length,
-          n => action.payload.pagesAddField()
-        );
-
-        // Now go to the correct screen.
-        action.payload.updateUI({
-          pageView: 'ALL',
-          step: 1,
-          page: 0
-        });
-      } catch(err) {
-        yield put(trainingResultActions.fetchTrainingResultsFailure(err));
-      }
-
-    } catch(err) {
-      yield put(triggerActions.fetchTriggersFailure(err));
-    }
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));
     action.payload.reject(err);
+    return;
+  }
+  // Now fetch the triggers for the campaign.
+  try {
+    triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
+    yield put(triggerActions.fetchTriggersSuccess(triggerResult));
+  } catch(err) {
+    yield put(triggerActions.fetchTriggersFailure(err));
+    return;
+  }
+  // Now we need the training results
+  try {
+    const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
+    trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
+    yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
+
+    // Sync all of the pages
+    _.times(
+      trainingResultsResult.result.length,
+      n => action.payload.pagesAddField()
+    );
+
+    // Now go to the correct screen.
+    action.payload.updateUI({
+      pageView: 'ALL',
+      step: 1,
+      page: 0
+    });
+  } catch(err) {
+    yield put(trainingResultActions.fetchTrainingResultsFailure(err));
+    return;
   }
 };
 
