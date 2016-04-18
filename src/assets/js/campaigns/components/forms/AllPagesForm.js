@@ -8,27 +8,23 @@ class AllPagesForm extends Component {
   render() {
     const fields = this.props.fields.fallback;
 
+    const images = _.map(this.props.images, (image, index) => {
+      return (
+        <li className="col-xs-4" key={index}>
+          <button type="button" onClick={ _ => this.props.updatePage(index) }>
+            <img className="img-fluid" src={image}/>
+          </button>
+        </li>
+      );
+    });
+
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.onSubmit}>
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <ul className="row list-unstyled">
-                <li className="col-xs-4">
-                  <img className="img-fluid" src="http://placehold.it/600x800"/>
-                </li>
-                <li className="col-xs-4">
-                  <img className="img-fluid" src="http://placehold.it/600x800"/>
-                </li>
-                <li className="col-xs-4">
-                  <img className="img-fluid" src="http://placehold.it/600x800"/>
-                </li>
-                <li className="col-xs-4">
-                  <img className="img-fluid" src="http://placehold.it/600x800"/>
-                </li>
-                <li className="col-xs-4">
-                  <img className="img-fluid" src="http://placehold.it/600x800"/>
-                </li>
+                {images}
               </ul>
             </div>
           </div>
