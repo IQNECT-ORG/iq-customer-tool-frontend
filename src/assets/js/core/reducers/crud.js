@@ -38,21 +38,42 @@ export const del = (state, action, path, idKey = 'id') => {
 
 
 const crudReducer = (reducer, config) => {
+  if(!_.isArray(config.create)) {
+    config.create = [config.create];
+  }
+
+  if(!_.isArray(config.read)) {
+    config.read = [config.read];
+  }
+
+  if(!_.isArray(config.update)) {
+    config.update = [config.update];
+  }
+
+  if(!_.isArray(config.delete)) {
+    config.delete = [config.delete];
+  }
+
   return (state, action) => {
 
     if(state == null) {
       return reducer(state, action);
     }
 
-    switch(action.type) {
-      case config.create:
-        return create(state, action, config.path, config.idKey);
-      case config.read:
-        return read(state, action, config.path, config.idKey);
-      case config.update:
-        return update(state, action, config.path, config.idKey);
-      case config.delete:
-        return del(state, action, config.path, config.idKey);
+    if(_.includes(config.create, action.type)) {
+      return create(state, action, config.path, config.idKey);
+    }
+
+    if(_.includes(config.read, action.type)) {
+      return read(state, action, config.path, config.idKey);
+    }
+
+    if(_.includes(config.update, action.type)) {
+      return update(state, action, config.path, config.idKey);
+    }
+
+    if(_.includes(config.delete, action.type)) {
+      return del(state, action, config.path, config.idKey);
     }
 
     return reducer(state, action);

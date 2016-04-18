@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
-      if(values.id) {
+      if(values.campaignId) {
         // Has already been uploaded, so it can be skipped.
         // Might just need to update the edited values.
         return;

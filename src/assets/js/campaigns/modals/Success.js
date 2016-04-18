@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Modal from 'app/modal/components/Modal';
-import AddWebsiteFormContainer from 'app/common/containers/AddWebsiteFormContainer';
 import { closeModal } from 'app/modal/actions';
-import { change } from 'redux-form/lib/actions';
+import { push } from 'react-router-redux/lib/actions';
+import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,17 +11,14 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onSubmit: values => {
-      const changeAction = change(ownProps.data.field, values.website);
-      changeAction.form = ownProps.data.form;
-
+    onLeaveClick: _ => {
       dispatch(closeModal());
-      dispatch(changeAction);
+      dispatch(push('/'));
     }
   };
 };
 
-class AddWebsite extends Component {
+class Success extends Component {
   render() {
     return (
       <Modal
@@ -36,10 +32,13 @@ class AddWebsite extends Component {
           </div>
 
           <div className="modal-body">
-            <AddWebsiteFormContainer
-              referenceForm={this.props.data.form}
-              referenceField={this.props.data.field}
-              onFormSubmit={this.props.onSubmit}/>
+            <h1>Success!</h1>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={this.props.onLeaveClick}>
+              Go to Dashboard
+            </button>
           </div>
         </div>
       </Modal>
@@ -47,6 +46,6 @@ class AddWebsite extends Component {
   }
 };
 
-let DecoractedComponent = AddWebsite;
+let DecoractedComponent = Success;
 DecoractedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoractedComponent);
 export default DecoractedComponent;

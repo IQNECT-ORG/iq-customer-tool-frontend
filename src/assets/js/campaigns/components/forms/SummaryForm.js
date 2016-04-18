@@ -25,36 +25,38 @@ class SummaryForm extends Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12">
-          <div className="pane pane--filled">
-            <h2>Campaign Summary</h2>
+        <form className="form--content" onSubmit={this.props.onSubmit}>
+          <div className="col-xs-12">
+            <div className="pane pane--filled">
+              <h2>Campaign Summary</h2>
 
-            <div>
+              <div>
+                <div className="row">
+                  <div className="col-xs-2">Page</div>
+                  <div className="col-xs-4">Target</div>
+                  <div className="col-xs-6">Tags</div>
+                </div>
+                <ol className="list-unstyled">
+                  {rows}
+                </ol>
+              </div>
+
               <div className="row">
-                <div className="col-xs-2">Page</div>
-                <div className="col-xs-4">Target</div>
-                <div className="col-xs-6">Tags</div>
-              </div>
-              <ol className="list-unstyled">
-                {rows}
-              </ol>
-            </div>
+                <div className="col-xs-6">
+                  <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onBackClick}>
+                    Back to Edit
+                  </button>
+                </div>
 
-            <div className="row">
-              <div className="col-xs-6">
-                <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onBackClick}>
-                  Back to Edit
-                </button>
-              </div>
-
-              <div className="col-xs-6">
-                <button type="submit" className="btn btn-block btn-primary">
-                  Save
-                </button>
+                <div className="col-xs-6">
+                  <button type="submit" className="btn btn-block btn-primary">
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }

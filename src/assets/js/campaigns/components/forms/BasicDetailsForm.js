@@ -110,7 +110,7 @@ class BasicDetailsForm extends Component {
   _renderLanguageSelector() {
     const fields = this.props.fields;
 
-    if(fields.id.value) {
+    if(fields.campaignId.value) {
       return (
         <input
           id={joid.link(true, 'input')}
@@ -142,7 +142,7 @@ class BasicDetailsForm extends Component {
   _renderMedia() {
     const fields = this.props.fields;
 
-    if(fields.id.value) {
+    if(fields.campaignId.value) {
       return (
         <div>@TODO</div>
       );

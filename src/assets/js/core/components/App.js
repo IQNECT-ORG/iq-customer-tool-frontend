@@ -9,6 +9,7 @@ import AddCouponModal from 'app/campaigns/modals/AddCoupon';
 import CreateCouponModal from 'app/campaigns/modals/CreateCoupon';
 import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
 import PreviewCouponModal from 'app/common/modals/PreviewCoupon';
+import SuccessModal from 'app/campaigns/modals/Success';
 
 class App extends Component {
   static get contextTypes() {
@@ -32,7 +33,8 @@ class App extends Component {
           addCoupon: AddCouponModal,
           previewWebsite: PreviewWebsiteModal,
           createCoupon: CreateCouponModal,
-          previewCoupon: PreviewCouponModal
+          previewCoupon: PreviewCouponModal,
+          success: SuccessModal
         }}/>
       </div>
     );

@@ -18,13 +18,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 const fields = [
-  'id',
+  'campaignId',
   'media',
   'campaignTitle',
   'magazineLanguage',
   'campaignPeriodFrom',
   'campaignPeriodTo',
   'defaultTarget',
+
+  'triggerId',
 
   'fallback.website',
   'fallback.tags',

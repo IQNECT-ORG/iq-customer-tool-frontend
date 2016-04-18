@@ -15,3 +15,12 @@ export const trigger = new Schema('triggers', {
 export const trainingResult = new Schema('trainingResults', {
   idAttribute: 'trainingResultId'
 });
+
+export const triggerPayload = new Schema('triggerPayloads', {
+  idAttribute: 'triggerPayloadId'
+});
+
+// Definitions
+trigger.define({
+  payload: arrayOf(triggerPayload)
+});

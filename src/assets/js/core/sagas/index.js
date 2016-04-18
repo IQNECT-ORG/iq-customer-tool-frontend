@@ -73,9 +73,8 @@ function* campaignCreateAsync(action) {
     // Setting the id field to that of the campaign
     // this will allow us to know if the data is new or old
     // as well as be able to retrieve data on step changes
-    const changeAction = change('id', campaignResult.result);
+    const changeAction = change('campaignId', campaignResult.result);
     changeAction.form = action.payload.form;
-
     yield put(changeAction);
     action.payload.resolve(campaignResult);
   } catch(err) {
@@ -87,6 +86,10 @@ function* campaignCreateAsync(action) {
   try {
     triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
     yield put(triggerActions.fetchTriggersSuccess(triggerResult));
+
+    const changeAction = change('triggerId', triggerResult.result[0]);
+    changeAction.form = action.payload.form;
+    yield put(changeAction);
   } catch(err) {
     yield put(triggerActions.fetchTriggersFailure(err));
     return;
@@ -132,6 +135,16 @@ function* campaignDeleteAsync(action) {
     yield put(campaignActions.deleteCampaignFailure(err));
   }
 };
+
+function* triggerUpdateAsync(action) {
+  try {
+    const trigger = action.payload.values;
+    let result = yield triggersApi.update(trigger.id, trigger);
+    yield put(triggerActions.updateTriggerSuccess(result));
+  } catch(err) {
+    yield put(triggerActions.updateTriggerFailure(err));
+  }
+}
 
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
@@ -234,7 +247,11 @@ function* watchCampaignFetch() {
 
 function* watchCampaignDelete() {
   yield takeLatest('CAMPAIGN_DELETE_REQUEST', campaignDeleteAsync);
-}
+};
+
+function* watchTriggerUpdate() {
+  yield takeLatest('TRIGGER_UPDATE_REQUEST', triggerUpdateAsync);
+};
 
 export default function* root() {
   yield fork(startup);
@@ -253,4 +270,6 @@ export default function* root() {
   yield fork(watchCampaignCreate);
   yield fork(watchCampaignFetch);
   yield fork(watchCampaignDelete);
+
+  yield fork(watchTriggerUpdate);
 };
