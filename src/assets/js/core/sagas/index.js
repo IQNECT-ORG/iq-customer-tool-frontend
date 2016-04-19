@@ -75,53 +75,56 @@ function* campaignCreateAsync(action) {
   try {
     campaignResult = yield campaignsApi.create(action.payload.values);
     yield put(campaignActions.createCampaignSuccess(campaignResult));
-
-    // Setting the id field to that of the campaign
-    // this will allow us to know if the data is new or old
-    // as well as be able to retrieve data on step changes
-    const changeAction = change('campaignId', campaignResult.result);
-    changeAction.form = action.payload.form;
-    yield put(changeAction);
-    action.payload.resolve(campaignResult);
   } catch(err) {
     yield put(campaignActions.createCampaignFailure(err));
     action.payload.reject(err);
     return;
   }
+
+  // Setting the id field to that of the campaign
+  // this will allow us to know if the data is new or old
+  // as well as be able to retrieve data on step changes
+  let changeAction = change('campaignId', campaignResult.result);
+  changeAction.form = action.payload.form;
+  yield put(changeAction);
+  action.payload.resolve(campaignResult);
+
   // Now fetch the triggers for the campaign.
   try {
     triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
     yield put(triggerActions.fetchTriggersSuccess(triggerResult));
 
-    const changeAction = change('triggerId', triggerResult.result[0]);
-    changeAction.form = action.payload.form;
-    yield put(changeAction);
   } catch(err) {
     yield put(triggerActions.fetchTriggersFailure(err));
     return;
   }
+
+  changeAction = change('triggerId', triggerResult.result[0]);
+  changeAction.form = action.payload.form;
+  yield put(changeAction);
+
   // Now we need the training results
   try {
+    debugger;
     const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
     trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
     yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
-
-    // Sync all of the pages
-    _.times(
-      trainingResultsResult.result.length,
-      n => action.payload.pagesAddField({})
-    );
-
-    // Now go to the correct screen.
-    action.payload.updateUI({
-      pageView: 'ALL',
-      step: 1,
-      page: 0
-    });
   } catch(err) {
     yield put(trainingResultActions.fetchTrainingResultsFailure(err));
     return;
   }
+  // Sync all of the pages
+  _.times(
+    trainingResultsResult.result.length,
+    n => action.payload.pagesAddField({})
+  );
+
+  // Now go to the correct screen.
+  action.payload.updateUI({
+    pageView: 'ALL',
+    step: 1,
+    page: 0
+  });
 };
 
 function* campaignFetchAsync(action) {
