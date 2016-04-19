@@ -1,50 +1,34 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import MenuContainer from '../../containers/MenuContainer';
-import AccountSummary from './AccountSummary';
-import QuickActions from './QuickActions';
-import { Motion, spring } from 'react-motion';
+import DrawNavOpen from './DrawNavOpen';
+import DrawNavClose from './DrawNavClose';
 
 class DrawNav extends Component {
+  componentDidMount() {
+    this.updateBodyClass();
+  }
+
+  componentDidUpdate() {
+    this.updateBodyClass();
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('cmp-draw-nav--open');
+  }
+
+  updateBodyClass() {
+    if(this.props.isOpen === true) {
+      document.body.classList.add('cmp-draw-nav--open');
+    } else {
+      document.body.classList.remove('cmp-draw-nav--open');
+    }
+  }
+
   render() {
-    return (
-      <Motion style={{x: spring(this.props.isOpen ? 0 : -400)}}>
-        {({x}) =>
-          <nav className="draw-nav" role="navigation" style={{
-            WebkitTransform: `translate3d(${x}px, 0, 0)`,
-            transform: `translate3d(${x}px, 0, 0)`,
-          }}>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-xs-12">
-                  <AccountSummary/>
-                </div>
-              </div>
+    if(this.props.isOpen) {
+      return <DrawNavOpen {...this.props}/>;
+    }
 
-              <hr/>
-
-              <div className="row">
-                <div className="col-xs-12">
-                  <QuickActions/>
-                </div>
-              </div>
-
-              <hr/>
-
-              <div className="row">
-                <div className="col-xs-12">
-                  <Link to="/campaign/create" className="btn btn-primary btn-block">Create Campaign</Link>
-                </div>
-              </div>
-
-              <hr/>
-
-              <MenuContainer/>
-            </div>
-          </nav>
-        }
-      </Motion>
-    );
+    return <DrawNavClose {...this.props}/>;
   }
 };
 

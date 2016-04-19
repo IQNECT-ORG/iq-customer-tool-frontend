@@ -32,7 +32,7 @@ class DefaultLayout extends Component {
 
   defaultAsideRender() {
     return (
-      <DrawNav/>
+      <DrawNav {...this.props.drawNavProps}/>
     );
   }
 

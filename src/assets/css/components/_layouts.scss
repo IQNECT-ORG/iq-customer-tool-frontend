@@ -1,6 +1,14 @@
 .default-layout {
   .page-content {
-    padding-left: 300px;
+    padding-left: 100px;
+  }
+}
+
+.cmp-draw-nav--open {
+  .default-layout {
+    .page-content {
+      padding-left: 300px;
+    }
   }
 }
 

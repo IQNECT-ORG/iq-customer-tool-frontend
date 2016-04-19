@@ -48,6 +48,9 @@ class CreateCampaign extends Component {
     if(this.props.selectedBrandId == null) {
       return (
         <DefaultLayout
+          drawNavProps={{
+            isOpen: false
+          }}
           titleRender={_ => {
             return (
               <div className="container-fluid">
@@ -81,6 +84,9 @@ class CreateCampaign extends Component {
     if(this.props.selectedCampaignTypeId == null) {
       return (
         <DefaultLayout
+          drawNavProps={{
+            isOpen: false
+          }}
           titleRender={_ => {
             return (
               <div className="container-fluid">
@@ -105,6 +111,9 @@ class CreateCampaign extends Component {
 
     return (
       <DefaultLayout
+        drawNavProps={{
+            isOpen: false
+          }}
         titleRender={_ => {
           return (
             <div className="container-fluid">

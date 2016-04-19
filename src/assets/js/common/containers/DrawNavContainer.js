@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DrawNav from '../components/layout/DrawNav';
 import ui from 'redux-ui/transpiled';
-import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isOpen: ownProps.ui.isOpen
+    // I really do not like this. There should be a ssot
+    isOpen: (ownProps.isOpen == null) ? ownProps.ui.isOpen : ownProps.isOpen
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    actions: {
+      close: _ => {
+        ownProps.updateUI('isOpen', false);
+      },
+
+      open: _ => {
+        ownProps.updateUI('isOpen', true);
+      }
+    }
   };
 };
 
