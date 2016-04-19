@@ -12,6 +12,10 @@ export default {
     BRANDS_FETCH_REQUEST: null,
     BRANDS_FETCH_SUCCESS: null,
     BRANDS_FETCH_FAILURE: null,
+
+    BRANDS_CREATE_REQUEST: null,
+    BRANDS_CREATE_SUCCESS: null,
+    BRANDS_CREATE_FAILURE: null,
     
     // Campaigns
     CAMPAIGN_CREATE_REQUEST: null,

@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadBrandCatalogue } from '../actions';
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
+import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 class CatalogueBrands extends Component {
 
@@ -21,8 +22,16 @@ class CatalogueBrands extends Component {
               <div className="row">
                 <Titlebar className="col-xs-12">
                   <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-xs-6">
                       <h1>Catalogue / Brands</h1>
+                    </div>
+                    <div className="col-xs-6">
+                      <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={this.props.actions.openAddBrandModal}>
+                        Add New Brand
+                      </button>
                     </div>
                   </div>
                 </Titlebar>
@@ -49,6 +58,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     actions: {
       load: _ => {
         dispatch(loadBrandCatalogue());
+      },
+
+      openAddBrandModal: _ => {
+        dispatch(updateModalPath('addBrand'));
+        dispatch(updateModalData({
+        }));
+        dispatch(openModal());
       }
     }
   };

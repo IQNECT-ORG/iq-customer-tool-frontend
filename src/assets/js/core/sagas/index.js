@@ -2,6 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 // Actions
 import { change } from 'redux-form/lib/actions';
+import * as modalActions from 'app/modal/actions';
 import * as brandActions from 'app/common/actions/brands';
 import * as campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
@@ -105,7 +106,6 @@ function* campaignCreateAsync(action) {
 
   // Now we need the training results
   try {
-    debugger;
     const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
     trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
     yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
@@ -170,6 +170,17 @@ function* checkForbiddenNavigation(pathname) {
     if(isLoggedIn !== true) {
       yield put(routerActions.push('/signin'));
     }
+  }
+};
+
+function* brandsCreateAync(action) {
+  try {
+    let result = yield brandsApi.create(action.payload.values);
+    yield put(brandActions.brandsCreateSuccess(result));
+    action.payload.resolve(result);
+    yield put(modalActions.closeModal());
+  } catch(err) {
+    yield put(brandActions.brandsCreateFailure(err));
   }
 };
 
@@ -266,6 +277,10 @@ function* watchCatalogueBrandLoad() {
   yield takeEvery('CATALOGUE_BRAND_LOAD', brandsFetchAsync);
 };
 
+function* watchBrandCreate() {
+  yield takeEvery('BRANDS_CREATE_REQUEST', brandsCreateAync);
+};
+
 export default function* root() {
   yield fork(startup);
 
@@ -287,4 +302,6 @@ export default function* root() {
   yield fork(watchTriggerUpdate);
 
   yield fork(watchCatalogueBrandLoad);
+
+  yield fork(watchBrandCreate);
 };
