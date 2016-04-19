@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 class SysAlertManager extends Component {
   render() {
@@ -11,7 +12,7 @@ class SysAlertManager extends Component {
   }
 
   _renderAlert() {
-    const alert = this.props.alerts[0];
+    const alert = _.last(this.props.alerts);
 
     const className = classNames('alert', `alert-${alert.level}`);
     return (
