@@ -4,6 +4,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignCreate, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
+import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
@@ -53,8 +54,16 @@ class CreateCampaign extends Component {
                 <div className="row">
                   <Titlebar className="col-xs-12">
                     <div className="row">
-                      <div className="col-xs-12">
+                      <div className="col-xs-6">
                         <h1>Select a Brand</h1>
+                      </div>
+                      <div className="col-xs-6">
+                        <button
+                          className="btn btn-secondary"
+                          type="button"
+                          onClick={this.props.actions.openAddBrandModal}>
+                          Add New Brand
+                        </button>
                       </div>
                     </div>
                   </Titlebar>
@@ -141,7 +150,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       selectCampaignType: (campaignTypeId) => {
         dispatch(selectCampaignType(campaignTypeId));
       },
-      reset: _ => dispatch(resetCampaignCreate())
+      reset: _ => dispatch(resetCampaignCreate()),
+
+      openAddBrandModal: _ => {
+        dispatch(updateModalPath('addBrand'));
+        dispatch(updateModalData({
+        }));
+        dispatch(openModal());
+      }
     }
   };
 };
