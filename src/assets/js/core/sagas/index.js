@@ -20,6 +20,9 @@ import { getPathname } from '../selectors/routing';
 //import { getParams } from 'react-router/lib/PatternUtils';
 import _ from 'lodash';
 
+// Errors / Exceptions
+import { NotFoundError } from '../errors';
+
 function* brandsFetchAsync() {
   try {
     let brands = yield brandsApi.getBrands();
@@ -33,7 +36,7 @@ function* authLoginAsync(action) {
   try {
     let { data: user, response } = yield sessionsApi.createSession(action.payload);
     if(response.status !== 200) {
-      throw new Error('User not found');
+      throw new NotFoundError('User not found');
     }
     yield put(authActions.authLoginSuccess(user));
     yield put(routerActions.push('/'));

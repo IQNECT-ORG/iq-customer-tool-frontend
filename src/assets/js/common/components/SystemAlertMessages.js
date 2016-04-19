@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 class SysAlertManager extends Component {
   render() {
@@ -10,9 +11,15 @@ class SysAlertManager extends Component {
   }
 
   _renderAlert() {
+    const alert = this.props.alerts[0];
+
+    const className = classNames('alert', `alert-${alert.level}`);
     return (
-      <div className={`alert alert-${this.props.alerts[0].level}`} role="alert">
-        {this.props.alerts[0].message}
+      <div
+        className={className}
+        role="alert"
+        data-alert-name={alert.name}>
+        {alert.message}
       </div>
     );
   }

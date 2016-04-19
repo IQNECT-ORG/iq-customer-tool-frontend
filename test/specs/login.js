@@ -14,4 +14,14 @@ describe('Login', function() {
     }, 10000);
     browser.getUrl().should.be.equal(browser.options.baseUrl + '/');
   });
+
+  it('should show error message after invalid credentials', function() {
+    LoginPage.open();
+    browser.waitForExist("#email", 10000);
+    LoginPage.email.setValue('notarealuser@example.com');
+    LoginPage.password.setValue('invalidpassword');
+    LoginPage.submit();
+    browser.waitForExist('.alert-danger', 10000);
+    browser.element('.alert-danger').getAttribute('data-alert-name').should.be.equal('NotFoundError');
+  });
 });

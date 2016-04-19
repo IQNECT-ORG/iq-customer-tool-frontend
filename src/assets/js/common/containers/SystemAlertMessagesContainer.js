@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     alerts: _.map(getErrors(state), error => {
       return {
-        code: error.code,
+        name: error.name,
         message: error.message,
         level: 'danger'
       };

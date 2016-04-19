@@ -11,7 +11,7 @@ let coreReducer = createReducer(new Immutable.List(), {
 let reducer = (state, action) => {
   if(action.error === true) {
     return state.push(new Immutable.Map({
-      code: action.payload.code,
+      name: action.payload.name,
       message: action.payload.message
     }));
   } else {
