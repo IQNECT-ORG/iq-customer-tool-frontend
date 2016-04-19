@@ -7,17 +7,25 @@ class ResetPassword extends Component {
   render() {
     return (
       <FocusLayout>
-        <h1>
-          Password Reset
-        </h1>
+        <div className="vertically-align">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-8 col-xs-offset-2">
+                <h1 className="type-colour-02 text-xs-center">
+                  Password Reset
+                </h1>
 
-        <div className="pane pane--filled">
-          <ResetPasswordFormContainer/>
+                <div className="pane pane--filled">
+                  <ResetPasswordFormContainer/>
+                </div>
+
+                <div className="text-xs-center">
+                  <Link to="/signin" className="type-colour-02">Back to log in</Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <span>
-          <Link to="/signin">Back to log in</Link>
-        </span>
       </FocusLayout>
     );
   }

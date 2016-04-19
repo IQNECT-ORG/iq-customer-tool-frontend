@@ -22,8 +22,8 @@ class ResetPasswordForm extends Component {
         </fieldset>
 
         <div className="form-group row">
-          <div className="col-sm-offset-2 col-sm-10">
-            <button type="submit" className="btn btn-primary">Reset my password</button>
+          <div className="col-xs-12">
+            <button type="submit" className="btn btn-primary btn-block">Reset my password</button>
           </div>
         </div>
       </form>
