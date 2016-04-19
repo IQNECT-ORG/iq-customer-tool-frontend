@@ -22,6 +22,16 @@ Need to get this installed via chef.
 
 ## Dev
 
+### Environment
+
+* Create env file `cp .env.example .env`
+* Fill in all the information
+* Set the env `source .env`
+
 ### Testing
 
+#### E2E
+
 * https://www.browserstack.com/local-testing
+* Host => `./BrowserStackLocal <key>`
+* Guest => `grunt webdriver`
