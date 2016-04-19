@@ -6,7 +6,7 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.props.onSubmit}>
         <fieldset className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email Address</label>
           <input type="email" className="form-control" id="email" placeholder="Example input"
             {...fields.email}/>
         </fieldset>
@@ -17,8 +17,8 @@ class LoginForm extends Component {
         </fieldset>
 
         <div className="form-group row">
-          <div className="col-sm-offset-2 col-sm-10">
-            <button type="submit" className="btn btn-primary">Sign in</button>
+          <div className="col-xs-12">
+            <button type="submit" className="btn btn-primary btn-block">Log in</button>
           </div>
         </div>
       </form>

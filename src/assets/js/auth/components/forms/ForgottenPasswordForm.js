@@ -6,14 +6,14 @@ class ForgottenPasswordForm extends Component {
     return (
       <form onSubmit={this.props.onSubmit}>
         <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput">Email</label>
+          <label htmlFor="formGroupExampleInput">Email Address</label>
           <input type="email" className="form-control" id="formGroupExampleInput" placeholder="Example input"
             {...fields.email}/>
         </fieldset>
 
         <div className="form-group row">
-          <div className="col-sm-offset-2 col-sm-10">
-            <button type="submit" className="btn btn-primary">Reset my password</button>
+          <div className="col-xs-12">
+            <button type="submit" className="btn btn-primary btn-block">Reset my password</button>
           </div>
         </div>
       </form>
