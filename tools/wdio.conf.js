@@ -44,8 +44,10 @@ exports.config = {
     // from the same test should run tests.
     //
     capabilities: [{
-        browserName: 'firefox',
-        'browserstack.local': true,
+      browserName: 'chrome',
+      os: 'WINDOWS',
+      os_version: '8.1',
+      'browserstack.local': true,
     }],
     //
     // ===================
