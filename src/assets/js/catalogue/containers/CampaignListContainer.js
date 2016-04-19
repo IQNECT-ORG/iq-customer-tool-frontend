@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
     if(ownProps.ui.filter == null) {
       return true;
     }
-    return campaign.name === ownProps.ui.filter;
+    return _.includes(campaign.name, ownProps.ui.filter);
   });
 
   return {
