@@ -253,6 +253,10 @@ function* watchTriggerUpdate() {
   yield takeLatest('TRIGGER_UPDATE_REQUEST', triggerUpdateAsync);
 };
 
+function* watchCatalogueBrandLoad() {
+  yield takeEvery('CATALOGUE_BRAND_LOAD', brandsFetchAsync);
+};
+
 export default function* root() {
   yield fork(startup);
 
@@ -272,4 +276,6 @@ export default function* root() {
   yield fork(watchCampaignDelete);
 
   yield fork(watchTriggerUpdate);
+
+  yield fork(watchCatalogueBrandLoad);
 };

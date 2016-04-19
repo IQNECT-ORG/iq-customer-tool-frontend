@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import { } from '../actions';
+import { loadBrandCatalogue } from '../actions';
+import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 
 class CatalogueBrands extends Component {
+
+  componentDidMount() {
+    this.props.actions.load();
+  }
 
   render() {
     return (
@@ -26,6 +31,7 @@ class CatalogueBrands extends Component {
           );
         }}>
         <div className="container">
+          <BrandSelectorContainer/>
         </div>
       </DefaultLayout>
     );
@@ -41,6 +47,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
+      load: _ => {
+        dispatch(loadBrandCatalogue());
+      }
     }
   };
 };
