@@ -45,7 +45,8 @@ exports.config = {
     // from the same test should run tests.
     //
     capabilities: [{
-        browserName: 'firefox'
+        browserName: 'firefox',
+        'browserstack.local': true,
     }],
     //
     // ===================
@@ -69,7 +70,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost',
+    baseUrl: 'http://localhost:8080',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -120,7 +121,8 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 99999999
     },
     before: function() {
         var chai = require('chai');
