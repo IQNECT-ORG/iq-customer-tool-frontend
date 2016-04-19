@@ -12,7 +12,7 @@ class DrawNavOpen extends Component {
         <nav className="draw-nav draw-nav--open" role="navigation">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-xs-12">
+              <div className="col-xs-10 col-xs-offset-1">
                 <AccountSummary/>
               </div>
             </div>
@@ -20,7 +20,7 @@ class DrawNavOpen extends Component {
             <hr/>
 
             <div className="row">
-              <div className="col-xs-12">
+              <div className="col-xs-10 col-xs-offset-1">
                 <QuickActions/>
               </div>
             </div>
@@ -28,14 +28,19 @@ class DrawNavOpen extends Component {
             <hr/>
 
             <div className="row">
-              <div className="col-xs-12">
-                <Link to="/campaign/create" className="btn btn-primary btn-block">Create Campaign</Link>
+              <div className="col-xs-10 col-xs-offset-1">
+                <Link to="/campaign/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
               </div>
             </div>
 
             <hr/>
 
-            <MenuContainer/>
+            <div className="row">
+              <div className="col-xs-10 col-xs-offset-1">
+                <MenuContainer/>
+              </div>
+            </div>
+
           </div>
         </nav>
         <div className="draw-nav-overlay hidden-md-up">
