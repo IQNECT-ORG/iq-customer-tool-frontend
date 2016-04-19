@@ -5,8 +5,7 @@ import ui from 'redux-ui/transpiled';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    // I really do not like this. There should be a ssot
-    isOpen: (ownProps.isOpen == null) ? ownProps.ui.isOpen : ownProps.isOpen
+    isOpen: ownProps.ui.isOpen
   };
 };
 

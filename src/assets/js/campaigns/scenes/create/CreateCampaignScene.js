@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
+import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignCreate, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
@@ -25,6 +26,7 @@ class CreateCampaign extends Component {
     }
 
     this.props.actions.load();
+    this.props.actions.closeMenu();
   }
 
   componentWillUpdate(nextProps) {
@@ -48,9 +50,6 @@ class CreateCampaign extends Component {
     if(this.props.selectedBrandId == null) {
       return (
         <DefaultLayout
-          drawNavProps={{
-            isOpen: false
-          }}
           titleRender={_ => {
             return (
               <div className="container-fluid">
@@ -84,9 +83,6 @@ class CreateCampaign extends Component {
     if(this.props.selectedCampaignTypeId == null) {
       return (
         <DefaultLayout
-          drawNavProps={{
-            isOpen: false
-          }}
           titleRender={_ => {
             return (
               <div className="container-fluid">
@@ -111,9 +107,6 @@ class CreateCampaign extends Component {
 
     return (
       <DefaultLayout
-        drawNavProps={{
-            isOpen: false
-          }}
         titleRender={_ => {
           return (
             <div className="container-fluid">
@@ -153,6 +146,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       load: () => {
         dispatch(loadCampaignCreate());
       },
+      closeMenu: _ => {
+        dispatch(updateUI(['scene', 'drawNav'], 'isOpen', false));
+      },
       selectBrand: (brandId) => {
         dispatch(selectBrand(brandId));
       },
@@ -174,6 +170,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
+  key: 'scene',
+  state: {
+  }
 })(DecoratedComponent);
 
 export default DecoratedComponent;

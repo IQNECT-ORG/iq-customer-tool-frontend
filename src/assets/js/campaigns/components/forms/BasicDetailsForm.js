@@ -15,13 +15,13 @@ class BasicDetailsForm extends Component {
     return (
       <div className="row">
         <form className="form--content" onSubmit={this.props.onSubmit}>
-          <div className="col-xs-12 col-sm-6">
+          <div className="col-xs-12 col-sm-12 col-md-6">
             <div className="pane pane--filled">
               {this._renderMedia()}
             </div>
           </div>
 
-          <div className="col-xs-12 col-sm-6">
+          <div className="col-xs-12 col-sm-12 col-md-6">
             <div className="pane pane--filled">
               <div className="pane__body">
                 <div className="row">
