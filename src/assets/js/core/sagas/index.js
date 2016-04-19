@@ -31,7 +31,10 @@ function* brandsFetchAsync() {
 
 function* authLoginAsync(action) {
   try {
-    let user = yield sessionsApi.createSession(action.payload);
+    let { data: user, response } = yield sessionsApi.createSession(action.payload);
+    if(response.status !== 200) {
+      throw new Error('User not found');
+    }
     yield put(authActions.authLoginSuccess(user));
     yield put(routerActions.push('/'));
   } catch(err) {

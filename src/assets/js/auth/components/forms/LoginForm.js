@@ -6,13 +6,13 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.props.onSubmit}>
         <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput">Email</label>
-          <input type="email" className="form-control" id="formGroupExampleInput" placeholder="Example input"
+          <label htmlFor="email">Email</label>
+          <input type="email" className="form-control" id="email" placeholder="Example input"
             {...fields.email}/>
         </fieldset>
         <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput2">Password</label>
-          <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Another input"
+          <label htmlFor="password">Password</label>
+          <input type="password" className="form-control" id="password" placeholder="Another input"
             {...fields.password}/>
         </fieldset>
 

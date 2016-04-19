@@ -33,5 +33,5 @@ Need to get this installed via chef.
 #### E2E
 
 * https://www.browserstack.com/local-testing
-* Host => `./BrowserStackLocal <key>`
+* Host => `./BrowserStackLocal -forcelocal <key>` - The `forcelocal` flag is required to access our docker stack
 * Guest => `grunt webdriver`
