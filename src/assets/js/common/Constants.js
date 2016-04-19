@@ -42,8 +42,18 @@ export default {
   }),
 
   CampaignTypes: {
+    IMAGE: 0,
+    PDF: 1,
+    VIDEO: 2,
+  },
+
+  TriggerTypes: {
+    KEYWORD: 0,
     IMAGE: 1,
+    BARCODE: 2,
+    QR: 3,
     VIDEO: 4,
-    PDF: 6
+    BEACON: 5,
+    PDF: 6,
   }
 };
