@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class CampaignListThumbnail extends Component {
   render() {
     return (
-      <img src="http://placehold.it/350x150"/>
+      <img className="img-fluid" src="http://placehold.it/350x150"/>
     );
   }
 };

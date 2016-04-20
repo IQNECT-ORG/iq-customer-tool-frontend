@@ -5,7 +5,7 @@ class CampaignListRow extends Component {
   render() {
     const { campaign } = this.props;
     return (
-      <li className="faux-table__row row">
+      <li className="faux-table__row">
         <div className="faux-table__cell col-xs-2">
           <CampaignListThumbnail/>
         </div>

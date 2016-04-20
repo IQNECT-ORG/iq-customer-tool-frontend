@@ -11,7 +11,7 @@ class CampaignList extends Component {
           <CampaignListFilterFormContainer onFormSubmit={this.props.onFilterSubmit}/>
 
           <div className="faux-table">
-            <div className="faux-table__head row">
+            <div className="faux-table__head">
               <div className="faux-table__cell col-xs-2">Thumbnail</div>
               <div className="faux-table__cell col-xs-2">Type</div>
               <div className="faux-table__cell col-xs-2">Title</div>
