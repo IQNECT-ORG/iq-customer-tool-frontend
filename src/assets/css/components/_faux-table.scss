@@ -2,6 +2,7 @@
 .faux-table {
   @include element('head') {
     @extend .clearfix;
+    border-bottom: 1px $separator solid;
     > .faux-table__cell {
       color: #e91e62;
     }
@@ -18,5 +19,6 @@
 
   @include element('cell') {
     padding: 0;
+    @extend .p-y-1;
   }
 }

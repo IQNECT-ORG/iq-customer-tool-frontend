@@ -17,6 +17,7 @@ class CampaignList extends Component {
               <div className="faux-table__cell col-xs-2">Title</div>
               <div className="faux-table__cell col-xs-2">Period</div>
               <div className="faux-table__cell col-xs-2">Status</div>
+              <div className="faux-table__cell col-xs-2">&nbsp;</div>
             </div>
             <ul className="faux-table__body list-unstyled">
               {this._renderRows()}
