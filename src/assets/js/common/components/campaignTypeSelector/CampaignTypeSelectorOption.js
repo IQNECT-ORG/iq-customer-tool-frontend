@@ -26,7 +26,7 @@ class CampaignTypeSelectorOptions extends Component {
       <div className="selector__option">
         <button type="button" onClick={this.props.onOptionClick}>
           <i className={icon}/>
-          <span>{label}</span>
+          <div>{label}</div>
         </button>
       </div>
     );

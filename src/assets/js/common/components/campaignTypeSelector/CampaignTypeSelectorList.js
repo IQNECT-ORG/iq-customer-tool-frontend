@@ -7,6 +7,7 @@ class CampaignTypeSelector extends Component {
   render() {
     return (
       <SelectorList
+        className="campaign-type-selector"
         items={this.props.campignTypes}
         renderOption={::this._renderOption}
         listItem={{
