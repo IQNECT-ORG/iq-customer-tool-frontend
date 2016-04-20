@@ -1,7 +1,9 @@
 
 .faux-table {
   @include element('head') {
-    @extend .clearfix;
+    @extend .row;
+    margin-left: 0;
+    margin-right: 0;
     border-bottom: 1px $separator solid;
     > .faux-table__cell {
       color: #e91e62;
@@ -14,7 +16,9 @@
 
   @include element('row') {
     border-bottom: 1px $separator solid;
-    @extend .clearfix;
+    @extend .row;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   @include element('cell') {

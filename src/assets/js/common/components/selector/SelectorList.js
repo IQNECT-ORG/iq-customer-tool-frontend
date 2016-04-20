@@ -5,10 +5,10 @@ import classNames from 'classnames';
 
 class SelectorList extends Component {
   render() {
-    const className = classNames('selector row', this.props.className);
+    const className = classNames('selector', this.props.className);
     return (
       <div className={className}>
-        <ul className="selector__list list-unstyled clearfix">
+        <ul className="selector__list list-unstyled row">
           {this._renderItems()}
         </ul>
       </div>
