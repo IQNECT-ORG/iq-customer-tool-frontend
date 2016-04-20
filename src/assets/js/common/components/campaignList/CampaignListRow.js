@@ -18,7 +18,7 @@ class CampaignListRow extends Component {
             type="button"
             className="btn btn-secondary"
             onClick={this.props.onDeleteClick}>
-            Delete
+            <i className="icons8-trash"/>
           </button>
         </div>
       </li>
