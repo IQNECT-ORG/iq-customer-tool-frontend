@@ -25,9 +25,9 @@ class CatalogueBrands extends Component {
                     <div className="col-xs-6">
                       <h1>Catalogue / Brands</h1>
                     </div>
-                    <div className="col-xs-6">
+                    <div className="col-xs-2 col-xs-push-4">
                       <button
-                        className="btn btn-secondary btn-radius-lg"
+                        className="btn btn-secondary btn-radius-lg btn-block"
                         type="button"
                         onClick={this.props.actions.openAddBrandModal}>
                         Add New Brand
