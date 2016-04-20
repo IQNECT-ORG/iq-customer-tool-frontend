@@ -9,7 +9,12 @@ class Menu extends Component {
         <ul className="list-unstyled">
           <li><Link to="/"><i className="icons8-dashboard"/> Dashboard</Link></li>
           <li>
-            <button type="button" onClick={this.props.toggleSubMenu}>Catalogue</button>
+            <button
+              type="button"
+              onClick={this.props.toggleSubMenu}>
+              <i className="icons8-package"/>
+              <span>Catalogue</span>
+            </button>
             <Collapse isOpened={this.props.isCatalogueSubmenuOpen}>
               <ul className="list-unstyled">
                 <li>
