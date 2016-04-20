@@ -1,0 +1,20 @@
+
+.faux-table {
+  @include element('head') {
+    > .faux-table__cell {
+      color: #e91e62;
+    }
+  }
+
+  @include element('body') {
+    
+  }
+
+  @include element('row') {
+    
+  }
+
+  @include element('cell') {
+    
+  }
+}

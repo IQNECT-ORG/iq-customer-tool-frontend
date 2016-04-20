@@ -5,15 +5,15 @@ class CampaignListRow extends Component {
   render() {
     const { campaign } = this.props;
     return (
-      <li className="row">
-        <div className="col-xs-2">
+      <li className="faux-table__row row">
+        <div className="faux-table__cell col-xs-2">
           <CampaignListThumbnail/>
         </div>
-        <div className="col-xs-2">{campaign.type}</div>
-        <div className="col-xs-2">{campaign.name}</div>
-        <div className="col-xs-2">NI - NI</div>
-        <div className="col-xs-2">NI</div>
-        <div className="col-xs-2">
+        <div className="faux-table__cell col-xs-2">{campaign.type}</div>
+        <div className="faux-table__cell col-xs-2">{campaign.name}</div>
+        <div className="faux-table__cell col-xs-2">NI - NI</div>
+        <div className="faux-table__cell col-xs-2">NI</div>
+        <div className="faux-table__cell col-xs-2">
           <button
             type="button"
             className="btn btn-secondary"

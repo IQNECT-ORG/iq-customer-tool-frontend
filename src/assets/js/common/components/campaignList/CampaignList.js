@@ -10,16 +10,18 @@ class CampaignList extends Component {
         <div className="pane pane--filled p-a-1">
           <CampaignListFilterFormContainer onFormSubmit={this.props.onFilterSubmit}/>
 
-          <div className="row">
-            <div className="col-xs-2">Thumbnail</div>
-            <div className="col-xs-2">Type</div>
-            <div className="col-xs-2">Title</div>
-            <div className="col-xs-2">Period</div>
-            <div className="col-xs-2">Status</div>
+          <div className="faux-table">
+            <div className="faux-table__head row">
+              <div className="faux-table__cell col-xs-2">Thumbnail</div>
+              <div className="faux-table__cell col-xs-2">Type</div>
+              <div className="faux-table__cell col-xs-2">Title</div>
+              <div className="faux-table__cell col-xs-2">Period</div>
+              <div className="faux-table__cell col-xs-2">Status</div>
+            </div>
+            <ul className="faux-table__body list-unstyled">
+              {this._renderRows()}
+            </ul>
           </div>
-          <ul className="list-unstyled">
-            {this._renderRows()}
-          </ul>
         </div>
       </div>
     );
