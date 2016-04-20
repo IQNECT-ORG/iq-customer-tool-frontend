@@ -1,19 +1,17 @@
 .brand-selector {
-  @include element('list') {
-    //@extend %selector-list;
+  button {
+    @extend %btn-hollow;
+    width: 100%;
+    height: 100%;
+    padding: 0;
 
-    @include element('item') {
-      @extend .selector__list__item;
+    > img {
+      @extend .img-fluid;
+      margin: 0 auto;
     }
   }
 
-  @include element('brand') {
-    @extend .selector__option;
-
-    > button {
-      @extend %btn-hollow;
-      width: 100%;
-      height: 100%;
-    }
+  .selector__list__item {
+    @extend .m-t-2;
   }
 }

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import SelectorListItem from './SelectorListItem';
+import classNames from 'classnames';
 
 class SelectorList extends Component {
   render() {
+    const className = classNames('selector row', this.props.className);
     return (
-      <div className="selector row">
+      <div className={className}>
         <ul className="selector__list list-unstyled clearfix">
           {this._renderItems()}
         </ul>
