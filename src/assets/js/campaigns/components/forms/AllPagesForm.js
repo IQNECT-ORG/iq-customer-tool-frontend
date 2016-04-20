@@ -78,11 +78,11 @@ class AllPagesForm extends Component {
 
                     <div className="row">
                       <div className="col-xs-6">
-                        <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onBackClick}>Back</button>
+                        <button type="button" className="btn btn-block btn-secondary btn-radius-lg" onClick={this.props.onBackClick}>Back</button>
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary">Summary</button>
+                        <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Summary</button>
                       </div>
                     </div>
                   </div>
