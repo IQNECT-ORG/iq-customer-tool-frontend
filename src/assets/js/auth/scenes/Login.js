@@ -18,7 +18,9 @@ class Login extends Component {
                 </h1>
 
                 <div className="pane pane--filled">
-                  <LoginFormContainer/>
+                  <div className="pane__body">
+                    <LoginFormContainer/>
+                  </div>
                 </div>
 
                 <div className="text-xs-center">

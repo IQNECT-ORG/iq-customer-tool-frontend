@@ -16,7 +16,9 @@ class ResetPassword extends Component {
                 </h1>
 
                 <div className="pane pane--filled">
-                  <ResetPasswordFormContainer/>
+                  <div className="pane__body">
+                    <ResetPasswordFormContainer/>
+                  </div>
                 </div>
 
                 <div className="text-xs-center">

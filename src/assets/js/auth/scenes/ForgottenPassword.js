@@ -16,7 +16,9 @@ class ForgottenPassword extends Component {
                 </h1>
 
                 <div className="pane pane--filled">
-                  <ForgottenPasswordFormContainer/>
+                  <div className="pane__body">
+                    <ForgottenPasswordFormContainer/>
+                  </div>
                 </div>
 
                 <div className="text-xs-center">
