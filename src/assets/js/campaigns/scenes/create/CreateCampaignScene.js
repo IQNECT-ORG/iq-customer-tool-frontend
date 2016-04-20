@@ -11,6 +11,8 @@ import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
 import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
 
+import Steptracker from 'app/common/components/Steptracker';
+
 class CreateCampaign extends Component {
   componentDidMount() {
     if(this.props.routeParams.brandId) {
@@ -115,6 +117,24 @@ class CreateCampaign extends Component {
                   <div className="row">
                     <div className="col-xs-12">
                       <h1>Create Campaign</h1>
+                      <Steptracker
+                        steps={[
+                          {
+                            label: 'Step 1',
+                            isActive: this.props.steptrackerStep === 0,
+                            isPast: this.props.steptrackerStep > 0
+                          },
+                          {
+                            label: 'Step 2',
+                            isActive: this.props.steptrackerStep === 1,
+                            isPast: this.props.steptrackerStep > 1
+                          },
+                          {
+                            label: 'Step 3',
+                            isActive: this.props.steptrackerStep === 2,
+                            isPast: this.props.steptrackerStep > 2
+                          }
+                        ]}/>
                     </div>
                   </div>
                 </Titlebar>
@@ -135,6 +155,7 @@ class CreateCampaign extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    steptrackerStep: state.ui.getIn(['scene', 'createCampaignPrint', 'step']),
     selectedBrandId: state.campaigns.getIn(['create', 'selectedBrandId']),
     selectedCampaignTypeId: state.campaigns.getIn(['create', 'selectedCampaignTypeId'])
   };

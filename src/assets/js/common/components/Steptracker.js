@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import classNames from 'classnames';
 
 class Steptracker extends Component {
   render() {
@@ -23,15 +24,20 @@ class Steptracker extends Component {
 
     if(isLast === false) {
       separator = (
-        <div className="steptracker__separator">
-          Arrow ->
+        <div className="steptracker__separator pull-xs-left">
+          ->
         </div>
       );
     }
 
+    const className = classNames('steptracker__item pull-xs-left', {
+      'steptracker__item--active': step.isActive,
+      'steptracker__item--past': step.isPast
+    });
+
     return (
-      <li key={index} className="steptracker__item">
-        <div className="steptracker__step">
+      <li key={index} className={className}>
+        <div className="steptracker__step pull-xs-left">
           {step.label}
         </div>
         {separator}
