@@ -4,4 +4,4 @@ import { change } from 'redux-form/lib/actions';
 
 const Actions = Constants.ActionTypes;
 
-export const loadBrandCatalogue = createAction(Actions.CATALOGUE_BRAND_LOAD);
+export const loadBrandCatalogue = createAction(Actions.LOAD_CATALOGUE_BRAND_PAGE);

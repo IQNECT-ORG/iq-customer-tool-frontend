@@ -1,5 +1,5 @@
 
-export const createSession = async function(data) {
+export const create = async function(data) {
   try {
     let response = await fetch('https://iq.api/api/session', {
       method: 'POST',

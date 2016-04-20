@@ -1,7 +1,7 @@
 import { normalize, arrayOf } from 'normalizr';
 import * as schemas from './schemas';
 
-export const getBrands = async function() {
+export const get = async function() {
   try {
     let response = await fetch('https://iq.api/api/brand', {
       credentials: 'include',
