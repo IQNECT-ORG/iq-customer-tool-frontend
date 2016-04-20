@@ -29,6 +29,13 @@
   @include modifier('open') {
     width: 300px;
   }
+
+  @include element('opener') {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @extend %btn-hollow;
+  }
 }
 
 .draw-nav-overlay {

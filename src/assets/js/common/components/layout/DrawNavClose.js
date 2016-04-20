@@ -5,7 +5,7 @@ class DrawNavClose extends Component {
     return (
       <nav className="draw-nav" role="navigation">
         <div className="container">
-          <button type="button" onClick={this.props.actions.open}>
+          <button className="draw-nav__opener" type="button" onClick={this.props.actions.open}>
             Open
           </button>
         </div>
