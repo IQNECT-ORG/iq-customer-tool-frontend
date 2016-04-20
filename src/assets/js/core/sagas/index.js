@@ -71,45 +71,6 @@ function* watchForbiddenNavigation() {
   });
 };
 
-// Page Loads
-function* watchLoadCampaignCreatePage() {
-  yield takeEvery('LOAD_CAMPAIGN_CREATE_PAGE', function* () {
-    yield put(brandActions.fetch());
-  });
-};
-
-function* watchLoadCatalogueBrandPage() {
-  yield takeEvery('LOAD_CATALOGUE_BRAND_PAGE', function* () {
-    let result = yield put(brandActions.fetch());
-  });
-};
-
-// Selecting
-function* watchCampaignCreateBrandSelect() {
-  yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
-    yield put(routerActions.push(`/campaign/create/${action.payload || ''}`));
-  });
-};
-
-function* watchCampaignCreateCampaignTypeSelect() {
-  yield takeEvery('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
-    const selectedBrandId = yield select((state) => {
-      return state.campaigns.getIn(['create', 'selectedBrandId']);
-    });
-
-    let url;
-    if(selectedBrandId == null) {
-      url = '/campaign/create';
-    } else if(action.payload == null) {
-      url = `/campaign/create/${selectedBrandId}`;
-    } else {
-      url = `/campaign/create/${selectedBrandId}/${action.payload}`;
-    }
-    yield put(routerActions.push(url));
-  });
-};
-
-
 export default function* root() {
   yield fork(startup);
 
@@ -121,13 +82,4 @@ export default function* root() {
   yield fork(modalSaga);
 
   yield fork(watchForbiddenNavigation);
-
-  // Loaders
-  yield fork(watchLoadCampaignCreatePage);
-  yield fork(watchLoadCatalogueBrandPage);
-
-  // Selecting
-  yield fork(watchCampaignCreateBrandSelect);
-  yield fork(watchCampaignCreateCampaignTypeSelect);
-
 };
