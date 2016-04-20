@@ -13,10 +13,10 @@ class BasicDetailsForm extends Component {
     const fields = this.props.fields;
     
     return (
-      <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
-          <div className="col-xs-12 col-sm-12 col-md-6">
-            <div className="pane pane--filled">
+      <form className="form--content" onSubmit={this.props.onSubmit}>
+        <div className="row">
+          <div className="col-xs-12 col-sm-12 col-md-6 equal-height-container">
+            <div className="pane pane--filled media-pane equal-height-item flex">
               {this._renderMedia()}
             </div>
           </div>
@@ -102,8 +102,8 @@ class BasicDetailsForm extends Component {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 

@@ -7,10 +7,17 @@ class AddBrandForm extends Component {
     const fields = this.props.fields;
     return (
       <form onSubmit={this.props.onSubmit}>
+
         <fieldset className="form-group">
-          <AssetField
-            onChange={fields.artwork.onChange}
-            value={fields.artwork.value}/>
+          <div className="row">
+            <div className="col-xs-4 col-xs-offset-4 aspect-1-1-container">
+              <div className="aspect-item">
+                <AssetField
+                  onChange={fields.artwork.onChange}
+                  value={fields.artwork.value}/>
+              </div>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset className="form-group">
@@ -26,7 +33,12 @@ class AddBrandForm extends Component {
             placeholder="Brand Name"
             {...this.props.fields.name}/>
         </fieldset>
-        <button type="submit" className="btn btn-primary">Add Brand</button>
+
+        <div className="row">
+          <div className="col-xs-6 col-xs-offset-3">
+            <button type="submit" className="btn btn-primary btn-block btn-radius-lg">Add Brand</button>
+          </div>
+        </div>
       </form>
     );
   }

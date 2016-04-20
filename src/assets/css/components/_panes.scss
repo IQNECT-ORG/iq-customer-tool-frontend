@@ -19,3 +19,8 @@
     padding: $grid-gutter-width / 2;
   }
 }
+
+.media-pane {
+  min-height: 400px;
+  position: relative;
+}

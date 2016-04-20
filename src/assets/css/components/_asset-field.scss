@@ -1,8 +1,5 @@
 .asset-field {
-  position: relative;
-  width: 200px;
-  height: 200px;
-
+  @extend .flex-fake-full-height;
   @include modifier('empty') {
     background-color: #fff;
     color: #afbdc5;
@@ -24,9 +21,9 @@
   height: 100%;
 
   @include element('btn') {
+    @extend %btn-hollow;
     width: 100%;
     height: 100%;
-    @extend %btn-hollow;
   }
 
   @include element('input') {
