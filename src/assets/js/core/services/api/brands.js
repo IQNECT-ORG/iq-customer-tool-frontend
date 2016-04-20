@@ -11,8 +11,10 @@ export const get = async function() {
       }
     });
 
-    let brands = await response.json();
-    return normalize(brands, arrayOf(schemas.brand));
+    return {
+      json: normalize(await response.json(), arrayOf(schemas.brand)),
+      response
+    };
   } catch(err) {
     throw err;
   }

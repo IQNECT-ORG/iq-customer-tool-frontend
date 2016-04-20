@@ -12,7 +12,7 @@ export const create = async function(data) {
     });
 
     return {
-      data: await response.json(),
+      json: await response.json(),
       response
     };
   } catch(err) {

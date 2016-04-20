@@ -24,16 +24,25 @@ import _ from 'lodash';
 // Errors / Exceptions
 import { NotFoundError } from '../errors';
 
-// Brands
-function* brandsFetchAsync() {
-  yield put(brandActions.fetchRequest());
+function* fetchEntity(entityName, entityActions, apiFn, id) {
+  yield put(entityActions.fetchRequest(id));
+
   try {
-    let brands = yield brandsApi.get();
-    yield put(brandActions.fetchSuccess(brands));
+    const { json, response } = yield call(apiFn, id);
+
+    if(response.status === 404) {
+      throw new NotFoundError(entityName + ' not found');
+    }
+
+    yield put(entityActions.fetchSuccess(json));
   } catch(err) {
-    yield put(brandActions.fetchFailure(err));
+    yield put(entityActions.fetchFailure(err));
   }
 };
+
+export const fetchBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.get);
+
+// Brands
 
 function* brandsCreateAync(action) {
   yield put(brandActions.createRequest());
@@ -199,7 +208,7 @@ function* watchAuthResetPassword() {
 
 // Brands
 function* watchBrandsFetch() {
-  yield takeEvery('BRANDS_FETCH', brandsFetchAsync);
+  yield takeEvery('BRANDS_FETCH', fetchBrands);
 };
 
 function* watchBrandCreate() {
