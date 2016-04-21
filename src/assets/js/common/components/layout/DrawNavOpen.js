@@ -11,7 +11,7 @@ class DrawNavOpen extends Component {
       <div>
         <nav className="draw-nav draw-nav--open" role="navigation">
           <div className="container-fluid">
-            <div className="row">
+            <div className="row m-y-3">
               <div className="col-xs-10 col-xs-offset-1">
                 <AccountSummary/>
               </div>
@@ -27,7 +27,7 @@ class DrawNavOpen extends Component {
 
             <hr/>
 
-            <div className="row">
+            <div className="row m-y-2">
               <div className="col-xs-10 col-xs-offset-1">
                 <Link to="/campaign/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
               </div>

@@ -23,7 +23,7 @@ class Login extends Component {
                   </div>
                 </div>
 
-                <div className="text-xs-center m-t-2">
+                <div className="post-pane text-xs-center m-t-1">
                   <span className="type-colour-02">Forgot your password? </span>
                   <Link to="/forgotten-password" className="type-colour-02">Click here to reset</Link>
                 </div>

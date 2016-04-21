@@ -5,12 +5,13 @@ import Collapse from 'react-collapse';
 class Menu extends Component {
   render() {
     return (
-      <div>
+      <div className="draw-nav__menu">
         <ul className="list-unstyled">
           <li><Link to="/"><i className="icons8-dashboard"/> Dashboard</Link></li>
           <li>
             <button
               type="button"
+              className="btn-link"
               onClick={this.props.toggleSubMenu}>
               <i className="icons8-package"/>
               <span>Catalogue</span>
