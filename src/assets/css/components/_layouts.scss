@@ -18,10 +18,10 @@
   &:before {
     content: '';
     position: fixed;
-    left: -10%;
-    right: 10%;
-    top: -10%;
-    bottom: 10%;
+    left: -10px;
+    right: -10px;
+    top: -10px;
+    bottom: -10px;
     z-index: 0;
 
     display: block;
