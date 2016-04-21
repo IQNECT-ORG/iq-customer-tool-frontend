@@ -2,7 +2,9 @@ import keyMirror from 'keymirror';
 
 export default {
   ActionTypes: keyMirror({
-    CAMPAIGN_CREATE_LOAD: null,
+    LOAD_CAMPAIGN_CREATE_PAGE: null,
+    LOAD_CAMPAIGN_PRINT_CREATE_PAGE: null,
+    
     CAMPAIGN_CREATE_BRAND_SELECT: null,
     CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT: null,
     CAMPAIGN_PRINT_ADD_WEBSITE_MODAL_OPEN: null,
@@ -10,7 +12,6 @@ export default {
     CAMPAIGN_PRINT_ADD_WEBSITE: null,
     CAMPAIGN_PRINT_NEXT_STEP: null,
     CAMPAIGN_PRINT_PREV_STEP: null,
-    CAMPAIGN_PRINT_CREATE_LOAD: null,
     CAMPAIGN_CREATE_RESET: null,
   })
 };
