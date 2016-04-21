@@ -24,11 +24,11 @@ import _ from 'lodash';
 // Errors / Exceptions
 import { NotFoundError } from '../errors';
 
-function* fetchEntity(entityName, entityActions, apiFn, id) {
+function* fetchEntity(entityName, entityActions, apiFn, id, params) {
   yield put(entityActions.fetchRequest(id));
 
   try {
-    const { json, response } = yield call(apiFn, id);
+    const { json, response } = yield call(apiFn, id, params);
 
     if(response.status === 404) {
       throw new NotFoundError(entityName + ' not found');
@@ -40,7 +40,8 @@ function* fetchEntity(entityName, entityActions, apiFn, id) {
   }
 };
 
-export const fetchBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.get);
+export const findBrand = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.find);
+export const filterBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.filter);
 
 // Brands
 
@@ -208,7 +209,13 @@ function* watchAuthResetPassword() {
 
 // Brands
 function* watchBrandsFetch() {
-  yield takeEvery('BRANDS_FETCH', fetchBrands);
+  yield takeEvery('BRANDS_FETCH', function* (action) {
+    if(action.payload && action.payload.id) {
+      yield findBrand(action.payload.id, action.payload.params);
+    } else {
+      yield filterBrands(_.get(action, 'payload.params'));
+    }
+  });
 };
 
 function* watchBrandCreate() {

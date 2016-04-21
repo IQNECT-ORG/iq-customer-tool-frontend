@@ -1,23 +1,23 @@
 import { normalize, arrayOf } from 'normalizr';
-import * as schemas from './schemas';
+import { brand as brandSchema } from './schemas';
+import { getJSON } from './crud';
 
-export const get = async function() {
-  try {
-    let response = await fetch('https://iq.api/api/brand', {
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
+export const filter = async function(params) {
+  let { json, response } = await getJSON(`https://iq.api/api/brand`, params);
 
-    return {
-      json: normalize(await response.json(), arrayOf(schemas.brand)),
-      response
-    };
-  } catch(err) {
-    throw err;
-  }
+  return {
+    json: normalize(json, arrayOf(brandSchema)),
+    response
+  };
+};
+
+export const find = async function(id, params) {
+  let { json, response } = await getJSON(`https://iq.api/api/brand/${id}`, params);
+
+  return {
+    json: normalize(json, brandSchema),
+    response
+  };
 };
 
 export const create = async function(data) {
@@ -34,7 +34,7 @@ export const create = async function(data) {
       body: body,
     });
 
-    return normalize(await response.json(), schemas.brand);
+    return normalize(await response.json(), brandSchema);
   } catch(err) {
     throw err;
   }
