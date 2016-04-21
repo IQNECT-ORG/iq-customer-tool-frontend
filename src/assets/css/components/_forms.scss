@@ -2,6 +2,7 @@
 .form--modal {
   label {
     color: $active;
+    font-size: 0.9rem;
   }
 
   .input-group-addon {
@@ -11,15 +12,18 @@
   }
 
   .form-control {
-    border-color: #afbdc5;
+    font-size: 0.9rem;
+    border-color: #b0bec5;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    color: #37474f;
     &:focus {
       border-color: $active;
     }
-    color: #475862;
   }
 
   input::-webkit-input-placeholder {
-    color: #bcc9d0;
+    color: #b0bec5;
   }
 
   .has-danger {
@@ -28,5 +32,5 @@
 }
 
 .form-group {
-  margin-bottom: 2rem;
+  //margin-bottom: 2rem;
 }
