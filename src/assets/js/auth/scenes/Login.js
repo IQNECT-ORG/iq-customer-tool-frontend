@@ -17,7 +17,7 @@ class Login extends Component {
                   Please Log in
                 </h1>
 
-                <div className="pane pane--filled">
+                <div className="pane pane--filled pane--shadow-strong">
                   <div className="pane__body">
                     <LoginFormContainer/>
                   </div>
