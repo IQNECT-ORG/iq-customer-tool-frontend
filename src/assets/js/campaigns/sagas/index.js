@@ -30,7 +30,7 @@ function* basicDetailsFormSubmit(action) {
   yield put(changeAction);
 
   // Now fetch the triggers for the campaign.
-  const triggerTask = yield fork(getTriggers, undefined, {
+  const triggerTask = yield fork(getTriggers, undefined, undefined, {
     campaignId: campaignAction.payload.result
   });
   // Wait for it to finish

@@ -22,11 +22,11 @@ import _ from 'lodash';
 // Errors / Exceptions
 import { NotFoundError } from '../errors';
 
-function* fetchEntity(entityName, entityActions, apiFn, id, params) {
+function* fetchEntity(entityName, entityActions, apiFn, id, url, params) {
   yield put(entityActions.fetchRequest(id));
 
   try {
-    const { json, response } = yield call(apiFn, id, params);
+    const { json, response } = yield call(apiFn, url || id, params);
 
     if(response.status === 404) {
       throw new NotFoundError(entityName + ' not found');
@@ -110,7 +110,7 @@ function* watchBrandsFetch() {
     const id = _.get(action, 'payload.id');
     const params = _.get(action, 'payload.params');
 
-    yield getBrands(id, params);
+    yield getBrands(id, undefined, params);
   });
 };
 
