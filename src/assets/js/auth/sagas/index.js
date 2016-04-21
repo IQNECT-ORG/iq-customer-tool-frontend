@@ -7,7 +7,7 @@ import { NotFoundError } from 'app/core/errors';
 
 // Auth / Sessions
 function* authLoginAsync(action) {
-  //yield put(authActions.fetchRequest());
+  yield put(authActions.loginRequest());
   try {
     let { data: user, response } = yield sessionsApi.create(action.payload);
     if(response.status !== 200) {
@@ -21,23 +21,23 @@ function* authLoginAsync(action) {
 };
 
 function* authForgottenPasswordAsync(action) {
-  // Request
+  yield put(authActions.forgottenPasswordRequest());
   try {
     let result = yield usersApi.forgottenPassword(action.payload);
-    yield put(authActions.authForgottenPasswordSuccess(result));
+    yield put(authActions.forgottenPasswordSuccess(result));
     yield put(routerActions.push('/reset-password'));
   } catch(err) {
-    yield put(authActions.authForgottenPasswordFailure(err));
+    yield put(authActions.forgottenPasswordFailure(err));
   }
 };
 
 function* authResetPasswordAsync(action) {
-  // Request
+  yield put(authActions.resetPasswordRequest());
   try {
     let result = yield usersApi.resetPassword(action.payload);
-    yield put(authActions.authResetPasswordSuccess(result));
+    yield put(authActions.resetPasswordSuccess(result));
   } catch(err) {
-    yield put(authActions.authResetPasswordFailure(err));
+    yield put(authActions.resetPasswordFailure(err));
     return;
   }
 
