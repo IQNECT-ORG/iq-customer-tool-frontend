@@ -2,3 +2,9 @@
 .type-colour-02 {
   color: #fff;
 }
+
+a.type-colour-02 {
+  &:hover {
+    color: #fff;
+  }
+}
