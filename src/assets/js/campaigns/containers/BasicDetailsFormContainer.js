@@ -4,7 +4,7 @@ import BasicDetailsForm from '../components/forms/BasicDetailsForm';
 import ui from 'redux-ui/transpiled';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import _ from 'lodash';
-import { createCampaign } from 'app/common/actions/campaigns';
+import { basicDetailsFormSubmit } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
 
       return new Promise((resolve, reject) => {
-        dispatch(createCampaign({
+        dispatch(basicDetailsFormSubmit({
           values: {
             defaultBrand: ownProps.selectedBrandId,
             type: ownProps.selectedCampaignTypeId,

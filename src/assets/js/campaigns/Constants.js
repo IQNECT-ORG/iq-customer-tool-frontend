@@ -13,5 +13,7 @@ export default {
     CAMPAIGN_PRINT_NEXT_STEP: null,
     CAMPAIGN_PRINT_PREV_STEP: null,
     CAMPAIGN_CREATE_RESET: null,
+
+    CAMPAIGN_CREATE_BASIC_DETAILS_FORM_SUBMIT: null
   })
 };
