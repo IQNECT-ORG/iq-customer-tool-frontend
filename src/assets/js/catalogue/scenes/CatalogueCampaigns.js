@@ -26,7 +26,7 @@ class CatalogueCampaigns extends Component {
             </div>
           );
         }}>
-        <div className="container">
+        <div className="container container--gutter">
           <CampaignListContainer/>
         </div>
       </DefaultLayout>
