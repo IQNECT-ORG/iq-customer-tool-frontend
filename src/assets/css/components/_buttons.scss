@@ -5,6 +5,7 @@
 
 .btn {
   padding: 0.6rem 0;
+  outline: 0;
 }
 
 .btn-radius-lg {
@@ -20,16 +21,22 @@
     background-color: #c2185b;
     border-color: #c2185b;
   }
+
+  &:focus {
+    background-color: #c2185b;
+    border-color: #c2185b;
+  }
 }
 
 .btn-secondary {
-  background-color: #afbdc5;
-  border-color: #afbdc5;
+  background-color: #B0BEC5;
+  border-color: #B0BEC5;
   color: #fff;
 
   &:hover {
-    //background-color: #
-    //border-color: #
+    background-color: #78909C;
+    border-color: #78909C;
+    color: #fff;
   }
 }
 
