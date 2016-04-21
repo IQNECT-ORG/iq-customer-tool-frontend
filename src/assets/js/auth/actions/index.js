@@ -1,16 +1,14 @@
 import Constants from '../Constants';
 import { createAction } from 'redux-actions';
+import { generateActions as generateAsyncActions } from 'app/common/actions/async';
+import _ from 'lodash';
 
 const Actions = Constants.ActionTypes;
 
-export const authLogin = createAction(Actions.AUTH_LOGIN_REQUEST);
-export const authLoginSuccess = createAction(Actions.AUTH_LOGIN_SUCCESS);
-export const authLoginFailure = createAction(Actions.AUTH_LOGIN_FAILURE);
+const actions = {};
 
-export const authForgottenPassword = createAction(Actions.AUTH_FORGOTTEN_PASSWORD_REQUEST);
-export const authForgottenPasswordSuccess = createAction(Actions.AUTH_FORGOTTEN_PASSWORD_SUCCESS);
-export const authForgottenPasswordFailure = createAction(Actions.AUTH_FORGOTTEN_PASSWORD_FAILURE);
+_.assign(actions, generateAsyncActions('login', 'auth'));
+_.assign(actions, generateAsyncActions('forgottenPassword', 'auth'));
+_.assign(actions, generateAsyncActions('resetPassword', 'auth'));
 
-export const authResetPassword = createAction(Actions.AUTH_RESET_PASSWORD_REQUEST);
-export const authResetPasswordSuccess = createAction(Actions.AUTH_RESET_PASSWORD_SUCCESS);
-export const authResetPasswordFailure = createAction(Actions.AUTH_RESET_PASSWORD_FAILURE);
+export default actions;

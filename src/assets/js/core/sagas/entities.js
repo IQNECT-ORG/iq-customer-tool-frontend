@@ -6,12 +6,10 @@ import * as modalActions from 'app/modal/actions';
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
-import * as authActions from 'app/auth/actions';
 import triggerActions from 'app/common/actions/triggers';
 import trainingResultActions from 'app/common/actions/trainingResults';
 // API
 import * as brandsApi from '../services/api/brands';
-import * as sessionsApi from '../services/api/sessions';
 import * as usersApi from '../services/api/users';
 import * as campaignsApi from '../services/api/campaigns';
 import * as triggersApi from '../services/api/triggers';
@@ -57,44 +55,7 @@ function* brandsCreateAync(action) {
   }
 };
 
-// Auth / Sessions
-function* authLoginAsync(action) {
-  //yield put(authActions.fetchRequest());
-  try {
-    let { data: user, response } = yield sessionsApi.create(action.payload);
-    if(response.status !== 200) {
-      throw new NotFoundError('User not found');
-    }
-    yield put(authActions.authLoginSuccess(user));
-    yield put(routerActions.push('/'));
-  } catch(err) {
-    yield put(authActions.authLoginFailure(err));
-  }
-};
 
-function* authForgottenPasswordAsync(action) {
-  // Request
-  try {
-    let result = yield usersApi.forgottenPassword(action.payload);
-    yield put(authActions.authForgottenPasswordSuccess(result));
-    yield put(routerActions.push('/reset-password'));
-  } catch(err) {
-    yield put(authActions.authForgottenPasswordFailure(err));
-  }
-};
-
-function* authResetPasswordAsync(action) {
-  // Request
-  try {
-    let result = yield usersApi.resetPassword(action.payload);
-    yield put(authActions.authResetPasswordSuccess(result));
-  } catch(err) {
-    yield put(authActions.authResetPasswordFailure(err));
-    return;
-  }
-
-  yield put(routerActions.push('/signin'));
-};
 
 // Campaigns
 function* campaignCreateAsync(action) {
@@ -194,19 +155,6 @@ function* triggerUpdateAsync(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-// Auth / Sessions
-function* watchAuthLogin() {
-  yield takeEvery('SESSIONS_CREATE', authLoginAsync);
-};
-
-function* watchAuthForgottenPassword() {
-  yield takeEvery('AUTH_FORGOTTEN_PASSWORD', authForgottenPasswordAsync);
-};
-
-function* watchAuthResetPassword() {
-  yield takeEvery('AUTH_RESET_PASSWORD', authResetPasswordAsync);
-}
-
 // Brands
 function* watchBrandsFetch() {
   yield takeEvery('BRANDS_FETCH', function* (action) {
@@ -241,9 +189,6 @@ function* watchTriggerUpdate() {
 };
 
 export default function* () {
-  yield fork(watchAuthLogin);
-  yield fork(watchAuthForgottenPassword);
-  yield fork(watchAuthResetPassword);
   yield fork(watchBrandsFetch);
   yield fork(watchBrandCreate);
   yield fork(watchCampaignCreate);

@@ -1,7 +1,7 @@
-import authSaga from './auth';
-import campaignSaga from './campaign';
-import catalogueSaga from './catalogue';
-import modalSaga from './modal';
+import authSaga from 'app/auth/sagas';
+import campaignSaga from 'app/campaigns/sagas';
+import catalogueSaga from 'app/catalogue/sagas';
+import modalSaga from 'app/modal/sagas';
 import entitiesSaga from './entities';
 
 import { takeEvery, takeLatest } from 'redux-saga';

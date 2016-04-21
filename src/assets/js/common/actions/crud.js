@@ -1,23 +1,11 @@
 import { createAction } from 'redux-actions';
 import _ from 'lodash';
+import { generateActions as generateAsyncActions } from './async';
 
 export const generateActions = (name) => {
-  const crud = ['create', 'fetch', 'update', 'delete'];
-  const variations = ['', 'request', 'success', 'failure'];
+  const operations = ['create', 'fetch', 'update', 'delete'];
 
-  const actions = {};
-
-  _.each(crud, (operation) => {
-    _.each(variations, (variation) => {
-      const fnName = operation + _.capitalize(variation);
-      let actionType = [name, operation];
-      if(variation.length > 0) {
-        actionType.push(variation);
-      }
-      actionType = _.toUpper(actionType.join('_'));
-      actions[fnName] = createAction(actionType);
-    });
-  });
-
-  return actions;
+  return _.reduce(operations, (result, operation) => {
+    return _.assign({}, result, generateAsyncActions(operation, name));
+  }, {});
 };
