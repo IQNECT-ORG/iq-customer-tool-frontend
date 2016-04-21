@@ -16,7 +16,10 @@ export const create = async function(data) {
       body: body,
     });
 
-    return normalize(await response.json(), schemas.campaign);
+    return {
+      json: normalize(await response.json(), schemas.campaign),
+      response
+    };
   } catch(err) {
     throw err;
   }

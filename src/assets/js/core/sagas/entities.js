@@ -38,10 +38,10 @@ function* fetchEntity(entityName, entityActions, apiFn, id, params) {
   }
 };
 
-export const findBrand = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.find);
-export const filterBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.filter);
 
 // Brands
+export const findBrand = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.find);
+export const filterBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.filter);
 
 function* brandsCreateAync(action) {
   yield put(brandActions.createRequest());
@@ -55,67 +55,15 @@ function* brandsCreateAync(action) {
   }
 };
 
-
-
 // Campaigns
-function* campaignCreateAsync(action) {
-  // Request
-  var campaignResult,
-    triggerResult,
-    trainingResultsResult;
-
+export const campaignCreateAsync = function* (action) {
+  yield put(campaignActions.createRequest());
   try {
-    campaignResult = yield campaignsApi.create(action.payload.values);
-    yield put(campaignActions.createCampaignSuccess(campaignResult));
+    let { json, response } = yield campaignsApi.create(action.payload.values);
+    yield put(campaignActions.createSuccess(json));
   } catch(err) {
-    yield put(campaignActions.createCampaignFailure(err));
-    action.payload.reject(err);
-    return;
+    yield put(campaignActions.createFailure(err));
   }
-
-  // Setting the id field to that of the campaign
-  // this will allow us to know if the data is new or old
-  // as well as be able to retrieve data on step changes
-  let changeAction = change('campaignId', campaignResult.result);
-  changeAction.form = action.payload.form;
-  yield put(changeAction);
-  action.payload.resolve(campaignResult);
-
-  // Now fetch the triggers for the campaign.
-  try {
-    triggerResult = yield triggersApi.getByCampaign(campaignResult.result);
-    yield put(triggerActions.fetchTriggersSuccess(triggerResult));
-
-  } catch(err) {
-    yield put(triggerActions.fetchTriggersFailure(err));
-    return;
-  }
-
-  changeAction = change('triggerId', triggerResult.result[0]);
-  changeAction.form = action.payload.form;
-  yield put(changeAction);
-
-  // Now we need the training results
-  try {
-    const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
-    trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
-    yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
-  } catch(err) {
-    yield put(trainingResultActions.fetchTrainingResultsFailure(err));
-    return;
-  }
-  // Sync all of the pages
-  _.times(
-    trainingResultsResult.result.length,
-    n => action.payload.pagesAddField({})
-  );
-
-  // Now go to the correct screen.
-  action.payload.updateUI({
-    pageView: 'ALL',
-    step: 1,
-    page: 0
-  });
 };
 
 function* campaignFetchAsync(action) {
@@ -139,6 +87,9 @@ function* campaignDeleteAsync(action) {
 };
 
 // Triggers
+export const findTrigger = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.find);
+export const filterTriggers = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.filter);
+
 function* triggerUpdateAsync(action) {
   yield put(campaignActions.updateRequest());
   try {
