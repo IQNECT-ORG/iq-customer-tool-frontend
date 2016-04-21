@@ -1,18 +1,17 @@
 import { normalize, arrayOf } from 'normalizr';
 import { brand as brandSchema } from './schemas';
 import { getJSON } from './crud';
+import _ from 'lodash';
 
-export const filter = async function(params) {
-  let { json, response } = await getJSON(`https://iq.api/api/brand`, params);
-
-  return {
-    json: normalize(json, arrayOf(brandSchema)),
-    response
-  };
-};
-
-export const find = async function(id, params) {
+export const get = async function(id = '', params) {
   let { json, response } = await getJSON(`https://iq.api/api/brand/${id}`, params);
+
+  if(_.isArray(json)) {
+    return {
+      json: normalize(json, arrayOf(brandSchema)),
+      response
+    };
+  }
 
   return {
     json: normalize(json, brandSchema),

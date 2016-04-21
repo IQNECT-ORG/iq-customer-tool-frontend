@@ -40,8 +40,7 @@ function* fetchEntity(entityName, entityActions, apiFn, id, params) {
 
 
 // Brands
-export const findBrand = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.find);
-export const filterBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.filter);
+export const getBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.get);
 
 function* brandsCreateAync(action) {
   yield put(brandActions.createRequest());
@@ -87,8 +86,7 @@ function* campaignDeleteAsync(action) {
 };
 
 // Triggers
-export const findTrigger = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.find);
-export const filterTriggers = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.filter);
+export const getTriggers = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.get);
 
 function* triggerUpdateAsync(action) {
   yield put(campaignActions.updateRequest());
@@ -109,11 +107,10 @@ function* triggerUpdateAsync(action) {
 // Brands
 function* watchBrandsFetch() {
   yield takeEvery('BRANDS_FETCH', function* (action) {
-    if(action.payload && action.payload.id) {
-      yield findBrand(action.payload.id, action.payload.params);
-    } else {
-      yield filterBrands(_.get(action, 'payload.params'));
-    }
+    const id = _.get(action, 'payload.id');
+    const params = _.get(action, 'payload.params');
+
+    yield getBrands(id, params);
   });
 };
 

@@ -2,6 +2,11 @@ import queryString from 'query-string';
 import _ from 'lodash';
 
 export const fetchJSON = async function(url, overrideOptions) {
+  // Remove trailing slash as it doesn't support it
+  if(_.endsWith(url, '/')) {
+    url = url.slice(0, -1);
+  }
+
   let body;
   if(_.isString(overrideOptions.body)) {
     body = overrideOptions.body;
@@ -13,7 +18,7 @@ export const fetchJSON = async function(url, overrideOptions) {
   if(_.isString(overrideOptions.params)) {
     params = '?' + overrideOptions.params;
   } else if(_.isObject(overrideOptions.params)) {
-    params = queryString.stringify(overrideOptions.params);
+    params = '?' + queryString.stringify(overrideOptions.params);
   }
 
   url = url + params;

@@ -2,7 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import brandActions from 'app/common/actions/brands';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { campaignCreateAsync, filterTriggers } from 'app/core/sagas/entities';
+import { campaignCreateAsync, getTriggers } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
 
 function* basicDetailsFormSubmit(action) {
@@ -11,9 +11,12 @@ function* basicDetailsFormSubmit(action) {
     triggerResult,
     trainingResultsResult;
 
+  // Send off request
   const campaignTask = yield fork(campaignCreateAsync, action);
+  // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
 
+  // Reject the form
   if(campaignAction.type === 'CAMPAIGNS_CREATE_FAILURE') {
     action.payload.reject();
     return;
@@ -27,11 +30,14 @@ function* basicDetailsFormSubmit(action) {
   yield put(changeAction);
 
   // Now fetch the triggers for the campaign.
-  const triggerTask = yield fork(filterTriggers, null, {
+  const triggerTask = yield fork(getTriggers, undefined, {
     campaignId: campaignAction.payload.result
   });
+  // Wait for it to finish
   const triggerAction = yield take('TRIGGERS_FETCH_SUCCESS');
 
+  // Setting the id field of the trigger will let us know
+  // which trigger this is referring to.
   changeAction = change('triggerId', triggerAction.payload.result[0]);
   changeAction.form = action.payload.form;
   yield put(changeAction);
