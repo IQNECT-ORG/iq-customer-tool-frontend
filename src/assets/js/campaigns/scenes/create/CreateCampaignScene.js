@@ -4,7 +4,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import { loadCampaignCreate, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
+import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
@@ -165,7 +165,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
       load: () => {
-        dispatch(loadCampaignCreate());
+        dispatch(loadCampaignCreatePage());
       },
       closeMenu: _ => {
         dispatch(updateUI(['scene', 'drawNav'], 'isOpen', false));
