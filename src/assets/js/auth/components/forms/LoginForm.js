@@ -16,7 +16,7 @@ class LoginForm extends Component {
             {...fields.password}/>
         </fieldset>
 
-        <div className="form-group row">
+        <div className="row">
           <div className="col-xs-12">
             <button type="submit" className="btn btn-primary btn-block">Log in</button>
           </div>

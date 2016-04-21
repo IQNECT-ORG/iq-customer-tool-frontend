@@ -11,7 +11,7 @@ class ForgottenPasswordForm extends Component {
             {...fields.email}/>
         </fieldset>
 
-        <div className="form-group row">
+        <div className="row">
           <div className="col-xs-12">
             <button type="submit" className="btn btn-primary btn-block">Reset my password</button>
           </div>

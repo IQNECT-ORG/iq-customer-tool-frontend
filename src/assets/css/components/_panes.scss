@@ -24,7 +24,7 @@
   }
 
   @include element('body') {
-    padding: $grid-gutter-width / 2;
+    padding: $grid-gutter-width;
   }
 }
 

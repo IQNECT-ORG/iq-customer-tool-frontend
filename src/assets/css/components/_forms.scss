@@ -26,3 +26,7 @@
     @include form-control-validation($brand-danger);
   }
 }
+
+.form-group {
+  margin-bottom: 2rem;
+}
