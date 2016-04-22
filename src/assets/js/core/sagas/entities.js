@@ -1,5 +1,6 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+import _ from 'lodash';
 // Actions
 import { change } from 'redux-form/lib/actions';
 import * as modalActions from 'app/modal/actions';
@@ -14,10 +15,6 @@ import * as usersApi from '../services/api/users';
 import * as campaignsApi from '../services/api/campaigns';
 import * as triggersApi from '../services/api/triggers';
 import * as trainingResultsApi from '../services/api/trainingResults';
-// Selectors
-import { getPathname } from '../selectors/routing';
-//import { getParams } from 'react-router/lib/PatternUtils';
-import _ from 'lodash';
 
 // Errors / Exceptions
 import { NotFoundError } from '../errors';
@@ -67,6 +64,15 @@ function* brandsCreateAync(action) {
 };
 
 // Campaigns
+export const getCampaigns = fetchEntity.bind(
+  null,
+  {
+    entityName: 'Campaign',
+    entityActions: campaignActions,
+    apiFn: campaignsApi.get,
+    parser: parser.bind(null, schemas.campaign)
+  }
+);
 export const campaignCreateAsync = function* (action) {
   yield put(campaignActions.createRequest());
   try {
@@ -74,16 +80,6 @@ export const campaignCreateAsync = function* (action) {
     yield put(campaignActions.createSuccess(json));
   } catch(err) {
     yield put(campaignActions.createFailure(err));
-  }
-};
-
-function* campaignFetchAsync(action) {
-  yield put(campaignActions.fetchRequest());
-  try {
-    let result = yield campaignsApi.get(action.payload);
-    yield put(campaignActions.fetchCampaignsSuccess(result));
-  } catch(err) {
-    yield put(campaignActions.fetchCampaignsFailure(err));
   }
 };
 
@@ -138,12 +134,9 @@ export const getTrainingResults = fetchEntity.bind(
 // Brands
 function* watchBrandsFetch() {
   yield takeEvery('BRANDS_FETCH', function* (action) {
-    const id = _.get(action, 'payload.id');
-    const params = _.get(action, 'payload.params');
-
     yield getBrands({
-      id,
-      params
+      id: _.get(action, 'payload.id'),
+      params: _.get(action, 'payload.params')
     });
   });
 };
@@ -158,7 +151,12 @@ function* watchCampaignCreate() {
 };
 
 function* watchCampaignFetch() {
-  yield takeEvery('CAMPAIGNS_FETCH', campaignFetchAsync);
+  yield takeEvery('CAMPAIGNS_FETCH', function* (action) {
+    yield getCampaigns({
+      id: _.get(action, 'payload.id'),
+      params: _.get(action, 'payload.params')
+    });
+  });
 };
 
 function* watchCampaignDelete() {

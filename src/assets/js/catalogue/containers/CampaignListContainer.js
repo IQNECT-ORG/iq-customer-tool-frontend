@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CampaignList from 'app/common/components/campaignList/CampaignList';
 import ui from 'redux-ui/transpiled';
-import { fetchCampaigns, deleteCampaign } from 'app/common/actions/campaigns';
+import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import _ from 'lodash';
 
@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
       fetchCampaigns: () => {
-        dispatch(fetchCampaigns());
+        dispatch(campaignActions.fetch());
       }
     },
     onFilterSubmit: (values) => {
