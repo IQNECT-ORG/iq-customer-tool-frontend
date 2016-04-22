@@ -12,6 +12,7 @@ import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelector
 import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
+import Avatar from 'app/common/components/Avatar';
 
 class CreateCampaign extends Component {
   componentDidMount() {
@@ -83,6 +84,12 @@ class CreateCampaign extends Component {
     }
 
     if(this.props.selectedCampaignTypeId == null) {
+      if(this.props.selectedBrand == null) {
+        return (
+          <div>Loading...</div>
+        );
+      }
+
       return (
         <DefaultLayout
           titleRender={_ => {
@@ -92,6 +99,8 @@ class CreateCampaign extends Component {
                   <Titlebar className="col-xs-12">
                     <div className="row">
                       <div className="col-xs-12">
+                        <Avatar
+                          src={this.props.selectedBrand.imgPreview}/>
                         <h1>Choose a Campaign Type</h1>
                       </div>
                     </div>
@@ -107,6 +116,12 @@ class CreateCampaign extends Component {
       );
     }
 
+    if(this.props.selectedBrand == null) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -116,6 +131,12 @@ class CreateCampaign extends Component {
                 <Titlebar className="col-xs-12">
                   <div className="row">
                     <div className="col-xs-12">
+                      <Avatar
+                        src={this.props.selectedBrand.imgPreview}/>
+
+                      <Avatar
+                        icon={'test'}/>
+
                       <h1>Create Campaign</h1>
                       <Steptracker
                         steps={[
@@ -154,9 +175,21 @@ class CreateCampaign extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const selectedBrandId = state.campaigns.getIn(['create', 'selectedBrandId']);
+  let selectedBrand;
+  if(selectedBrandId) {
+    selectedBrand = state.entities.getIn(['brands', selectedBrandId]);
+
+    if(selectedBrand) {
+      selectedBrand = selectedBrand.toJS();
+    }
+  }
+  console.log(selectedBrand);
+
   return {
     steptrackerStep: state.ui.getIn(['scene', 'createCampaignPrint', 'step']),
-    selectedBrandId: state.campaigns.getIn(['create', 'selectedBrandId']),
+    selectedBrandId,
+    selectedBrand,
     selectedCampaignTypeId: state.campaigns.getIn(['create', 'selectedCampaignTypeId'])
   };
 };
