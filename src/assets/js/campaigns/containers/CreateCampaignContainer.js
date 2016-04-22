@@ -45,11 +45,25 @@ const validate = (values, props) => {
 
 let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = reduxForm({
-  form: 'createCampaignPrint',
-  fields,
-  validate
-})(DecoratedComponent);
+DecoratedComponent = reduxForm(
+  {
+    form: 'createCampaignPrint',
+    fields,
+    validate
+  },
+  (state, ownProps) => { // mapStateToProps
+    return {
+      initialValues: {
+        campaignId: ownProps.campaign.campaignId,
+        campaignTitle: ownProps.campaign.name,
+        magazineLanguage: ownProps.trigger.language,
+        defaultTarget: ownProps.trigger.url,
+
+        triggerId: ownProps.trigger.triggerId
+      }
+    };
+  }
+)(DecoratedComponent);
 DecoratedComponent = ui({
   key: 'createCampaignPrint',
   state: {

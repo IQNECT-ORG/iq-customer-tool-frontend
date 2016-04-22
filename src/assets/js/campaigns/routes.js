@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateCampaignScene from './scenes/create/CreateCampaignScene';
+import CreateCampaignScene from './scenes/CreateCampaignScene';
 import EditCampaignScene from './scenes/EditCampaignScene';
 import { Route, IndexRoute } from 'react-router';
 

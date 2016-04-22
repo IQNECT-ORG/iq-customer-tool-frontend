@@ -164,6 +164,15 @@ function* watchCampaignDelete() {
 };
 
 // Triggers
+function* watchTriggersFetch() {
+  yield takeEvery('TRIGGERS_FETCH', function* (action) {
+    yield getTriggers({
+      id: _.get(action, 'payload.id'),
+      params: _.get(action, 'payload.params')
+    });
+  });
+};
+
 function* watchTriggerUpdate() {
   yield takeEvery('TRIGGERS_UPDATE', triggerUpdateAsync);
 };
@@ -175,4 +184,5 @@ export default function* () {
   yield fork(watchCampaignFetch);
   yield fork(watchCampaignDelete);
   yield fork(watchTriggerUpdate);
+  yield fork(watchTriggersFetch);
 };

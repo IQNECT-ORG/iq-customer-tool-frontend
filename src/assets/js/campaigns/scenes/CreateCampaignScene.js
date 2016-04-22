@@ -4,27 +4,27 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../../actions';
+import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
-import BrandSelectorContainer from '../../containers/BrandSelectorContainer';
-import CampaignTypeSelectorContainer from '../../containers/CampaignTypeSelectorContainer';
-import CreateCampaignContainer from '../../containers/CreateCampaignContainer';
+import BrandSelectorContainer from '../containers/BrandSelectorContainer';
+import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
+import CreateCampaignContainer from '../containers/CreateCampaignContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
 
 class CreateCampaign extends Component {
   componentDidMount() {
-    if(this.props.routeParams.brandId) {
-      this.props.actions.selectBrand(this.props.routeParams.brandId);
+    if(this.props.params.brandId) {
+      this.props.actions.selectBrand(this.props.params.brandId);
     }
 
-    if(this.props.routeParams.campaignTypeId) {
-      this.props.actions.selectCampaignType(this.props.routeParams.campaignTypeId);
+    if(this.props.params.campaignTypeId) {
+      this.props.actions.selectCampaignType(this.props.params.campaignTypeId);
     }
 
-    if(this.props.routeParams.brandId == null && this.props.routeParams.campaignTypeId == null) {
+    if(this.props.params.brandId == null && this.props.params.campaignTypeId == null) {
       this.props.actions.reset();
     }
 
@@ -33,15 +33,15 @@ class CreateCampaign extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if(nextProps.routeParams.brandId && nextProps.routeParams.brandId !== this.props.routeParams.brandId) {
-      nextProps.actions.selectBrand(nextProps.routeParams.brandId);
+    if(nextProps.params.brandId && nextProps.params.brandId !== this.props.params.brandId) {
+      nextProps.actions.selectBrand(nextProps.params.brandId);
     }
 
-    if(nextProps.routeParams.campaignTypeId && nextProps.routeParams.campaignTypeId !== this.props.routeParams.campaignTypeId) {
-      nextProps.actions.selectCampaignType(nextProps.routeParams.campaignTypeId);
+    if(nextProps.params.campaignTypeId && nextProps.params.campaignTypeId !== this.props.params.campaignTypeId) {
+      nextProps.actions.selectCampaignType(nextProps.params.campaignTypeId);
     }
 
-    if(nextProps.routeParams.brandId == null && nextProps.routeParams.campaignTypeId == null) {
+    if(nextProps.params.brandId == null && nextProps.params.campaignTypeId == null) {
       if(this.props.selectedBrandId || this.props.selectedCampaignTypeId) {
         nextProps.actions.reset();
       }

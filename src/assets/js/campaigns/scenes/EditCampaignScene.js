@@ -4,7 +4,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
-import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../actions';
+import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
@@ -14,6 +14,9 @@ import Avatar from 'app/common/components/Avatar';
 
 class EditCampaign extends Component {
   componentDidMount() {
+    this.props.actions.load({
+      campaignId: this.props.params.campaignId
+    });
     this.props.actions.closeMenu();
   }
 
@@ -21,6 +24,12 @@ class EditCampaign extends Component {
   }
 
   render() {
+    if(this.props.campaign == null || this.props.trigger == null) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -63,7 +72,9 @@ class EditCampaign extends Component {
           );
         }}>
         <div className="container">
-          <CreateCampaignContainer/>
+          <CreateCampaignContainer
+            campaign={this.props.campaign}
+            trigger={this.props.trigger}/>
         </div>
       </DefaultLayout>
     );
@@ -72,13 +83,28 @@ class EditCampaign extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  let campaign = state.entities.getIn(['campaigns', ownProps.params.campaignId]);
+  let trigger = state.entities.get('triggers').find(x => x.campaignId === ownProps.campaignId);
+
+  if(campaign) {
+    campaign = campaign.toJS();
+  }
+  if(trigger) {
+    trigger = trigger.toJS();
+  }
+
   return {
+    campaign,
+    trigger
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
+      load: payload => {
+        dispatch(loadCampaignEditPage(payload));
+      },
       closeMenu: _ => {
         dispatch(updateUI(['scene', 'drawNav'], 'isOpen', false));
       },

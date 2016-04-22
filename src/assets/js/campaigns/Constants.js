@@ -4,6 +4,7 @@ export default {
   ActionTypes: keyMirror({
     LOAD_CAMPAIGN_CREATE_PAGE: null,
     LOAD_CAMPAIGN_PRINT_CREATE_PAGE: null,
+    LOAD_CAMPAIGN_EDIT_PAGE: null,
     
     CAMPAIGN_CREATE_BRAND_SELECT: null,
     CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT: null,

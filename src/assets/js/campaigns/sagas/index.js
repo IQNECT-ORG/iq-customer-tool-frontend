@@ -1,6 +1,8 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import brandActions from 'app/common/actions/brands';
+import campaignActions from 'app/common/actions/campaigns';
+import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
 import { campaignCreateAsync, getTriggers, getTrainingResults } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
@@ -80,6 +82,30 @@ function* watchLoadCampaignCreatePage() {
   });
 };
 
+function* watchLoadCampaignEditPage() {
+  yield takeEvery('LOAD_CAMPAIGN_EDIT_PAGE', function* (action) {
+    yield put(campaignActions.fetch({
+      id: action.payload.campaignId
+    }));
+    yield put(brandActions.fetch());
+    yield put(triggerActions.fetch({
+      params: {
+        campaignId: action.payload.campaignId
+      }
+    }));
+
+    const triggerAction = yield take('TRIGGERS_FETCH_SUCCESS');
+
+    const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+    const trainingResultTask = yield fork(getTrainingResults, {
+      url: trigger.trainingResult,
+      parserOptions: {
+        triggerId: trigger.triggerId
+      }
+    });
+  });
+};
+
 // Selecting
 function* watchCampaignCreateBrandSelect() {
   yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
@@ -107,6 +133,7 @@ function* watchCampaignCreateCampaignTypeSelect() {
 
 export default function* () {
   yield fork(watchLoadCampaignCreatePage);
+  yield fork(watchLoadCampaignEditPage);
   // Submittions
   yield fork(watchBasicDetailsFormSubmit);
   // Selecting
