@@ -52,7 +52,7 @@ function* basicDetailsFormSubmit(action) {
   });
 
   // Wait for it to finish
-  const triggerAction = yield take('TRAINING_RESULTS_FETCH_SUCCESS');
+  const trainingResultAction = yield take('TRAINING_RESULTS_FETCH_SUCCESS');
 
   // Sync all of the pages
   _.times(
