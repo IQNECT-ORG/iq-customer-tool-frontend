@@ -17,7 +17,7 @@ class Catalogue extends Component {
                 <Titlebar className="col-xs-12">
                   <div className="row">
                     <div className="col-xs-12">
-                      <h1>Catalogue</h1>
+                      <h1>Manage</h1>
                     </div>
                   </div>
                 </Titlebar>

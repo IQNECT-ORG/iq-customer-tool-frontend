@@ -23,7 +23,7 @@ class CatalogueBrands extends Component {
                 <Titlebar className="col-xs-12">
                   <div className="row">
                     <div className="col-xs-6">
-                      <h1>Catalogue / Brands</h1>
+                      <h1>Manage / Brands</h1>
                     </div>
                     <div className="col-xs-2 col-xs-push-4">
                       <button

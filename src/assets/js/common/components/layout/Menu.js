@@ -14,18 +14,18 @@ class Menu extends Component {
               className="btn-link"
               onClick={this.props.toggleSubMenu}>
               <i className="icons8-package"/>
-              <span>Catalogue</span>
+              <span>Manage</span>
             </button>
             <Collapse isOpened={this.props.isCatalogueSubmenuOpen}>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/catalogue/brands">Brands</Link>
+                  <Link to="/manage/brands">Brands</Link>
                 </li>
                 <li>
-                  <Link to="/catalogue/campaigns">Campaigns</Link>
+                  <Link to="/manage/campaigns">Campaigns</Link>
                 </li>
                 <li>
-                  <Link to="/catalogue/coupons">Coupons</Link>
+                  <Link to="/manage/coupons">Coupons</Link>
                 </li>
               </ul>
             </Collapse>

@@ -18,7 +18,7 @@ class CatalogueCampaigns extends Component {
                 <Titlebar className="col-xs-12">
                   <div className="row">
                     <div className="col-xs-12">
-                      <h1>Catalogue / Campaigns</h1>
+                      <h1>Manage / Campaigns</h1>
                     </div>
                   </div>
                 </Titlebar>
