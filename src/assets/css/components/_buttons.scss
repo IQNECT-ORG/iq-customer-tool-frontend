@@ -6,6 +6,11 @@
 .btn {
   padding: 0.6rem 1rem;
   outline: 0;
+
+  &:active,
+  &:focus {
+    outline: 0;
+  }
 }
 
 .btn-radius-lg {
@@ -22,7 +27,8 @@
     border-color: #c2185b;
   }
 
-  &:focus {
+  &:focus,
+  &:active {
     background-color: #c2185b;
     border-color: #c2185b;
   }
