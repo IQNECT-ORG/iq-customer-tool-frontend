@@ -24,12 +24,22 @@ class PageDetailForm extends Component {
                   <div className="col-xs-12">
                     <h2>Page {this.props.page + 1}</h2>
 
-                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onPrevPageClick}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary-outline"
+                      disabled={!this.props.hasPrev}
+                      onClick={this.props.onPrevPageClick}>
                       <i className="icons8-left"/>
                     </button>
-                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onNextPageClick}>
+
+                    <button
+                      type="button"
+                      className="btn btn-secondary-outline"
+                      disabled={!this.props.hasNext}
+                      onClick={this.props.onNextPageClick}>
                       <i className="icons8-right"/>
                     </button>
+
                     <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
                       <i className="icons8-activity-grid-2"/>
                     </button>

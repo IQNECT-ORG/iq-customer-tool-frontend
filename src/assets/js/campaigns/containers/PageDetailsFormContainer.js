@@ -10,10 +10,14 @@ import _ from 'lodash';
 const mapStateToProps = (state, ownProps) => {
   const trainingResults = getTrainingResults(state);
   const page = ownProps.ui.page;
+  const pageCount = trainingResults.length;
 
   return {
     imageSrc: _.find(trainingResults, x => x.frame === page).images.default,
-    page
+    page,
+    pageCount,
+    hasPrev: page > 0,
+    hasNext: page < pageCount
   };
 }
 
