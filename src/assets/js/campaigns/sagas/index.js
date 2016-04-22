@@ -8,6 +8,11 @@ import { campaignCreateAsync, getTriggers, getTrainingResults } from 'app/core/s
 import { change } from 'redux-form/lib/actions';
 
 function* basicDetailsFormSubmit(action) {
+  if(action.payload.values.campaignId) {
+    // This is for editing
+    return;
+  }
+
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(campaignCreateAsync, action);

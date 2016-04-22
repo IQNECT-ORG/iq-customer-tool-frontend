@@ -18,21 +18,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
-      if(values.campaignId) {
-        // Has already been uploaded, so it can be skipped.
-        // Might just need to update the edited values.
-        return;
-      }
-
       return new Promise((resolve, reject) => {
         dispatch(basicDetailsFormSubmit({
           values: {
+            campaignId: values.campaignId,
             defaultBrand: ownProps.selectedBrandId,
             type: ownProps.selectedCampaignTypeId,
             name: values.campaignTitle,
             url: values.defaultTarget,
             language: values.magazineLanguage,
-            image: values.media[0],
+            image: _.get(values, ['media', 0]),
             periodFrom: values.campaignPeriodFrom,
             periodTo: values.campaignPeriodTo
           },
