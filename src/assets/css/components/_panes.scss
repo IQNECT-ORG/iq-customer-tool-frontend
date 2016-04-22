@@ -1,7 +1,11 @@
 
 %pane {
   border-radius: 5px;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.60);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.08);
+}
+
+%pane--shadow-strong {
+  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.20);
 }
 
 %pane--filled {
@@ -15,12 +19,20 @@
     @extend %pane--filled;
   }
 
+  @include modifier('shadow-strong') {
+    @extend %pane--shadow-strong;
+  }
+
   @include element('body') {
-    padding: $grid-gutter-width / 2;
+    padding: $grid-gutter-width;
   }
 }
 
 .media-pane {
   min-height: 400px;
   position: relative;
+}
+
+.post-pane {
+  font-size: 0.9rem;
 }

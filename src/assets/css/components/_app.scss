@@ -1,7 +1,11 @@
 #app {
-  background: #ebeef0;
+  background: #eceff1;
 }
 
 .page-content {
   min-height: 100vh;
+}
+
+.container--gutter {
+  padding: 0 $grid-gutter-width;
 }

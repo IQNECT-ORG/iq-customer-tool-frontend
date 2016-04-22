@@ -2,27 +2,40 @@
 .form--modal {
   label {
     color: $active;
+    font-size: 0.9rem;
   }
 
   .input-group-addon {
     background-color: #fff;
     border-color: #afbdc5;
     color: #afbdc5;
+
+    > i,
+    > span {
+      font-size: 1.3rem;
+    }
   }
 
   .form-control {
-    border-color: #afbdc5;
+    font-size: 0.9rem;
+    border-color: #b0bec5;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    color: #37474f;
     &:focus {
-      border-color: $active;
+      border-color: #37474f;
     }
-    color: #475862;
   }
 
   input::-webkit-input-placeholder {
-    color: #bcc9d0;
+    color: #b0bec5;
   }
 
   .has-danger {
     @include form-control-validation($brand-danger);
   }
+}
+
+.form-group {
+  //margin-bottom: 2rem;
 }

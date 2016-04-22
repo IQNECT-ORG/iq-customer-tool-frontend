@@ -6,10 +6,23 @@ class BrandSelectorOptions extends Component {
     return (
       <div className="selector__option">
         <button type="button" onClick={this.props.onOptionClick}>
-          <img src={this.props.imgSrc}/>
+          {this._renderCore()}
         </button>
       </div>
     );
+  }
+
+  _renderCore() {
+    if(this.props.imgSrc == null) {
+      return (
+        <span>{this.props.label}</span>
+      );
+    }
+
+    return (
+      <img src={this.props.imgSrc}/>
+    );
+
   }
 };
 

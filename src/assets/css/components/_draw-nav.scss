@@ -36,6 +36,40 @@
     transform: translateY(-50%);
     @extend %btn-hollow;
   }
+
+  @include element('quick-actions') {
+    font-size: 1.4rem;
+    a,
+    button {
+      color: #37474f;
+    }
+  }
+
+  @include element('menu') {
+    li {
+      @extend .m-y-2;
+    }
+
+    a,
+    button {
+      color: #37474f;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+
+      > i {
+        margin-right: 1rem;
+        font-size: 1.4rem;
+      }
+    }
+
+    button {
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
 }
 
 .draw-nav-overlay {

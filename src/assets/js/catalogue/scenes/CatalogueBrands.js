@@ -39,7 +39,7 @@ class CatalogueBrands extends Component {
             </div>
           );
         }}>
-        <div className="container">
+        <div className="container container--gutter">
           <BrandSelectorContainer/>
         </div>
       </DefaultLayout>
