@@ -33,11 +33,11 @@ class CampaignList extends Component {
 
   _renderRow(campaign, index) {
     return (
-      <CampaignListRow campaign={campaign} key={index} onDeleteClick={
-        _ => {
-          this.props.onDeleteClick(campaign);
-        }
-      }/>
+      <CampaignListRow
+        campaign={campaign}
+        key={index}
+        onThumbnailClick={ _ => { this.props.onThumbnailClick(campaign) }}
+        onDeleteClick={ _ => { this.props.onDeleteClick(campaign) }}/>
     );
   }
 };

@@ -7,7 +7,7 @@ class CampaignListRow extends Component {
     return (
       <li className="faux-table__row">
         <div className="faux-table__cell col-xs-2">
-          <CampaignListThumbnail/>
+          <CampaignListThumbnail onClick={this.props.onThumbnailClick}/>
         </div>
         <div className="faux-table__cell col-xs-2">{campaign.type}</div>
         <div className="faux-table__cell col-xs-2">{campaign.name}</div>

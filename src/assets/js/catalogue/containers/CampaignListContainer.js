@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import _ from 'lodash';
+import { push } from 'react-router-redux/lib/actions';
 
 class CampaignListContainer extends Component {
 
@@ -44,6 +45,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onDeleteClick: (campaign) => {
       dispatch(deleteCampaign(campaign.campaignId));
+    },
+    onThumbnailClick: (campaign) => {
+      dispatch(push(`/campaigns/edit/${campaign.campaignId}`));
     }
   };
 }

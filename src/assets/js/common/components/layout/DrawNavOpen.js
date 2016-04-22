@@ -29,7 +29,7 @@ class DrawNavOpen extends Component {
 
             <div className="row m-y-2">
               <div className="col-xs-10 col-xs-offset-1">
-                <Link to="/campaign/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
+                <Link to="/campaigns/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
               </div>
             </div>
 

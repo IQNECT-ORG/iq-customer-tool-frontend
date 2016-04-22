@@ -83,7 +83,7 @@ function* watchLoadCampaignCreatePage() {
 // Selecting
 function* watchCampaignCreateBrandSelect() {
   yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
-    yield put(routerActions.push(`/campaign/create/${action.payload || ''}`));
+    yield put(routerActions.push(`/campaigns/create/${action.payload || ''}`));
   });
 };
 
@@ -95,11 +95,11 @@ function* watchCampaignCreateCampaignTypeSelect() {
 
     let url;
     if(selectedBrandId == null) {
-      url = '/campaign/create';
+      url = '/campaigns/create';
     } else if(action.payload == null) {
-      url = `/campaign/create/${selectedBrandId}`;
+      url = `/campaigns/create/${selectedBrandId}`;
     } else {
-      url = `/campaign/create/${selectedBrandId}/${action.payload}`;
+      url = `/campaigns/create/${selectedBrandId}/${action.payload}`;
     }
     yield put(routerActions.push(url));
   });
