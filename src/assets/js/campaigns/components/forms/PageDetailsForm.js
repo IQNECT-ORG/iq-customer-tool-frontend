@@ -9,8 +9,8 @@ class PageDetailForm extends Component {
     const fields = this.props.fields.pages[this.props.page];
 
     return (
-      <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
+      <form className="form--content" onSubmit={this.props.onSubmit}>
+        <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <img className="img-fluid" src={this.props.imageSrc}/>
@@ -84,8 +84,8 @@ class PageDetailForm extends Component {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 

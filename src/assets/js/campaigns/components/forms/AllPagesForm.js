@@ -19,8 +19,8 @@ class AllPagesForm extends Component {
     });
 
     return (
-      <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
+      <form className="form--content" onSubmit={this.props.onSubmit}>
+        <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled">
               <ul className="row list-unstyled">
@@ -90,8 +90,8 @@ class AllPagesForm extends Component {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 
