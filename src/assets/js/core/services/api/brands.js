@@ -4,19 +4,7 @@ import { getJSON } from './crud';
 import _ from 'lodash';
 
 export const get = async function(id = '', params) {
-  let { json, response } = await getJSON(`https://iq.api/api/brand/${id}`, params);
-
-  if(_.isArray(json)) {
-    return {
-      json: normalize(json, arrayOf(brandSchema)),
-      response
-    };
-  }
-
-  return {
-    json: normalize(json, brandSchema),
-    response
-  };
+  return await getJSON(`https://iq.api/api/brand/${id}`, params);
 };
 
 export const create = async function(data) {

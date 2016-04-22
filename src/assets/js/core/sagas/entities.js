@@ -22,25 +22,37 @@ import _ from 'lodash';
 // Errors / Exceptions
 import { NotFoundError } from '../errors';
 
-function* fetchEntity(entityName, entityActions, apiFn, id, url, params) {
-  yield put(entityActions.fetchRequest(id));
+// Parsers
+import parser, { triggerParser, trainingResultsParser } from '../services/api/parsers';
+import * as schemas from '../services/api/schemas';
+
+function* fetchEntity(config, options) {
+  yield put(config.entityActions.fetchRequest(options.url || options.id));
 
   try {
-    const { json, response } = yield call(apiFn, url || id, params);
+    const { json, response } = yield call(config.apiFn, options.url || options.id, options.params);
 
     if(response.status === 404) {
-      throw new NotFoundError(entityName + ' not found');
+      throw new NotFoundError(config.entityName + ' not found');
     }
 
-    yield put(entityActions.fetchSuccess(json));
+    yield put(config.entityActions.fetchSuccess(config.parser(json, options.parserOptions)));
   } catch(err) {
-    yield put(entityActions.fetchFailure(err));
+    yield put(config.entityActions.fetchFailure(err));
   }
 };
 
 
 // Brands
-export const getBrands = fetchEntity.bind(null, 'Brand', brandActions, brandsApi.get);
+export const getBrands = fetchEntity.bind(
+  null,
+  {
+    entityName: 'Brand',
+    entityActions: brandActions,
+    apiFn: brandsApi.get,
+    parser: parser.bind(null, schemas.brand)
+  }
+);
 
 function* brandsCreateAync(action) {
   yield put(brandActions.createRequest());
@@ -86,7 +98,15 @@ function* campaignDeleteAsync(action) {
 };
 
 // Triggers
-export const getTriggers = fetchEntity.bind(null, 'Trigger', triggerActions, triggersApi.get);
+export const getTriggers = fetchEntity.bind(
+  null,
+  {
+    entityName: 'Trigger',
+    entityActions: triggerActions,
+    apiFn: triggersApi.get,
+    parser: triggerParser.bind(null, schemas.trigger)
+  }
+);
 
 function* triggerUpdateAsync(action) {
   yield put(campaignActions.updateRequest());
@@ -99,6 +119,17 @@ function* triggerUpdateAsync(action) {
   }
 };
 
+// Training Results
+export const getTrainingResults = fetchEntity.bind(
+  null,
+  {
+    entityName: 'Training Result',
+    entityActions: trainingResultActions,
+    apiFn: trainingResultsApi.get,
+    parser: trainingResultsParser.bind(null, schemas.trainingResult)
+  }
+);
+
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
@@ -110,7 +141,10 @@ function* watchBrandsFetch() {
     const id = _.get(action, 'payload.id');
     const params = _.get(action, 'payload.params');
 
-    yield getBrands(id, undefined, params);
+    yield getBrands({
+      id,
+      params
+    });
   });
 };
 

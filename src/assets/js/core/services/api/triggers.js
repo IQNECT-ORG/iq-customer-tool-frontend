@@ -3,36 +3,7 @@ import { trigger as triggerSchema } from './schemas';
 import { getJSON } from './crud';
 
 export const get = async function(id = '', params) {
-  const parsePayload = (item) => {
-    const newPayload = [];
-    _.each(item.payload, (payload, index) => {
-      newPayload.push({
-        triggerPayloadId: _.uniqueId(),
-        triggerId: item.triggerId,
-        index
-      });
-    });
-
-    item.payload = newPayload;
-  };
-
-  let { json, response } = await getJSON(`https://iq.api/api/trigger/${id}`, params);
-
-  if(_.isArray(json)) {
-    _.each(json, parsePayload);
-
-    return {
-      json: normalize(json, arrayOf(triggerSchema)),
-      response
-    };
-  }
-
-  parsePayload(json);
-
-  return {
-    json: normalize(json, triggerSchema),
-    response
-  };
+  return await getJSON(`https://iq.api/api/trigger/${id}`, params);
 };
 
 export const update = async function(id, data) {
