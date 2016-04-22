@@ -6,11 +6,7 @@ import { campaignCreateAsync, getTriggers } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
 
 function* basicDetailsFormSubmit(action) {
-  // Request
-  var campaignResult,
-    triggerResult,
-    trainingResultsResult;
-
+  // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(campaignCreateAsync, action);
   // Wait for request to finish
@@ -29,6 +25,8 @@ function* basicDetailsFormSubmit(action) {
   changeAction.form = campaignAction.payload.form;
   yield put(changeAction);
 
+  // ------------  Triggers ------------ //
+
   // Now fetch the triggers for the campaign.
   const triggerTask = yield fork(getTriggers, {
     params: {
@@ -44,27 +42,30 @@ function* basicDetailsFormSubmit(action) {
   changeAction.form = action.payload.form;
   yield put(changeAction);
 
-  // // Now we need the training results
-  // try {
-  //   const trigger = triggerResult.entities.triggers[triggerResult.result[0]];
-  //   trainingResultsResult = yield trainingResultsApi.getByRaw(trigger.trainingResult, trigger.triggerId);
-  //   yield put(trainingResultActions.fetchTrainingResultsSuccess(trainingResultsResult));
-  // } catch(err) {
-  //   yield put(trainingResultActions.fetchTrainingResultsFailure(err));
-  //   return;
-  // }
-  // // Sync all of the pages
-  // _.times(
-  //   trainingResultsResult.result.length,
-  //   n => action.payload.pagesAddField({})
-  // );
+  // --------  Training Results -------- //
+  const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+  const trainingResultTask = yield fork(getTrainingResults, {
+    url: trigger.trainingResult,
+    parserOptions: {
+      triggerId: trigger.triggerId
+    }
+  });
 
-  // // Now go to the correct screen.
-  // action.payload.updateUI({
-  //   pageView: 'ALL',
-  //   step: 1,
-  //   page: 0
-  // });
+  // Wait for it to finish
+  const triggerAction = yield take('TRAINING_RESULTS_FETCH_SUCCESS');
+
+  // Sync all of the pages
+  _.times(
+    triggerAction.payload.result.length,
+    n => action.payload.pagesAddField({})
+  );
+
+  // Now go to the correct screen.
+  action.payload.updateUI({
+    pageView: 'ALL',
+    step: 1,
+    page: 0
+  });
   action.payload.resolve();
 };
 
