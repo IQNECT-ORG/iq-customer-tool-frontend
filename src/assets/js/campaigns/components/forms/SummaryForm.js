@@ -24,8 +24,8 @@ class SummaryForm extends Component {
 
 
     return (
-      <div className="row">
-        <form className="form--content" onSubmit={this.props.onSubmit}>
+      <form className="form--content" onSubmit={this.props.onSubmit}>
+        <div className="row">
           <div className="col-xs-12">
             <div className="pane pane--filled">
               <h2>Campaign Summary</h2>
@@ -56,8 +56,8 @@ class SummaryForm extends Component {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 };
