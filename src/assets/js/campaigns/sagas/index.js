@@ -2,7 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import brandActions from 'app/common/actions/brands';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { campaignCreateAsync, getTriggers } from 'app/core/sagas/entities';
+import { campaignCreateAsync, getTriggers, getTrainingResults } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
 
 function* basicDetailsFormSubmit(action) {
