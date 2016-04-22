@@ -23,7 +23,7 @@ class Avatar extends Component {
     return (
       <div className="avatar avatar--icon">
         <div className="avatar__icon-container">
-          <span>Icon</span>
+          <i className={this.props.icon}/>
         </div>
       </div>
     );

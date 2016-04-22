@@ -135,7 +135,7 @@ class CreateCampaign extends Component {
                         src={this.props.selectedBrand.imgPreview}/>
 
                       <Avatar
-                        icon={'test'}/>
+                        icon={'icons8-settings'}/>
 
                       <h1>Create Campaign</h1>
                       <Steptracker
@@ -184,8 +184,6 @@ const mapStateToProps = (state, ownProps) => {
       selectedBrand = selectedBrand.toJS();
     }
   }
-  console.log(selectedBrand);
-
   return {
     steptrackerStep: state.ui.getIn(['scene', 'createCampaignPrint', 'step']),
     selectedBrandId,
