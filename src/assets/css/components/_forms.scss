@@ -9,6 +9,11 @@
     background-color: #fff;
     border-color: #afbdc5;
     color: #afbdc5;
+
+    > i,
+    > span {
+      font-size: 1.3rem;
+    }
   }
 
   .form-control {
