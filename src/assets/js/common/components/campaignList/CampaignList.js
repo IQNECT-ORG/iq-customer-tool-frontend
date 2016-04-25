@@ -10,7 +10,7 @@ class CampaignList extends Component {
         <div className="pane pane--filled p-a-1">
           <CampaignListFilterFormContainer onFormSubmit={this.props.onFilterSubmit}/>
 
-          <div className="faux-table">
+          <div className="faux-table campaign-list__table">
             <div className="faux-table__head">
               <div className="faux-table__cell col-xs-2">Thumbnail</div>
               <div className="faux-table__cell col-xs-2">Type</div>
