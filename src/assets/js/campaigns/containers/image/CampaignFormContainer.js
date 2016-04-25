@@ -67,12 +67,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const changeAction = change(`tags`, tags);
       changeAction.form = 'campaignImage';
       dispatch(changeAction);
+    },
+
+    onMediaChange: (fileGroup) => {
+      _.each(fileGroup, (files, index) => {
+        const changeAction = change(`media[${index}]`, files);
+        changeAction.form = 'campaignImage';
+        dispatch(changeAction);
+      });
     }
   };
 };
 
 const fields = [
-  'media',
+  'media[]',
   'campaignId',
   'campaignTitle',
   'campaignPeriodFrom',

@@ -8,13 +8,18 @@ class AssetField extends Component {
   render() {
     const className = classNames('asset-field', this.props.className, {
       'asset-field--empty': this.props.value == null || this.props.value.length === 0,
-      'asset-field--populated': this.props.value && this.props.value.length
+      'asset-field--populated': this.props.value && this.props.value.length,
+      'asset-field--multiple': this.props.multiple
     });
 
     return (
       <div className={className}>
         {this._renderPreviews()}
-        <AssetInput name={this.props.name} onChange={this.props.onChange} value={this.props.value}/>
+        <AssetInput
+          name={this.props.name}
+          onChange={this.props.onChange}
+          multiple={this.props.multiple}
+          value={this.props.value}/>
       </div>
     );
   }

@@ -4,7 +4,7 @@ import joid from 'joid';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
-import AssetField from 'app/common/components/forms/AssetField';
+import MultipleAssetField from 'app/common/components/forms/MultipleAssetField';
 import classNames from 'classnames';
 import TargetType from '../../TargetType';
 import TagsInput from '../../TagsInput';
@@ -106,19 +106,9 @@ class CampaignForm extends Component {
   }
 
   _renderMedia() {
-    const fields = this.props.fields;
-
-    if(fields.campaignId.value) {
-      return (
-        <div>@TODO</div>
-      );
-    } else {
-      return (
-        <AssetField
-          onChange={fields.media.onChange}
-          value={fields.media.value}/>
-      );
-    }
+    return (
+      <MultipleAssetField files={this.props.values.media} onChange={this.props.onMediaChange}/>
+    );
   }
 };
 

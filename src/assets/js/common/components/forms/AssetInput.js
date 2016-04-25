@@ -15,6 +15,7 @@ class AssetInput extends Component {
           ref="input"
           name={this.props.name}
           onChange={this.props.onChange}
+          multiple={this.props.multiple}
           hidden/>
       </div>
     );
