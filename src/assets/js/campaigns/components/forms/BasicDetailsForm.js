@@ -74,14 +74,13 @@ class BasicDetailsForm extends Component {
 
                     <div className="form-group">
                       <label htmlFor={joid.link(true, 'input')}>Default Target</label>
-                      <div className="row">
-                        <div className="col-xs-8 col-md-9 col-lg-10">
-                          <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
-                        </div>
-                        <div className="col-xs-4 col-md-3 col-lg-2">
-                          <button type="button" className="btn btn-block btn-secondary-outline" onClick={this.props.onPreviewWebsiteClick}>
+                      <div className="input-group">
+                        <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
+                        <div className="input-group-btn">
+                          <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onPreviewWebsiteClick}>
                             <i className="icons8-visible"/>
                           </button>
+
                         </div>
                       </div>
                     </div>
