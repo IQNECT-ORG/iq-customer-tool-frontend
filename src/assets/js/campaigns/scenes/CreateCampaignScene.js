@@ -6,10 +6,12 @@ import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import Constants from 'app/common/Constants';
 
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -122,6 +124,22 @@ class CreateCampaign extends Component {
       );
     }
 
+    let form;
+    switch(this.props.selectedCampaignTypeId >> 0) {
+      case Constants.CampaignTypes.IMAGE:
+        form = (
+          <ImageCampaignFormContainer/>
+        );
+        break;
+      case Constants.CampaignTypes.PDF:
+        form = (
+          <CreateCampaignContainer
+            selectedBrandId={this.props.selectedBrandId}
+            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
+        );
+        break;
+    }
+
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -164,9 +182,7 @@ class CreateCampaign extends Component {
           );
         }}>
         <div className="container">
-          <CreateCampaignContainer
-            selectedBrandId={this.props.selectedBrandId}
-            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
+          {form}
         </div>
       </DefaultLayout>
     );

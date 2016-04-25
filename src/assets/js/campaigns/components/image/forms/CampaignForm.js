@@ -6,11 +6,13 @@ import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import AssetField from 'app/common/components/forms/AssetField';
 import classNames from 'classnames';
+import TargetType from '../../TargetType';
+import TagsInput from '../../TagsInput';
 
-class BasicDetailsForm extends Component {
+class CampaignForm extends Component {
   render() {
     const fields = this.props.fields;
-    
+
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
@@ -25,7 +27,7 @@ class BasicDetailsForm extends Component {
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h2>Basic Details</h2>
+                    <h2>Campaign Details</h2>
 
                     <fieldset className={classNames('form-group', {
                       'has-danger': fields.campaignTitle.error
@@ -33,12 +35,6 @@ class BasicDetailsForm extends Component {
                       <label htmlFor={joid.link(true, 'input')}>Campaign Title</label>
                       <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name" {...fields.campaignTitle}/>
                     </fieldset>
-
-                    <fieldset className="form-group">
-                      <label htmlFor={joid.link(true, 'input')}>Magazine Language</label>
-                      {this._renderLanguageSelector()}
-                    </fieldset>
-
 
                     <div className="row">
                       <div className="col-xs-12">
@@ -71,18 +67,22 @@ class BasicDetailsForm extends Component {
                       </div>
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor={joid.link(true, 'input')}>Default Target</label>
-                      <div className="input-group">
-                        <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Default Target" {...fields.defaultTarget}/>
-                        <div className="input-group-btn">
-                          <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onPreviewWebsiteClick}>
-                            <i className="icons8-visible"/>
-                          </button>
+                    <TargetType
+                      values={{
+                        website: this.props.values.website,
+                        coupon: this.props.values.coupon
+                      }}
+                      fields={{
+                        website: fields.website,
+                        coupon: fields.coupon
+                      }}
+                      onAddWebsiteClick={this.props.onAddWebsiteClick}
+                      onAddCouponClick={this.props.onAddCouponClick}
+                      onWebsiteDeleteClick={this.props.onWebsiteDeleteClick}/>
 
-                        </div>
-                      </div>
-                    </div>
+                    <TagsInput
+                      value={this.props.values.tags}
+                      onChange={this.props.onTagsChange}/>
 
                     <hr/>
 
@@ -105,38 +105,6 @@ class BasicDetailsForm extends Component {
     );
   }
 
-  _renderLanguageSelector() {
-    const fields = this.props.fields;
-
-    if(fields.campaignId.value) {
-      return (
-        <input
-          id={joid.link(true, 'input')}
-          className="form-control"
-          type="text"
-          placeholder="Language"
-          value={fields.magazineLanguage.value}
-          readOnly/>
-      );
-    } else {
-      return (
-        <Combobox defaultValue={'English'}
-          options={['English', 'Korean']}
-          dropdownProps={{ style: { width: '100%' } }}
-          autocomplete>
-          {inputProps =>
-            <input {...inputProps}
-              id={joid.link(false, 'input')}
-              type='text'
-              className={`${inputProps.className} form-control`}
-              placeholder='English'
-              {...fields.magazineLanguage}/>
-          }
-        </Combobox>
-      );
-    }
-  }
-
   _renderMedia() {
     const fields = this.props.fields;
 
@@ -154,4 +122,4 @@ class BasicDetailsForm extends Component {
   }
 };
 
-export default BasicDetailsForm;
+export default CampaignForm;

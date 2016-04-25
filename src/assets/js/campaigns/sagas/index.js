@@ -108,10 +108,21 @@ function* basicDetailsFormSubmit(action) {
   }
 };
 
+function* imageCampaignFormSubmit(action) {
+  console.log(action);
+}
+
+//-----------------------------------------------------------
+//----------------------- Watchers --------------------------
+//-----------------------------------------------------------
 
 function* watchBasicDetailsFormSubmit() {
   yield takeEvery('CAMPAIGN_CREATE_BASIC_DETAILS_FORM_SUBMIT', basicDetailsFormSubmit);
 };
+
+function* watchImageCampaignFormSubmit() {
+  yield takeEvery('CAMPAIGN_IMAGE_FORM_SUBMIT', imageCampaignFormSubmit);
+}
 
 function* watchLoadCampaignCreatePage() {
   yield takeEvery('LOAD_CAMPAIGN_CREATE_PAGE', function* () {
@@ -173,6 +184,7 @@ export default function* () {
   yield fork(watchLoadCampaignEditPage);
   // Submittions
   yield fork(watchBasicDetailsFormSubmit);
+  yield fork(watchImageCampaignFormSubmit);
   // Selecting
   yield fork(watchCampaignCreateBrandSelect);
   yield fork(watchCampaignCreateCampaignTypeSelect);

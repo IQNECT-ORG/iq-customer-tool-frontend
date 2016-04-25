@@ -13,3 +13,4 @@ export const selectCampaignType = createAction(Actions.CAMPAIGN_CREATE_CAMPAIGN_
 export const resetCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_RESET);
 
 export const basicDetailsFormSubmit = createAction(Actions.CAMPAIGN_CREATE_BASIC_DETAILS_FORM_SUBMIT);
+export const imageCampaignFormSubmit = createAction(Actions.CAMPAIGN_IMAGE_FORM_SUBMIT);
