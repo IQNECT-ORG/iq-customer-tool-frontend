@@ -4,15 +4,10 @@ import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { campaignCreateAsync, getTriggers, getTrainingResults } from 'app/core/sagas/entities';
+import { campaignCreateAsync, campaignUpdateAsync, getTriggers, getTrainingResults } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
 
-function* basicDetailsFormSubmit(action) {
-  if(action.payload.values.campaignId) {
-    // This is for editing
-    return;
-  }
-
+function* basicDetailsFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(campaignCreateAsync, action);
@@ -74,6 +69,43 @@ function* basicDetailsFormSubmit(action) {
     page: 0
   });
   action.payload.resolve();
+}
+
+function* basicDetailsFormSubmitUpdate(action) {
+  const campaignTask = yield fork(campaignUpdateAsync, action);
+  const campaignAction = yield take(['CAMPAIGNS_UPDATE_SUCCESS', 'CAMPAIGNS_UPDATE_FAILURE']);
+
+  // Reject the form
+  if(campaignAction.type === 'CAMPAIGNS_CREATE_FAILURE') {
+    action.payload.reject();
+    return;
+  }
+
+  const triggers = yield select(function(state) {
+    return state.entities.get('triggers').filter(x => x.get('campaignId') === action.payload.values.campaignId).toJS();
+  });
+
+  // Sync all of the pages
+  _.times(
+    _.size(triggers),
+    n => action.payload.pagesAddField({})
+  );
+
+  // Now go to the correct screen.
+  action.payload.updateUI({
+    pageView: 'ALL',
+    step: 1,
+    page: 0
+  });
+  action.payload.resolve();
+}
+
+function* basicDetailsFormSubmit(action) {
+  if(action.payload.values.campaignId) {
+    yield call(basicDetailsFormSubmitUpdate, action);
+  } else {
+    yield call(basicDetailsFormSubmitCreate, action);
+  }
 };
 
 

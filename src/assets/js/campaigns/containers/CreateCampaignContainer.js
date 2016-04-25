@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
 import CreateCampaign from '../components/CreateCampaign';
 import { reduxForm } from 'redux-form';
+import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -54,12 +55,12 @@ DecoratedComponent = reduxForm(
   (state, ownProps) => { // mapStateToProps
     return {
       initialValues: {
-        campaignId: ownProps.campaign.campaignId,
-        campaignTitle: ownProps.campaign.name,
-        magazineLanguage: ownProps.trigger.language,
-        defaultTarget: ownProps.trigger.url,
+        campaignId: _.get(ownProps, 'campaign.campaignId'),
+        campaignTitle: _.get(ownProps, 'campaign.name'),
+        magazineLanguage: _.get(ownProps, 'trigger.language'),
+        defaultTarget: _.get(ownProps, 'trigger.url'),
 
-        triggerId: ownProps.trigger.triggerId
+        triggerId: _.get(ownProps, 'trigger.triggerId')
       }
     };
   }

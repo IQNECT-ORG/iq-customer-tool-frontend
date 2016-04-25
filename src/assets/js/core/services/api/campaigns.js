@@ -30,6 +30,29 @@ export const create = async function(data) {
   }
 };
 
+export const update = async function(id, data) {
+  const body = new FormData();
+  _.each(data, (value, key) => body.append(key, value));
+
+  try {
+    let response = await fetch(`https://iq.api/api/campaign/${id}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: body,
+    });
+
+    return {
+      json: normalize(await response.json(), schemas.campaign),
+      response
+    };
+  } catch(err) {
+    throw err;
+  }
+};
+
 export const del = async function(id) {
   try {
     let response = await fetch(`https://iq.api/api/campaign/${id}`, {

@@ -83,6 +83,16 @@ export const campaignCreateAsync = function* (action) {
   }
 };
 
+export const campaignUpdateAsync = function* (action) {
+  yield put(campaignActions.updateRequest());
+  try {
+    let { json, reponse } = yield campaignsApi.update(action.payload.values.campaignId, action.payload.values);
+    yield put(campaignActions.updateSuccess(json));
+  } catch(err) {
+    yield put(campaignActions.updateFailure(err));
+  }
+};
+
 function* campaignDeleteAsync(action) {
   yield put(campaignActions.deleteRequest());
   try {
