@@ -31,7 +31,7 @@ class CampaignListRow extends Component {
         <div className="faux-table__cell col-xs-2">
           <button
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary-hollow"
             onClick={this.props.onDeleteClick}>
             <i className="icons8-trash"/>
           </button>

@@ -55,3 +55,8 @@
 .btn-decision {
   border-style: dashed;
 }
+
+.btn-secondary-hollow {
+  @extend %btn-hollow;
+  color: #afbdc5;
+}
