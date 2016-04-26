@@ -8,8 +8,8 @@ export const create = async function(data, params) {
   return await createFormData('https://iq.api/api/trigger', data, params);
 };
 
-export const update = async function(data, params) {
-  return await updateFormData('https://iq.api/api/trigger', data, params);
+export const update = async function(id, data, params) {
+  return await updateFormData(`https://iq.api/api/trigger/${id}`, data, params);
 };
 
 export const del = async function(id = '', params) {

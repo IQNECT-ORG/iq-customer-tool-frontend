@@ -64,7 +64,7 @@ function* updateEntity(config, options) {
   yield put(config.entityActions.updateRequest(options.url || options.id));
 
   try {
-    const { json, response } = yield call(config.apiFn, options.data, options.params);
+    const { json, response } = yield call(config.apiFn, options.url || options.id, options.data, options.params);
 
     if(response.status === 404) {
       throw new NotFoundError(config.entityName + ' not found');
