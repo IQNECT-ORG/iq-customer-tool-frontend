@@ -13,14 +13,17 @@ function normalizeParams(params) {
     return '?' + params;
   } else if(_.isObject(params)) {
     return '?' + queryString.stringify(params);
+  } else {
+    return '';
   }
 };
 
 async function fetcher(url, options) {
   // Remove trailing slash as it doesn't support it
   url = removeTrailingSlash(url);
-  params = normalizeParams(options.params);
+  const params = normalizeParams(options.params);
   url = url + params;
+  console.log(url);
 
   let response = await fetch(url, options);
   return {
