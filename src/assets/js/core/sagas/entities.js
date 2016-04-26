@@ -238,12 +238,12 @@ function* watchBrandsFetch() {
 };
 
 function* watchBrandCreate() {
-  yield takeEvery('BRANDS_CREATE', brandsCreateAync);
+  yield takeEvery('BRANDS_CREATE', createBrand);
 };
 
 // Campaigns
 function* watchCampaignCreate() {
-  yield takeEvery('CAMPAIGNS_CREATE', campaignCreateAsync);
+  yield takeEvery('CAMPAIGNS_CREATE', createCampaign);
 };
 
 function* watchCampaignFetch() {
@@ -256,7 +256,7 @@ function* watchCampaignFetch() {
 };
 
 function* watchCampaignDelete() {
-  yield takeEvery('CAMPAIGNS_DELETE', campaignDeleteAsync);
+  yield takeEvery('CAMPAIGNS_DELETE', deleteCampaign);
 };
 
 // Triggers
@@ -270,7 +270,7 @@ function* watchTriggersFetch() {
 };
 
 function* watchTriggerUpdate() {
-  yield takeEvery('TRIGGERS_UPDATE', triggerUpdateAsync);
+  yield takeEvery('TRIGGERS_UPDATE', updateTrigger);
 };
 
 export default function* () {
