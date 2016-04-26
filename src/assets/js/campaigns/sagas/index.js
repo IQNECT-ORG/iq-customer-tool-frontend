@@ -12,7 +12,9 @@ import Constants from 'app/common/Constants';
 function* pdfCampaignFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
   // Send off request
-  const campaignTask = yield fork(createCampaign, action);
+  const campaignTask = yield fork(createCampaign, {
+    payload: action.payload.values
+  });
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
 

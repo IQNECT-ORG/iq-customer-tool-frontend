@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PageDetailsForm from '../components/forms/PageDetailsForm';
+import AllPagesForm from '../../components/print/forms/AllPagesForm';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import ui from 'redux-ui/transpiled';
 import { change } from 'redux-form/lib/actions';
@@ -9,49 +9,38 @@ import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
   const trainingResults = getTrainingResults(state);
-  const page = ownProps.ui.page;
-  const pageCount = trainingResults.length;
 
   return {
-    imageSrc: _.find(trainingResults, x => x.frame === page).images.default,
-    page,
-    pageCount,
-    hasPrev: page > 0,
-    hasNext: page < pageCount
+    images: _.map(trainingResults, x => {
+      return x.images.default;
+    })
   };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onBackClick: (e) => {
+    gotoPage: (page) => {
       ownProps.updateUI({
-        step: 2,
-        page: null
+        pageView: 'DETAIL',
+        page
       });
+    },
+
+    onBackClick: (e) => {
+      ownProps.updateUI('step', 0);
     },
 
     onSubmit: ownProps.handleSubmit((...args) => {
       ownProps.updateUI({
         step: 2,
-        page: null
+        page: null,
+        pageView: null
       });
     }),
 
     onSwitchViewClick: (e) => {
       ownProps.updateUI({
-        pageView: 'ALL'
-      });
-    },
-
-    onPrevPageClick: (e) => {
-      ownProps.updateUI({
-        page: ownProps.ui.page - 1
-      });
-    },
-
-    onNextPageClick: (e) => {
-      ownProps.updateUI({
-        page: ownProps.ui.page + 1
+        pageView: 'DETAIL'
       });
     },
 
@@ -59,7 +48,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateModalPath('addWebsite'));
       dispatch(updateModalData({
         form: 'createCampaignPrint',
-        field: `pages[${ownProps.ui.page}].website`
+        field: 'fallback.website'
       }));
       dispatch(openModal());
     },
@@ -73,22 +62,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`pages[${ownProps.ui.page}].website`, null);
+      const changeAction = change('fallback.website', null);
+      changeAction.form = 'createCampaignPrint';
+      dispatch(changeAction);
+    },
+
+    onCouponDeleteClick: (e) => {
+      const changeAction = change('fallback.coupon', null);
       changeAction.form = 'createCampaignPrint';
       dispatch(changeAction);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change(`pages[${ownProps.ui.page}].tags`, tags);
+      const changeAction = change('fallback.tags', tags);
       changeAction.form = 'createCampaignPrint';
       dispatch(changeAction);
     }
   };
 }
 
-
-
-let DecoratedComponent = PageDetailsForm;
+let DecoratedComponent = AllPagesForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 

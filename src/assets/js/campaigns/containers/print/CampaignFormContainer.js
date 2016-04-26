@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
-import CreateCampaign from '../components/CreateCampaign';
+import CreateCampaign from '../../components/print/forms/CampaignForm';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 

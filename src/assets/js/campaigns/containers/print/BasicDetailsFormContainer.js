@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BasicDetailsForm from '../components/forms/BasicDetailsForm';
+import BasicDetailsForm from '../../components/print/forms/BasicDetailsForm';
 import ui from 'redux-ui/transpiled';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import _ from 'lodash';
-import { pdfCampaignFormSubmit } from '../actions';
+import { pdfCampaignFormSubmit } from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {

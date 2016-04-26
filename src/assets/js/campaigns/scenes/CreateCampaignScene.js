@@ -10,7 +10,7 @@ import Constants from 'app/common/Constants';
 
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
-import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
 import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
@@ -135,7 +135,7 @@ class CreateCampaign extends Component {
         break;
       case Constants.CampaignTypes.PDF:
         form = (
-          <CreateCampaignContainer
+          <PrintCampaignFormContainer
             selectedBrandId={this.props.selectedBrandId}
             selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
         );

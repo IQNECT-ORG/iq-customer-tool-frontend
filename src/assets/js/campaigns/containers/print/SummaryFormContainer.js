@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SummaryForm from '../components/forms/SummaryForm';
+import SummaryForm from '../../components/print/forms/SummaryForm';
 import ui from 'redux-ui/transpiled';
 import _ from 'lodash';
 import { updateTrigger } from 'app/common/actions/triggers';

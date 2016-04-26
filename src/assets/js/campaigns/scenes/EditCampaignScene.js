@@ -8,7 +8,7 @@ import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
 
-import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
 import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
