@@ -12,6 +12,6 @@ export const update = async function(data, params) {
   return await updateFormData('https://iq.api/api/campaign', data, params);
 };
 
-export const delete = async function(id = '', params) {
+export const del = async function(id = '', params) {
   return await deleteJSON(`https://iq.api/api/campaign/${id}`, params);
 };

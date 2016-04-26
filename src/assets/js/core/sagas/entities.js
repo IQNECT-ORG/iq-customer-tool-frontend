@@ -124,7 +124,7 @@ export const deleteBrand = deleteEntity.bind(
   {
     entityName: 'Brand',
     entityActions: brandActions,
-    apiFn: brandsApi.delete,
+    apiFn: brandsApi.del,
     parser: parser.bind(null, schemas.brand)
   }
 );
@@ -165,7 +165,7 @@ export const deleteCampaign = deleteEntity.bind(
   {
     entityName: 'Campaign',
     entityActions: campaignActions,
-    apiFn: campaignsApi.delete,
+    apiFn: campaignsApi.del,
     parser: parser.bind(null, schemas.campaign)
   }
 );
@@ -206,7 +206,7 @@ export const deleteTrigger = deleteEntity.bind(
   {
     entityName: 'Trigger',
     entityActions: triggerActions,
-    apiFn: triggersApi.delete,
+    apiFn: triggersApi.del,
     parser: parser.bind(null, schemas.trigger)
   }
 );

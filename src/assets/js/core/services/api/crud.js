@@ -16,7 +16,7 @@ function normalizeParams(params) {
   }
 };
 
-function fetcher(url, options) {
+async function fetcher(url, options) {
   // Remove trailing slash as it doesn't support it
   url = removeTrailingSlash(url);
   params = normalizeParams(options.params);
