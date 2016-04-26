@@ -120,9 +120,7 @@ function* imageCampaignFormSubmit(action) {
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(createCampaign, {
-    payload: {
-      values: campaignValues
-    }
+    data: campaignValues
   });
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
@@ -135,19 +133,17 @@ function* imageCampaignFormSubmit(action) {
 
   // ------------  Triggers ------------ //
   const triggerTask = yield fork(createTrigger, {
-    payload: {
-      values: {
-        campaignId: campaignAction.payload.result,
-        brandId: action.payload.values.defaultBrand,
-        image: media[0][0],
-        triggerType: Constants.TriggerTypes.IMAGE,
-        url: action.payload.values.website,
-        searchbarTitle: action.payload.values.campaignTitle,
+    data: {
+      campaignId: campaignAction.payload.result,
+      brandId: action.payload.values.defaultBrand,
+      image: media[0][0],
+      triggerType: Constants.TriggerTypes.IMAGE,
+      url: action.payload.values.website,
+      searchbarTitle: action.payload.values.campaignTitle,
 
-        // Static
-        isLogo: 0,
-        undeletable: true,
-      }
+      // Static
+      isLogo: 0,
+      undeletable: true
     }
   });
 
