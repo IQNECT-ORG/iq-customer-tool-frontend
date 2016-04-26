@@ -6,8 +6,10 @@ import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import Constants from 'app/common/Constants';
 
 import CreateCampaignContainer from '../containers/CreateCampaignContainer';
+import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -28,6 +30,24 @@ class EditCampaign extends Component {
       return (
         <div>Loading...</div>
       );
+    }
+
+    let form;
+    switch(this.props.selectedCampaignTypeId >> 0) {
+      case Constants.CampaignTypes.IMAGE:
+        form = (
+          <ImageCampaignFormContainer
+            campaign={this.props.campaign}
+            trigger={this.props.trigger}/>
+        );
+        break;
+      case Constants.CampaignTypes.PDF:
+        form = (
+          <CreateCampaignContainer
+            campaign={this.props.campaign}
+            trigger={this.props.trigger}/>
+        );
+        break;
     }
 
     return (
@@ -72,9 +92,7 @@ class EditCampaign extends Component {
           );
         }}>
         <div className="container">
-          <CreateCampaignContainer
-            campaign={this.props.campaign}
-            trigger={this.props.trigger}/>
+          {form}
         </div>
       </DefaultLayout>
     );

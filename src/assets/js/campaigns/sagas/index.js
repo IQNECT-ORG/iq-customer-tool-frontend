@@ -181,15 +181,26 @@ function* watchLoadCampaignEditPage() {
       }
     }));
 
+    const campaignAction = yield take('CAMPAIGNS_FETCH_SUCCESS');
     const triggerAction = yield take('TRIGGERS_FETCH_SUCCESS');
 
-    const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
-    const trainingResultTask = yield fork(getTrainingResults, {
-      url: trigger.trainingResult,
-      parserOptions: {
-        triggerId: trigger.triggerId
-      }
-    });
+    const campaign = campaignAction.payload.entities.campaigns[action.payload.campaignId];
+
+    switch(campaign.type >> 0) {
+      case Constants.CampaignTypes.IMAGE:
+
+        break;
+      case Constants.CampaignTypes.PDF:
+        const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+        const trainingResultTask = yield fork(getTrainingResults, {
+          url: trigger.trainingResult,
+          parserOptions: {
+            triggerId: trigger.triggerId
+          }
+        });
+        break;
+    }
+
   });
 };
 
