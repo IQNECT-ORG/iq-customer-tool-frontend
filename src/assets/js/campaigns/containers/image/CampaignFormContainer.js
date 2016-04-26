@@ -100,7 +100,10 @@ DecoratedComponent = reduxForm(
   (state, ownProps) => { // mapStateToProps
     // This is needed purely to get the consistent
     // attributes from a given trigger to apply to the form
-    const anyTrigger = ownProps.triggers[_.keys(ownProps.triggers)[0]];
+    let anyTrigger;
+    if(ownProps.triggers) {
+      anyTrigger = ownProps.triggers[_.keys(ownProps.triggers)[0]];
+    }
 
     return {
       initialValues: {

@@ -18,6 +18,7 @@ class CampaignForm extends Component {
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-6 equal-height-container">
             <div className="pane pane--filled media-pane equal-height-item flex">
+              {this._renderTriggers()}
               {this._renderMedia()}
             </div>
           </div>
@@ -108,6 +109,24 @@ class CampaignForm extends Component {
   _renderMedia() {
     return (
       <MultipleAssetField files={this.props.values.media} onChange={this.props.onMediaChange}/>
+    );
+  }
+
+  _renderTriggers() {
+    const triggers = _.map(this.props.triggers, trigger => {
+      return (
+        <li className="col-xs-4" key={trigger.triggerId}>
+          <img className="img-fluid" src={trigger.imgPreview}/>
+        </li>
+      );
+    });
+
+    return (
+      <div>
+        <ul className="list-unstyled row">
+          {triggers}
+        </ul>
+      </div>
     );
   }
 };
