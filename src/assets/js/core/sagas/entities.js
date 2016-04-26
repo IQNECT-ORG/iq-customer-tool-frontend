@@ -114,8 +114,18 @@ export const getTriggers = fetchEntity.bind(
   }
 );
 
-function* triggerUpdateAsync(action) {
-  yield put(campaignActions.updateRequest());
+export const triggerCreateAsync = function* (action) {
+  yield put(triggerActions.createRequest());
+  try {
+    let result = yield triggersApi.create(action.payload.values);
+    yield put(triggerActions.createSuccess(result));
+  } catch(err) {
+    yield put(triggerActions.createFailure(err));
+  }
+};
+
+export const triggerUpdateAsync = function* (action) {
+  yield put(triggerActions.updateRequest());
   try {
     const trigger = action.payload.values;
     let result = yield triggersApi.update(trigger.id, trigger);

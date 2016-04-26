@@ -4,8 +4,10 @@ import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { campaignCreateAsync, campaignUpdateAsync, getTriggers, getTrainingResults } from 'app/core/sagas/entities';
+import { campaignCreateAsync, campaignUpdateAsync, getTriggers, getTrainingResults, triggerCreateAsync } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
+import _ from 'lodash';
+import Constants from 'app/common/Constants';
 
 function* basicDetailsFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
@@ -109,7 +111,44 @@ function* basicDetailsFormSubmit(action) {
 };
 
 function* imageCampaignFormSubmit(action) {
-  console.log(action);
+  const media = action.payload.values.media;
+  const campaignValues = _.omit(action.payload.values, ['media']);
+
+  // ------------  Campaign ------------ //
+  // Send off request
+  const campaignTask = yield fork(campaignCreateAsync, {
+    payload: {
+      values: campaignValues
+    }
+  });
+  // Wait for request to finish
+  const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
+
+  // Reject the form
+  if(campaignAction.type === 'CAMPAIGNS_CREATE_FAILURE') {
+    action.payload.reject();
+    return;
+  }
+
+  // ------------  Triggers ------------ //
+  const triggerTask = yield fork(triggerCreateAsync, {
+    payload: {
+      values: {
+        campaignId: campaignAction.payload.result,
+        brandId: action.payload.values.defaultBrand,
+        image: media[0][0],
+        triggerType: Constants.TriggerTypes.IMAGE,
+        url: action.payload.values.website,
+        searchbarTitle: action.payload.values.campaignTitle,
+
+        // Static
+        isLogo: 0,
+        undeletable: true,
+      }
+    }
+  });
+
+  action.payload.resolve();
 }
 
 //-----------------------------------------------------------

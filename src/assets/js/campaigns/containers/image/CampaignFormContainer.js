@@ -23,14 +23,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       return new Promise((resolve, reject) => {
         dispatch(imageCampaignFormSubmit({
           values: {
-            // campaignId: values.campaignId,
-            // defaultBrand: ownProps.selectedBrandId,
-            // type: ownProps.selectedCampaignTypeId,
-            // name: values.campaignTitle,
-            // url: values.defaultTarget,
-            // image: _.get(values, ['media', 0]),
-            // periodFrom: values.campaignPeriodFrom,
-            // periodTo: values.campaignPeriodTo
+            media: values.media,
+            campaignId: values.campaignId,
+            defaultBrand: ownProps.selectedBrandId,
+            type: ownProps.selectedCampaignTypeId,
+            name: values.campaignTitle,
+            periodFrom: values.campaignPeriodFrom,
+            periodTo: values.campaignPeriodTo
           },
           updateUI: ownProps.updateUI,
           form: 'campaignImage',

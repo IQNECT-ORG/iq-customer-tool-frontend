@@ -128,7 +128,9 @@ class CreateCampaign extends Component {
     switch(this.props.selectedCampaignTypeId >> 0) {
       case Constants.CampaignTypes.IMAGE:
         form = (
-          <ImageCampaignFormContainer/>
+          <ImageCampaignFormContainer
+            selectedBrandId={this.props.selectedBrandId}
+            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
         );
         break;
       case Constants.CampaignTypes.PDF:
