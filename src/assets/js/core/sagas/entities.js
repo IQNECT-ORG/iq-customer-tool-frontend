@@ -39,6 +39,54 @@ function* fetchEntity(config, options) {
   }
 };
 
+function* createEntity(config, options) {
+  yield put(config.entityActions.createRequest(options.url || options.id));
+
+  try {
+    const { json, response } = yield call(config.apiFn, options.data, options.params);
+
+    if(response.status === 404) {
+      throw new NotFoundError(config.entityName + ' not found');
+    }
+
+    yield put(config.entityActions.createSuccess(config.parser(json, options.parserOptions)));
+  } catch(err) {
+    yield put(config.entityActions.createFailure(err));
+  }
+};
+
+function* updateEntity(config, options) {
+  yield put(config.entityActions.updateRequest(options.url || options.id));
+
+  try {
+    const { json, response } = yield call(config.apiFn, options.data, options.params);
+
+    if(response.status === 404) {
+      throw new NotFoundError(config.entityName + ' not found');
+    }
+
+    yield put(config.entityActions.updateSuccess(config.parser(json, options.parserOptions)));
+  } catch(err) {
+    yield put(config.entityActions.updateFailure(err));
+  }
+};
+
+function* deleteEntity(config, options) {
+  yield put(config.entityActions.deleteRequest(options.url || options.id));
+
+  try {
+    const { json, response } = yield call(config.apiFn, options.url || options.id, options.params);
+
+    if(response.status === 404) {
+      throw new NotFoundError(config.entityName + ' not found');
+    }
+
+    yield put(config.entityActions.deleteSuccess(config.parser(json, options.parserOptions)));
+  } catch(err) {
+    yield put(config.entityActions.deleteFailure(err));
+  }
+};
+
 
 // Brands
 export const getBrands = fetchEntity.bind(
@@ -51,17 +99,35 @@ export const getBrands = fetchEntity.bind(
   }
 );
 
-function* brandsCreateAync(action) {
-  yield put(brandActions.createRequest());
-  try {
-    let result = yield brandsApi.create(action.payload.values);
-    yield put(brandActions.brandsCreateSuccess(result));
-    action.payload.resolve(result);
-    yield put(modalActions.closeModal());
-  } catch(err) {
-    yield put(brandActions.brandsCreateFailure(err));
+export const createBrand = createEntity.bind(
+  null,
+  {
+    entityName: 'Brand',
+    entityActions: brandActions,
+    apiFn: brandsApi.create,
+    parser: parser.bind(null, schemas.brand)
   }
-};
+);
+
+export const updateBrand = updateEntity.bind(
+  null,
+  {
+    entityName: 'Brand',
+    entityActions: brandActions,
+    apiFn: brandsApi.update,
+    parser: parser.bind(null, schemas.brand)
+  }
+);
+
+export const deleteBrand = deleteEntity.bind(
+  null,
+  {
+    entityName: 'Brand',
+    entityActions: brandActions,
+    apiFn: brandsApi.delete,
+    parser: parser.bind(null, schemas.brand)
+  }
+);
 
 // Campaigns
 export const getCampaigns = fetchEntity.bind(
@@ -73,35 +139,36 @@ export const getCampaigns = fetchEntity.bind(
     parser: parser.bind(null, schemas.campaign)
   }
 );
-export const campaignCreateAsync = function* (action) {
-  yield put(campaignActions.createRequest());
-  try {
-    let { json, response } = yield campaignsApi.create(action.payload.values);
-    yield put(campaignActions.createSuccess(json));
-  } catch(err) {
-    yield put(campaignActions.createFailure(err));
-  }
-};
 
-export const campaignUpdateAsync = function* (action) {
-  yield put(campaignActions.updateRequest());
-  try {
-    let { json, reponse } = yield campaignsApi.update(action.payload.values.campaignId, action.payload.values);
-    yield put(campaignActions.updateSuccess(json));
-  } catch(err) {
-    yield put(campaignActions.updateFailure(err));
+export const createCampaign = createEntity.bind(
+  null,
+  {
+    entityName: 'Campaign',
+    entityActions: campaignActions,
+    apiFn: campaignsApi.create,
+    parser: parser.bind(null, schemas.campaign)
   }
-};
+);
 
-function* campaignDeleteAsync(action) {
-  yield put(campaignActions.deleteRequest());
-  try {
-    let result = yield campaignsApi.del(action.payload);
-    yield put(campaignActions.deleteCampaignSuccess(result));
-  } catch(err) {
-    yield put(campaignActions.deleteCampaignFailure(err));
+export const updateCampaign = updateEntity.bind(
+  null,
+  {
+    entityName: 'Campaign',
+    entityActions: campaignActions,
+    apiFn: campaignsApi.update,
+    parser: parser.bind(null, schemas.campaign)
   }
-};
+);
+
+export const deleteCampaign = deleteEntity.bind(
+  null,
+  {
+    entityName: 'Campaign',
+    entityActions: campaignActions,
+    apiFn: campaignsApi.delete,
+    parser: parser.bind(null, schemas.campaign)
+  }
+);
 
 // Triggers
 export const getTriggers = fetchEntity.bind(
@@ -114,26 +181,35 @@ export const getTriggers = fetchEntity.bind(
   }
 );
 
-export const triggerCreateAsync = function* (action) {
-  yield put(triggerActions.createRequest());
-  try {
-    let result = yield triggersApi.create(action.payload.values);
-    yield put(triggerActions.createSuccess(result));
-  } catch(err) {
-    yield put(triggerActions.createFailure(err));
+export const createTrigger = createEntity.bind(
+  null,
+  {
+    entityName: 'Trigger',
+    entityActions: triggerActions,
+    apiFn: triggersApi.create,
+    parser: parser.bind(null, schemas.trigger)
   }
-};
+);
 
-export const triggerUpdateAsync = function* (action) {
-  yield put(triggerActions.updateRequest());
-  try {
-    const trigger = action.payload.values;
-    let result = yield triggersApi.update(trigger.id, trigger);
-    yield put(triggerActions.updateTriggerSuccess(result));
-  } catch(err) {
-    yield put(triggerActions.updateTriggerFailure(err));
+export const updateTrigger = updateEntity.bind(
+  null,
+  {
+    entityName: 'Trigger',
+    entityActions: triggerActions,
+    apiFn: triggersApi.update,
+    parser: parser.bind(null, schemas.trigger)
   }
-};
+);
+
+export const deleteTrigger = deleteEntity.bind(
+  null,
+  {
+    entityName: 'Trigger',
+    entityActions: triggerActions,
+    apiFn: triggersApi.delete,
+    parser: parser.bind(null, schemas.trigger)
+  }
+);
 
 // Training Results
 export const getTrainingResults = fetchEntity.bind(

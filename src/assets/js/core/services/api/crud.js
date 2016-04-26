@@ -1,12 +1,35 @@
 import queryString from 'query-string';
 import _ from 'lodash';
 
-export const fetchJSON = async function(url, overrideOptions) {
-  // Remove trailing slash as it doesn't support it
+function removeTrailingSlash(url) {
   if(_.endsWith(url, '/')) {
-    url = url.slice(0, -1);
+    return url.slice(0, -1);
   }
+  return url;
+};
 
+function normalizeParams(params) {
+  if(_.isString(params)) {
+    return '?' + params;
+  } else if(_.isObject(params)) {
+    return '?' + queryString.stringify(params);
+  }
+};
+
+function fetcher(url, options) {
+  // Remove trailing slash as it doesn't support it
+  url = removeTrailingSlash(url);
+  params = normalizeParams(options.params);
+  url = url + params;
+
+  let response = await fetch(url, options);
+  return {
+    json: await response.json(),
+    response
+  };
+};
+
+export const fetchJSON = async function(url, overrideOptions) {
   let body;
   if(_.isString(overrideOptions.body)) {
     body = overrideOptions.body;
@@ -14,33 +37,16 @@ export const fetchJSON = async function(url, overrideOptions) {
     body = JSON.stringify(overrideOptions.body);
   }
 
-  let params = '';
-  if(_.isString(overrideOptions.params)) {
-    params = '?' + overrideOptions.params;
-  } else if(_.isObject(overrideOptions.params)) {
-    params = '?' + queryString.stringify(overrideOptions.params);
-  }
-
-  url = url + params;
-
   const options = _.defaultsDeep({}, overrideOptions, {
     credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: body
+    body
   });
 
-  try {
-    let response = await fetch(url, options);
-    return {
-      json: await response.json(),
-      response
-    };
-  } catch(err) {
-    throw err;
-  }
+  return fetcher(url, options);
 };
 
 export const getJSON = async function(url, params) {
@@ -50,22 +56,58 @@ export const getJSON = async function(url, params) {
   });
 };
 
-// export const create = async function(data) {
-//   const body = new FormData();
-//   _.each(data, (value, key) => body.append(key, value));
+export const createJSON = async function(url, data, params) {
+  return await fetchJSON(url, {
+    method: 'POST',
+    params,
+    body: data
+  });
+};
 
-//   try {
-//     let response = await fetch('https://iq.api/api/brand', {
-//       method: 'POST',
-//       credentials: 'include',
-//       headers: {
-//         'Accept': 'application/json'
-//       },
-//       body: body,
-//     });
+export const updateJSON = async function(url, data, params) {
+  return await fetchJSON(url, {
+    method: 'POST', // Because our current system does not support PUT ~_~
+    params,
+    body: data
+  });
+};
 
-//     return normalize(await response.json(), schemas.brand);
-//   } catch(err) {
-//     throw err;
-//   }
-// };
+export const deleteJSON = async function(url, params) {
+  return await fetchJSON(url, {
+    method: 'DELETE',
+    params
+  });
+};
+
+//
+
+export const fetchFormData = async function(url, overrideOptions) {
+  const body = new FormData();
+  _.each(overrideOptions.body, (value, key) => body.append(key, value));
+
+  const options = _.defaultsDeep({}, overrideOptions, {
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json'
+    },
+    body
+  });
+
+  return fetcher(url, options);
+};
+
+export const createFormData = async function(url, data, params) {
+  return await fetchFormData(url, {
+    method: 'POST',
+    params,
+    body: data
+  });
+};
+
+export const updateFormData = async function(url, data, params) {
+  return await fetchFormData(url, {
+    method: 'POST',
+    params,
+    body: data
+  });
+};
