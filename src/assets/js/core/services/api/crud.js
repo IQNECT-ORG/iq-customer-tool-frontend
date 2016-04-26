@@ -23,7 +23,6 @@ async function fetcher(url, options) {
   url = removeTrailingSlash(url);
   const params = normalizeParams(options.params);
   url = url + params;
-  console.log(url);
 
   let response = await fetch(url, options);
   return {
@@ -31,6 +30,8 @@ async function fetcher(url, options) {
     response
   };
 };
+
+// JSON
 
 export const fetchJSON = async function(url, overrideOptions) {
   let body;
@@ -82,18 +83,22 @@ export const deleteJSON = async function(url, params) {
   });
 };
 
-//
+// FormData
 
 export const fetchFormData = async function(url, overrideOptions) {
-  const body = new FormData();
-  _.each(overrideOptions.body, (value, key) => body.append(key, value));
+  let formData = new FormData();
 
-  const options = _.defaultsDeep({}, overrideOptions, {
+  _.forOwn(overrideOptions.body, (value, key) => {
+    formData.set(key, value)
+  });
+
+  const options = _.defaultsDeep({
+    body: formData
+  }, overrideOptions, {
     credentials: 'include',
     headers: {
       'Accept': 'application/json'
-    },
-    body
+    }
   });
 
   return fetcher(url, options);
