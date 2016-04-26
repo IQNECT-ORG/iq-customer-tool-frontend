@@ -2,11 +2,8 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
 // Actions
-import { change } from 'redux-form/lib/actions';
-import * as modalActions from 'app/modal/actions';
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
-import * as routerActions from 'react-router-redux/lib/actions';
 import triggerActions from 'app/common/actions/triggers';
 import trainingResultActions from 'app/common/actions/trainingResults';
 // API

@@ -8,6 +8,7 @@ import { createCampaign, updateCampaign, getTriggers, getTrainingResults, create
 import { change } from 'redux-form/lib/actions';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
+import * as modalActions from 'app/modal/actions';
 
 function* pdfCampaignFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
@@ -147,7 +148,13 @@ function* imageCampaignFormSubmit(action) {
     }
   });
 
+  const triggerAction = yield take(['TRIGGERS_CREATE_SUCCESS']);
+
   action.payload.resolve();
+
+  yield put(modalActions.updateModalPath('success'));
+  yield put(modalActions.updateModalData({}));
+  yield put(modalActions.openModal());
 }
 
 //-----------------------------------------------------------
