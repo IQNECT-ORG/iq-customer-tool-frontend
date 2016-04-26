@@ -12,5 +12,5 @@ export const selectBrand = createAction(Actions.CAMPAIGN_CREATE_BRAND_SELECT);
 export const selectCampaignType = createAction(Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT);
 export const resetCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_RESET);
 
-export const basicDetailsFormSubmit = createAction(Actions.CAMPAIGN_CREATE_BASIC_DETAILS_FORM_SUBMIT);
+export const pdfCampaignFormSubmit = createAction(Actions.CAMPAIGN_PDF_FORM_SUBMIT);
 export const imageCampaignFormSubmit = createAction(Actions.CAMPAIGN_IMAGE_FORM_SUBMIT);

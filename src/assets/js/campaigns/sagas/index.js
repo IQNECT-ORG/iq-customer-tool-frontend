@@ -4,15 +4,15 @@ import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { campaignCreateAsync, campaignUpdateAsync, getTriggers, getTrainingResults, triggerCreateAsync } from 'app/core/sagas/entities';
+import { createCampaign, updateCampaign, getTriggers, getTrainingResults, createTrigger } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
 
-function* basicDetailsFormSubmitCreate(action) {
+function* pdfCampaignFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
   // Send off request
-  const campaignTask = yield fork(campaignCreateAsync, action);
+  const campaignTask = yield fork(createCampaign, action);
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
 
@@ -73,8 +73,8 @@ function* basicDetailsFormSubmitCreate(action) {
   action.payload.resolve();
 }
 
-function* basicDetailsFormSubmitUpdate(action) {
-  const campaignTask = yield fork(campaignUpdateAsync, action);
+function* pdfCampaignFormSubmitUpdate(action) {
+  const campaignTask = yield fork(updateCampaign, action);
   const campaignAction = yield take(['CAMPAIGNS_UPDATE_SUCCESS', 'CAMPAIGNS_UPDATE_FAILURE']);
 
   // Reject the form
@@ -102,11 +102,11 @@ function* basicDetailsFormSubmitUpdate(action) {
   action.payload.resolve();
 }
 
-function* basicDetailsFormSubmit(action) {
+function* pdfCampaignFormSubmit(action) {
   if(action.payload.values.campaignId) {
-    yield call(basicDetailsFormSubmitUpdate, action);
+    yield call(pdfCampaignFormSubmitUpdate, action);
   } else {
-    yield call(basicDetailsFormSubmitCreate, action);
+    yield call(pdfCampaignFormSubmitCreate, action);
   }
 };
 
@@ -116,7 +116,7 @@ function* imageCampaignFormSubmit(action) {
 
   // ------------  Campaign ------------ //
   // Send off request
-  const campaignTask = yield fork(campaignCreateAsync, {
+  const campaignTask = yield fork(createCampaign, {
     payload: {
       values: campaignValues
     }
@@ -131,7 +131,7 @@ function* imageCampaignFormSubmit(action) {
   }
 
   // ------------  Triggers ------------ //
-  const triggerTask = yield fork(triggerCreateAsync, {
+  const triggerTask = yield fork(createTrigger, {
     payload: {
       values: {
         campaignId: campaignAction.payload.result,
@@ -155,8 +155,8 @@ function* imageCampaignFormSubmit(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchBasicDetailsFormSubmit() {
-  yield takeEvery('CAMPAIGN_CREATE_BASIC_DETAILS_FORM_SUBMIT', basicDetailsFormSubmit);
+function* watchPdfCampaignFormSubmit() {
+  yield takeEvery('CAMPAIGN_PDF_FORM_SUBMIT', pdfCampaignFormSubmit);
 };
 
 function* watchImageCampaignFormSubmit() {
@@ -233,7 +233,7 @@ export default function* () {
   yield fork(watchLoadCampaignCreatePage);
   yield fork(watchLoadCampaignEditPage);
   // Submittions
-  yield fork(watchBasicDetailsFormSubmit);
+  yield fork(watchPdfCampaignFormSubmit);
   yield fork(watchImageCampaignFormSubmit);
   // Selecting
   yield fork(watchCampaignCreateBrandSelect);

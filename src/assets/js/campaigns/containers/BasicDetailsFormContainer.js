@@ -4,7 +4,7 @@ import BasicDetailsForm from '../components/forms/BasicDetailsForm';
 import ui from 'redux-ui/transpiled';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import _ from 'lodash';
-import { basicDetailsFormSubmit } from '../actions';
+import { pdfCampaignFormSubmit } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(basicDetailsFormSubmit({
+        dispatch(pdfCampaignFormSubmit({
           values: {
             campaignId: values.campaignId,
             defaultBrand: ownProps.selectedBrandId,
