@@ -57,10 +57,10 @@ DecoratedComponent = reduxForm(
       initialValues: {
         campaignId: _.get(ownProps, 'campaign.campaignId'),
         campaignTitle: _.get(ownProps, 'campaign.name'),
-        magazineLanguage: _.get(ownProps, 'trigger.language'),
-        defaultTarget: _.get(ownProps, 'trigger.url'),
+        magazineLanguage: _.get(ownProps, 'triggers.0.language'),
+        defaultTarget: _.get(ownProps, 'triggers.0.url'),
 
-        triggerId: _.get(ownProps, 'trigger.triggerId')
+        triggerId: _.get(ownProps, 'triggers.0.triggerId')
       }
     };
   }

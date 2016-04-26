@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(imageCampaignFormSubmit({
           values: {
             media: values.media,
+            website: values.website,
             campaignId: values.campaignId,
             defaultBrand: ownProps.selectedBrandId,
             type: ownProps.selectedCampaignTypeId,
@@ -97,8 +98,17 @@ DecoratedComponent = reduxForm(
     fields
   },
   (state, ownProps) => { // mapStateToProps
+    // This is needed purely to get the consistent
+    // attributes from a given trigger to apply to the form
+    const anyTrigger = ownProps.triggers[_.keys(ownProps.triggers)[0]];
+
     return {
       initialValues: {
+        campaignId: _.get(ownProps, 'campaign.campaignId'),
+        campaignTitle: _.get(ownProps, 'campaign.name'),
+        website: _.get(anyTrigger, 'url'),
+
+        //triggerId: _.get(ownProps, 'trigger.triggerId')
       }
     };
   }

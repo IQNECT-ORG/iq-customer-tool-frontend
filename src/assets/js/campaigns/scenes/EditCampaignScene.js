@@ -7,6 +7,7 @@ import Titlebar from 'app/common/components/layout/Titlebar';
 import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
+import _ from 'lodash';
 
 import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
 import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
@@ -26,7 +27,10 @@ class EditCampaign extends Component {
   }
 
   render() {
-    if(this.props.campaign == null || this.props.trigger == null) {
+    if(
+      this.props.campaign == null ||
+      _.size(this.props.triggers) === 0
+    ) {
       return (
         <div>Loading...</div>
       );
@@ -38,14 +42,14 @@ class EditCampaign extends Component {
         form = (
           <ImageCampaignFormContainer
             campaign={this.props.campaign}
-            trigger={this.props.trigger}/>
+            triggers={this.props.triggers}/>
         );
         break;
       case Constants.CampaignTypes.PDF:
         form = (
           <CreateCampaignContainer
             campaign={this.props.campaign}
-            trigger={this.props.trigger}/>
+            triggers={this.props.triggers}/>
         );
         break;
     }
@@ -102,18 +106,18 @@ class EditCampaign extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let campaign = state.entities.getIn(['campaigns', ownProps.params.campaignId]);
-  let trigger = state.entities.get('triggers').find(x => x.campaignId === ownProps.campaignId);
+  let triggers = state.entities.get('triggers').filter(x => x.campaignId === ownProps.campaignId);
 
   if(campaign) {
     campaign = campaign.toJS();
   }
-  if(trigger) {
-    trigger = trigger.toJS();
+  if(triggers) {
+    triggers = triggers.toJS();
   }
 
   return {
     campaign,
-    trigger
+    triggers
   };
 };
 
