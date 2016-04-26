@@ -10,8 +10,10 @@ class MultipleAssetField extends Component {
 
     return (
       <div className={className}>
-        {this._renderInputs()}
         <AssetField onChange={::this.handleChange}/>
+        <ul className="list-unstyled row">
+          {this._renderInputs()}
+        </ul>
       </div>
     );
   }
@@ -19,7 +21,9 @@ class MultipleAssetField extends Component {
   _renderInputs() {
     return _.map(this.props.files, (file, index) => {
       return (
-        <AssetField key={index} value={file} onChange={::this.handleChange}/>
+        <li key={index} className="col-xs-6 aspect-1-1-container">
+          <AssetField className="aspect-item" value={file} onChange={::this.handleChange}/>
+        </li>
       );
     });
   }
