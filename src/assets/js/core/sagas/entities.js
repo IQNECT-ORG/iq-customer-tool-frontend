@@ -17,7 +17,7 @@ import * as triggersApi from '../services/api/triggers';
 import * as trainingResultsApi from '../services/api/trainingResults';
 
 // Errors / Exceptions
-import { NotFoundError } from '../errors';
+import { NotFoundError, BadRequestError } from '../errors/http';
 
 // Parsers
 import parser, { triggerParser, trainingResultsParser } from '../services/api/parsers';
@@ -31,6 +31,10 @@ function* fetchEntity(config, options) {
 
     if(response.status === 404) {
       throw new NotFoundError(config.entityName + ' not found');
+    }
+
+    if(response.status === 400) {
+      throw new BadRequestError(config.entityName + ' bad request');
     }
 
     yield put(config.entityActions.fetchSuccess(config.parser(json, options.parserOptions)));
@@ -49,6 +53,10 @@ function* createEntity(config, options) {
       throw new NotFoundError(config.entityName + ' not found');
     }
 
+    if(response.status === 400) {
+      throw new BadRequestError(config.entityName + ' bad request');
+    }
+
     yield put(config.entityActions.createSuccess(config.parser(json, options.parserOptions)));
   } catch(err) {
     yield put(config.entityActions.createFailure(err));
@@ -65,6 +73,10 @@ function* updateEntity(config, options) {
       throw new NotFoundError(config.entityName + ' not found');
     }
 
+    if(response.status === 400) {
+      throw new BadRequestError(config.entityName + ' bad request');
+    }
+
     yield put(config.entityActions.updateSuccess(config.parser(json, options.parserOptions)));
   } catch(err) {
     yield put(config.entityActions.updateFailure(err));
@@ -79,6 +91,10 @@ function* deleteEntity(config, options) {
 
     if(response.status === 404) {
       throw new NotFoundError(config.entityName + ' not found');
+    }
+
+    if(response.status === 400) {
+      throw new BadRequestError(config.entityName + ' bad request');
     }
 
     yield put(config.entityActions.deleteSuccess(config.parser(json, options.parserOptions)));

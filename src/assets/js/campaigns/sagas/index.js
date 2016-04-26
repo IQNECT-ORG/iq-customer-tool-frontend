@@ -13,7 +13,7 @@ function* pdfCampaignFormSubmitCreate(action) {
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(createCampaign, {
-    payload: action.payload.values
+    data: action.payload.values
   });
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
@@ -50,6 +50,7 @@ function* pdfCampaignFormSubmitCreate(action) {
 
   // --------  Training Results -------- //
   const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+
   const trainingResultTask = yield fork(getTrainingResults, {
     url: trigger.trainingResult,
     parserOptions: {
