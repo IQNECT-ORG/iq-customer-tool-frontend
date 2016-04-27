@@ -7,7 +7,6 @@ class AddBrandForm extends Component {
     const fields = this.props.fields;
     return (
       <form onSubmit={this.props.onSubmit}>
-
         <fieldset className="form-group">
           <div className="row">
             <div className="col-xs-4 col-xs-offset-4 aspect-1-1-container">
@@ -34,13 +33,33 @@ class AddBrandForm extends Component {
             {...this.props.fields.name}/>
         </fieldset>
 
+        {this._renderCTAs()}
+
+      </form>
+    );
+  }
+
+  _renderCTAs() {
+    if(this.props.flow === 'add') {
+      return (
         <div className="row">
           <div className="col-xs-6 col-xs-offset-3">
             <button type="submit" className="btn btn-primary btn-block btn-radius-lg">Add Brand</button>
           </div>
         </div>
-      </form>
-    );
+      );
+    } else if(this.props.flow === 'edit') {
+      return (
+        <div className="row">
+          <div className="col-xs-6">
+            <button type="submit" className="btn btn-primary btn-block btn-radius-lg">Save</button>
+          </div>
+          <div className="col-xs-6">
+            <button type="button" className="btn btn-secondary btn-block btn-radius-lg" onClick={this.props.onDeleteClick}>Delete</button>
+          </div>
+        </div>
+      );
+    }
   }
 };
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AddBrandForm from '../components/forms/AddBrandForm';
+import BrandForm from '../components/forms/BrandForm';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { brandEditFormSubmit } from '../actions/brands';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    flow: 'edit'
   };
 };
 
@@ -31,7 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const fields = ['brandId', 'artwork', 'name'];
 
-let DecoratedComponent = AddBrandForm;
+let DecoratedComponent = BrandForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm({
   form: 'editBrand',
