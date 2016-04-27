@@ -7,11 +7,16 @@ class FilterForm extends Component {
       <form onSubmit={this.props.onSubmit}>
         <fieldset className="form-group">
           <label className="sr-only" htmlFor="filterInput">Filter</label>
-          <input
-            className="form-control"
-            id="filterInput"
-            placeholder={this.props.placeholder}
-            {...fields.filter}/>
+          <div className="input-group">
+            <span className="input-group-addon">
+              <i className="icons8-dashboard"/>
+            </span>
+            <input
+              className="form-control"
+              id="filterInput"
+              placeholder={this.props.placeholder}
+              {...fields.filter}/>
+          </div>
         </fieldset>
 
         <button type="submit" hidden>Filter</button>
