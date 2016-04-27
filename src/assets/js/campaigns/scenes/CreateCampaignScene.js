@@ -102,6 +102,7 @@ class CreateCampaign extends Component {
                     <div className="row">
                       <div className="col-xs-12">
                         <Avatar
+                          className="pull-xs-left m-r-1"
                           src={this.props.selectedBrand.imgPreview}/>
                         <h1>Choose a Campaign Type</h1>
                       </div>
@@ -152,9 +153,11 @@ class CreateCampaign extends Component {
                   <div className="row">
                     <div className="col-xs-12">
                       <Avatar
+                        className="pull-xs-left m-r-1"
                         src={this.props.selectedBrand.imgPreview}/>
 
                       <Avatar
+                        className="pull-xs-left m-r-1"
                         icon={'icons8-settings'}/>
 
                       <h1>Create Campaign</h1>
