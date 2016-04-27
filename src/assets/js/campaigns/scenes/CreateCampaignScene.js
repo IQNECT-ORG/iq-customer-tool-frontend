@@ -126,6 +126,7 @@ class CreateCampaign extends Component {
     }
 
     let form;
+    let steptracker;
     switch(this.props.selectedCampaignTypeId >> 0) {
       case Constants.CampaignTypes.IMAGE:
         form = (
@@ -133,12 +134,33 @@ class CreateCampaign extends Component {
             selectedBrandId={this.props.selectedBrandId}
             selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
         );
+        steptracker = null;
         break;
       case Constants.CampaignTypes.PDF:
         form = (
           <PrintCampaignFormContainer
             selectedBrandId={this.props.selectedBrandId}
             selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
+        );
+        steptracker = (
+          <Steptracker
+            steps={[
+              {
+                label: 'Step 1',
+                isActive: this.props.steptrackerStep === 0,
+                isPast: this.props.steptrackerStep > 0
+              },
+              {
+                label: 'Step 2',
+                isActive: this.props.steptrackerStep === 1,
+                isPast: this.props.steptrackerStep > 1
+              },
+              {
+                label: 'Step 3',
+                isActive: this.props.steptrackerStep === 2,
+                isPast: this.props.steptrackerStep > 2
+              }
+            ]}/>
         );
         break;
     }
@@ -161,24 +183,7 @@ class CreateCampaign extends Component {
                         icon={'icons8-settings'}/>
 
                       <h1>Create Campaign</h1>
-                      <Steptracker
-                        steps={[
-                          {
-                            label: 'Step 1',
-                            isActive: this.props.steptrackerStep === 0,
-                            isPast: this.props.steptrackerStep > 0
-                          },
-                          {
-                            label: 'Step 2',
-                            isActive: this.props.steptrackerStep === 1,
-                            isPast: this.props.steptrackerStep > 1
-                          },
-                          {
-                            label: 'Step 3',
-                            isActive: this.props.steptrackerStep === 2,
-                            isPast: this.props.steptrackerStep > 2
-                          }
-                        ]}/>
+                      {steptracker}
                     </div>
                   </div>
                 </Titlebar>
