@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(brandEditFormSubmit({
           values: {
             brandId: values.brandId,
-            image: values.artwork[0],
+            image: _.get(values, 'artwork.0'),
             name: values.name,
           },
           isModal: true,
