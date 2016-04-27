@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AddBrandForm from '../components/forms/AddBrandForm';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { brandsCreate } from '../actions/brands';
+import { brandAddFormSubmit } from '../actions/brands';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,11 +14,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(brandsCreate({
+        dispatch(brandAddFormSubmit({
           values: {
             image: values.artwork[0],
             name: values.name,
           },
+          isModal: true,
           resolve,
           reject
         }));

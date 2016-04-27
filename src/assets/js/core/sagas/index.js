@@ -3,6 +3,7 @@ import campaignSaga from 'app/campaigns/sagas';
 import catalogueSaga from 'app/catalogue/sagas';
 import modalSaga from 'app/modal/sagas';
 import entitiesSaga from './entities';
+import commonSaga from 'app/common/sagas';
 
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
@@ -80,6 +81,7 @@ export default function* root() {
   yield fork(campaignSaga);
   yield fork(catalogueSaga);
   yield fork(modalSaga);
+  yield fork(commonSaga);
 
   yield fork(watchForbiddenNavigation);
 };

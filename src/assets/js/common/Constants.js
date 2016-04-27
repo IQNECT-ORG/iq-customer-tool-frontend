@@ -16,6 +16,17 @@ export default {
     BRANDS_CREATE_REQUEST: null,
     BRANDS_CREATE_SUCCESS: null,
     BRANDS_CREATE_FAILURE: null,
+
+    BRANDS_UPDATE_REQUEST: null,
+    BRANDS_UPDATE_SUCCESS: null,
+    BRANDS_UPDATE_FAILURE: null,
+
+    BRANDS_DELETE_REQUEST: null,
+    BRANDS_DELETE_SUCCESS: null,
+    BRANDS_DELETE_FAILURE: null,
+
+    BRAND_ADD_FORM_SUBMIT: null,
+    BRAND_EDIT_FORM_SUBMIT: null,
     
     // Campaigns
     CAMPAIGN_CREATE_REQUEST: null,
