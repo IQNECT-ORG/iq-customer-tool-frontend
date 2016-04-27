@@ -10,6 +10,7 @@ class FilterForm extends Component {
           <input
             className="form-control"
             id="filterInput"
+            placeholder={this.props.placeholder}
             {...fields.filter}/>
         </fieldset>
 

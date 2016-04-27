@@ -8,7 +8,9 @@ class CampaignList extends Component {
     return (
       <div className="campaign-list m-t-1">
         <div className="pane pane--filled p-a-1">
-          <CampaignListFilterFormContainer onFormSubmit={this.props.onFilterSubmit}/>
+          <CampaignListFilterFormContainer
+            placeholder="Search Campaigns"
+            onFormSubmit={this.props.onFilterSubmit}/>
 
           <div className="faux-table campaign-list__table">
             <div className="faux-table__head">
