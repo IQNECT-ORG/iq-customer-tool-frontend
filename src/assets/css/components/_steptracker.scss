@@ -1,0 +1,11 @@
+.steptracker {
+
+  @include element('item') {
+    color: #78909C;
+
+    @include modifier('active'),
+    @include modifier('past') {
+      color: #373a3c;
+    }
+  }
+}
