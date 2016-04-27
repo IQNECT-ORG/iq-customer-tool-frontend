@@ -1,7 +1,7 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
-import { createBrand } from 'app/core/sagas/entities';
+import { createBrand, updateBrand } from 'app/core/sagas/entities';
 import { closeModal } from 'app/modal/actions';
 
 function* brandAddFormSubmit(action) {
@@ -26,6 +26,7 @@ function* brandAddFormSubmit(action) {
 
 function* brandEditFormSubmit(action) {
   const brandTask = yield fork(updateBrand, {
+    id: action.payload.values.brandId,
     data: action.payload.values
   });
   // Wait for request to finish
