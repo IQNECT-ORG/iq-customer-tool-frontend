@@ -70,6 +70,13 @@
       margin: 0;
     }
   }
+
+  @include element('sub-menu') {
+    a,
+    button {
+      color: #78909C;
+    }
+  }
 }
 
 .draw-nav-overlay {

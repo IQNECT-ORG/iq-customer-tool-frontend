@@ -16,16 +16,16 @@ class Menu extends Component {
               <i className="icons8-package"/>
               <span>Manage</span>
             </button>
-            <Collapse isOpened={this.props.isCatalogueSubmenuOpen}>
+            <Collapse className="draw-nav__sub-menu" isOpened={this.props.isCatalogueSubmenuOpen}>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/manage/brands">Brands</Link>
+                  <Link to="/manage/brands"><i className="icons8-dashboard"/> Brands</Link>
                 </li>
                 <li>
-                  <Link to="/manage/campaigns">Campaigns</Link>
+                  <Link to="/manage/campaigns"><i className="icons8-dashboard"/> Campaigns</Link>
                 </li>
                 <li>
-                  <Link to="/manage/coupons">Coupons</Link>
+                  <Link to="/manage/coupons"><i className="icons8-dashboard"/> Coupons</Link>
                 </li>
               </ul>
             </Collapse>
