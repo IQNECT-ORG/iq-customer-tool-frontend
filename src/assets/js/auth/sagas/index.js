@@ -3,7 +3,7 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import * as sessionsApi from 'app/core/services/api/sessions';
 import authActions from 'app/auth/actions';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { NotFoundError } from 'app/core/errors';
+import { NotFoundError } from 'app/core/errors/http';
 
 // Auth / Sessions
 function* authLoginAsync(action) {

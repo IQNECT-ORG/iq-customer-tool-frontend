@@ -6,6 +6,8 @@ class Avatar extends Component {
       return this._renderImage();
     } else if(this.props.icon) {
       return this._renderIcon();
+    } else {
+      return this._renderBlank();
     }
   }
 
@@ -24,6 +26,16 @@ class Avatar extends Component {
       <div className="avatar avatar--icon">
         <div className="avatar__icon-container">
           <i className={this.props.icon}/>
+        </div>
+      </div>
+    );
+  }
+
+  _renderBlank() {
+    return (
+      <div className="avatar avatar--icon">
+        <div className="avatar__icon-container">
+          <i className="icons8-globe"/>
         </div>
       </div>
     );

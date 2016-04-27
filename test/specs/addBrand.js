@@ -4,7 +4,7 @@ var loginHelper = require('../helpers/login');
 describe('Add Brand', function() {
   it('should successfully add new brand', function() {
     loginHelper.login();
-    browser.element('[href="/campaign/create"]').click();
+    browser.element('[href="/campaigns/create"]').click();
     browser.waitForExist('.titlebar button', 20000);
     browser.element('.titlebar button').click();
 
