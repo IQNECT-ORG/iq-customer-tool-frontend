@@ -78,7 +78,10 @@ function* pdfCampaignFormSubmitCreate(action) {
 }
 
 function* pdfCampaignFormSubmitUpdate(action) {
-  const campaignTask = yield fork(updateCampaign, action);
+  const campaignTask = yield fork(updateCampaign, {
+    id: action.payload.values.campaignId,
+    data: action.payload.values
+  });
   const campaignAction = yield take(['CAMPAIGNS_UPDATE_SUCCESS', 'CAMPAIGNS_UPDATE_FAILURE']);
 
   // Reject the form
