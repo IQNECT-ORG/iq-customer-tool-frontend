@@ -12,13 +12,13 @@ class PageDetailForm extends Component {
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
-            <div className="pane pane--filled">
+            <div className="pane pane--filled m-b-g">
               <img className="img-fluid" src={this.props.imageSrc}/>
             </div>
           </div>
 
           <div className="col-xs-12 col-sm-6">
-            <div className="pane pane--filled">
+            <div className="pane pane--filled m-b-g">
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">

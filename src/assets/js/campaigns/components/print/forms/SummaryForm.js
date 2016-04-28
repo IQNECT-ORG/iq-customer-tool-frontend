@@ -27,7 +27,7 @@ class SummaryForm extends Component {
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12">
-            <div className="pane pane--filled">
+            <div className="pane pane--filled m-b-g">
               <h2>Campaign Summary</h2>
 
               <div>
