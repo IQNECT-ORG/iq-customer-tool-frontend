@@ -14,7 +14,7 @@ class TargetType extends Component {
             <div className="col-xs-6">
               <button
                 type="button"
-                className="btn btn-block btn-secondary-outline btn-decision"
+                className="btn btn-block btn-secondary-outline btn-decision btn-radius-lg"
                 onClick={this.props.onAddWebsiteClick}>
                   Add Website
               </button>
@@ -23,7 +23,7 @@ class TargetType extends Component {
             <div className="col-xs-6">
               <button
                 type="button"
-                className="btn btn-block btn-secondary-outline btn-decision"
+                className="btn btn-block btn-secondary-outline btn-decision btn-radius-lg"
                 onClick={this.props.onAddCouponClick}>
                 Add Coupon
               </button>
