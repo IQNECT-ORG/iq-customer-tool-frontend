@@ -22,28 +22,31 @@ class PageDetailForm extends Component {
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h2>Page {this.props.page + 1}</h2>
+                    <div className="pull-xs-right">
+                      <button
+                        type="button"
+                        className="btn btn-secondary-outline m-l-1"
+                        disabled={!this.props.hasPrev}
+                        onClick={this.props.onPrevPageClick}>
+                        <i className="icons8-left"/>
+                      </button>
 
-                    <button
-                      type="button"
-                      className="btn btn-secondary-outline"
-                      disabled={!this.props.hasPrev}
-                      onClick={this.props.onPrevPageClick}>
-                      <i className="icons8-left"/>
-                    </button>
+                      <button
+                        type="button"
+                        className="btn btn-secondary-outline m-l-1"
+                        disabled={!this.props.hasNext}
+                        onClick={this.props.onNextPageClick}>
+                        <i className="icons8-right"/>
+                      </button>
 
-                    <button
-                      type="button"
-                      className="btn btn-secondary-outline"
-                      disabled={!this.props.hasNext}
-                      onClick={this.props.onNextPageClick}>
-                      <i className="icons8-right"/>
-                    </button>
-
-                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
-                      <i className="icons8-activity-grid-2"/>
-                    </button>
-
+                      <button
+                        type="button"
+                        className="btn btn-secondary-outline m-l-1"
+                        onClick={this.props.onSwitchViewClick}>
+                        <i className="icons8-activity-grid-2"/>
+                      </button>
+                    </div>
+                    <h2 className="m-b-3">Page {this.props.page + 1}</h2>
                     <hr/>
 
                     {this._renderTargetType()}

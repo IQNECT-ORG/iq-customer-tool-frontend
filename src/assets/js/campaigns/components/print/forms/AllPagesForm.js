@@ -27,11 +27,12 @@ class AllPagesForm extends Component {
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h2>All Pages</h2>
-
-                    <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
-                      <i className="icons8-edit-image"/>
-                    </button>
+                    <div className="pull-xs-right">
+                      <button type="button" className="btn btn-secondary-outline" onClick={this.props.onSwitchViewClick}>
+                        <i className="icons8-edit-image"/>
+                      </button>
+                    </div>
+                    <h2 className="m-b-3">All Pages</h2>
 
                     <hr/>
 

@@ -25,7 +25,7 @@ class BasicDetailsForm extends Component {
               <div className="pane__body">
                 <div className="row">
                   <div className="col-xs-12">
-                    <h2>Basic Details</h2>
+                    <h2 className="m-b-3">Basic Details</h2>
 
                     <fieldset className={classNames('form-group', {
                       'has-danger': fields.campaignTitle.error
