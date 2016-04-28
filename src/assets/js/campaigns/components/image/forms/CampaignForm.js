@@ -85,7 +85,7 @@ class CampaignForm extends Component {
                       value={this.props.values.tags}
                       onChange={this.props.onTagsChange}/>
 
-                    <hr/>
+                    <hr className="m-y-2"/>
 
                     <div className="row">
                       <div className="col-xs-6">

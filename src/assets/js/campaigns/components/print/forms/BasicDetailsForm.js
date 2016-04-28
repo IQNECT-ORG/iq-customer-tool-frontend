@@ -84,7 +84,7 @@ class BasicDetailsForm extends Component {
                       </div>
                     </div>
 
-                    <hr/>
+                    <hr className="m-y-2"/>
 
                     <div className="row">
                       <div className="col-xs-6">

@@ -78,7 +78,7 @@ class PageDetailForm extends Component {
                         onChange={this.props.onTagsChange} />
                     </fieldset>
 
-                    <hr/>
+                    <hr className="m-y-2"/>
 
                     <div className="row">
                       <div className="col-xs-6">
