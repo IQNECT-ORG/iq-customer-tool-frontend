@@ -11,13 +11,41 @@
 
 }
 
-.modal-header {
-  border-bottom-color: transparent;
-}
-
 .modal-content {
   @include modifier('hollow') {
     background-color: transparent;
     border-color: transparent;
   }
+}
+
+.modal-header {
+  @extend .container-fluid;
+  padding: $grid-gutter-width;
+  border-bottom-color: transparent;
+}
+
+.modal-body {
+  @extend .container-fluid;
+  padding: $grid-gutter-width;
+}
+
+// Modal Sizes
+.modal-xs {
+  width: 300px;
+}
+
+.modal-sm {
+  width: 400px;
+}
+
+.modal-md {
+  width: 600px;
+}
+
+.modal-lg {
+  width: 800px;
+}
+
+.modal-xl {
+  width: 1000px;
 }

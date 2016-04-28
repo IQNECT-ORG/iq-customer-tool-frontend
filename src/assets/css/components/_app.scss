@@ -7,5 +7,6 @@
 }
 
 .container--gutter {
-  padding: 0 $grid-gutter-width;
+  padding-left: $grid-gutter-width;
+  padding-right: $grid-gutter-width;
 }
