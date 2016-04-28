@@ -10,45 +10,53 @@ import Constants from 'app/common/Constants';
 import imageForm from './imageForm';
 import pdfForm from './pdfForm';
 
+function* loadCampaignCreatePage(action) {
+  yield put(brandActions.fetch());
+}
+
+function* loadCampaignEditPage(action) {
+  yield put(campaignActions.fetch({
+    id: action.payload.campaignId
+  }));
+  yield put(brandActions.fetch());
+  yield put(triggerActions.fetch({
+    params: {
+      campaignId: action.payload.campaignId
+    }
+  }));
+
+  const campaignAction = yield take('CAMPAIGNS_FETCH_SUCCESS');
+  const triggerAction = yield take('TRIGGERS_FETCH_SUCCESS');
+
+  const campaign = campaignAction.payload.entities.campaigns[action.payload.campaignId];
+
+  switch(campaign.type >> 0) {
+    case Constants.CampaignTypes.IMAGE:
+
+      break;
+    case Constants.CampaignTypes.PDF:
+      const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+      const trainingResultTask = yield fork(getTrainingResults, {
+        url: trigger.trainingResult,
+        parserOptions: {
+          triggerId: trigger.triggerId
+        }
+      });
+      break;
+  }
+}
+
+
+//-----------------------------------------------------------
+//----------------------- Watchers --------------------------
+//-----------------------------------------------------------
+
 function* watchLoadCampaignCreatePage() {
-  yield takeEvery('LOAD_CAMPAIGN_CREATE_PAGE', function* () {
-    yield put(brandActions.fetch());
-  });
+  yield takeEvery('LOAD_CAMPAIGN_CREATE_PAGE', loadCampaignCreatePage);
 };
 
 function* watchLoadCampaignEditPage() {
-  yield takeEvery('LOAD_CAMPAIGN_EDIT_PAGE', function* (action) {
-    yield put(campaignActions.fetch({
-      id: action.payload.campaignId
-    }));
-    yield put(brandActions.fetch());
-    yield put(triggerActions.fetch({
-      params: {
-        campaignId: action.payload.campaignId
-      }
-    }));
-
-    const campaignAction = yield take('CAMPAIGNS_FETCH_SUCCESS');
-    const triggerAction = yield take('TRIGGERS_FETCH_SUCCESS');
-
-    const campaign = campaignAction.payload.entities.campaigns[action.payload.campaignId];
-
-    switch(campaign.type >> 0) {
-      case Constants.CampaignTypes.IMAGE:
-
-        break;
-      case Constants.CampaignTypes.PDF:
-        const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
-        const trainingResultTask = yield fork(getTrainingResults, {
-          url: trigger.trainingResult,
-          parserOptions: {
-            triggerId: trigger.triggerId
-          }
-        });
-        break;
-    }
-
-  });
+  yield takeEvery('LOAD_CAMPAIGN_EDIT_PAGE', loadCampaignEditPage);
 };
 
 // Selecting
