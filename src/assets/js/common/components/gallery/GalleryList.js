@@ -12,7 +12,7 @@ class GalleryList extends Component {
   }
 
   _renderItems() {
-    return _.map(this.props.items, this._renderItem, this);
+    return _.map(this.props.items, ::this._renderItem);
   }
 
   _renderItem(item, index) {
