@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
           updateUI: ownProps.updateUI,
           pagesAddField: ownProps.fields.pages.addField,
-          form: 'createCampaignPrint',
+          form: 'campaignPrint',
           resolve,
           reject
         }));

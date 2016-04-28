@@ -40,7 +40,7 @@ class AddCoupon extends Component {
     dispatch(updateModalPath('createCoupon'));
     // @TODO: Make this come from the prior data
     dispatch(updateModalData({
-      form: 'createCampaignPrint',
+      form: 'campaignPrint',
       field: 'fallback.coupon'
     }));
     // dispatch(openModal());

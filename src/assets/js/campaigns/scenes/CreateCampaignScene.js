@@ -180,7 +180,7 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   return {
-    steptrackerStep: state.ui.getIn(['scene', 'createCampaignPrint', 'step']),
+    steptrackerStep: state.ui.getIn(['scene', 'campaignPrint', 'step']),
     selectedBrandId,
     selectedBrand,
     selectedCampaignTypeId: state.campaigns.getIn(['create', 'selectedCampaignTypeId'])

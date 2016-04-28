@@ -135,6 +135,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    steptrackerStep: state.ui.getIn(['scene', 'campaignPrint', 'step']),
     campaign,
     brand,
     triggers,

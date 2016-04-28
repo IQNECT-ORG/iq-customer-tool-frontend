@@ -48,7 +48,7 @@ let DecoratedComponent = CreateCampaign;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm(
   {
-    form: 'createCampaignPrint',
+    form: 'campaignPrint',
     fields,
     validate
   },
@@ -66,7 +66,7 @@ DecoratedComponent = reduxForm(
   }
 )(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'createCampaignPrint',
+  key: 'campaignPrint',
   state: {
     step: 0,
     page: null,
