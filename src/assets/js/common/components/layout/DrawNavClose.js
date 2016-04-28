@@ -4,11 +4,9 @@ class DrawNavClose extends Component {
   render() {
     return (
       <nav className="draw-nav" role="navigation">
-        <div className="container">
-          <button className="draw-nav__opener" type="button" onClick={this.props.actions.open}>
-            Open
-          </button>
-        </div>
+        <button className="draw-nav__opener" type="button" onClick={this.props.actions.open}>
+          <i className="icons8-dashboard"/>
+        </button>
       </nav>
     );
   }

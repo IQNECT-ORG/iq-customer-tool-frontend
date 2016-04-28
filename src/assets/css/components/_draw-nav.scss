@@ -31,10 +31,20 @@
   }
 
   @include element('opener') {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     @extend %btn-hollow;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 10px;
+    width: 90px;
+    transform: translateY(-50%);
+    text-align: center;
+    outline: 0;
+    font-size: 2rem;
+    &:focus,
+    &:active {
+      outline: 0;
+    }
   }
 
   @include element('quick-actions') {
