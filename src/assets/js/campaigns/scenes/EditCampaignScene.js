@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
@@ -36,8 +37,17 @@ class EditCampaign extends Component {
       );
     }
 
+    if(
+      this.props.campaign.type >> 0 === Constants.CampaignTypes.PDF &&
+      _.size(this.props.trainingResults) === 0
+    ) {
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     let form;
-    switch(this.props.selectedCampaignTypeId >> 0) {
+    switch(this.props.campaign.type >> 0) {
       case Constants.CampaignTypes.IMAGE:
         form = (
           <ImageCampaignFormContainer
@@ -47,9 +57,10 @@ class EditCampaign extends Component {
         break;
       case Constants.CampaignTypes.PDF:
         form = (
-          <CreateCampaignContainer
+          <PrintCampaignFormContainer
             campaign={this.props.campaign}
-            triggers={this.props.triggers}/>
+            triggers={this.props.triggers}
+            trainingResults={this.props.trainingResults}/>
         );
         break;
     }
@@ -107,6 +118,13 @@ class EditCampaign extends Component {
 const mapStateToProps = (state, ownProps) => {
   let campaign = state.entities.getIn(['campaigns', ownProps.params.campaignId]);
   let triggers = state.entities.get('triggers').filter(x => x.campaignId === ownProps.campaignId);
+  const triggerIds = triggers.reduce((r, x) => {
+    return r.push(x.get('triggerId'));
+  }, new Immutable.List());
+
+  let trainingResults = state.entities.get('trainingResults').filter(x => {
+    return _.includes(triggerIds.toJS(), x.get('triggerId'));
+  });
 
   if(campaign) {
     campaign = campaign.toJS();
@@ -117,7 +135,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     campaign,
-    triggers
+    triggers,
+    trainingResults: trainingResults.toJS()
   };
 };
 

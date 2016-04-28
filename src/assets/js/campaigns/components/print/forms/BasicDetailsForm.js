@@ -10,7 +10,7 @@ import classNames from 'classnames';
 class BasicDetailsForm extends Component {
   render() {
     const fields = this.props.fields;
-    
+
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
@@ -141,8 +141,11 @@ class BasicDetailsForm extends Component {
     const fields = this.props.fields;
 
     if(fields.campaignId.value) {
+      const frame = _.find(this.props.trainingResults, x => x.frame === 0);
       return (
-        <div>@TODO</div>
+        <div>
+          <img src={frame.images.default}/>
+        </div>
       );
     } else {
       return (
