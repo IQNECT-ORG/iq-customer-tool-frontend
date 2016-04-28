@@ -3,29 +3,22 @@ import _ from 'lodash';
 import joid from 'joid';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
+import GalleryList from 'app/common/components/gallery/GalleryList';
 
 class AllPagesForm extends Component {
   render() {
     const fields = this.props.fields.fallback;
-
-    const images = _.map(this.props.images, (image, index) => {
-      return (
-        <li className="col-xs-4" key={index}>
-          <button type="button" onClick={ _ => this.props.gotoPage(index) }>
-            <img className="img-fluid" src={image}/>
-          </button>
-        </li>
-      );
-    });
 
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled m-b-g">
-              <ul className="row list-unstyled">
-                {images}
-              </ul>
+              <div className="pane__body">
+                <GalleryList
+                  items={this.props.images}
+                  onClick={ (e, item, index) => this.props.gotoPage(index) }/>
+              </div>
             </div>
           </div>
 

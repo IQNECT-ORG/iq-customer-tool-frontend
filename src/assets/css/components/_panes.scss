@@ -29,8 +29,9 @@
 }
 
 .media-pane {
-  min-height: 400px;
+  height: 475px;
   position: relative;
+  overflow: hidden;
 }
 
 .post-pane {

@@ -14,8 +14,8 @@ class BasicDetailsForm extends Component {
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-6 equal-height-container">
-            <div className="pane pane--filled media-pane equal-height-item flex m-b-g">
+          <div className="col-xs-12 col-sm-12 col-md-6">
+            <div className="pane pane--filled media-pane flex m-b-g">
               {this._renderMedia()}
             </div>
           </div>
@@ -144,7 +144,7 @@ class BasicDetailsForm extends Component {
       const frame = _.find(this.props.trainingResults, x => x.frame === 0);
       return (
         <div>
-          <img src={frame.images.default}/>
+          <img className="img-fluid" src={frame.images.default}/>
         </div>
       );
     } else {
