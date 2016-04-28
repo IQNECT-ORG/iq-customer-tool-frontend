@@ -3,13 +3,13 @@ import ReactModal from 'react-modal';
 import classNames from 'classnames';
 
 class Modal extends Component {
-  static get contextTypes() {
-    return {
-    };
+  static defaultProps = {
+    size: 'md'
   }
 
   render() {
-    const className = classNames('Modal__Bootstrap modal-dialog', this.props.className);
+    const sizeClass = `modal-${this.props.size}`;
+    const className = classNames('Modal__Bootstrap modal-dialog', sizeClass, this.props.className);
     return (
       <ReactModal
         style={{

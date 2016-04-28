@@ -21,6 +21,7 @@
 .modal-header {
   @extend .container-fluid;
   padding: $grid-gutter-width;
+  padding-bottom: 0;
   border-bottom-color: transparent;
 }
 

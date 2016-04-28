@@ -8,8 +8,6 @@ class CreateCouponForm extends Component {
     const fields = this.props.fields;
     return (
       <form className="form--modal" onSubmit={this.props.onSubmit}>
-        <h1>Create New Coupon</h1>
-
         <fieldset className="form-group">
           <AssetField
             onChange={fields.artwork.onChange}

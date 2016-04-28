@@ -4,8 +4,6 @@ class AddCouponForm extends Component {
   render() {
     return (
       <form onSubmit={this.props.onSubmit}>
-        <h1>Add Coupon</h1>
-
         <div className="row">
           <div className="col-xs-6">
             <button type="button" className="btn btn-block btn-secondary">Browse</button>

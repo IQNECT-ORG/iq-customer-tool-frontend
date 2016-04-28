@@ -19,6 +19,7 @@ class AddBrand extends Component {
   render() {
     return (
       <Modal
+        size='md'
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onCloseClick}>
         <div className="modal-content">

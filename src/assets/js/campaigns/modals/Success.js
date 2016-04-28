@@ -22,6 +22,7 @@ class Success extends Component {
   render() {
     return (
       <Modal
+        size='xs'
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onCloseClick}>
         <div className="modal-content">
@@ -29,10 +30,10 @@ class Success extends Component {
             <button type="button" className="close" aria-label="Close" onClick={this.props.onCloseClick}>
               <span aria-hidden="true">&times;</span>
             </button>
+            <h1>Success!</h1>
           </div>
 
           <div className="modal-body">
-            <h1>Success!</h1>
             <button
               type="button"
               className="btn btn-primary"

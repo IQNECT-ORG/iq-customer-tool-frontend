@@ -15,6 +15,7 @@ class AddCoupon extends Component {
   render() {
     return (
       <Modal
+        size='xs'
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onCloseClick}>
         <div className="modal-content">
@@ -22,6 +23,7 @@ class AddCoupon extends Component {
             <button type="button" className="close" aria-label="Close" onClick={this.props.onCloseClick}>
               <span aria-hidden="true">&times;</span>
             </button>
+            <h1>Add Coupon</h1>
           </div>
 
           <div className="modal-body">
