@@ -48,7 +48,7 @@ class TitlebarFactory extends Component {
   _renderCTAS() {
     return _.map(this.props.ctas, (cta, index) => {
       return (
-        <div className="pull-xs-right" key={index}>
+        <div className="flex-pull-right" key={index}>
           {cta}
         </div>
       );
