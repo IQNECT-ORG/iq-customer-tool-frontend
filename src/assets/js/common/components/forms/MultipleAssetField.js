@@ -10,7 +10,10 @@ class MultipleAssetField extends Component {
 
     return (
       <div className={className}>
-        <AssetField onChange={::this.handleChange}/>
+        <AssetField
+          label={this.props.label}
+          icon={this.props.icon}
+          onChange={::this.handleChange}/>
         <ul className="list-unstyled row">
           {this._renderInputs()}
         </ul>
@@ -22,7 +25,10 @@ class MultipleAssetField extends Component {
     return _.map(this.props.files, (file, index) => {
       return (
         <li key={index} className="col-xs-6 aspect-1-1-container">
-          <AssetField className="aspect-item" value={file} onChange={::this.handleChange}/>
+          <AssetField
+            className="aspect-item"
+            value={file}
+            onChange={::this.handleChange}/>
         </li>
       );
     });

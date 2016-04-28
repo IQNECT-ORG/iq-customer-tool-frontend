@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class AssetInput extends Component {
+  static defaultProps = {
+    icon: 'icons8-dashboard',
+    label: 'Upload'
+  }
+
   render() {
     return (
-      <div className="asset-input" onDragOver={::this.handleDragOver} onDrop={::this.handleDrop}>
-        <button className="asset-input__btn" type="button" onClick={::this.handleBrowseClick}>
-          <i className="icons8-dashboard"/>
-          <span>Upload Artwork</span>
+      <div
+        className="asset-input"
+        onDragOver={::this.handleDragOver}
+        onDrop={::this.handleDrop}>
+        <button
+          className="asset-input__btn"
+          type="button"
+          onClick={::this.handleBrowseClick}>
+          <i className={this.props.icon}/>
+          <div>{this.props.label}</div>
         </button>
         <input
           className="asset-input__input"

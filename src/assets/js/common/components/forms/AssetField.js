@@ -17,6 +17,8 @@ class AssetField extends Component {
         {this._renderPreviews()}
         <AssetInput
           name={this.props.name}
+          label={this.props.label}
+          icon={this.props.icon}
           onChange={this.props.onChange}
           multiple={this.props.multiple}
           value={this.props.value}/>

@@ -108,7 +108,10 @@ class CampaignForm extends Component {
 
   _renderMedia() {
     return (
-      <MultipleAssetField files={this.props.values.media} onChange={this.props.onMediaChange}/>
+      <MultipleAssetField
+        files={this.props.values.media}
+        label={'Drag & Drop or click here to upload your image'}
+        onChange={this.props.onMediaChange}/>
     );
   }
 

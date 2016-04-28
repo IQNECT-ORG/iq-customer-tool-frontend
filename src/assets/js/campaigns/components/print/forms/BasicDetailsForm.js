@@ -147,6 +147,7 @@ class BasicDetailsForm extends Component {
     } else {
       return (
         <AssetField
+          label={'Drag & Drop or click here to upload your magazine'}
           onChange={fields.media.onChange}
           value={fields.media.value}/>
       );
