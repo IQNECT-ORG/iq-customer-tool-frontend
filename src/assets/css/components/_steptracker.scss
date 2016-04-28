@@ -3,7 +3,9 @@
   @include element('item') {
     color: #78909C;
 
-    @include modifier('active'),
+    @include modifier('active') {
+      color: #373a3c;
+    }
     @include modifier('past') {
       color: #373a3c;
     }
