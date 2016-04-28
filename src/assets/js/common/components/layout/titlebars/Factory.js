@@ -17,8 +17,10 @@ class TitlebarFactory extends Component {
         <div className="row">
           <div className="col-xs-6">
             {this._renderAvatars()}
-            {this._renderTitle()}
-            {this._renderSteptracker()}
+            <div>
+              {this._renderTitle()}
+              {this._renderSteptracker()}
+            </div>
           </div>
           <div className="col-xs-6">
             {this._renderCTAS()}

@@ -8,4 +8,9 @@
     font-weight: 400;
     font-size: 1.6rem;
   }
+
+  .row > * {
+    display:flex;
+    align-items:center;
+  }
 }
