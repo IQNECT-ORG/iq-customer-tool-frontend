@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
-import Titlebar from 'app/common/components/layout/Titlebar';
+import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { } from '../actions';
 import CampaignListContainer from '../containers/CampaignListContainer';
 
@@ -13,17 +13,7 @@ class CatalogueCampaigns extends Component {
       <DefaultLayout
         titleRender={_ => {
           return (
-            <div className="container-fluid">
-              <div className="row">
-                <Titlebar className="col-xs-12">
-                  <div className="row">
-                    <div className="col-xs-12">
-                      <h1>Manage / Campaigns</h1>
-                    </div>
-                  </div>
-                </Titlebar>
-              </div>
-            </div>
+            <Titlebar title="Manage / Campaigns"/>
           );
         }}>
         <div className="container container--gutter">
