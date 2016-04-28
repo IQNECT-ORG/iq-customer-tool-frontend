@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
-import Titlebar from 'app/common/components/layout/Titlebar';
+import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
@@ -30,6 +30,7 @@ class EditCampaign extends Component {
   render() {
     if(
       this.props.campaign == null ||
+      this.props.brand == null ||
       _.size(this.props.triggers) === 0
     ) {
       return (
@@ -65,45 +66,38 @@ class EditCampaign extends Component {
         break;
     }
 
+    const steptracker = (
+      <Steptracker
+        steps={[
+          {
+            label: 'Step 1',
+            isActive: this.props.steptrackerStep === 0,
+            isPast: this.props.steptrackerStep > 0
+          },
+          {
+            label: 'Step 2',
+            isActive: this.props.steptrackerStep === 1,
+            isPast: this.props.steptrackerStep > 1
+          },
+          {
+            label: 'Step 3',
+            isActive: this.props.steptrackerStep === 2,
+            isPast: this.props.steptrackerStep > 2
+          }
+        ]}/>
+    );
+
     return (
       <DefaultLayout
         titleRender={_ => {
           return (
-            <div className="container-fluid">
-              <div className="row">
-                <Titlebar className="col-xs-12">
-                  <div className="row">
-                    <div className="col-xs-12">
-                      <Avatar
-                        src={' '}/>
-
-                      <Avatar
-                        icon={'icons8-settings'}/>
-
-                      <h1>Edit Campaign</h1>
-                      <Steptracker
-                        steps={[
-                          {
-                            label: 'Step 1',
-                            isActive: this.props.steptrackerStep === 0,
-                            isPast: this.props.steptrackerStep > 0
-                          },
-                          {
-                            label: 'Step 2',
-                            isActive: this.props.steptrackerStep === 1,
-                            isPast: this.props.steptrackerStep > 1
-                          },
-                          {
-                            label: 'Step 3',
-                            isActive: this.props.steptrackerStep === 2,
-                            isPast: this.props.steptrackerStep > 2
-                          }
-                        ]}/>
-                    </div>
-                  </div>
-                </Titlebar>
-              </div>
-            </div>
+            <Titlebar
+              title="Choose a Campaign Type"
+              avatars={[
+                { src: this.props.brand.imgPreview },
+                { icon: 'icons8-settings' }
+              ]}
+              steptracker={steptracker}/>
           );
         }}>
         <div className="container">
@@ -117,6 +111,10 @@ class EditCampaign extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let campaign = state.entities.getIn(['campaigns', ownProps.params.campaignId]);
+  let brand;
+  if(campaign) {
+    brand = state.entities.getIn(['brands', campaign.get('defaultBrand')]);
+  }
   let triggers = state.entities.get('triggers').filter(x => x.campaignId === ownProps.campaignId);
   const triggerIds = triggers.reduce((r, x) => {
     return r.push(x.get('triggerId'));
@@ -129,12 +127,16 @@ const mapStateToProps = (state, ownProps) => {
   if(campaign) {
     campaign = campaign.toJS();
   }
+  if(brand) {
+    brand = brand.toJS();
+  }
   if(triggers) {
     triggers = triggers.toJS();
   }
 
   return {
     campaign,
+    brand,
     triggers,
     trainingResults: trainingResults.toJS()
   };
