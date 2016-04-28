@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
-import Titlebar from 'app/common/components/layout/Titlebar';
+import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { loadCampaignCreatePage, selectBrand, selectCampaignType, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
@@ -57,25 +57,16 @@ class CreateCampaign extends Component {
         <DefaultLayout
           titleRender={_ => {
             return (
-              <div className="container-fluid">
-                <div className="row">
-                  <Titlebar className="col-xs-12">
-                    <div className="row">
-                      <div className="col-xs-6">
-                        <h1>Select a Brand</h1>
-                      </div>
-                      <div className="col-xs-2 col-xs-push-4">
-                        <button
-                          className="btn btn-secondary btn-radius-lg btn-block"
-                          type="button"
-                          onClick={this.props.actions.openAddBrandModal}>
-                          Add New Brand
-                        </button>
-                      </div>
-                    </div>
-                  </Titlebar>
-                </div>
-              </div>
+              <Titlebar
+                title="Select a Brand"
+                ctas={[(
+                  <button
+                    className="btn btn-secondary btn-radius-lg btn-block"
+                    type="button"
+                    onClick={this.props.actions.openAddBrandModal}>
+                    Add New Brand
+                  </button>
+                )]}/>
             );
           }}>
           <div className="container container--gutter">
@@ -96,20 +87,11 @@ class CreateCampaign extends Component {
         <DefaultLayout
           titleRender={_ => {
             return (
-              <div className="container-fluid">
-                <div className="row">
-                  <Titlebar className="col-xs-12">
-                    <div className="row">
-                      <div className="col-xs-12">
-                        <Avatar
-                          className="pull-xs-left m-r-1"
-                          src={this.props.selectedBrand.imgPreview}/>
-                        <h1>Choose a Campaign Type</h1>
-                      </div>
-                    </div>
-                  </Titlebar>
-                </div>
-              </div>
+              <Titlebar
+                title="Choose a Campaign Type"
+                avatars={[
+                  { src: this.props.selectedBrand.imgPreview }
+                ]}/>
             );
           }}>
           <div className="container container--gutter">
@@ -169,26 +151,13 @@ class CreateCampaign extends Component {
       <DefaultLayout
         titleRender={_ => {
           return (
-            <div className="container-fluid">
-              <div className="row">
-                <Titlebar className="col-xs-12">
-                  <div className="row">
-                    <div className="col-xs-12">
-                      <Avatar
-                        className="pull-xs-left m-r-1"
-                        src={this.props.selectedBrand.imgPreview}/>
-
-                      <Avatar
-                        className="pull-xs-left m-r-1"
-                        icon={'icons8-settings'}/>
-
-                      <h1>Create Campaign</h1>
-                      {steptracker}
-                    </div>
-                  </div>
-                </Titlebar>
-              </div>
-            </div>
+            <Titlebar
+              title="Choose a Campaign Type"
+              avatars={[
+                { src: this.props.selectedBrand.imgPreview },
+                { icon: 'icons8-settings' }
+              ]}
+              steptracker={steptracker}/>
           );
         }}>
         <div className="container container--gutter">
