@@ -78,7 +78,7 @@ class CreateCampaign extends Component {
               </div>
             );
           }}>
-          <div className="container">
+          <div className="container container--gutter">
             <BrandSelectorContainer/>
           </div>
         </DefaultLayout>
@@ -112,7 +112,7 @@ class CreateCampaign extends Component {
               </div>
             );
           }}>
-          <div className="container">
+          <div className="container container--gutter">
             <CampaignTypeSelectorContainer/>
           </div>
         </DefaultLayout>
@@ -191,7 +191,7 @@ class CreateCampaign extends Component {
             </div>
           );
         }}>
-        <div className="container">
+        <div className="container container--gutter">
           {form}
         </div>
       </DefaultLayout>
