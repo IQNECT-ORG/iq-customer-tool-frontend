@@ -8,6 +8,7 @@ import MultipleAssetField from 'app/common/components/forms/MultipleAssetField';
 import classNames from 'classnames';
 import TargetType from '../../TargetType';
 import TagsInput from '../../TagsInput';
+import Submit from 'app/common/components/forms/Submit';
 
 class CampaignForm extends Component {
   render() {
@@ -93,7 +94,11 @@ class CampaignForm extends Component {
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Next</button>
+                        <Submit
+                          className="btn btn-block btn-primary btn-radius-lg"
+                          isLoading={this.props.submitting}>
+                          Next
+                        </Submit>
                       </div>
                     </div>
                   </div>
