@@ -9,15 +9,15 @@ class CampaignTypeSelectorOptions extends Component {
 
     switch(this.props.campaignType) {
       case Constants.CampaignTypes.IMAGE:
-        icon = 'icons8-dashboard';
+        icon = 'icons8-picture';
         label = <div>Create Image<br/>Campaign</div>;
         break;
       case Constants.CampaignTypes.VIDEO:
-        icon = 'icons8-statistics';
+        icon = 'icons8-movie';
         label = <div>Create Video<br/>Campaign</div>;
         break;
       case Constants.CampaignTypes.PDF:
-        icon = 'icons8-questions';
+        icon = 'icons8-magazine';
         label = <div>Create Magazine<br/>Campaign</div>;
         break;
     }
