@@ -1,14 +1,14 @@
 import queryString from 'query-string';
 import _ from 'lodash';
 
-function removeTrailingSlash(url) {
+export function removeTrailingSlash(url) {
   if(_.endsWith(url, '/')) {
     return url.slice(0, -1);
   }
   return url;
 };
 
-function normalizeParams(params) {
+export function normalizeParams(params) {
   if(_.isString(params)) {
     return '?' + params;
   } else if(_.isObject(params)) {
@@ -18,13 +18,13 @@ function normalizeParams(params) {
   }
 };
 
-async function fetcher(url, options) {
+export function buildURL(url, parma) {
   // Remove trailing slash as it doesn't support it
-  url = removeTrailingSlash(url);
-  const params = normalizeParams(options.params);
-  url = url + params;
+  return removeTrailingSlash(url) + normalizeParams(params);
+}
 
-  let response = await fetch(url, options);
+export async function fetcher(url, options) {
+  let response = await fetch(buildURL(url, options.params), options);
   return {
     json: await response.json(),
     response
