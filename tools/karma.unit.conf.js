@@ -21,7 +21,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../src/assets/js/**/__tests__/*-test.js'
+      path.resolve(__dirname, '../node_modules/babel-polyfill/dist/polyfill.js'),
+      '../src/assets/js/**/__tests__/*-test.js',
     ],
 
 
