@@ -17,9 +17,6 @@
 * ruby
 * grunt
 
-@TODO: https://github.com/chriseppstein/sass-css-importer
-Need to get this installed via chef.
-
 ## Dev
 
 ### Environment
