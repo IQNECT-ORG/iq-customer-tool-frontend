@@ -109,8 +109,11 @@ class CreateCampaign extends Component {
 
     let form;
     let steptracker;
+    let icon;
+
     switch(this.props.selectedCampaignTypeId >> 0) {
       case Constants.CampaignTypes.IMAGE:
+        icon = 'icons8-picture';
         form = (
           <ImageCampaignFormContainer
             selectedBrandId={this.props.selectedBrandId}
@@ -119,6 +122,7 @@ class CreateCampaign extends Component {
         steptracker = null;
         break;
       case Constants.CampaignTypes.PDF:
+        icon = 'icons8-magazine';
         form = (
           <PrintCampaignFormContainer
             selectedBrandId={this.props.selectedBrandId}
@@ -146,6 +150,7 @@ class CreateCampaign extends Component {
         );
         break;
     }
+    // icon = 'icons8-movie';
 
     return (
       <DefaultLayout
@@ -155,7 +160,7 @@ class CreateCampaign extends Component {
               title="Choose a Campaign Type"
               avatars={[
                 { src: this.props.selectedBrand.imgPreview },
-                { icon: 'icons8-settings' }
+                { icon: icon }
               ]}
               steptracker={steptracker}/>
           );

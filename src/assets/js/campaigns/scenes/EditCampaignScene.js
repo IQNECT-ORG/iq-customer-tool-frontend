@@ -48,8 +48,10 @@ class EditCampaign extends Component {
     }
 
     let form;
+    let icon;
     switch(this.props.campaign.type >> 0) {
       case Constants.CampaignTypes.IMAGE:
+        icon = 'icons8-picture';
         form = (
           <ImageCampaignFormContainer
             campaign={this.props.campaign}
@@ -57,6 +59,7 @@ class EditCampaign extends Component {
         );
         break;
       case Constants.CampaignTypes.PDF:
+        icon = 'icons8-magazine';
         form = (
           <PrintCampaignFormContainer
             campaign={this.props.campaign}
@@ -95,7 +98,7 @@ class EditCampaign extends Component {
               title="Choose a Campaign Type"
               avatars={[
                 { src: this.props.brand.imgPreview },
-                { icon: 'icons8-settings' }
+                { icon: icon }
               ]}
               steptracker={steptracker}/>
           );
