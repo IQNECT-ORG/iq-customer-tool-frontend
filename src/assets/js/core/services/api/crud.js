@@ -33,21 +33,23 @@ export async function fetcher(url, options) {
 
 // JSON
 
-export const fetchJSON = async function(url, overrideOptions) {
-  let body;
-  if(_.isString(overrideOptions.body)) {
-    body = overrideOptions.body;
+export const serializeJSONBody = function(body) {
+  if(_.isString(body)) {
+    return body;
   } else {
-    body = JSON.stringify(overrideOptions.body);
+    return JSON.stringify(body);
   }
+}
 
-  const options = _.defaultsDeep({}, overrideOptions, {
+export const fetchJSON = async function(url, overrideOptions) {
+  const options = _.defaultsDeep({
+    body: serializeJSONBody(overrideOptions.body)
+  }, overrideOptions, {
     credentials: 'include',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
-    },
-    body
+    }
   });
 
   return fetcher(url, options);
@@ -85,15 +87,19 @@ export const deleteJSON = async function(url, params) {
 
 // FormData
 
-export const fetchFormData = async function(url, overrideOptions) {
+export const serializeFormDataBody = function(data) {
   let formData = new FormData();
 
-  _.forOwn(overrideOptions.body, (value, key) => {
+  _.forOwn(data, (value, key) => {
     formData.set(key, value)
   });
 
+  return formData;
+};
+
+export const fetchFormData = async function(url, overrideOptions) {
   const options = _.defaultsDeep({
-    body: formData
+    body: serializeFormDataBody(overrideOptions.body)
   }, overrideOptions, {
     credentials: 'include',
     headers: {
