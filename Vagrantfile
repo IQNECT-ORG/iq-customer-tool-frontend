@@ -26,6 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'nodejs'
     chef.add_recipe 'custom::bashrc'
     chef.add_recipe 'custom::gems'
+    chef.add_recipe 'custom::phantomjs'
 
     chef.json = {
       nodejs: {

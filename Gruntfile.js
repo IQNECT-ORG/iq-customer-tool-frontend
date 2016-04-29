@@ -157,10 +157,12 @@ module.exports = grunt => {
 
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: './tools/karma.unit.conf.js',
+        autoWatch: false,
+        singleRun: true,
       },
       unitWatch: {
-        configFile: 'karma.conf.js',
+        configFile: './tools/karma.unit.conf.js',
         autoWatch: true,
         singleRun: false,
       }

@@ -16,8 +16,11 @@
 * node
 * ruby
 * grunt
+* phantomjs
 
 ## Dev
+
+`chef exec berks install`
 
 ### Environment
 
