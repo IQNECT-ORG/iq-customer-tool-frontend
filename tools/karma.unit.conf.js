@@ -6,8 +6,8 @@ var path = require('path');
 module.exports = function(config) {
   config.set({
     browserStack: {
-      username: 'xxx',
-      accessKey: 'xxx'
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESSKEY
     },
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
