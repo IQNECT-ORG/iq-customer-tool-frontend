@@ -9,7 +9,10 @@ const loaders = [
       path.resolve(__dirname, '../src/assets/js'),
       path.resolve(__dirname, '../node_modules/')
     ],
-    loader: 'babel'
+    loader: 'babel',
+    query: {
+      presets: ['airbnb']
+    }
   },
   {
     test: /\.js$/,
@@ -22,7 +25,7 @@ const loaders = [
 ];
 
 module.exports = Object.assign({}, webpackConfig, {
-  devtool: 'source-map'
+  devtool: 'inline-source-map',
   isparta: {
     embedSource: true,
     noAutoWrap: true,
@@ -34,7 +37,13 @@ module.exports = Object.assign({}, webpackConfig, {
 
   module: Object.assign({}, webpackConfig.module, {
     loaders: loaders
-  })
+  }),
+
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  }
 });
 
 
