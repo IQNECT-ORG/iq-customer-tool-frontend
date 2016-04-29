@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 class AssetInput extends Component {
   static defaultProps = {
-    icon: 'icons8-dashboard',
+    icon: 'icons8-plus',
     label: 'Upload'
   }
 
