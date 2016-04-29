@@ -19,13 +19,19 @@ class Menu extends Component {
             <Collapse className="draw-nav__sub-menu" isOpened={this.props.isCatalogueSubmenuOpen}>
               <ul className="list-unstyled">
                 <li>
-                  <Link to="/manage/brands"><i className="icons8-dashboard"/> Brands</Link>
+                  <Link to="/manage/brands">
+                    <img src="/assets/images/bullet-icon-default.svg"/> Brands
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/manage/campaigns"><i className="icons8-dashboard"/> Campaigns</Link>
+                  <Link to="/manage/campaigns">
+                    <img src="/assets/images/bullet-icon-default.svg"/> Campaigns
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/manage/coupons"><i className="icons8-dashboard"/> Coupons</Link>
+                  <Link to="/manage/coupons">
+                    <img src="/assets/images/bullet-icon-default.svg"/> Coupons
+                  </Link>
                 </li>
               </ul>
             </Collapse>
