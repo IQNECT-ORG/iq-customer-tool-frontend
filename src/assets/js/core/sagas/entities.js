@@ -20,7 +20,7 @@ import { NotFoundError, BadRequestError } from '../errors/http';
 import parser, { triggerParser, trainingResultsParser } from '../services/api/parsers';
 import * as schemas from '../services/api/schemas';
 
-function* fetchEntity(config, options) {
+export function* fetchEntity(config, options) {
   yield put(config.entityActions.fetchRequest(options.url || options.id));
 
   try {
@@ -40,7 +40,7 @@ function* fetchEntity(config, options) {
   }
 };
 
-function* createEntity(config, options) {
+export function* createEntity(config, options) {
   yield put(config.entityActions.createRequest(options.url || options.id));
 
   try {
@@ -60,7 +60,7 @@ function* createEntity(config, options) {
   }
 };
 
-function* updateEntity(config, options) {
+export function* updateEntity(config, options) {
   yield put(config.entityActions.updateRequest(options.url || options.id));
 
   try {
@@ -80,7 +80,7 @@ function* updateEntity(config, options) {
   }
 };
 
-function* deleteEntity(config, options) {
+export function* deleteEntity(config, options) {
   yield put(config.entityActions.deleteRequest(options.url || options.id));
 
   try {
