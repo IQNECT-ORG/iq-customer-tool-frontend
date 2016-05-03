@@ -1,0 +1,18 @@
+
+.coupon-list {
+  @include element('thumbnail') {
+    @extend %btn-hollow;
+    padding: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+
+    > img {
+      height: 100%;
+      left: 50%;
+      position: relative;
+      transform: translateX(-50%);
+    }
+  }
+}
