@@ -4,7 +4,7 @@ import joid from 'joid';
 import AssetField from './AssetField';
 import Submit from 'app/common/components/forms/Submit';
 
-class CreateCouponForm extends Component {
+class CouponForm extends Component {
   render() {
     const fields = this.props.fields;
     return (
@@ -96,4 +96,4 @@ class CreateCouponForm extends Component {
   }
 };
 
-export default CreateCouponForm;
+export default CouponForm;

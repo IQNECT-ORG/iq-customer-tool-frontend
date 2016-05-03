@@ -57,6 +57,7 @@ export default {
 
     // Coupons
     COUPON_CREATE_FORM_SUBMIT: null,
+    COUPON_EDIT_FORM_SUBMIT: null,
 
     COUPONS_FETCH_REQUEST: null,
     COUPONS_FETCH_SUCCESS: null,

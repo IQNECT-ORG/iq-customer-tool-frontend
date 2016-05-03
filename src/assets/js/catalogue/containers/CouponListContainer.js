@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CouponList from 'app/common/components/couponList/CouponList';
 import ui from 'redux-ui/transpiled';
-import campaignActions from 'app/common/actions/campaigns';
+import couponActions from 'app/common/actions/coupons';
+import brandActions from 'app/common/actions/brands';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
+import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 class CouponListContainer extends Component {
 
   componentDidMount() {
-    //this.props.actions.fetchCampaigns();
+    this.props.actions.fetchCoupons();
+    this.props.actions.fetchBrands();
   }
 
   render() {
@@ -21,11 +24,11 @@ class CouponListContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let filteredCoupons = _.filter(getCoupons(state), campaign => {
+  let filteredCoupons = _.filter(getCoupons(state), coupon => {
     if(ownProps.ui.filter == null) {
       return true;
     }
-    return _.includes(_.lowerCase(campaign.name), _.lowerCase(ownProps.ui.filter));
+    return _.includes(_.lowerCase(coupon.name), _.lowerCase(ownProps.ui.filter));
   });
 
   return {
@@ -36,18 +39,25 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
-      //fetchCampaigns: () => {
-        //dispatch(campaignActions.fetch());
-      //}
+      fetchCoupons: () => {
+        dispatch(couponActions.fetch());
+      },
+      fetchBrands: _ => {
+        dispatch(brandActions.fetch());
+      }
     },
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
     },
-    onDeleteClick: (campaign) => {
-      //dispatch(deleteCampaign(campaign.campaignId));
+    onDeleteClick: (coupon) => {
+      dispatch(deletecoupon(coupon.couponId));
     },
-    onThumbnailClick: (campaign) => {
-      //dispatch(push(`/campaigns/edit/${campaign.campaignId}`));
+    onThumbnailClick: (coupon) => {
+      dispatch(updateModalPath('editCoupon'));
+      dispatch(updateModalData({
+        couponId: coupon.couponId
+      }));
+      dispatch(openModal());
     }
   };
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CreateCouponForm from '../components/forms/CreateCouponForm';
+import CouponForm from '../components/forms/CouponForm';
 import ui from 'redux-ui/transpiled';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
@@ -16,13 +16,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const fields = _.cloneDeep(ownProps.fields);
   fields.validityFrom.onChange = (value) => {
     const changeAction = change('validityFrom', value);
-    changeAction.form = 'createCoupon';
+    changeAction.form = 'coupon';
     dispatch(changeAction);
   };
 
   fields.validityTo.onChange = (value) => {
     const changeAction = change('validityTo', value);
-    changeAction.form = 'createCoupon';
+    changeAction.form = 'coupon';
     dispatch(changeAction);
   };
 
@@ -36,11 +36,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const fields = ['artwork', 'couponName', 'discountCode', 'validityFrom', 'validityTo'];
 
-let DecoratedComponent = CreateCouponForm;
+let DecoratedComponent = CouponForm;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm({
-  form: 'createCoupon',
+  form: 'coupon',
   fields
+},
+(state, ownProps) => {
+  const coupon = ownProps.coupon;
+
+  return {
+    initialValues: {
+      couponName: _.get(coupon, 'title')
+    }
+  };
 })(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 

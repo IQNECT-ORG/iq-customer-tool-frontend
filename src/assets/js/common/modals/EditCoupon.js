@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
-import { couponCreateFormSubmit } from '../actions/coupons';
+import { couponEditFormSubmit } from '../actions/coupons';
+import { getCoupons } from 'app/core/selectors/entities/coupons';
 
-class CreateCoupon extends Component {
+class EditCoupon extends Component {
   render() {
     return (
       <Modal
@@ -20,11 +21,14 @@ class CreateCoupon extends Component {
             <button type="button" className="close" aria-label="Close" onClick={this.props.onCloseClick}>
               <span aria-hidden="true">&times;</span>
             </button>
-            <h1>Add New Coupon</h1>
+            <h1>Edit Coupon</h1>
           </div>
 
           <div className="modal-body">
-            <CouponForm onFormSubmit={this.props.onSubmit} onPreviewClick={this.props.onPreviewClick}/>
+            <CouponForm
+              coupon={this.props.coupon}
+              onFormSubmit={this.props.onSubmit}
+              onPreviewClick={this.props.onPreviewClick}/>
           </div>
         </div>
       </Modal>
@@ -33,7 +37,11 @@ class CreateCoupon extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const coupon = _.find(getCoupons(state), coupon => {
+    return coupon.couponId === ownProps.data.couponId;
+  });
   return {
+    coupon
   };
 }
 
@@ -42,8 +50,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onSubmit: (values) => {
       console.log(values);
       return new Promise((resolve, reject) => {
-        dispatch(couponCreateFormSubmit({
+        dispatch(couponEditFormSubmit({
           values: {
+            couponId: ownProps.data.couponId,
             title: values.couponName,
           },
           form: 'coupon',
@@ -61,7 +70,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 }
 
-let DecoratedComponent = CreateCoupon;
+let DecoratedComponent = EditCoupon;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;
