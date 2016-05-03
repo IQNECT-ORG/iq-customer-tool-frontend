@@ -36,7 +36,6 @@ class CouponList extends Component {
   }
 
   _renderRow(coupon, index) {
-    //const brand = _.filter(this.props.brands, x => x.brandId === coupon.brandId);
     return (
       <CouponListRow
         coupon={coupon}

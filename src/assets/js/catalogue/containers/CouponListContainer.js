@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CouponList from 'app/common/components/couponList/CouponList';
 import ui from 'redux-ui/transpiled';
 import couponActions from 'app/common/actions/coupons';
-import brandActions from 'app/common/actions/brands';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
@@ -13,7 +12,6 @@ class CouponListContainer extends Component {
 
   componentDidMount() {
     this.props.actions.fetchCoupons();
-    this.props.actions.fetchBrands();
   }
 
   render() {
@@ -41,9 +39,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     actions: {
       fetchCoupons: () => {
         dispatch(couponActions.fetch());
-      },
-      fetchBrands: _ => {
-        dispatch(brandActions.fetch());
       }
     },
     onFilterSubmit: (values) => {
