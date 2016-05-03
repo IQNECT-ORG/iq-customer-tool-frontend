@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import { couponCreateFormSubmit } from '../actions/coupons';
 
 class CreateCoupon extends Component {
   render() {
@@ -38,13 +39,19 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onSubmit: () => {
-      // @TODO: Get the coupon that was saved
-      const changeAction = change(ownProps.data.field, '1');
-      changeAction.form = ownProps.data.form;
-
-      dispatch(changeAction);
-      dispatch(closeModal());
+    onSubmit: (values) => {
+      console.log(values);
+      return new Promise((resolve, reject) => {
+        dispatch(couponCreateFormSubmit({
+          values: {
+            title: values.couponName,
+          },
+          form: 'createCoupon',
+          resolve,
+          reject,
+          isModal: true
+        }));
+      });
     },
     onPreviewClick: () => {
       dispatch(updateModalPath('previewCoupon'));

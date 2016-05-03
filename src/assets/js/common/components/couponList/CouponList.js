@@ -35,13 +35,14 @@ class CouponList extends Component {
     return _.map(this.props.coupons, ::this._renderRow);
   }
 
-  _renderRow(campaign, index) {
+  _renderRow(coupon, index) {
+    //const brand = _.filter(this.props.brands, x => x.brandId === coupon.brandId);
     return (
       <CouponListRow
-        campaign={campaign}
+        coupon={coupon}
         key={index}
-        onThumbnailClick={ _ => { this.props.onThumbnailClick(campaign) }}
-        onDeleteClick={ _ => { this.props.onDeleteClick(campaign) }}/>
+        onThumbnailClick={ _ => { this.props.onThumbnailClick(coupon) }}
+        onDeleteClick={ _ => { this.props.onDeleteClick(coupon) }}/>
     );
   }
 };

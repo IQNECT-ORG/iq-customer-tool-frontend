@@ -12,7 +12,7 @@ class CouponListRow extends Component {
           <CouponListThumbnail onClick={this.props.onThumbnailClick}/>
         </div>
         <div className="faux-table__cell col-xs-2">{coupon.brand}</div>
-        <div className="faux-table__cell col-xs-2">{coupon.name}</div>
+        <div className="faux-table__cell col-xs-2">{coupon.title}</div>
         <div className="faux-table__cell col-xs-2">NI - NI</div>
         <div className="faux-table__cell col-xs-2">{coupon.code}</div>
         <div className="faux-table__cell col-xs-2">

@@ -247,6 +247,17 @@ function* watchTriggerUpdate() {
   yield takeEvery('TRIGGERS_UPDATE', updateTrigger);
 };
 
+// Coupons
+function* watchCouponsFetch() {
+  yield takeEvery('COUPONS_FETCH', function* (action) {
+    yield getCoupons({
+      id: _.get(action, 'payload.id'),
+      params: _.get(action, 'payload.params')
+    });
+  });
+};
+
+
 export default function* () {
   yield fork(watchBrandsFetch);
   yield fork(watchBrandCreate);
@@ -255,4 +266,5 @@ export default function* () {
   yield fork(watchCampaignDelete);
   yield fork(watchTriggerUpdate);
   yield fork(watchTriggersFetch);
+  yield fork(watchCouponsFetch);
 };
