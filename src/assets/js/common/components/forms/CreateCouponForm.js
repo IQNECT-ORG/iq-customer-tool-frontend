@@ -9,13 +9,19 @@ class CreateCouponForm extends Component {
     return (
       <form className="form--modal" onSubmit={this.props.onSubmit}>
         <fieldset className="form-group">
-          <AssetField
-            onChange={fields.artwork.onChange}
-            value={fields.artwork.value}/>
+          <div className="row">
+            <div className="col-xs-6 aspect-1-1-container">
+              <div className="aspect-item">
+                <AssetField
+                  onChange={fields.artwork.onChange}
+                  value={fields.artwork.value}/>
+              </div>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset className="form-group">
-          <label htmlFor={joid.link(true, 'input')}>Coupon Name</label>
+          <label htmlFor={joid.link(true, 'input')}>Name</label>
           <input
             type="text"
             className="form-control"
@@ -73,11 +79,11 @@ class CreateCouponForm extends Component {
 
         <div className="row">
           <div className="col-xs-6">
-            <button type="button" className="btn btn-block btn-secondary" onClick={this.props.onPreviewClick}>Preview</button>
+            <button type="button" className="btn btn-block btn-secondary btn-radius-lg" onClick={this.props.onPreviewClick}>Preview</button>
           </div>
 
           <div className="col-xs-6">
-            <button type="submit" className="btn btn-block btn-primary">Save</button>
+            <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Save</button>
           </div>
         </div>
       </form>
