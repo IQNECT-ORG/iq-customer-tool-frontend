@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import joid from 'joid';
+import Submit from 'app/common/components/forms/Submit';
 
 class AddWebsiteForm extends Component {
   render() {
@@ -17,11 +18,15 @@ class AddWebsiteForm extends Component {
 
         <div className="row">
           <div className="col-xs-6">
-            <button type="button" className="btn btn-block btn-secondary">Preview</button>
+            <button type="button" className="btn btn-block btn-secondary btn-radius-lg">Preview</button>
           </div>
 
           <div className="col-xs-6">
-            <button type="submit" className="btn btn-block btn-primary">Save</button>
+            <Submit
+              className="btn btn-block btn-primary btn-radius-lg"
+              isLoading={this.props.submitting}>
+              Save
+            </Submit>
           </div>
         </div>
       </form>

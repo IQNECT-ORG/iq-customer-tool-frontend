@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import Submit from 'app/common/components/forms/Submit';
 
 class SummaryForm extends Component {
   render() {
@@ -49,9 +50,11 @@ class SummaryForm extends Component {
                 </div>
 
                 <div className="col-xs-6">
-                  <button type="submit" className="btn btn-block btn-primary btn-radius-lg">
+                  <Submit
+                    className="btn btn-block btn-primary btn-radius-lg"
+                    isLoading={this.props.submitting}>
                     Save
-                  </button>
+                  </Submit>
                 </div>
               </div>
             </div>

@@ -3,6 +3,7 @@ import _ from 'lodash';
 import joid from 'joid';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
+import Submit from 'app/common/components/forms/Submit';
 
 class PageDetailForm extends Component {
   render() {
@@ -88,9 +89,11 @@ class PageDetailForm extends Component {
                         <button type="button" className="btn btn-block btn-secondary btn-radius-lg" onClick={this.props.onBackClick}>Back</button>
                       </div>
 
-                      <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Summary</button>
-                      </div>
+                      <Submit
+                        className="btn btn-block btn-primary btn-radius-lg"
+                        isLoading={this.props.submitting}>
+                        Summary
+                      </Submit>
                     </div>
                   </div>
                 </div>

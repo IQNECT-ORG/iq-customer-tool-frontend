@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AssetField from './AssetField';
 import joid from 'joid';
+import Submit from 'app/common/components/forms/Submit';
 
 class AddBrandForm extends Component {
   render() {
@@ -52,7 +53,11 @@ class AddBrandForm extends Component {
       return (
         <div className="row">
           <div className="col-xs-6">
-            <button type="submit" className="btn btn-primary btn-block btn-radius-lg">Save</button>
+            <Submit
+              className="btn btn-block btn-primary btn-radius-lg"
+              isLoading={this.props.submitting}>
+              Save
+            </Submit>
           </div>
           <div className="col-xs-6">
             <button type="button" className="btn btn-secondary btn-block btn-radius-lg" onClick={this.props.onDeleteClick}>Delete</button>

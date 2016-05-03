@@ -6,6 +6,7 @@ import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import AssetField from 'app/common/components/forms/AssetField';
 import classNames from 'classnames';
+import Submit from 'app/common/components/forms/Submit';
 
 class BasicDetailsForm extends Component {
   render() {
@@ -92,7 +93,11 @@ class BasicDetailsForm extends Component {
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Next</button>
+                        <Submit
+                          className="btn btn-block btn-primary btn-radius-lg"
+                          isLoading={this.props.submitting}>
+                          Next
+                        </Submit>
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import joid from 'joid';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
 import GalleryList from 'app/common/components/gallery/GalleryList';
+import Submit from 'app/common/components/forms/Submit';
 
 class AllPagesForm extends Component {
   render() {
@@ -76,7 +77,11 @@ class AllPagesForm extends Component {
                       </div>
 
                       <div className="col-xs-6">
-                        <button type="submit" className="btn btn-block btn-primary btn-radius-lg">Summary</button>
+                        <Submit
+                          className="btn btn-block btn-primary btn-radius-lg"
+                          isLoading={this.props.submitting}>
+                          Summary
+                        </Submit>
                       </div>
                     </div>
                   </div>
