@@ -14,7 +14,8 @@ import * as triggersApi from '../services/api/triggers';
 import * as trainingResultsApi from '../services/api/trainingResults';
 
 // Parsers
-import parser, { triggerParser, trainingResultsParser } from '../services/api/parsers';
+import { triggerParser, trainingResultsParser } from '../services/api/parsers';
+import parser from 'redux-entity-crud/lib/parsers';
 import * as schemas from '../services/api/schemas';
 
 import { fetchEntity, createEntity, updateEntity, deleteEntity } from 'redux-entity-crud/lib/sagas';

@@ -1,13 +1,5 @@
 import { normalize, arrayOf } from 'normalizr';
 
-const stdParser = (schema, data, options) => {
-  if(_.isArray(data)) {
-    return normalize(data, arrayOf(schema));
-  }
-
-  return normalize(data, schema);
-};
-
 const triggerParser = (schema, data, options) => {
   const parsePayload = (item) => {
     const newPayload = [];
@@ -42,6 +34,5 @@ const trainingResultsParser = (schema, data, options) => {
   return stdParser(schema, data);
 };
 
-export default stdParser;
 export { triggerParser };
 export { trainingResultsParser };

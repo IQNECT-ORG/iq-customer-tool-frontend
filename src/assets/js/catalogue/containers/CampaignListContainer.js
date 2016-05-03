@@ -6,7 +6,6 @@ import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
-import Immutable from 'immutable';
 
 class CampaignListContainer extends Component {
 
