@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
 import AddCouponForm from 'app/common/components/forms/AddCouponForm';
 import serialize from 'form-serialize';
-import {  } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 class AddCoupon extends Component {

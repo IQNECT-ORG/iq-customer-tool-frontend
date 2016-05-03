@@ -5,8 +5,8 @@ import _ from 'lodash';
 import ModalManager from 'app/modal/containers/ModalManager';
 
 import AddWebsiteModal from 'app/campaigns/modals/AddWebsite';
-import AddCouponModal from 'app/campaigns/modals/AddCoupon';
-import CreateCouponModal from 'app/campaigns/modals/CreateCoupon';
+import AddCouponModal from 'app/common/modals/AddCoupon';
+import CreateCouponModal from 'app/common/modals/CreateCoupon';
 import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
 import PreviewCouponModal from 'app/common/modals/PreviewCoupon';
 import SuccessModal from 'app/campaigns/modals/Success';
