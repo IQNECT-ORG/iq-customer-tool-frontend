@@ -18,7 +18,7 @@ export function normalizeParams(params) {
   }
 };
 
-export function buildURL(url, parma) {
+export function buildURL(url, params) {
   // Remove trailing slash as it doesn't support it
   return removeTrailingSlash(url) + normalizeParams(params);
 }

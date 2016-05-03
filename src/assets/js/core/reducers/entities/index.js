@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux-immutablejs';
+import { combineReducers } from 'redux';
 import previews from './previews';
 import brands from './brands';
 import campaigns from './campaigns';

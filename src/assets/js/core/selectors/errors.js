@@ -1,3 +1,3 @@
 import { createSelector } from 'reselect';
 
-export const getErrors = state => state.errors.toJS();
+export const getErrors = state => state.errors;

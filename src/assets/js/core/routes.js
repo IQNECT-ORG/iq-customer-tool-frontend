@@ -7,8 +7,11 @@ import dashboardRoutes from 'app/dashboard/routes';
 
 import { Route, IndexRoute } from 'react-router';
 
+import TestScene from './components/Test';
+
 export default (
   <Route path="/" component={App}>
+    <Route path="/test" component={TestScene}/>
     {authRoutes}
     {campaignRoutes}
     {catalogueRoutes}

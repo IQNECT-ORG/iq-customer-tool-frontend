@@ -1,13 +1,11 @@
 import Immutable from 'immutable';
 import Constants from '../../Constants';
-import { combineReducers, createReducer } from 'redux-immutablejs';
-import crudReducer from '../crud';
+import { createReducer } from 'redux-create-reducer';
+import crudReducer from 'redux-entity-crud/lib/reducer'
 
 const Actions = Constants.ActionTypes;
 
-let reducer = createReducer(new Immutable.Map({
-
-}), {
+let reducer = createReducer({}, {
 
 });
 reducer = crudReducer(reducer, {

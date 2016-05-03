@@ -1,4 +1,4 @@
-import { getJSON, createFormData, updateFormData, deleteJSON } from './crud';
+import { getJSON, createFormData, updateFormData, deleteJSON } from 'redux-entity-crud/lib/api';
 
 export const get = async function(id = '', params) {
   return await getJSON(`https://iq.api/api/trigger/${id}`, params);

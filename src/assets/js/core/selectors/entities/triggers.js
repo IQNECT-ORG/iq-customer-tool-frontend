@@ -1,3 +1,3 @@
 import { createSelector } from 'reselect';
 
-export const getTriggers = state => state.entities.get('triggers').toJS();
+export const getTriggers = state => state.entities.triggers;
