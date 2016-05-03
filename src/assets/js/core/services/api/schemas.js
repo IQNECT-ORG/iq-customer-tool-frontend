@@ -20,6 +20,10 @@ export const triggerPayload = new Schema('triggerPayloads', {
   idAttribute: 'triggerPayloadId'
 });
 
+export const coupon = new Schema('coupons', {
+  idAttribute: 'couponId'
+});
+
 // Definitions
 trigger.define({
   payload: arrayOf(triggerPayload)

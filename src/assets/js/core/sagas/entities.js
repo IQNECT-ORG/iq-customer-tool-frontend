@@ -6,12 +6,14 @@ import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import trainingResultActions from 'app/common/actions/trainingResults';
+import couponActions from 'app/common/actions/coupons';
 // API
 import * as brandsApi from '../services/api/brands';
 import * as usersApi from '../services/api/users';
 import * as campaignsApi from '../services/api/campaigns';
 import * as triggersApi from '../services/api/triggers';
 import * as trainingResultsApi from '../services/api/trainingResults';
+import * as couponsApi from '../services/api/coupons';
 
 // Parsers
 import { triggerParser, trainingResultsParser } from '../services/api/parsers';
@@ -154,6 +156,46 @@ export const getTrainingResults = fetchEntity.bind(
   }
 );
 
+// Coupons
+export const getCoupons = fetchEntity.bind(
+  null,
+  {
+    entityName: 'Coupon',
+    entityActions: couponActions,
+    apiFn: couponsApi.get,
+    parser: parser.bind(null, schemas.coupon)
+  }
+);
+
+export const createCoupon = createEntity.bind(
+  null,
+  {
+    entityName: 'Coupon',
+    entityActions: couponActions,
+    apiFn: couponsApi.create,
+    parser: parser.bind(null, schemas.coupon)
+  }
+);
+
+export const updateCoupon = updateEntity.bind(
+  null,
+  {
+    entityName: 'Coupon',
+    entityActions: couponActions,
+    apiFn: couponsApi.update,
+    parser: parser.bind(null, schemas.coupon)
+  }
+);
+
+export const deleteCoupon = deleteEntity.bind(
+  null,
+  {
+    entityName: 'Coupon',
+    entityActions: couponActions,
+    apiFn: couponsApi.del,
+    parser: parser.bind(null, schemas.coupon)
+  }
+);
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------

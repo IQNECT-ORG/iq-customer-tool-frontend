@@ -5,6 +5,7 @@ import campaigns from './campaigns';
 import triggers from './triggers';
 import trainingResults from './trainingResults';
 import triggerPayloads from './triggerPayloads';
+import coupons from './coupons';
 
 export default combineReducers({
   previews,
@@ -12,5 +13,6 @@ export default combineReducers({
   campaigns,
   triggers,
   trainingResults,
-  triggerPayloads
+  triggerPayloads,
+  coupons
 });

@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import CouponListContainer from '../containers/CouponListContainer';
 
 class CatalogueCoupons extends Component {
 
@@ -26,6 +27,7 @@ class CatalogueCoupons extends Component {
           );
         }}>
         <div className="container container--gutter">
+          <CouponListContainer/>
         </div>
       </DefaultLayout>
     );
