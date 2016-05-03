@@ -2,6 +2,7 @@
   background-color: $background2;
   padding: 1.5rem 2rem;
   margin-bottom: $grid-gutter-width;
+  height: 102px;
 
   h1 {
     color: #263238;
@@ -9,8 +10,12 @@
     font-size: 1.6rem;
   }
 
-  .row > * {
-    display:flex;
-    align-items:center;
+  .row {
+    height: 100%;
+
+    > * {
+      display:flex;
+      align-items:center;
+    }
   }
 }
