@@ -180,8 +180,9 @@ const mapStateToProps = (state, ownProps) => {
   const selectedBrandId = state.campaigns.create.selectedBrandId;
   let selectedBrand;
   if(selectedBrandId) {
-    selectedBrand = state.entities.brands.selectedBrandId;
+    selectedBrand = state.entities.brands[selectedBrandId];
   }
+
   return {
     steptrackerStep: _.get(getUI(state), 'scene.campaignPrint.step'),
     selectedBrandId,
