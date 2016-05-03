@@ -16,6 +16,8 @@ import ImageCampaignFormContainer from '../containers/image/CampaignFormContaine
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
 
+import { getUI } from 'app/core/selectors/ui';
+
 class CreateCampaign extends Component {
   componentDidMount() {
     if(this.props.params.brandId) {
@@ -175,20 +177,16 @@ class CreateCampaign extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const selectedBrandId = state.campaigns.getIn(['create', 'selectedBrandId']);
+  const selectedBrandId = state.campaigns.create.selectedBrandId;
   let selectedBrand;
   if(selectedBrandId) {
-    selectedBrand = state.entities.getIn(['brands', selectedBrandId]);
-
-    if(selectedBrand) {
-      selectedBrand = selectedBrand.toJS();
-    }
+    selectedBrand = state.entities.brands.selectedBrandId;
   }
   return {
-    steptrackerStep: state.ui.getIn(['scene', 'campaignPrint', 'step']),
+    steptrackerStep: _.get(getUI(state), 'scene.campaignPrint.step'),
     selectedBrandId,
     selectedBrand,
-    selectedCampaignTypeId: state.campaigns.getIn(['create', 'selectedCampaignTypeId'])
+    selectedCampaignTypeId: state.campaigns.create.selectedCampaignTypeId
   };
 };
 

@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import Constants from '../../Constants';
 import { createReducer } from 'redux-create-reducer';
 import { combineReducers } from 'redux';

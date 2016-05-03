@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import routeReducer from './routeReducer';
+import { routerReducer as routing } from 'react-router-redux';
 import auth from 'app/auth/reducers';
 import alerts from './alerts';
 import campaigns from 'app/campaigns/reducers';
@@ -13,7 +13,7 @@ import catalogue from './catalogue';
 const customerTool = combineReducers({
   auth,
   alerts,
-  routing: routeReducer,
+  routing,
   entities,
   campaigns,
   ui,

@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 // Store
 const store = createAppStore();
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => { return state.routing.toJS(); }
+  selectLocationState: (state) => { return state.routing; }
 });
 
 addLocaleData(enLocaleData);

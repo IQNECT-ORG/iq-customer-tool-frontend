@@ -22,10 +22,10 @@ class PreviewerContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const preview = state.entities.getIn(['previews', 'screenshots']).find(x => x.get('url') === 'www.google.com');
-  return {
-    src: (preview == null) ? undefined : preview.get('image_url')
-  };
+  // const preview = state.entities.getIn(['previews', 'screenshots']).find(x => x.get('url') === 'www.google.com');
+  // return {
+  //   src: (preview == null) ? undefined : preview.get('image_url')
+  // };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

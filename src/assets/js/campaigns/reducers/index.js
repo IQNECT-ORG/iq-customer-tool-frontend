@@ -1,26 +1,23 @@
-import Immutable from 'immutable';
 import Constants from '../Constants';
-import { combineReducers, createReducer } from 'redux-immutablejs';
+import { createReducer } from 'redux-create-reducer';
+import { combineReducers } from 'redux';
 import recycleState from 'redux-recycle';
 
 const Actions = Constants.ActionTypes;
 
-const createInitialState = new Immutable.Map({
+const createInitialState = {
   selectedBrandId: null,
   selectedCampaignTypeId: null
-});
+};
 
 const create = createReducer(createInitialState, {
-  [Actions.CAMPAIGN_CREATE_BRAND_SELECT]: (state, action) => state.set('selectedBrandId', action.payload),
-  [Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT]: (state, action) => state.set('selectedCampaignTypeId', action.payload)
+  [Actions.CAMPAIGN_CREATE_BRAND_SELECT]: (state, action) => _.assign({}, state, { selectedBrandId: action.payload }),
+  [Actions.CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT]: (state, action) => _.assign({}, state, { selectedCampaignTypeId: action.payload })
 });
 
-const editInitialState = new Immutable.Map({
-
-});
+const editInitialState = {};
 
 const edit = createReducer(editInitialState, {
-  
 });
 
 export default combineReducers({

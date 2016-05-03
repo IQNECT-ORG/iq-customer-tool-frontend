@@ -16,6 +16,8 @@ import ImageCampaignFormContainer from '../containers/image/CampaignFormContaine
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
 
+import { getUI } from 'app/core/selectors/ui';
+
 class EditCampaign extends Component {
   componentDidMount() {
     this.props.actions.load({
@@ -113,36 +115,26 @@ class EditCampaign extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  let campaign = state.entities.getIn(['campaigns', ownProps.params.campaignId]);
+  let campaign = state.entities.campaigns[ownProps.params.campaignId];
   let brand;
   if(campaign) {
-    brand = state.entities.getIn(['brands', campaign.get('defaultBrand')]);
+    brand = state.entities.brands[campaign.defaultBrand];
   }
-  let triggers = state.entities.get('triggers').filter(x => x.campaignId === ownProps.campaignId);
-  const triggerIds = triggers.reduce((r, x) => {
-    return r.push(x.get('triggerId'));
-  }, new Immutable.List());
+  let triggers = _.filter(state.entities.triggers, x => x.campaignId === ownProps.campaignId);
+  const triggerIds = _.reduce(triggers, (r, x) => {
+    return r.push(x.triggerId);
+  }, []);
 
-  let trainingResults = state.entities.get('trainingResults').filter(x => {
-    return _.includes(triggerIds.toJS(), x.get('triggerId'));
+  let trainingResults = _.filter(state.entities.trainingResults, x => {
+    return _.includes(triggerIds, x.triggerId);
   });
 
-  if(campaign) {
-    campaign = campaign.toJS();
-  }
-  if(brand) {
-    brand = brand.toJS();
-  }
-  if(triggers) {
-    triggers = triggers.toJS();
-  }
-
   return {
-    steptrackerStep: state.ui.getIn(['scene', 'campaignPrint', 'step']),
+    steptrackerStep: _.get(getUI(state), 'scene.campaignPrint.step'),
     campaign,
     brand,
     triggers,
-    trainingResults: trainingResults.toJS()
+    trainingResults: trainingResults
   };
 };
 

@@ -69,7 +69,7 @@ function* watchCampaignCreateBrandSelect() {
 function* watchCampaignCreateCampaignTypeSelect() {
   yield takeEvery('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
     const selectedBrandId = yield select((state) => {
-      return state.campaigns.getIn(['create', 'selectedBrandId']);
+      return state.campaigns.create.selectedBrandId;
     });
 
     let url;
