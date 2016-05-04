@@ -74,6 +74,9 @@ export default {
     COUPONS_DELETE_REQUEST: null,
     COUPONS_DELETE_SUCCESS: null,
     COUPONS_DELETE_FAILURE: null,
+
+    // Modals / Pages
+    LOAD_BROWSE_COUPONS_MODAL: null,
   }),
 
   CampaignTypes: {

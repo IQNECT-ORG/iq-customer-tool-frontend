@@ -6,7 +6,12 @@ class AddCouponForm extends Component {
       <form onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-6">
-            <button type="button" className="btn btn-block btn-secondary btn-radius-lg">Browse</button>
+            <button
+              type="button"
+              className="btn btn-block btn-secondary btn-radius-lg"
+              onClick={this.props.onBrowseClick}>
+              Browse
+            </button>
           </div>
 
           <div className="col-xs-6">

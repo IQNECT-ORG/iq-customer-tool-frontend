@@ -26,11 +26,22 @@ class AddCoupon extends Component {
           </div>
 
           <div className="modal-body">
-            <AddCouponForm  onSubmit={::this.handleSubmit}/>
+            <AddCouponForm onBrowseClick={::this.handleBrowseClick}  onSubmit={::this.handleSubmit}/>
           </div>
         </div>
       </Modal>
     );
+  }
+
+  handleBrowseClick(e) {
+    e.preventDefault();
+    const dispatch = this.context.store.dispatch;
+    dispatch(updateModalPath('browseCoupons'));
+    // @TODO: Make this come from the prior data
+    dispatch(updateModalData({
+      form: 'campaignPrint',
+      field: 'fallback.coupon'
+    }));
   }
 
   handleSubmit(e) {

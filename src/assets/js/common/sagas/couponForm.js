@@ -5,7 +5,7 @@ import { createCoupon, updateCoupon } from 'app/core/sagas/entities';
 import { closeModal } from 'app/modal/actions';
 
 function* couponCreateFormSubmit(action) {
-  const brandTask = yield fork(createCoupon, {
+  const couponTask = yield fork(createCoupon, {
     data: action.payload.values
   });
   // Wait for request to finish
@@ -25,7 +25,7 @@ function* couponCreateFormSubmit(action) {
 };
 
 function* couponEditFormSubmit(action) {
-  const brandTask = yield fork(updateCoupon, {
+  const couponTask = yield fork(updateCoupon, {
     id: action.payload.values.couponId,
     data: action.payload.values
   });
