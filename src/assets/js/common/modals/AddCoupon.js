@@ -36,7 +36,7 @@ class AddCoupon extends Component {
   handleBrowseClick(e) {
     e.preventDefault();
     const dispatch = this.context.store.dispatch;
-    dispatch(updateModalPath('browseCoupons'));
+    dispatch(updateModalPath('campaignCouponBrowser'));
     // @TODO: Make this come from the prior data
     dispatch(updateModalData({
       form: 'campaignPrint',

@@ -1,7 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import brandForm from './brandForm';
 import couponForm from './couponForm';
-import browseCoupons from './browseCoupons';
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
@@ -10,5 +9,4 @@ import browseCoupons from './browseCoupons';
 export default function* root() {
   yield fork(brandForm);
   yield fork(couponForm);
-  yield fork(browseCoupons);
 };

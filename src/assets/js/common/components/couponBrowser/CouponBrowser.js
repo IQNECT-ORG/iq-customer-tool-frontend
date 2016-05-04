@@ -23,8 +23,8 @@ class CouponBrowser extends Component {
 
   _renderRow(coupon, index) {
     return (
-      <li className="col-xs-12">
-        <button type="button">
+      <li className="col-xs-12" key={index}>
+        <button type="button" onClick={ e => this.props.onCouponClick(e, coupon, index) }>
           <Coupon coupon={coupon}/>
         </button>
       </li>

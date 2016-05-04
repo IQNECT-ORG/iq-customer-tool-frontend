@@ -13,7 +13,7 @@ import SuccessModal from 'app/campaigns/modals/Success';
 import AddBrandModal from 'app/common/modals/AddBrand';
 import EditBrandModal from 'app/common/modals/EditBrand';
 import EditCouponModal from 'app/common/modals/EditCoupon';
-import BrowseCouponsModal from 'app/common/modals/BrowseCoupons';
+import CampaignCouponBrowserModal from 'app/campaigns/modals/CouponBrowser';
 
 class App extends Component {
   static get contextTypes() {
@@ -42,7 +42,7 @@ class App extends Component {
           addBrand: AddBrandModal,
           editBrand: EditBrandModal,
           editCoupon: EditCouponModal,
-          browseCoupons: BrowseCouponsModal
+          campaignCouponBrowser: CampaignCouponBrowserModal
         }}/>
       </div>
     );

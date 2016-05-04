@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
-import CouponBrowser from 'app/common/components/couponBrowser/CouponBrowser';
-import serialize from 'form-serialize';
+import CouponBrowserContainer from '../containers/CouponBrowserContainer';
 import { connect } from 'react-redux';
-import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
-import { getCoupons } from 'app/core/selectors/entities/coupons';
-import { loadBrowseCouponsModal } from '../actions/modals';
+import { loadCampaignCouponBrowserModal } from '../actions';
 
-class BrowseCoupons extends Component {
-
-  componentDidMount() {
-  }
+class CouponBrowser extends Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.isOpen === true && prevProps.isOpen === false) {
@@ -35,7 +28,9 @@ class BrowseCoupons extends Component {
           </div>
 
           <div className="modal-body">
-            <CouponBrowser coupons={this.props.coupons}/>
+            <CouponBrowserContainer
+              form={this.props.data.form}
+              field={this.props.data.field}/>
           </div>
         </div>
       </Modal>
@@ -45,7 +40,6 @@ class BrowseCoupons extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    coupons: getCoupons(state)
   };
 }
 
@@ -53,13 +47,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
       load: _ => {
-        dispatch(loadBrowseCouponsModal());
+        dispatch(loadCampaignCouponBrowserModal());
       }
     }
   };
 }
 
-let DecoratedComponent = BrowseCoupons;
+let DecoratedComponent = CouponBrowser;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;

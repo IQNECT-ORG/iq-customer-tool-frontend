@@ -26,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
     if(ownProps.ui.filter == null) {
       return true;
     }
-    return _.includes(_.lowerCase(coupon.name), _.lowerCase(ownProps.ui.filter));
+    return _.includes(_.lowerCase(coupon.title), _.lowerCase(ownProps.ui.filter));
   });
 
   return {
