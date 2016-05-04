@@ -23,6 +23,10 @@
     @extend %pane--shadow-strong;
   }
 
+  @include modifier('scrollable-y') {
+    overflow-y: scroll;
+  }
+
   @include element('body') {
     padding: $grid-gutter-width;
   }
@@ -31,7 +35,6 @@
 .media-pane {
   height: 475px;
   position: relative;
-  overflow: hidden;
 }
 
 .post-pane {
