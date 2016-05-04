@@ -4,6 +4,7 @@ import authRoutes from 'app/auth/routes';
 import campaignRoutes from 'app/campaigns/routes';
 import catalogueRoutes from 'app/catalogue/routes';
 import dashboardRoutes from 'app/dashboard/routes';
+import analyticsRoutes from 'app/analytics/routes';
 
 import { Route, IndexRoute } from 'react-router';
 
@@ -16,5 +17,6 @@ export default (
     {campaignRoutes}
     {catalogueRoutes}
     {dashboardRoutes}
+    {analyticsRoutes}
   </Route>
 );
