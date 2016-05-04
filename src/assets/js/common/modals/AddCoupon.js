@@ -39,8 +39,8 @@ class AddCoupon extends Component {
     dispatch(updateModalPath('campaignCouponBrowser'));
     // @TODO: Make this come from the prior data
     dispatch(updateModalData({
-      form: 'campaignPrint',
-      field: 'fallback.coupon'
+      form: this.props.data.form,
+      field: this.props.data.field
     }));
   }
 
@@ -50,8 +50,8 @@ class AddCoupon extends Component {
     dispatch(updateModalPath('createCoupon'));
     // @TODO: Make this come from the prior data
     dispatch(updateModalData({
-      form: 'campaignPrint',
-      field: 'fallback.coupon'
+      form: this.props.data.form,
+      field: this.props.data.field
     }));
     // dispatch(openModal());
   }

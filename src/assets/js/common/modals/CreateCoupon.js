@@ -40,7 +40,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: (values) => {
-      console.log(values);
       return new Promise((resolve, reject) => {
         dispatch(couponCreateFormSubmit({
           values: {
@@ -49,6 +48,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           form: 'coupon',
           resolve,
           reject,
+          ref: {
+            form: this.props.data.form,
+            field: this.props.data.field
+          },
           isModal: true
         }));
       });

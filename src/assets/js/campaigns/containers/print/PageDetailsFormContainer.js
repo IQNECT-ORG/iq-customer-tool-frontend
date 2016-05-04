@@ -67,7 +67,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onAddCouponClick: (e) => {
       dispatch(updateModalPath('addCoupon'));
       dispatch(updateModalData({
-        form: 'campaignPrint'
+        form: 'campaignPrint',
+        field: `pages[${ownProps.ui.page}].coupon`
       }));
       dispatch(openModal());
     },

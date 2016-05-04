@@ -3,6 +3,7 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import { createCoupon, updateCoupon } from 'app/core/sagas/entities';
 import { closeModal } from 'app/modal/actions';
+import { change } from 'redux-form/lib/actions';
 
 function* couponCreateFormSubmit(action) {
   const couponTask = yield fork(createCoupon, {
@@ -15,6 +16,13 @@ function* couponCreateFormSubmit(action) {
   if(couponAction.type === 'COUPONS_CREATE_FAILURE') {
     action.payload.reject();
     return;
+  }
+
+  if(action.payload.ref) {
+    let ref = action.payload.ref;
+    const changeAction = change(ref.field, couponAction.payload.result);
+    changeAction.form = ref.form;
+    yield put(changeAction);
   }
 
   action.payload.resolve();

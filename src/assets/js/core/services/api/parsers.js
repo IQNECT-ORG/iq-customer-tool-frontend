@@ -1,4 +1,5 @@
 import { normalize, arrayOf } from 'normalizr';
+import parser from 'redux-entity-crud/lib/parsers';
 
 const triggerParser = (schema, data, options) => {
   const parsePayload = (item) => {
@@ -21,7 +22,7 @@ const triggerParser = (schema, data, options) => {
     parsePayload(data);
   }
 
-  return stdParser(schema, data);
+  return parser(schema, data);
 };
 
 const trainingResultsParser = (schema, data, options) => {
@@ -31,7 +32,7 @@ const trainingResultsParser = (schema, data, options) => {
     item.frame = index;
   });
 
-  return stdParser(schema, data);
+  return parser(schema, data);
 };
 
 export { triggerParser };

@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { imageCampaignFormSubmit } from '../../actions';
 import { reduxForm } from 'redux-form';
 import { change } from 'redux-form/lib/actions';
+import { getCoupons } from 'app/core/selectors/entities/coupons';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -52,7 +53,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onAddCouponClick: (e) => {
       dispatch(updateModalPath('addCoupon'));
       dispatch(updateModalData({
-        form: 'campaignImage'
+        form: 'campaignImage',
+        field: 'coupon'
       }));
       dispatch(openModal());
     },

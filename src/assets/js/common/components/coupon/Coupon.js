@@ -14,8 +14,19 @@ class Coupon extends Component {
           <div>Validity: NI - NI</div>
           <div>Code: NI</div>
         </div>
+        {this._renderDeleteButton()}
       </div>
     );
+  }
+
+  _renderDeleteButton() {
+    if(this.props.deletable === true) {
+      return (
+        <button type="button" onClick={this.props.onDeleteClick}>
+          <i className="icons8-trash"/>
+        </button>
+      );
+    }
   }
 };
 

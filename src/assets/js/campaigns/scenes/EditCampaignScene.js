@@ -120,7 +120,9 @@ const mapStateToProps = (state, ownProps) => {
   if(campaign) {
     brand = state.entities.brands[campaign.defaultBrand];
   }
-  let triggers = _.filter(state.entities.triggers, x => x.campaignId === ownProps.campaignId);
+
+  let triggers = _.filter(state.entities.triggers, x => x.campaignId === ownProps.params.campaignId);
+
   const triggerIds = _.reduce(triggers, (r, x) => {
     return r.push(x.triggerId);
   }, []);

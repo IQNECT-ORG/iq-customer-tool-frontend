@@ -6,7 +6,7 @@ import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import MultipleAssetField from 'app/common/components/forms/MultipleAssetField';
 import classNames from 'classnames';
-import TargetType from '../../TargetType';
+import TargetType from '../../../containers/TargetTypeContainer';
 import TagsInput from '../../TagsInput';
 import Submit from 'app/common/components/forms/Submit';
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import joid from 'joid';
+import Coupon from 'app/common/components/coupon/Coupon';
 
 class TargetType extends Component {
   render() {
@@ -58,12 +59,10 @@ class TargetType extends Component {
 
     if(this.props.values.coupon) {
       return (
-        <div>
-          <span>Coupon</span>
-          <button type="button" onClick={this.props.onCouponDeleteClick}>
-            <i className="icons8-trash"/>
-          </button>
-        </div>
+        <Coupon
+          coupon={this.props.coupon}
+          deletable={true}
+          onDeleteClick={this.props.onCouponDeleteClick}/>
       );
     }
   }
