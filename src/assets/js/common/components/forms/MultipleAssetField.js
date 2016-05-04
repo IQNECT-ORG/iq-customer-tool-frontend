@@ -8,17 +8,31 @@ class MultipleAssetField extends Component {
     const className = classNames('multiple-asset-field', this.props.className, {
     });
 
-    return (
-      <div className={className}>
-        <AssetField
-          label={this.props.label}
-          icon={this.props.icon}
-          onChange={::this.handleChange}/>
-        <ul className="list-unstyled row">
-          {this._renderInputs()}
-        </ul>
-      </div>
-    );
+    if(this.props.files.length) {
+      return (
+        <div className={className}>
+          <ul className="list-unstyled row">
+            <li className="col-xs-6 aspect-1-1-container">
+              <AssetField
+                className="aspect-item"
+                label={this.props.label}
+                icon={this.props.icon}
+                onChange={::this.handleChange}/>
+            </li>
+            {this._renderInputs()}
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className={className}>
+          <AssetField
+            label={this.props.label}
+            icon={this.props.icon}
+            onChange={::this.handleChange}/>
+        </div>
+      );
+    }
   }
 
   _renderInputs() {
