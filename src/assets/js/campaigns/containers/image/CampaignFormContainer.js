@@ -31,7 +31,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             type: ownProps.selectedCampaignTypeId,
             name: values.campaignTitle,
             periodFrom: values.campaignPeriodFrom,
-            periodTo: values.campaignPeriodTo
+            periodTo: values.campaignPeriodTo,
+            couponId: values.coupon
           },
           updateUI: ownProps.updateUI,
           form: 'campaignImage',

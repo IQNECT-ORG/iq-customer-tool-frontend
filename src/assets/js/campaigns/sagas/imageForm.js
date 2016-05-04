@@ -5,6 +5,10 @@ import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
 
+// function* uploadTriggers() {
+
+// }
+
 function* imageCampaignFormSubmitCreate(action) {
   const media = action.payload.values.media;
   const campaignValues = _.omit(action.payload.values, ['media']);
@@ -24,6 +28,10 @@ function* imageCampaignFormSubmitCreate(action) {
   }
 
   // ------------  Triggers ------------ //
+  const triggerPayload = {
+    couponId: action.payload.values.couponId
+  };
+
   const triggerTask = yield fork(createTrigger, {
     data: {
       campaignId: campaignAction.payload.result,
@@ -32,6 +40,7 @@ function* imageCampaignFormSubmitCreate(action) {
       triggerType: Constants.TriggerTypes.IMAGE,
       url: action.payload.values.website,
       searchbarTitle: action.payload.values.campaignTitle,
+      payload: (action.payload.values.couponId) ? JSON.stringify(triggerPayload) : null,
 
       // Static
       isLogo: 0,
