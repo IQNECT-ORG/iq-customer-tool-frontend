@@ -34,15 +34,24 @@ class Overview extends Component {
     const markers = [
       {
         position: {
-          lat: 25.0112183,
-          lng: 121.52067570000001,
+          lat: 0,
+          lng: 0,
         },
         key: `Taiwan`,
         defaultAnimation: 2,
         icon: markerIcon,
         labelContent: "$425K",
         //labelAnchor: new google.maps.Point(22, 0),
-        labelClass: "labels" // the CSS class for the label
+        labelClass: "labels", // the CSS class for the label,
+        labelAnchor: new google.maps.Point(20, 20)
+      },
+      {
+        position: {
+          lat: 0,
+          lng: 0,
+        },
+        key: `Taiwan2`,
+        defaultAnimation: 2
       }
     ];
 
@@ -69,7 +78,7 @@ class Overview extends Component {
               <GoogleMap
                 ref={(map) => console.log(map)}
                 defaultZoom={3}
-                defaultCenter={{lat: -25.363882, lng: 131.044922}}
+                defaultCenter={{lat: 0, lng: 0}}
                 options={{
                   styles: mapStyle
                 }}
@@ -97,7 +106,7 @@ const markerIcon = {
   scale: 1,
   // strokeColor: '#e91e63',
   strokeWeight: 0,
-  label: 'Hello'
+  anchor: new google.maps.Point(100,100)
 };
 
 
