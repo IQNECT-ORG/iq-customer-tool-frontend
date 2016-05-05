@@ -29,6 +29,9 @@ function* imageCampaignFormSubmitCreate(action) {
 
   // ------------  Triggers ------------ //
   const triggerPayload = {
+    meta: {
+      version: '2.0.0'
+    },
     couponId: action.payload.values.couponId
   };
 
