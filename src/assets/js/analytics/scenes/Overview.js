@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
 
 const mapStyle = [
   {
@@ -38,7 +39,10 @@ class Overview extends Component {
         },
         key: `Taiwan`,
         defaultAnimation: 2,
-        icon: markerIcon
+        icon: markerIcon,
+        labelContent: "$425K",
+        //labelAnchor: new google.maps.Point(22, 0),
+        labelClass: "labels" // the CSS class for the label
       }
     ];
 
@@ -72,7 +76,7 @@ class Overview extends Component {
                 onClick={_ => {}}>
                 {markers.map((marker, index) => {
                   return (
-                    <Marker {...marker}/>
+                    <MarkerWithLabel {...marker}/>
                   );
                 })}
               </GoogleMap>
