@@ -11,10 +11,9 @@ let coreReducer = createReducer([], {
 
 let reducer = (state, action) => {
   if(action.error === true) {
-    return _.cloneDeep(state).push({
-      name: action.payload.name,
-      message: action.payload.message
-    });
+    const newState = _.cloneDeep(state);
+    newState.push(action.payload);
+    return newState;
   } else {
     return coreReducer(state, action);
   }

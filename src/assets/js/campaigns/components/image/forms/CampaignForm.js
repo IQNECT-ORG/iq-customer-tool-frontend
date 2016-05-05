@@ -18,7 +18,7 @@ class CampaignForm extends Component {
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-6 equal-height-container">
-            <div className="pane pane--filled media-pane equal-height-item flex m-b-g">
+            <div className="pane pane--filled pane--scrollable-y media-pane equal-height-item flex m-b-g">
               {this._renderTriggers()}
               {this._renderMedia()}
             </div>
@@ -32,10 +32,10 @@ class CampaignForm extends Component {
                     <h2>Campaign Details</h2>
 
                     <fieldset className={classNames('form-group', {
-                      'has-danger': fields.campaignTitle.error
+                      'has-danger': fields.name.error
                     })}>
                       <label htmlFor={joid.link(true, 'input')}>Campaign Title</label>
-                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name" {...fields.campaignTitle}/>
+                      <input type="text" className="form-control" id={joid.link(false, 'input')} placeholder="Demo Name" {...fields.name}/>
                     </fieldset>
 
                     <div className="row">
@@ -71,12 +71,12 @@ class CampaignForm extends Component {
 
                     <TargetType
                       values={{
-                        website: this.props.values.website,
-                        coupon: this.props.values.coupon
+                        url: this.props.values.url,
+                        couponId: this.props.values.couponId
                       }}
                       fields={{
-                        website: fields.website,
-                        coupon: fields.coupon
+                        url: fields.url,
+                        couponId: fields.couponId
                       }}
                       onAddWebsiteClick={this.props.onAddWebsiteClick}
                       onAddCouponClick={this.props.onAddCouponClick}

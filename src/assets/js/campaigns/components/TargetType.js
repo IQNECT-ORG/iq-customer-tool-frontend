@@ -5,8 +5,8 @@ import Coupon from 'app/common/components/coupon/Coupon';
 class TargetType extends Component {
   render() {
     if(
-      this.props.values.website == null &&
-      this.props.values.coupon == null
+      this.props.values.url == null &&
+      this.props.values.couponId == null
     ) {
       return (
         <fieldset className="form-group">
@@ -34,7 +34,7 @@ class TargetType extends Component {
       );
     }
 
-    if(this.props.values.website) {
+    if(this.props.values.url) {
       return (
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')}>Target Type</label>
@@ -45,7 +45,7 @@ class TargetType extends Component {
               id={joid.link(false, 'input')}
               placeholder="Website"
               readOnly
-              {...this.props.fields.website}
+              {...this.props.fields.url}
               onClick={this.props.onAddWebsiteClick}/>
             <span className="input-group-btn">
               <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
@@ -57,7 +57,7 @@ class TargetType extends Component {
       );
     }
 
-    if(this.props.values.coupon) {
+    if(this.props.values.couponId) {
       return (
         <Coupon
           coupon={this.props.coupon}

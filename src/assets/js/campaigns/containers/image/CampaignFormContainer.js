@@ -25,13 +25,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(imageCampaignFormSubmit({
           values: {
             media: values.media,
-            website: values.website,
+            url: values.url,
             campaignId: values.campaignId,
-            defaultBrand: ownProps.selectedBrandId,
+            brandId: ownProps.selectedBrandId,
             type: ownProps.selectedCampaignTypeId,
-            name: values.campaignTitle,
-            periodFrom: values.campaignPeriodFrom,
-            periodTo: values.campaignPeriodTo,
+            name: values.name,
+            periodFrom: values.periodFrom,
+            periodTo: values.periodTo,
             couponId: values.coupon
           },
           updateUI: ownProps.updateUI,
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateModalPath('addWebsite'));
       dispatch(updateModalData({
         form: 'campaignImage',
-        field: `website`
+        field: `url`
       }));
       dispatch(openModal());
     },
@@ -55,13 +55,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateModalPath('addCoupon'));
       dispatch(updateModalData({
         form: 'campaignImage',
-        field: 'coupon'
+        field: 'couponId'
       }));
       dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`website`, null);
+      const changeAction = change(`url`, null);
       changeAction.form = 'campaignImage';
       dispatch(changeAction);
     },
@@ -85,11 +85,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const fields = [
   'media[]',
   'campaignId',
-  'campaignTitle',
-  'campaignPeriodFrom',
-  'campaignPeriodTo',
-  'website',
-  'coupon',
+  'name',
+  'periodFrom',
+  'periodTo',
+  'url',
+  'couponId',
   'tags'
 ];
 
@@ -111,9 +111,8 @@ DecoratedComponent = reduxForm(
     return {
       initialValues: {
         campaignId: _.get(ownProps, 'campaign.campaignId'),
-        campaignTitle: _.get(ownProps, 'campaign.name'),
-        website: _.get(anyTrigger, 'url'),
-
+        name: _.get(ownProps, 'campaign.name'),
+        url: _.get(anyTrigger, 'url'),
         //triggerId: _.get(ownProps, 'trigger.triggerId')
       }
     };

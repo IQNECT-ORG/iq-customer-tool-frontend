@@ -6,7 +6,7 @@ import { getCoupons } from 'app/core/selectors/entities/coupons';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    coupon: getCoupons(state)[ownProps.values.coupon]
+    coupon: getCoupons(state)[ownProps.values.couponId]
   };
 }
 

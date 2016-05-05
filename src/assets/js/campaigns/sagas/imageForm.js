@@ -21,11 +21,11 @@ function* uploadTriggers(action, campaignAction) {
 
     let triggerData = _.omitBy({
       campaignId: campaignAction.payload.result,
-      brandId: action.payload.values.defaultBrand,
+      brandId: action.payload.values.brandId,
       image: mediaItem[0],
       triggerType: Constants.TriggerTypes.IMAGE,
       url: action.payload.values.website,
-      searchbarTitle: action.payload.values.campaignTitle,
+      searchbarTitle: action.payload.values.name,
       payload: (action.payload.values.couponId) ? JSON.stringify(triggerPayload) : undefined,
 
       // Static
@@ -55,6 +55,9 @@ function* imageCampaignFormSubmitCreate(action) {
         type: 'CAMPAIGN_VALIDATE_INVALID',
         payload: err,
         error: true
+      });
+      action.payload.reject({
+        [err.path]: err.message
       });
       return;
     } else {
