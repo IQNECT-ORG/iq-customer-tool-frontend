@@ -3,7 +3,7 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import * as sessionsApi from 'app/core/services/api/sessions';
 import authActions from 'app/auth/actions';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { NotFoundError } from 'app/core/errors/http';
+import { HttpError, NotFoundHttpError, BadRequestHttpError } from 'complication/lib/http';
 
 // Auth / Sessions
 function* authLoginAsync(action) {
@@ -11,7 +11,7 @@ function* authLoginAsync(action) {
   try {
     let { data: user, response } = yield sessionsApi.create(action.payload);
     if(response.status !== 200) {
-      throw new NotFoundError('User not found');
+      throw new NotFoundHttpError('User not found');
     }
     yield put(authActions.loginSuccess(user));
     yield put(routerActions.push('/'));

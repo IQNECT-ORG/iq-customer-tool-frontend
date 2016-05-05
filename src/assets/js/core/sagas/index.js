@@ -28,9 +28,6 @@ import { getPathname } from '../selectors/routing';
 //import { getParams } from 'react-router/lib/PatternUtils';
 import _ from 'lodash';
 
-// Errors / Exceptions
-import { NotFoundError } from '../errors';
-
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
     '/signin',

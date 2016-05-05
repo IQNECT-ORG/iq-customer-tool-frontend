@@ -1,17 +1,66 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import { createCampaign, createTrigger, updateCampaign, updateTrigger } from 'app/core/sagas/entities';
+import { createCampaign, createTrigger, updateCampaign, updateTrigger, validateEntity } from 'app/core/sagas/entities';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
+import * as validatorSchemas from 'app/core/services/validators/schemas';
+import ValidationError from 'yup/lib/util/validation-error';
 
-// function* uploadTriggers() {
+function* uploadTriggers(action, campaignAction) {
+  const media = action.payload.values.media;
+  const triggerPayload = {
+    meta: {
+      version: '2.0.0'
+    },
+    couponId: action.payload.values.couponId
+  };
 
-// }
+  for(let i = 0; i < _.size(media); i++) {
+    let mediaItem = media[i];
+
+    let triggerData = _.omitBy({
+      campaignId: campaignAction.payload.result,
+      brandId: action.payload.values.defaultBrand,
+      image: mediaItem[0],
+      triggerType: Constants.TriggerTypes.IMAGE,
+      url: action.payload.values.website,
+      searchbarTitle: action.payload.values.campaignTitle,
+      payload: (action.payload.values.couponId) ? JSON.stringify(triggerPayload) : undefined,
+
+      // Static
+      isLogo: 0,
+      undeletable: true
+    }, _.isUndefined);
+
+    let triggerTask = yield fork(createTrigger, {
+      data: triggerData
+    });
+  }
+
+  // Wait until all of the trigger tasks have completed.
+  for(let i = 0; i < _.size(media); i++) {
+    yield take(['TRIGGERS_CREATE_SUCCESS']);
+  }
+}
 
 function* imageCampaignFormSubmitCreate(action) {
-  const media = action.payload.values.media;
   const campaignValues = _.omit(action.payload.values, ['media']);
+
+  try {
+    let values = yield call([validatorSchemas.campaign, validatorSchemas.campaign.validate], campaignValues);
+  } catch(err) {
+    if(err instanceof ValidationError) {
+      yield put({
+        type: 'CAMPAIGN_VALIDATE_INVALID',
+        payload: err,
+        error: true
+      });
+      return;
+    } else {
+      throw err;
+    }
+  }
 
   // ------------  Campaign ------------ //
   // Send off request
@@ -28,30 +77,7 @@ function* imageCampaignFormSubmitCreate(action) {
   }
 
   // ------------  Triggers ------------ //
-  const triggerPayload = {
-    meta: {
-      version: '2.0.0'
-    },
-    couponId: action.payload.values.couponId
-  };
-
-  const triggerTask = yield fork(createTrigger, {
-    data: {
-      campaignId: campaignAction.payload.result,
-      brandId: action.payload.values.defaultBrand,
-      image: media[0][0],
-      triggerType: Constants.TriggerTypes.IMAGE,
-      url: action.payload.values.website,
-      searchbarTitle: action.payload.values.campaignTitle,
-      payload: (action.payload.values.couponId) ? JSON.stringify(triggerPayload) : null,
-
-      // Static
-      isLogo: 0,
-      undeletable: true
-    }
-  });
-
-  const triggerAction = yield take(['TRIGGERS_CREATE_SUCCESS']);
+  yield call(uploadTriggers, action, campaignAction);
 
   action.payload.resolve();
 
@@ -80,27 +106,7 @@ function* imageCampaignFormSubmitUpdate(action) {
   }
 
   // ------------  Triggers ------------ //
-  for(let i = 0; i < _.size(media); i++) {
-    let mediaItem = media[i];
-    let triggerTask = yield fork(createTrigger, {
-      data: {
-        campaignId: campaignAction.payload.result,
-        brandId: action.payload.values.defaultBrand,
-        image: mediaItem[0],
-        triggerType: Constants.TriggerTypes.IMAGE,
-        url: action.payload.values.website,
-        searchbarTitle: action.payload.values.campaignTitle,
-        // Static
-        isLogo: 0,
-        undeletable: true
-      }
-    });
-  }
-
-  // Wait until all of the trigger tasks have completed.
-  for(let i = 0; i < _.size(media); i++) {
-    yield take(['TRIGGERS_CREATE_SUCCESS']);
-  }
+  yield call(uploadTriggers, action, campaignAction);
 
   // @TODO: Update all of the old triggers to the new url
 
