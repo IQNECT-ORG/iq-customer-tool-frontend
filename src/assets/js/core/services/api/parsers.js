@@ -35,5 +35,10 @@ const trainingResultsParser = (schema, data, options) => {
   return parser(schema, data);
 };
 
+const countParser = (data, options) => {
+  return data;
+}
+
 export { triggerParser };
 export { trainingResultsParser };
+export { countParser };

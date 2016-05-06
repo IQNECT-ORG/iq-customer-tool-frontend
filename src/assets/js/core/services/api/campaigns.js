@@ -15,3 +15,7 @@ export const update = async function(id, data, params) {
 export const del = async function(id = '', params) {
   return await deleteJSON(`https://iq.api/api/campaign/${id}`, params);
 };
+
+export const count = async function(params) {
+  return await getJSON(`https://iq.api/api/campaign/count`, params);
+};
