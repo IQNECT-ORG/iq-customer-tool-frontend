@@ -9,6 +9,7 @@ import modal from 'app/modal/reducer';
 import entities from './entities';
 import errors from './errors';
 import catalogue from './catalogue';
+import dashboard from 'app/dashboard/reducers';
 
 const customerTool = combineReducers({
   auth,
@@ -20,7 +21,8 @@ const customerTool = combineReducers({
   form,
   modal,
   errors,
-  catalogue
+  catalogue,
+  dashboard
 });
 
 export default customerTool;
