@@ -7,48 +7,63 @@ import * as modalActions from 'app/modal/actions';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
 
-function* uploadTriggers(action, campaignAction) {
-  const media = action.payload.values.media;
-  const triggerPayload = {
-    meta: {
-      version: '2.0.0'
-    },
-    couponId: action.payload.values.couponId
-  };
-
-  for(let i = 0; i < _.size(media); i++) {
-    let mediaItem = media[i];
-
-    let triggerData = _.omitBy({
-      campaignId: campaignAction.payload.result,
-      brandId: action.payload.values.brandId,
-      image: mediaItem[0],
-      triggerType: Constants.TriggerTypes.IMAGE,
-      url: action.payload.values.website,
-      searchbarTitle: action.payload.values.name,
-      payload: (action.payload.values.couponId) ? JSON.stringify(triggerPayload) : undefined,
-
-      // Static
-      isLogo: 0,
-      undeletable: true
-    }, _.isUndefined);
+function* uploadTriggers(triggers) {
+  for(let i = 0; i < _.size(triggers); i++) {
+    let trigger = triggers[i];
 
     let triggerTask = yield fork(createTrigger, {
-      data: triggerData
+      data: trigger
     });
   }
 
   // Wait until all of the trigger tasks have completed.
-  for(let i = 0; i < _.size(media); i++) {
+  for(let i = 0; i < _.size(triggers); i++) {
     yield take(['TRIGGERS_CREATE_SUCCESS']);
   }
 }
 
 function* imageCampaignFormSubmitCreate(action) {
-  const campaignValues = _.omit(action.payload.values, ['media']);
+  const { values } = action.payload;
 
+  // Setting up data models
+  const campaign = _.assign({
+    defaultBrand: values.brandId
+  },_.pick(values, ['name']));
+
+  const triggerPayload = {
+    meta: {
+      version: '2.0.0'
+    },
+    couponId: values.couponId
+  };
+
+  const triggerPayloadFormatted = JSON.stringify(triggerPayload);
+
+  const triggers = _.reduce(values.media, (result, media) => {
+    const trigger = _.assign(
+      {
+        image: media[0], // Only get the first image in a filelist
+        triggerType: Constants.TriggerTypes.IMAGE,
+        searchbarTitle: values.name,
+        payload: (values.couponId) ?
+          triggerPayloadFormatted : undefined,
+        // Static
+        isLogo: 0,
+        undeletable: true
+      },
+      _.pick(values, [
+        'brandId',
+        'url'
+      ])
+    );
+    result.push(trigger);
+    return result;
+  }, []);
+
+  // Validation
+  // Campaign
   try {
-    let values = yield call([validatorSchemas.campaign, validatorSchemas.campaign.validate], campaignValues);
+    let values = yield call([validatorSchemas.campaign, validatorSchemas.campaign.validate], campaign);
   } catch(err) {
     if(err instanceof ValidationError) {
       yield put({
@@ -65,10 +80,43 @@ function* imageCampaignFormSubmitCreate(action) {
     }
   }
 
+  // Triggers
+  if(_.size(triggers) === 0) {
+    yield put({
+      type: 'ADD_ERROR',
+      payload: new Error('An image is required'),
+      error: true
+    });
+    action.payload.reject({
+      'media[0]': 'An image is required'
+    });
+    return;
+  }
+  for(let i = 0; i < _.size(triggers); i++) {
+    let trigger = triggers[i];
+    try {
+      let values = yield call([validatorSchemas.trigger, validatorSchemas.trigger.validate], trigger);
+    } catch(err) {
+      if(err instanceof ValidationError) {
+        yield put({
+          type: 'TRIGGER_VALIDATE_INVALID',
+          payload: err,
+          error: true
+        });
+        action.payload.reject({
+          [err.path]: err.message
+        });
+        return;
+      } else {
+        throw err;
+      }
+    }
+  }
+
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(createCampaign, {
-    data: campaignValues
+    data: campaign
   });
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
@@ -80,7 +128,11 @@ function* imageCampaignFormSubmitCreate(action) {
   }
 
   // ------------  Triggers ------------ //
-  yield call(uploadTriggers, action, campaignAction);
+  // Now we can assign the campaign id
+  _.each(triggers, trigger => {
+    trigger.campaignId = campaignAction.payload.result
+  });
+  yield call(uploadTriggers, triggers);
 
   action.payload.resolve();
 
@@ -90,7 +142,8 @@ function* imageCampaignFormSubmitCreate(action) {
 };
 
 function* imageCampaignFormSubmitUpdate(action) {
-  const media = action.payload.values.media;
+  const { values } = action.payload;
+  const media = values.media;
   const campaignValues = _.omit(action.payload.values, ['media']);
 
   // ------------  Campaign ------------ //
