@@ -1,6 +1,7 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
+import ValidationError from 'yup/lib/util/validation-error';
 // Actions
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
@@ -16,11 +17,11 @@ import * as trainingResultsApi from '../services/api/trainingResults';
 import * as couponsApi from '../services/api/coupons';
 
 // Parsers
-import { triggerParser, trainingResultsParser } from '../services/api/parsers';
+import { triggerParser, trainingResultsParser, countParser } from '../services/api/parsers';
 import parser from 'redux-entity-crud/lib/parsers';
 import * as schemas from '../services/api/schemas';
 
-import { fetchEntity, createEntity, updateEntity, deleteEntity } from 'redux-entity-crud/lib/sagas';
+import { fetchEntity, createEntity, updateEntity, deleteEntity, countEntity } from 'redux-entity-crud/lib/sagas';
 
 // Brands
 export const getBrands = fetchEntity.bind(
@@ -104,6 +105,16 @@ export const deleteCampaign = deleteEntity.bind(
   }
 );
 
+export const countCampaigns = countEntity.bind(
+  null,
+  {
+    entityName: 'Campaign',
+    entityActions: campaignActions,
+    apiFn: campaignsApi.count,
+    parser: countParser
+  }
+);
+
 // Triggers
 export const getTriggers = fetchEntity.bind(
   null,
@@ -142,6 +153,16 @@ export const deleteTrigger = deleteEntity.bind(
     entityActions: triggerActions,
     apiFn: triggersApi.del,
     parser: parser.bind(null, schemas.trigger)
+  }
+);
+
+export const countTriggers = countEntity.bind(
+  null,
+  {
+    entityName: 'Trigger',
+    entityActions: triggerActions,
+    apiFn: triggersApi.count,
+    parser: countParser
   }
 );
 
