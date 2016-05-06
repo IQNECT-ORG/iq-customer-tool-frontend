@@ -9,6 +9,15 @@ import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
 
 const mapStyle = [
   {
+    'featureType': 'all',
+    'elementType': 'labels',
+    'stylers': [
+      {
+        'visibility': 'off'
+      }
+    ]
+  },
+  {
     'featureType': 'poi',
     'elementType': 'all',
     'stylers': [
