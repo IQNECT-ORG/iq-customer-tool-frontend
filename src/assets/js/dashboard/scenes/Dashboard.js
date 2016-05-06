@@ -22,33 +22,47 @@ class Dashboard extends Component {
           );
         }}>
         <div className="container">
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <span>Campaigns</span>
-              {this.props.campaignsCount}
-            </div>
-          </div>
+          <div className="row">
+            <div className="col-xs-6">
+              <div className="row">
+                <div className="col-xs-4">
+                  <div className="pane pane--filled">
+                    <div className="pane__body">
+                      <div>Campaigns</div>
+                      {this.props.campaignsCount}
+                    </div>
+                  </div>
+                </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <span>Matches</span>
-              {this.props.matchesCount}
-            </div>
-          </div>
+                <div className="col-xs-4">
+                  <div className="pane pane--filled">
+                    <div className="pane__body">
+                      <div>Matches</div>
+                      {this.props.matchesCount}
+                    </div>
+                  </div>
+                </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <span>Magazines</span>
-              {this.props.triggersCount}
+                <div className="col-xs-4">
+                  <div className="pane pane--filled">
+                    <div className="pane__body">
+                      <div>Magazines</div>
+                      {this.props.triggersCount}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <span>Top Brands</span>
-              <ul>
-                {this._renderTopBrands()}
-              </ul>
+            <div className="col-xs-12">
+              <div className="pane pane--filled">
+                <div className="pane__body">
+                  <span>Top Brands</span>
+                  <ul>
+                    {this._renderTopBrands()}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
