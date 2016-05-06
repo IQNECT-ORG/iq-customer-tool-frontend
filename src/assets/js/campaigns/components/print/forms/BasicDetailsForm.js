@@ -124,18 +124,23 @@ class BasicDetailsForm extends Component {
           readOnly/>
       );
     } else {
+      const magazineInputProps = _.omit(fields.magazineLanguage, ['value', 'onChange']);
+
       return (
         <Combobox defaultValue={'English'}
           options={['English', 'Korean']}
           dropdownProps={{ style: { width: '100%' } }}
-          autocomplete>
+          autocomplete
+          value={fields.magazineLanguage.value}
+          onValueChange={fields.magazineLanguage.onChange}
+          onChange={fields.magazineLanguage.onChange}>
           {inputProps =>
             <input {...inputProps}
               id={joid.link(false, 'input')}
               type='text'
               className={`${inputProps.className} form-control`}
               placeholder='English'
-              {...fields.magazineLanguage}/>
+              {...magazineInputProps}/>
           }
         </Combobox>
       );
