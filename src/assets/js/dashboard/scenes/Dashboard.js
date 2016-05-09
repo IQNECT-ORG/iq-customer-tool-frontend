@@ -75,6 +75,7 @@ class Dashboard extends Component {
       return (
         <li key={index}>
           <img src={brand.imgPreview}/>
+          <span>{brand.name}</span>
         </li>
       );
     });

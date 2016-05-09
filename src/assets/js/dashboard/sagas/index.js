@@ -1,7 +1,7 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
-import { countCampaigns, countTriggers } from 'app/core/sagas/entities';
+import { countCampaigns, countTriggers, getBrands } from 'app/core/sagas/entities';
 import {
   countSearches as countSearchesApi,
   topBrands as topBrandsApi
@@ -35,7 +35,11 @@ function* load(action) {
     });
 
     // Now actually get the brands
-    
+    yield fork(getBrands, {
+      params: {
+        brandId: brandIds
+      }
+    });
   });
 
   yield fork(function*() {
