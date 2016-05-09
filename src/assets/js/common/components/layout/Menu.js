@@ -42,7 +42,12 @@ class Menu extends Component {
         <hr/>
 
         <ul className="list-unstyled">
-          <li><Link to="/help"><i className="icons8-questions"/> Help</Link></li>
+          <li>
+            <a href="https://iqnect.freshdesk.com/support/solutions" target="_blank">
+              <i className="icons8-questions"/>
+              Help
+            </a>
+          </li>
         </ul>
       </div>
     );
