@@ -6,6 +6,7 @@ import triggers from './triggers';
 import trainingResults from './trainingResults';
 import triggerPayloads from './triggerPayloads';
 import coupons from './coupons';
+import users from './users';
 
 export default combineReducers({
   previews,
@@ -14,5 +15,6 @@ export default combineReducers({
   triggers,
   trainingResults,
   triggerPayloads,
-  coupons
+  coupons,
+  users
 });

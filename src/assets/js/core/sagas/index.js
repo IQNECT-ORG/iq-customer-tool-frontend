@@ -9,25 +9,17 @@ import dashboardSaga from 'app/dashboard/sagas';
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 // Actions
-import { change } from 'redux-form/lib/actions';
-import * as modalActions from 'app/modal/actions';
-import brandActions from 'app/common/actions/brands';
-import campaignActions from 'app/common/actions/campaigns';
 import * as routerActions from 'react-router-redux/lib/actions';
 import * as authActions from 'app/auth/actions';
-import triggerActions from 'app/common/actions/triggers';
-import trainingResultActions from 'app/common/actions/trainingResults';
 // API
-import * as brandsApi from '../services/api/brands';
 import * as sessionsApi from '../services/api/sessions';
-import * as usersApi from '../services/api/users';
-import * as campaignsApi from '../services/api/campaigns';
-import * as triggersApi from '../services/api/triggers';
-import * as trainingResultsApi from '../services/api/trainingResults';
 // Selectors
 import { getPathname } from '../selectors/routing';
+import { isLoggedIn } from '../selectors/auth';
 //import { getParams } from 'react-router/lib/PatternUtils';
 import _ from 'lodash';
+import { user as userSchema } from 'app/core/services/api/schemas';
+import parser from 'redux-entity-crud/lib/parsers';
 
 function* checkForbiddenNavigation(pathname) {
   const whiteList = [
@@ -35,14 +27,35 @@ function* checkForbiddenNavigation(pathname) {
     '/forgotten-password',
     '/reset-password'
   ];
-
   if(_.includes(whiteList, pathname) === false) {
-    let isLoggedIn = yield select((state) => {
-      return state.auth.get('isLoggedIn');
-    });
+    // Local check
+    let loggedIn = yield select(isLoggedIn);
 
-    if(isLoggedIn !== true) {
-      //yield put(routerActions.push('/signin'));
+    if(loggedIn === true) {
+      // We can skip this check as we already know the
+      // user is logged in
+      return;
+    }
+
+    // Now do remote check.
+    try {
+      const { json, response } = yield call(sessionsApi.get);
+
+      // Check status
+      if(response.status === 401) {
+        // The user is logged out
+        yield put(routerActions.push('/signin'));
+        return;
+      }
+
+      // The user is logged in
+      const parsedData = parser(userSchema, json, {});
+      yield put({
+        type: 'AUTH_AUTHENTICATE_SUCCESS',
+        payload: parsedData
+      });
+
+    } catch(err) {
     }
   }
 };
@@ -56,17 +69,14 @@ function* startup() {
 
 function* watchForbiddenNavigation() {
   yield fork(function* () {
-    while(true) {
-      yield take('APP_STARTUP');
-      const pathname = yield select(getPathname);
-      yield checkForbiddenNavigation(pathname);
-    }
+    yield take('APP_STARTUP');
+    const pathname = yield select(getPathname);
+    yield checkForbiddenNavigation(pathname);
   });
   yield fork(function* () {
-    while(true) {
-      const { payload } = yield take('@@route/LOCATION_CHANGE');
-      yield checkForbiddenNavigation(payload.pathname);
-    }
+    yield takeEvery('@@route/LOCATION_CHANGE', function*(action) {
+      yield checkForbiddenNavigation(action.payload.pathname);
+    });
   });
 };
 

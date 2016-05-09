@@ -24,6 +24,10 @@ export const coupon = new Schema('coupons', {
   idAttribute: 'couponId'
 });
 
+export const user = new Schema('users', {
+  idAttribute: 'userId'
+});
+
 // Definitions
 trigger.define({
   payload: arrayOf(triggerPayload)

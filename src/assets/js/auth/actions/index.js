@@ -7,8 +7,12 @@ const Actions = Constants.ActionTypes;
 
 const actions = {};
 
-_.assign(actions, generateAsyncActions('login', 'auth'));
-_.assign(actions, generateAsyncActions('forgottenPassword', 'auth'));
-_.assign(actions, generateAsyncActions('resetPassword', 'auth'));
+_.assign(
+  actions,
+  generateAsyncActions('login', 'auth'),
+  generateAsyncActions('forgottenPassword', 'auth'),
+  generateAsyncActions('resetPassword', 'auth'),
+  generateAsyncActions('authenticate', 'auth')
+);
 
 export default actions;

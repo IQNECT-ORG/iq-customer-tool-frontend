@@ -6,6 +6,7 @@ import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { loadDashboardPage } from '../actions';
 import _ from 'lodash';
 import { getBrands } from 'app/core/selectors/entities/brands';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class Dashboard extends Component {
 
@@ -114,5 +115,6 @@ let DecoratedComponent = Dashboard;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

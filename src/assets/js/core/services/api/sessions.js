@@ -1,21 +1,9 @@
+import { createJSON, getJSON } from 'redux-entity-crud/lib/api';
 
-export const create = async function(data) {
-  try {
-    let response = await fetch('https://iq.api/api/session', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    });
+export const get = async function(params) {
+  return await getJSON('https://iq.api/api/session', params);
+};
 
-    return {
-      json: await response.json(),
-      response
-    };
-  } catch(err) {
-    throw err;
-  }
+export const create = async function(data, params) {
+  return await createJSON('https://iq.api/api/session', data, params);
 };

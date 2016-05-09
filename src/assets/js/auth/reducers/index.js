@@ -1,16 +1,26 @@
-import Immutable from 'immutable';
 import Constants from '../Constants';
-import { combineReducers, createReducer } from 'redux-immutablejs';
 import recycleState from 'redux-recycle';
+import { combineReducers } from 'redux';
+import { createReducer } from 'redux-create-reducer';
+import _ from 'lodash';
 
 const Actions = Constants.ActionTypes;
 
-const initialState = new Immutable.Map({
-  isLoggedIn: false
-});
+const initialState = {
+  userId: null
+};
 
 let reducer = createReducer(initialState, {
-  [Actions.AUTH_LOGIN_SUCCESS]: (state, action) => state.set('isLoggedIn', true),
+  [Actions.AUTH_LOGIN_SUCCESS]: (state, action) => {
+    return _.assign({}, state, {
+      userId: action.payload.result
+    });
+  },
+  ['AUTH_AUTHENTICATE_SUCCESS']: (state, action) => {
+    return _.assign({}, state, {
+      userId: action.payload.result
+    });
+  }
 });
 
 reducer = recycleState(reducer, [], initialState);
