@@ -43,6 +43,17 @@
     height: 100%;
     transform: translate(-50%, -50%);
   }
+
+  > video {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @include modifier('video') {
+    background-color: #000;
+  }
 }
 
 .multiple-asset-field {

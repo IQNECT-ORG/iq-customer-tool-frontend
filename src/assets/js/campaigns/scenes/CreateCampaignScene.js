@@ -12,6 +12,7 @@ import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
 import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
 import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
+import VideoCampaignFormContainer from '../containers/video/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -151,8 +152,15 @@ class CreateCampaign extends Component {
             ]}/>
         );
         break;
+      case Constants.CampaignTypes.VIDEO:
+        icon = 'icons8-movie';
+        form = (
+          <VideoCampaignFormContainer
+            selectedBrandId={this.props.selectedBrandId}
+            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
+        );
+        break;
     }
-    // icon = 'icons8-movie';
 
     return (
       <DefaultLayout
