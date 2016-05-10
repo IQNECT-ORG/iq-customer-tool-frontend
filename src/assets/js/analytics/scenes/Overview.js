@@ -201,7 +201,7 @@ class Overview extends Component {
                 }}
                 showInnerLabels={false}
                 showOuterLabels={false}
-                title='Gender Analytics'/>
+                title='Gender'/>
             </div>
           </div>
 
