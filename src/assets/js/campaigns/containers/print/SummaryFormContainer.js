@@ -11,10 +11,10 @@ const mapStateToProps = (state, ownProps) => {
   const pages = ownProps.values.pages;
 
   const diff = _.reduce(pages, (result, page, index) => {
-    if(page.website || page.coupon) {
+    if(page.url || page.coupon) {
       result.push({
         index,
-        website: page.website,
+        url: page.url,
         coupon: page.coupon,
         tags: page.tags
       });

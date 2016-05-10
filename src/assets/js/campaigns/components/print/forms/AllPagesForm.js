@@ -95,7 +95,7 @@ class AllPagesForm extends Component {
   }
 
   _renderTargetType() {
-    if(this.props.values.fallback.website == null && this.props.values.fallback.coupon == null) {
+    if(this.props.values.fallback.url == null && this.props.values.fallback.coupon == null) {
       return (
         <fieldset className="form-group">
           <label>Target Type</label>
@@ -122,7 +122,7 @@ class AllPagesForm extends Component {
       );
     }
 
-    if(this.props.values.fallback.website) {
+    if(this.props.values.fallback.url) {
       return (
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')}>Target Type</label>
@@ -133,7 +133,7 @@ class AllPagesForm extends Component {
               id={joid.link(false, 'input')}
               placeholder="Website"
               readOnly
-              {...this.props.fields.fallback.website}
+              {...this.props.fields.fallback.url}
               onClick={this.props.onAddWebsiteClick}/>
             <span className="input-group-btn">
               <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>

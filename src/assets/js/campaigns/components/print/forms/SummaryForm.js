@@ -12,7 +12,7 @@ class SummaryForm extends Component {
       return (
         <li className="row" key={page.index}>
           <div className="col-xs-2">Page {page.index + 1}</div>
-          <div className="col-xs-4">{page.website}</div>
+          <div className="col-xs-4">{page.url}</div>
           <div className="col-xs-6">{page.tags}</div>
           <div className="col-xs-6">
             <button type="button" onClick={ _ => this.props.gotoPage(page.index) }>

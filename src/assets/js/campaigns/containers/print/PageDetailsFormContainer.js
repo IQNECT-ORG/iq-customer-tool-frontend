@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateModalPath('addWebsite'));
       dispatch(updateModalData({
         form: 'campaignPrint',
-        field: `pages[${ownProps.ui.page}].website`
+        field: `pages[${ownProps.ui.page}].url`
       }));
       dispatch(openModal());
     },
@@ -74,7 +74,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`pages[${ownProps.ui.page}].website`, null);
+      const changeAction = change(`pages[${ownProps.ui.page}].url`, null);
       changeAction.form = 'campaignPrint';
       dispatch(changeAction);
     },

@@ -29,11 +29,11 @@ const fields = [
 
   'triggerId',
 
-  'fallback.website',
+  'fallback.url',
   'fallback.tags',
   'fallback.coupon',
 
-  'pages[].website',
+  'pages[].url',
   'pages[].tags',
   'pages[].coupon'
 ];

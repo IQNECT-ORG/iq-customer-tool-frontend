@@ -106,7 +106,7 @@ class PageDetailForm extends Component {
   }
 
   _renderTargetType() {
-    if(this.props.values.pages[this.props.page].website == null) {
+    if(this.props.values.pages[this.props.page].url == null) {
       return (
         <fieldset className="form-group">
           <label>Target Type</label>
@@ -143,7 +143,7 @@ class PageDetailForm extends Component {
             id={joid.link(false, 'input')}
             placeholder="Website"
             readOnly
-            {...this.props.fields.pages[this.props.page].website}
+            {...this.props.fields.pages[this.props.page].url}
             onClick={this.props.onAddWebsiteClick}/>
           <span className="input-group-btn">
             <button className="btn btn-secondary" type="button" onClick={this.props.onWebsiteDeleteClick}>
