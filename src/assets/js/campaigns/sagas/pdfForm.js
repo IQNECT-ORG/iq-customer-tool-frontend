@@ -10,7 +10,7 @@ import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
 
-function* pdfCampaignFormSubmitCreate(action) {
+function* create(action) {
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(createCampaign, {
@@ -77,7 +77,7 @@ function* pdfCampaignFormSubmitCreate(action) {
   action.payload.resolve();
 }
 
-function* pdfCampaignFormSubmitUpdate(action) {
+function* update(action) {
   const campaignTask = yield fork(updateCampaign, {
     id: action.payload.values.campaignId,
     data: action.payload.values
@@ -109,11 +109,11 @@ function* pdfCampaignFormSubmitUpdate(action) {
   action.payload.resolve();
 }
 
-function* pdfCampaignFormSubmit(action) {
+function* submit(action) {
   if(action.payload.values.campaignId) {
-    yield call(pdfCampaignFormSubmitUpdate, action);
+    yield call(update, action);
   } else {
-    yield call(pdfCampaignFormSubmitCreate, action);
+    yield call(create, action);
   }
 };
 
@@ -121,10 +121,10 @@ function* pdfCampaignFormSubmit(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchPdfCampaignFormSubmit() {
-  yield takeEvery('CAMPAIGN_PDF_FORM_SUBMIT', pdfCampaignFormSubmit);
+function* watchSubmit() {
+  yield takeEvery('CAMPAIGN_PDF_FORM_SUBMIT', submit);
 };
 
 export default function* () {
-  yield fork(watchPdfCampaignFormSubmit);
+  yield fork(watchSubmit);
 };

@@ -22,7 +22,7 @@ function* uploadTriggers(triggers) {
   }
 }
 
-function* imageCampaignFormSubmitCreate(action) {
+function* create(action) {
   const { values } = action.payload;
 
   // Setting up data models
@@ -141,7 +141,7 @@ function* imageCampaignFormSubmitCreate(action) {
   yield put(modalActions.openModal());
 };
 
-function* imageCampaignFormSubmitUpdate(action) {
+function* update(action) {
   const { values } = action.payload;
   const media = values.media;
   const campaignValues = _.omit(action.payload.values, ['media']);
@@ -173,11 +173,11 @@ function* imageCampaignFormSubmitUpdate(action) {
   yield put(modalActions.openModal());
 };
 
-function* imageCampaignFormSubmit(action) {
+function* submit(action) {
   if(action.payload.values.campaignId) {
-    yield call(imageCampaignFormSubmitUpdate, action);
+    yield call(update, action);
   } else {
-    yield call(imageCampaignFormSubmitCreate, action);
+    yield call(create, action);
   }
 };
 
@@ -185,10 +185,10 @@ function* imageCampaignFormSubmit(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchImageCampaignFormSubmit() {
-  yield takeEvery('CAMPAIGN_IMAGE_FORM_SUBMIT', imageCampaignFormSubmit);
+function* watchSubmit() {
+  yield takeEvery('CAMPAIGN_IMAGE_FORM_SUBMIT', submit);
 }
 
 export default function* () {
-  yield fork(watchImageCampaignFormSubmit);
+  yield fork(watchSubmit);
 };
