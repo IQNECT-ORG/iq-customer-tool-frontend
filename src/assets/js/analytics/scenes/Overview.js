@@ -62,6 +62,18 @@ var lineData = [
 
 var pieData = [{label: "Margarita", value: 20.0}, {label: "John", value: 55.0}, {label: "Tim", value: 25.0 }];
 
+var barData = [
+  {
+    "name": "Series A",
+    "values": [
+      { "x": 1, "y": 91},
+      { "x": 2, "y": 290},
+      { "x": 3, "y": 50},
+      { "x": 4, "y": 90},
+    ]
+  }
+];
+
 class Overview extends Component {
 
   render() {
@@ -190,6 +202,58 @@ class Overview extends Component {
                 showInnerLabels={false}
                 showOuterLabels={false}
                 title='Gender Analytics'/>
+            </div>
+          </div>
+
+          <div className="pane pane--filled">
+            <div className="pane__body">
+              <rd3.BarChart
+                data={barData}
+                width={500}
+                height={300}
+                title='Age'
+                colors={ series => {
+                  return '#e91e63';
+                }}
+                xAxisLabel=''
+                yAxisLabel=''
+                xAxisFormatter={ tick => {
+                  const zones = {
+                    1: '0-24',
+                    2: '25-44',
+                    3: '45-64',
+                    4: '65+'
+                  };
+
+                  return zones[tick];
+                }}
+                />
+            </div>
+          </div>
+
+          <div className="pane pane--filled">
+            <div className="pane__body">
+              <rd3.BarChart
+                data={barData}
+                width={500}
+                height={300}
+                title='OS'
+                colors={ series => {
+                  return '#00bcd4';
+                }}
+                xAxisLabel=''
+                yAxisLabel=''
+                xAxisFormatter={ tick => {
+                  const zones = {
+                    1: 'AND',
+                    2: 'IOS',
+                    3: 'BB',
+                    4: 'OTR'
+                  };
+
+                  return zones[tick];
+                }}
+                />
             </div>
           </div>
         </div>

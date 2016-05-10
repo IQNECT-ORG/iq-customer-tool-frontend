@@ -1,0 +1,12 @@
+.rd3-barchart-yaxis,
+.rd3-barchart-xaxis {
+  .tick {
+    line {
+      display: none;
+    }
+  }
+
+  .domain {
+    display: none;
+  }
+}
