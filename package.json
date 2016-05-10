@@ -73,6 +73,7 @@
     "jquery": "^2.2.2",
     "keymirror": "^0.1.1",
     "lodash": "^4.6.1",
+    "moment": "^2.13.0",
     "normalizr": "^2.0.1",
     "query-string": "^4.1.0",
     "rd3": "^0.6.2",
