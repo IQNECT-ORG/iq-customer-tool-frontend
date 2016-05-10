@@ -9,6 +9,7 @@ import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import imageForm from './imageForm';
 import pdfForm from './pdfForm';
+import videoForm from './videoForm';
 import browseCoupons from './browseCoupons';
 
 function* loadCampaignCreatePage(action) {
@@ -92,6 +93,7 @@ export default function* () {
 
   yield fork(imageForm);
   yield fork(pdfForm);
+  yield fork(videoForm);
 
   yield fork(watchCampaignCreateBrandSelect);
   yield fork(watchCampaignCreateCampaignTypeSelect);

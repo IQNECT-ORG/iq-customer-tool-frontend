@@ -19,6 +19,7 @@ export default {
     CAMPAIGN_CREATE_RESET: null,
 
     CAMPAIGN_PDF_FORM_SUBMIT: null,
-    CAMPAIGN_IMAGE_FORM_SUBMIT: null
+    CAMPAIGN_IMAGE_FORM_SUBMIT: null,
+    CAMPAIGN_VIDEO_FORM_SUBMIT: null,
   })
 };

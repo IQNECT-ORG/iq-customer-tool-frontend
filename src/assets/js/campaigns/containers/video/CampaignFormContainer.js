@@ -4,7 +4,7 @@ import CampaignForm from '../../components/video/forms/CampaignForm';
 import ui from 'redux-ui/transpiled';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import _ from 'lodash';
-import { imageCampaignFormSubmit } from '../../actions';
+import { videoCampaignFormSubmit } from '../../actions';
 import { reduxForm } from 'redux-form';
 import { change } from 'redux-form/lib/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(imageCampaignFormSubmit({
+        dispatch(videoCampaignFormSubmit({
           values: {
             media: values.media,
             url: values.url,
