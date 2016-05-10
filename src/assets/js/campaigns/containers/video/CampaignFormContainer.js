@@ -102,6 +102,8 @@ DecoratedComponent = reduxForm(
   (state, ownProps) => { // mapStateToProps
     return {
       initialValues: {
+        name: _.get(ownProps, 'campaign.name'),
+        url: _.get(ownProps, 'triggers.0.url'),
       }
     };
   }
