@@ -39,26 +39,19 @@ function* create(action) {
 
   const triggerPayloadFormatted = JSON.stringify(triggerPayload);
 
-  const triggers = _.reduce(values.media, (result, media) => {
-    const trigger = _.assign(
-      {
-        image: media[0], // Only get the first image in a filelist
-        triggerType: Constants.TriggerTypes.IMAGE,
-        searchbarTitle: values.name,
-        payload: (values.couponId) ?
-          triggerPayloadFormatted : undefined,
-        // Static
-        isLogo: 0,
-        undeletable: true
-      },
-      _.pick(values, [
-        'brandId',
-        'url'
-      ])
-    );
-    result.push(trigger);
-    return result;
-  }, []);
+  const trigger = _.assign(
+    {
+      media: values.media[0], // Only get the first video in a filelist
+      triggerType: Constants.TriggerTypes.VIDEO,
+      searchbarTitle: values.name,
+      payload: (values.couponId) ?
+        triggerPayloadFormatted : undefined,
+    },
+    _.pick(values, [
+      'brandId',
+      'url'
+    ])
+  );
 
   // Validation
   // Campaign
@@ -80,36 +73,22 @@ function* create(action) {
     }
   }
 
-  // Triggers
-  if(_.size(triggers) === 0) {
-    yield put({
-      type: 'ADD_ERROR',
-      payload: new Error('An image is required'),
-      error: true
-    });
-    action.payload.reject({
-      'media[0]': 'An image is required'
-    });
-    return;
-  }
-  for(let i = 0; i < _.size(triggers); i++) {
-    let trigger = triggers[i];
-    try {
-      let values = yield call([validatorSchemas.trigger, validatorSchemas.trigger.validate], trigger);
-    } catch(err) {
-      if(err instanceof ValidationError) {
-        yield put({
-          type: 'TRIGGER_VALIDATE_INVALID',
-          payload: err,
-          error: true
-        });
-        action.payload.reject({
-          [err.path]: err.message
-        });
-        return;
-      } else {
-        throw err;
-      }
+  // Trigger
+  try {
+    let values = yield call([validatorSchemas.trigger, validatorSchemas.trigger.validate], trigger);
+  } catch(err) {
+    if(err instanceof ValidationError) {
+      yield put({
+        type: 'TRIGGER_VALIDATE_INVALID',
+        payload: err,
+        error: true
+      });
+      action.payload.reject({
+        [err.path]: err.message
+      });
+      return;
+    } else {
+      throw err;
     }
   }
 
@@ -129,10 +108,8 @@ function* create(action) {
 
   // ------------  Triggers ------------ //
   // Now we can assign the campaign id
-  _.each(triggers, trigger => {
-    trigger.campaignId = campaignAction.payload.result
-  });
-  yield call(uploadTriggers, triggers);
+  trigger.campaignId = campaignAction.payload.result
+  yield call(uploadTriggers, [trigger]);
 
   action.payload.resolve();
 

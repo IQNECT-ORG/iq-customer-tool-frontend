@@ -42,7 +42,7 @@ function* create(action) {
   const triggers = _.reduce(values.media, (result, media) => {
     const trigger = _.assign(
       {
-        image: media[0], // Only get the first image in a filelist
+        media: media[0], // Only get the first image in a filelist
         triggerType: Constants.TriggerTypes.IMAGE,
         searchbarTitle: values.name,
         payload: (values.couponId) ?

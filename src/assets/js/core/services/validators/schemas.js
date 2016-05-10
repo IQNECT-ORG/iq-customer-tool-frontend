@@ -20,7 +20,7 @@ export const trigger = yup.object().shape({
   triggerType: yup
     .number()
     .oneOf(_.values(Constants.TriggerTypes)),
-  image: yup
+  media: yup
     .mixed()
     .required()
 });

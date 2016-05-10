@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       return new Promise((resolve, reject) => {
         dispatch(brandAddFormSubmit({
           values: {
-            image: values.artwork[0],
+            media: values.artwork[0],
             name: values.name,
           },
           isModal: true,
