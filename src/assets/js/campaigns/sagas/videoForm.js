@@ -6,6 +6,7 @@ import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
+import { takeN } from 'app/core/sagas/utils';
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -17,35 +18,25 @@ function* uploadTriggers(triggers) {
   }
 
   // Wait until all of the trigger tasks have completed.
-  for(let i = 0; i < _.size(triggers); i++) {
-    yield take(['TRIGGERS_CREATE_SUCCESS']);
-  }
+  yield takeN(_.size(triggers), ['TRIGGERS_CREATE_SUCCESS']);
 }
 
 function* create(action) {
   const { values } = action.payload;
 
-  // Setting up data models
+  // Data Models
   const campaign = _.assign({
     defaultBrand: values.brandId
-  },_.pick(values, ['name']));
-
-  const triggerPayload = {
-    meta: {
-      version: '2.0.0'
-    },
-    couponId: values.couponId
-  };
-
-  const triggerPayloadFormatted = JSON.stringify(triggerPayload);
+  },_.pick(values, [
+    'name',
+    'type'
+  ]));
 
   const trigger = _.assign(
     {
       media: values.media[0], // Only get the first video in a filelist
       triggerType: Constants.TriggerTypes.VIDEO,
-      searchbarTitle: values.name,
-      payload: (values.couponId) ?
-        triggerPayloadFormatted : undefined,
+      searchbarTitle: values.name
     },
     _.pick(values, [
       'brandId',

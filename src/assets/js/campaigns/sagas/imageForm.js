@@ -6,6 +6,7 @@ import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
+import { takeN } from 'app/core/sagas/utils';
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -17,9 +18,7 @@ function* uploadTriggers(triggers) {
   }
 
   // Wait until all of the trigger tasks have completed.
-  for(let i = 0; i < _.size(triggers); i++) {
-    yield take(['TRIGGERS_CREATE_SUCCESS']);
-  }
+  yield takeN(_.size(triggers), ['TRIGGERS_CREATE_SUCCESS']);
 }
 
 function* create(action) {
@@ -28,7 +27,10 @@ function* create(action) {
   // Setting up data models
   const campaign = _.assign({
     defaultBrand: values.brandId
-  },_.pick(values, ['name']));
+  },_.pick(values, [
+    'name',
+    'type'
+  ]));
 
   const triggerPayload = {
     meta: {

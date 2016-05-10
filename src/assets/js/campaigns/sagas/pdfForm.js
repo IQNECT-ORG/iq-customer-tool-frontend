@@ -9,12 +9,52 @@ import { change } from 'redux-form/lib/actions';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import * as modalActions from 'app/modal/actions';
+import { takeN } from 'app/core/sagas/utils';
+
+function* uploadTriggers(triggers) {
+  for(let i = 0; i < _.size(triggers); i++) {
+    let trigger = triggers[i];
+
+    let triggerTask = yield fork(createTrigger, {
+      data: trigger
+    });
+  }
+
+  // Wait until all of the trigger tasks have completed.
+  yield takeN(_.size(triggers), ['TRIGGERS_CREATE_SUCCESS']);
+}
 
 function* create(action) {
+  const { values } = action.payload;
+
+  // Data Models
+  const campaign = _.assign({
+    defaultBrand: values.brandId
+  },_.pick(values, [
+    'name',
+    'type'
+  ]));
+
+  const trigger = _.assign(
+    {
+      media: values.media[0], // Only get the first video in a filelist
+      triggerType: Constants.TriggerTypes.PDF,
+      searchbarTitle: values.name
+    },
+    _.pick(values, [
+      'brandId',
+      'url'
+    ])
+  );
+
+  // Validation
+
+  // Sending Data
+
   // ------------  Campaign ------------ //
   // Send off request
   const campaignTask = yield fork(createCampaign, {
-    data: action.payload.values
+    data: campaign
   });
   // Wait for request to finish
   const campaignAction = yield take(['CAMPAIGNS_CREATE_SUCCESS', 'CAMPAIGNS_CREATE_FAILURE']);
@@ -32,7 +72,10 @@ function* create(action) {
   changeAction.form = campaignAction.payload.form;
   yield put(changeAction);
 
+
   // ------------  Triggers ------------ //
+  trigger.campaignId = campaignAction.payload.result
+  yield call(uploadTriggers, [trigger]);
 
   // Now fetch the triggers for the campaign.
   const triggerTask = yield fork(getTriggers, {
@@ -50,12 +93,12 @@ function* create(action) {
   yield put(changeAction);
 
   // --------  Training Results -------- //
-  const trigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
+  const fetchedTrigger = triggerAction.payload.entities.triggers[triggerAction.payload.result[0]];
 
   const trainingResultTask = yield fork(getTrainingResults, {
-    url: trigger.trainingResult,
+    url: fetchedTrigger.trainingResult,
     parserOptions: {
-      triggerId: trigger.triggerId
+      triggerId: fetchedTrigger.triggerId
     }
   });
 
