@@ -25,7 +25,7 @@ class Steptracker extends Component {
     if(isLast === false) {
       separator = (
         <div className="steptracker__separator pull-xs-left">
-          ->
+          ➝
         </div>
       );
     }
