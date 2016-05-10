@@ -12,6 +12,7 @@ import _ from 'lodash';
 
 import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
 import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
+import VideoCmapaignFormContainer from '../containers/video/CampaignFormContainer';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -51,6 +52,8 @@ class EditCampaign extends Component {
 
     let form;
     let icon;
+    let steptracker;
+
     switch(this.props.campaign.type >> 0) {
       case Constants.CampaignTypes.IMAGE:
         icon = 'icons8-picture';
@@ -68,29 +71,37 @@ class EditCampaign extends Component {
             triggers={this.props.triggers}
             trainingResults={this.props.trainingResults}/>
         );
+        steptracker = (
+          <Steptracker
+            steps={[
+              {
+                label: 'Step 1',
+                isActive: this.props.steptrackerStep === 0,
+                isPast: this.props.steptrackerStep > 0
+              },
+              {
+                label: 'Step 2',
+                isActive: this.props.steptrackerStep === 1,
+                isPast: this.props.steptrackerStep > 1
+              },
+              {
+                label: 'Step 3',
+                isActive: this.props.steptrackerStep === 2,
+                isPast: this.props.steptrackerStep > 2
+              }
+            ]}/>
+        );
+        break;
+      case Constants.CampaignTypes.VIDEO:
+        icon = 'icons8-movie';
+        form = (
+          <VideoCmapaignFormContainer
+            campaign={this.props.campaign}
+            triggers={this.props.triggers}/>
+        );
         break;
     }
 
-    const steptracker = (
-      <Steptracker
-        steps={[
-          {
-            label: 'Step 1',
-            isActive: this.props.steptrackerStep === 0,
-            isPast: this.props.steptrackerStep > 0
-          },
-          {
-            label: 'Step 2',
-            isActive: this.props.steptrackerStep === 1,
-            isPast: this.props.steptrackerStep > 1
-          },
-          {
-            label: 'Step 3',
-            isActive: this.props.steptrackerStep === 2,
-            isPast: this.props.steptrackerStep > 2
-          }
-        ]}/>
-    );
 
     return (
       <DefaultLayout
