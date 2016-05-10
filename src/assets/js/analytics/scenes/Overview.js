@@ -148,112 +148,129 @@ class Overview extends Component {
         <div className="container">
           <div className="pane pane--filled">
             <div className="pane__body">
-              <rd3.LineChart
-                legend={false}
-                data={lineData}
-                width='100%'
-                height={400}
-                viewBoxObject={{
-                  x: 0,
-                  y: 0,
-                  width: 500,
-                  height: 400
-                }}
-                colors={ series => {
-                  const colors = [
-                    '#e91e63',
-                    '#00bcd4',
-                    '#37474f'
-                  ];
-                  return colors[series];
-                }}
-                interpolationType='monotone'
-                title='Overall Data'
-                yAxisLabel=''
-                xAxisLabel=''
-                gridHorizontal={true}
-                gridHorizontalStrokeDash='0'
-                gridHorizontalStroke='#eceff1'
-                circleRadius={0}
-                domain={{
-                  x: [new Date(2016, 0, 1), new Date(2016, 11, 31)],
-                  y: [0, null]
-                }}
-              />
+              <div className="row">
+                <div className="col-xs-10">
+                  <rd3.LineChart
+                    legend={false}
+                    data={lineData}
+                    width='100%'
+                    height={400}
+                    viewBoxObject={{
+                      x: 0,
+                      y: 0,
+                      width: 800,
+                      height: 400
+                    }}
+                    colors={ series => {
+                      const colors = [
+                        '#e91e63',
+                        '#00bcd4',
+                        '#37474f'
+                      ];
+                      return colors[series];
+                    }}
+                    interpolationType='monotone'
+                    title='Overall Data'
+                    yAxisLabel=''
+                    xAxisLabel=''
+                    gridHorizontal={true}
+                    gridHorizontalStrokeDash='0'
+                    gridHorizontalStroke='#eceff1'
+                    circleRadius={0}
+                    domain={{
+                      x: [new Date(2016, 0, 1), new Date(2016, 11, 31)],
+                      y: [0, null]
+                    }}
+                  />
+                </div>
+                <div className="col-xs-2">
+                  Number of scans
+                  Unique scans
+                  Average scan per user
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <rd3.PieChart
-                data={pieData}
-                width={450}
-                height={400}
-                radius={110}
-                innerRadius={50}
-                colors={segment => {
-                  const colors = [
-                    '#e91e63',
-                    '#00bcd4',
-                    '#37474f'
-                  ];
-                  return colors[segment];
-                }}
-                showInnerLabels={false}
-                showOuterLabels={false}
-                title='Gender'/>
+          <div className="row">
+            <div className="col-xs-4">
+              <div className="pane pane--filled">
+                <div className="pane__body">
+                  <rd3.PieChart
+                    data={pieData}
+                    width={200}
+                    height={400}
+                    radius={110}
+                    innerRadius={50}
+                    colors={segment => {
+                      const colors = [
+                        '#e91e63',
+                        '#00bcd4',
+                        '#37474f'
+                      ];
+                      return colors[segment];
+                    }}
+                    showInnerLabels={false}
+                    showOuterLabels={false}
+                    title='Gender'/>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <rd3.BarChart
-                data={barData}
-                width={500}
-                height={300}
-                title='Age'
-                colors={ series => {
-                  return '#e91e63';
-                }}
-                xAxisLabel=''
-                yAxisLabel=''
-                xAxisFormatter={ tick => {
-                  const zones = {
-                    1: '0-24',
-                    2: '25-44',
-                    3: '45-64',
-                    4: '65+'
-                  };
+            <div className="col-xs-4">
+              <div className="pane pane--filled">
+                <div className="pane__body">
+                  <rd3.BarChart
+                    data={barData}
+                    width={200}
+                    height={300}
+                    title='Age'
+                    colors={ series => {
+                      return '#e91e63';
+                    }}
+                    xAxisLabel=''
+                    yAxisLabel=''
+                    xAxisFormatter={ tick => {
+                      const zones = {
+                        1: '0-24',
+                        2: '25-44',
+                        3: '45-64',
+                        4: '65+'
+                      };
 
-                  return zones[tick];
-                }}
-                />
+                      return zones[tick];
+                    }}
+                    />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="pane pane--filled">
-            <div className="pane__body">
-              <rd3.BarChart
-                data={barData}
-                width={500}
-                height={300}
-                title='OS'
-                colors={ series => {
-                  return '#00bcd4';
-                }}
-                xAxisLabel=''
-                yAxisLabel=''
-                xAxisFormatter={ tick => {
-                  const zones = {
-                    1: 'AND',
-                    2: 'IOS',
-                    3: 'BB',
-                    4: 'OTR'
-                  };
+            <div className="col-xs-4">
+              <div className="pane pane--filled">
+                <div className="pane__body">
+                  <rd3.BarChart
+                    data={barData}
+                    width={200}
+                    height={300}
+                    title='OS'
+                    colors={ series => {
+                      return '#00bcd4';
+                    }}
+                    xAxisLabel=''
+                    yAxisLabel=''
+                    xAxisFormatter={ tick => {
+                      const zones = {
+                        1: 'AND',
+                        2: 'IOS',
+                        3: 'BB',
+                        4: 'OTR'
+                      };
 
-                  return zones[tick];
-                }}
-                />
+                      return zones[tick];
+                    }}
+                    />
+                </div>
+              </div>
             </div>
           </div>
         </div>
