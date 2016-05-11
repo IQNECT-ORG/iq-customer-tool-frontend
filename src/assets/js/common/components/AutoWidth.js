@@ -17,17 +17,17 @@ class AutoWidth extends Component {
     window.addEventListener('resize', ::this.handleWindowResize);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if(this.state.width === nextState.width) {
-      return false;
-    }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if(this.state.width === nextState.width) {
+  //     return false;
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  componentDidUpdate() {
-    this._updateWidth();
-  }
+  // componentDidUpdate() {
+  //   this._updateWidth();
+  // }
 
   _updateWidth() {
     const node = ReactDOM.findDOMNode(this);
