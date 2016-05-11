@@ -202,29 +202,39 @@ class Overview extends Component {
             <div className="col-xs-4 col--tight">
               <div className="pane pane--filled">
                 <div className="pane__body">
-                  <AutoWidth dryRun={true}>
-                    {props => {
-                      return (
-                        <rd3.PieChart
-                          data={pieData}
-                          width={props.autoWidth}
-                          height={props.autoWidth}
-                          radius={110}
-                          innerRadius={50}
-                          colors={segment => {
-                            const colors = [
-                              '#e91e63',
-                              '#00bcd4',
-                              '#37474f'
-                            ];
-                            return colors[segment];
-                          }}
-                          showInnerLabels={false}
-                          showOuterLabels={false}
-                          title='Gender'/>
-                      );
-                    }}
-                  </AutoWidth>
+                  <div className="row">
+                    <div className="col-xs-6 col--tight">
+                      <AutoWidth dryRun={true}>
+                        {props => {
+                          return (
+                            <rd3.PieChart
+                              data={pieData}
+                              width={props.autoWidth}
+                              height={props.autoWidth}
+                              radius={props.autoWidth / 2}
+                              innerRadius={(props.autoWidth / 4)}
+                              colors={segment => {
+                                const colors = [
+                                  '#e91e63',
+                                  '#00bcd4',
+                                  '#37474f'
+                                ];
+                                return colors[segment];
+                              }}
+                              showInnerLabels={false}
+                              showOuterLabels={false}
+                              title='Gender'/>
+                          );
+                        }}
+                      </AutoWidth>
+                    </div>
+
+                    <div className="col-xs-6">
+                      X% Female
+                      Y% Male
+                      Z% Unknown
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
