@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
 import { loadOverview } from '../actions';
+
 import OverallChartContainer from '../containers/OverallChartContainer';
 import AgeChartContainer from '../containers/AgeChartContainer';
 import GenderChartContainer from '../containers/GenderChartContainer';
 import OSChartContainer from '../containers/OSChartContainer';
 import LocationMapContainer from '../containers/LocationMapContainer';
 
-import _ from 'lodash';
-
-
+import OverallMetricsContainer from '../containers/OverallMetricsContainer';
+import AgeMetricsContainer from '../containers/AgeMetricsContainer';
+import GenderMetricsContainer from '../containers/GenderMetricsContainer';
+import OSMetricsContainer from '../containers/OSMetricsContainer';
 
 class Overview extends Component {
 
@@ -43,9 +46,7 @@ class Overview extends Component {
                   </AutoWidth>
                 </div>
                 <div className="col-xs-2">
-                  Number of scans
-                  Unique scans
-                  Average scan per user
+                  <OverallMetricsContainer/>
                 </div>
               </div>
             </div>
@@ -68,9 +69,7 @@ class Overview extends Component {
                     </div>
 
                     <div className="col-xs-6">
-                      X% Female
-                      Y% Male
-                      Z% Unknown
+                      <AgeMetricsContainer/>
                     </div>
                   </div>
                 </div>
@@ -92,9 +91,7 @@ class Overview extends Component {
                     </div>
 
                     <div className="col-xs-6">
-                      X% Female
-                      Y% Male
-                      Z% Unknown
+                      <GenderMetricsContainer/>
                     </div>
                   </div>
                 </div>
@@ -116,9 +113,7 @@ class Overview extends Component {
                     </div>
 
                     <div className="col-xs-6">
-                      X% iOS
-                      Y% Android
-                      Z% Unknown
+                      <OSMetricsContainer/>
                     </div>
                   </div>
                 </div>
