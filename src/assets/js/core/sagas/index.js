@@ -5,6 +5,7 @@ import modalSaga from 'app/modal/sagas';
 import entitiesSaga from './entities';
 import commonSaga from 'app/common/sagas';
 import dashboardSaga from 'app/dashboard/sagas';
+import analyticsSaga from 'app/analytics/sagas';
 
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
@@ -91,6 +92,7 @@ export default function* root() {
   yield fork(modalSaga);
   yield fork(commonSaga);
   yield fork(dashboardSaga);
+  yield fork(analyticsSaga);
 
   yield fork(watchForbiddenNavigation);
 };

@@ -4,6 +4,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
+import { loadOverview } from '../actions';
 
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
@@ -76,6 +77,10 @@ var barData = [
 ];
 
 class Overview extends Component {
+
+  componentDidMount() {
+    this.props.actions.load();
+  }
 
   render() {
     const markers = [
@@ -323,15 +328,19 @@ const markerIcon = {
   anchor: new google.maps.Point(100,100)
 };
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
+    filters: state.analytics.filters,
+    data: state.analytics.data
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
+      load: _ => {
+        dispatch(loadOverview());
+      }
     }
   };
 };
