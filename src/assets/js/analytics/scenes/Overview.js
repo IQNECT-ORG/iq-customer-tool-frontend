@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import AutoWidth from 'app/common/components/AutoWidth';
 
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
@@ -149,39 +150,44 @@ class Overview extends Component {
           <div className="pane pane--filled">
             <div className="pane__body">
               <div className="row">
-                <div className="col-xs-10">
-                  <rd3.LineChart
-                    legend={false}
-                    data={lineData}
-                    width='100%'
-                    height={400}
-                    viewBoxObject={{
-                      x: 0,
-                      y: 0,
-                      width: 800,
-                      height: 400
+                <div className="col-xs-10 col--tight">
+                  <AutoWidth dryRun={true}>
+                    {props => {
+                      return (
+                        <rd3.LineChart
+                          legend={false}
+                          data={lineData}
+                          width='100%'
+                          height={400}
+                          viewBoxObject={{
+                            x: 0,
+                            y: 0,
+                            width: props.autoWidth,
+                            height: 400
+                          }}
+                          colors={ series => {
+                            const colors = [
+                              '#e91e63',
+                              '#00bcd4',
+                              '#37474f'
+                            ];
+                            return colors[series];
+                          }}
+                          interpolationType='monotone'
+                          title='Overall Data'
+                          yAxisLabel=''
+                          xAxisLabel=''
+                          gridHorizontal={true}
+                          gridHorizontalStrokeDash='0'
+                          gridHorizontalStroke='#eceff1'
+                          circleRadius={0}
+                          domain={{
+                            x: [new Date(2016, 0, 1), new Date(2016, 11, 31)],
+                            y: [0, null]
+                          }}/>
+                      );
                     }}
-                    colors={ series => {
-                      const colors = [
-                        '#e91e63',
-                        '#00bcd4',
-                        '#37474f'
-                      ];
-                      return colors[series];
-                    }}
-                    interpolationType='monotone'
-                    title='Overall Data'
-                    yAxisLabel=''
-                    xAxisLabel=''
-                    gridHorizontal={true}
-                    gridHorizontalStrokeDash='0'
-                    gridHorizontalStroke='#eceff1'
-                    circleRadius={0}
-                    domain={{
-                      x: [new Date(2016, 0, 1), new Date(2016, 11, 31)],
-                      y: [0, null]
-                    }}
-                  />
+                  </AutoWidth>
                 </div>
                 <div className="col-xs-2">
                   Number of scans
@@ -193,82 +199,98 @@ class Overview extends Component {
           </div>
 
           <div className="row">
-            <div className="col-xs-4">
+            <div className="col-xs-4 col--tight">
               <div className="pane pane--filled">
                 <div className="pane__body">
-                  <rd3.PieChart
-                    data={pieData}
-                    width={200}
-                    height={400}
-                    radius={110}
-                    innerRadius={50}
-                    colors={segment => {
-                      const colors = [
-                        '#e91e63',
-                        '#00bcd4',
-                        '#37474f'
-                      ];
-                      return colors[segment];
+                  <AutoWidth dryRun={true}>
+                    {props => {
+                      return (
+                        <rd3.PieChart
+                          data={pieData}
+                          width={props.autoWidth}
+                          height={props.autoWidth}
+                          radius={110}
+                          innerRadius={50}
+                          colors={segment => {
+                            const colors = [
+                              '#e91e63',
+                              '#00bcd4',
+                              '#37474f'
+                            ];
+                            return colors[segment];
+                          }}
+                          showInnerLabels={false}
+                          showOuterLabels={false}
+                          title='Gender'/>
+                      );
                     }}
-                    showInnerLabels={false}
-                    showOuterLabels={false}
-                    title='Gender'/>
+                  </AutoWidth>
                 </div>
               </div>
             </div>
 
-            <div className="col-xs-4">
+            <div className="col-xs-4 col--tight">
               <div className="pane pane--filled">
                 <div className="pane__body">
-                  <rd3.BarChart
-                    data={barData}
-                    width={200}
-                    height={300}
-                    title='Age'
-                    colors={ series => {
-                      return '#e91e63';
-                    }}
-                    xAxisLabel=''
-                    yAxisLabel=''
-                    xAxisFormatter={ tick => {
-                      const zones = {
-                        1: '0-24',
-                        2: '25-44',
-                        3: '45-64',
-                        4: '65+'
-                      };
+                  <AutoWidth dryRun={true}>
+                    {props => {
+                      return (
+                        <rd3.BarChart
+                          data={barData}
+                          width={props.autoWidth}
+                          height={props.autoWidth}
+                          title='Age'
+                          colors={ series => {
+                            return '#e91e63';
+                          }}
+                          xAxisLabel=''
+                          yAxisLabel=''
+                          xAxisFormatter={ tick => {
+                            const zones = {
+                              1: '0-24',
+                              2: '25-44',
+                              3: '45-64',
+                              4: '65+'
+                            };
 
-                      return zones[tick];
+                            return zones[tick];
+                          }}/>
+                      );
                     }}
-                    />
+                  </AutoWidth>
                 </div>
               </div>
             </div>
 
-            <div className="col-xs-4">
+            <div className="col-xs-4 col--tight">
               <div className="pane pane--filled">
                 <div className="pane__body">
-                  <rd3.BarChart
-                    data={barData}
-                    width={200}
-                    height={300}
-                    title='OS'
-                    colors={ series => {
-                      return '#00bcd4';
-                    }}
-                    xAxisLabel=''
-                    yAxisLabel=''
-                    xAxisFormatter={ tick => {
-                      const zones = {
-                        1: 'AND',
-                        2: 'IOS',
-                        3: 'BB',
-                        4: 'OTR'
-                      };
+                  <AutoWidth dryRun={true}>
+                    {props => {
+                      return (
+                        <rd3.BarChart
+                          data={barData}
+                          width={props.autoWidth}
+                          height={props.autoWidth}
+                          title='OS'
+                          colors={ series => {
+                            return '#00bcd4';
+                          }}
+                          xAxisLabel=''
+                          yAxisLabel=''
+                          xAxisFormatter={ tick => {
+                            const zones = {
+                              1: 'AND',
+                              2: 'IOS',
+                              3: 'BB',
+                              4: 'OTR'
+                            };
 
-                      return zones[tick];
+                            return zones[tick];
+                          }}/>
+                      );
                     }}
-                    />
+                  </AutoWidth>
                 </div>
               </div>
             </div>
