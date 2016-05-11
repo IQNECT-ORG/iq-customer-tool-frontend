@@ -67,6 +67,7 @@
     "d3": "^3.5.16",
     "font-awesome": "^4.5.0",
     "form-serialize": "^0.7.1",
+    "geolib": "^2.0.21",
     "history": "^2.0.1",
     "immutable": "^3.7.6",
     "joid": "^1.0.0",
