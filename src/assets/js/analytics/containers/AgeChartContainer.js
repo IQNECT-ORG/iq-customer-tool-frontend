@@ -57,8 +57,6 @@ const mapStateToProps = (state, ownProps) => {
     }, []))
     .value();
 
-  console.log(ageData);
-
   return {
     chartData: ageData
   };
