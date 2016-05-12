@@ -52,10 +52,8 @@ const mapStateToProps = (state, ownProps) => {
     }, []))
     .value();
 
-  const metrics = ageData;
-
   return {
-    metrics
+    metrics: ageData
   };
 };
 
