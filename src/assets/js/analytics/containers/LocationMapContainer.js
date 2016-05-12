@@ -59,31 +59,39 @@ const eventWrapper = (fn) => {
 class LocationMap extends Component {
   render() {
     return (
-      <GoogleMapLoader
-        containerElement={
-          <div style={{
-            height: 500,
-          }}/>
-        }
-        googleMapElement={
-          <GoogleMap
-            ref="map"
-            defaultZoom={this.props.ui.zoom}
-            defaultCenter={{lat: 0, lng: 0}}
-            options={{
-              styles: mapStyle
-            }}
-            onClick={_ => {}}
-            onZoomChanged={eventWrapper(this.props.onZoomChanged).bind(this)}>
-            <MarkerClusterer styles={[clusterStyle]}>
-              {this.props.markers.map((marker, index) => {
-                return (
-                  <MarkerWithLabel {...marker}/>
-                );
-              })}
-            </MarkerClusterer>
-          </GoogleMap>
-        }/>
+      <div>
+        <div className="clearfix">
+          <h2 className="pull-xs-left">Location</h2>
+          <div className="pull-xs-right">
+            {this.props.ignoredCount} unknown locations
+          </div>
+        </div>
+        <GoogleMapLoader
+          containerElement={
+            <div style={{
+              height: 500,
+            }}/>
+          }
+          googleMapElement={
+            <GoogleMap
+              ref="map"
+              defaultZoom={this.props.ui.zoom}
+              defaultCenter={{lat: 0, lng: 0}}
+              options={{
+                styles: mapStyle
+              }}
+              onClick={_ => {}}
+              onZoomChanged={eventWrapper(this.props.onZoomChanged).bind(this)}>
+              <MarkerClusterer styles={[clusterStyle]}>
+                {this.props.markers.map((marker, index) => {
+                  return (
+                    <MarkerWithLabel {...marker}/>
+                  );
+                })}
+              </MarkerClusterer>
+            </GoogleMap>
+          }/>
+      </div>
     );
   }
 }
@@ -94,8 +102,20 @@ const mapStateToProps = (state, ownProps) => {
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
+  let ignoredCount = 0;
+
   const markers = _(allSearches)
     .thru(value => _.reduce(value, (result, search) => {
+      // Do not include 0,0. As that is unknown
+      if(
+        search.lat >= 0 && search.lat <= 0.1
+        &&
+        search.long >= 0 && search.lat <= 0.1
+      ) {
+        ignoredCount++;
+        return result;
+      }
+
       const key = `${search.lat}:${search.long}`;
       result[key] = {
         position: {
@@ -116,6 +136,7 @@ const mapStateToProps = (state, ownProps) => {
     .value();
 
   return {
+    ignoredCount,
     markers
   };
 };
