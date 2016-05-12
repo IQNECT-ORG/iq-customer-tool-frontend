@@ -30,24 +30,11 @@ const mapStateToProps = (state, ownProps) => {
   const genderData = _(allSearches)
     // Count each gender type
     .thru(value => _.countBy(value, search => search.gender))
-    // Calculate the total of all genders
-    .thru(value => _.reduce(value, (result, count) => {
-      result.total += count;
-      return result;
-    }, {
-      total: 0,
-      data: value
-    }))
-    // Work out the percentage
-    .thru(value => _.reduce(value.data, (result, count, key) => {
-      result[key] = (count / value.total) * 100;
-      return result;
-    }, value.data))
     // Converting the data to the chart format
-    .thru(value => _.reduce(value, (result, percentage, key) => {
+    .thru(value => _.reduce(value, (result, count, key) => {
       result.push({
         label: key,
-        value: percentage
+        value: count
       });
       return result;
     }, []))
