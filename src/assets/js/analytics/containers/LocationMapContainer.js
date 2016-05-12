@@ -46,6 +46,7 @@ const clusterStyle = {
   width: 25,
   height: 25,
   url: '/assets/images/map-circle.svg',
+  textColor: '#fff'
 };
 
 const eventWrapper = (fn) => {
