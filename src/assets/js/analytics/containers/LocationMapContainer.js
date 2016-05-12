@@ -37,21 +37,15 @@ const mapStyle = [
   }
 ];
 
-const path = 'M 100, 100, m -75, 0, a 75,75 0 1,0 150,0, a 75,75 0 1,0 -150,0';
 const markerIcon = {
-  path: path,
-  fillColor: '#e91e63',
-  fillOpacity: 1,
-  scale: 0.25,
-  // strokeColor: '#e91e63',
-  strokeWeight: 0,
-  anchor: new google.maps.Point(100,100)
+  url: '/assets/images/map-circle.svg',
+  anchor: new google.maps.Point(25,25)
 };
 
 const clusterStyle = {
-  width: 50,
-  height: 50,
-  url: 'http://www.thetimes.co.uk/tto/multimedia/archive/00968/ad0f2a3e-50df-11e5-_968539c.jpg'
+  width: 25,
+  height: 25,
+  url: '/assets/images/map-circle.svg',
 };
 
 const eventWrapper = (fn) => {
@@ -113,8 +107,8 @@ const mapStateToProps = (state, ownProps) => {
         icon: markerIcon,
         labelContent: 1,
         //labelAnchor: new google.maps.Point(22, 0),
-        labelClass: 'labels', // the CSS class for the label,
-        labelAnchor: new google.maps.Point(20, 20)
+        labelClass: 'map-label', // the CSS class for the label,
+        labelAnchor: new google.maps.Point(25, 25)
       };
       return result;
     }, {}))
