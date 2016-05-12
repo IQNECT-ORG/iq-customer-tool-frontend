@@ -9,10 +9,37 @@ const mapStateToProps = (state, ownProps) => {
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
-  const metrics = {};
+  // Get the total number
+  const total = _.size(allSearches);
+  const osData = _(allSearches)
+    // Need to merge bad values down to unknown
+    .thru(value => _.transform(value, (result, search) => {
+      const deviceType = search.deviceType;
+
+      if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
+        search.deviceType = 'Unknown'
+      }
+
+      result.push(search);
+    }, []))
+    // Count each type
+    .thru(value => _.countBy(value, search => search.deviceType))
+    // Make them percentages
+    .thru(value => _.transform(value, (result, value, key) => {
+      result[key] = ((value / total) * 100).toFixed(0);
+    }, {}))
+    // Converting the data to the chart format
+    .thru(value => _.reduce(value, (result, value, key) => {
+      result.push({
+        label: key,
+        value: `${value}%`
+      });
+      return result;
+    }, []))
+    .value();
 
   return {
-    metrics
+    metrics: osData
   };
 };
 

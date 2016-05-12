@@ -27,34 +27,31 @@ const mapStateToProps = (state, ownProps) => {
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
-  const genderData = _(allSearches)
-    // Count each gender type
-    .thru(value => _.countBy(value, search => search.gender))
-    // Calculate the total of all genders
-    .thru(value => _.reduce(value, (result, count) => {
-      result.total += count;
-      return result;
-    }, {
-      total: 0,
-      data: value
-    }))
-    // Work out the percentage
-    .thru(value => _.reduce(value.data, (result, count, key) => {
-      result[key] = (count / value.total) * 100;
-      return result;
-    }, value.data))
+  const osData = _(allSearches)
+    // Need to merge bad values down to unknown
+    .thru(value => _.transform(value, (result, search) => {
+      const deviceType = search.deviceType;
+
+      if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
+        search.deviceType = 'Unknown'
+      }
+
+      result.push(search);
+    }, []))
+    // Count each type
+    .thru(value => _.countBy(value, search => search.deviceType))
     // Converting the data to the chart format
-    .thru(value => _.reduce(value, (result, percentage, key) => {
+    .thru(value => _.reduce(value, (result, value, key) => {
       result.push({
         label: key,
-        value: percentage
+        value
       });
       return result;
     }, []))
     .value();
 
   return {
-    chartData: genderData
+    chartData: osData
   };
 };
 
