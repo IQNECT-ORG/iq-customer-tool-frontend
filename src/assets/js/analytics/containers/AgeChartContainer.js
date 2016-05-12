@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import _ from 'lodash';
 import moment from 'moment';
+import colorScheme from '../colorScheme';
 
 const render = (props) => {
   return (
@@ -13,12 +14,7 @@ const render = (props) => {
       radius={props.width / 2}
       innerRadius={(props.width / 4)}
       colors={segment => {
-        const colors = [
-          '#e91e63',
-          '#00bcd4',
-          '#37474f'
-        ];
-        return colors[segment];
+        return colorScheme[segment];
       }}
       showInnerLabels={false}
       showOuterLabels={false}
@@ -30,10 +26,6 @@ const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
-
-  var barData = [{
-    name: 'Series A'
-  }];
 
   const ageData = _(allSearches)
     .thru(value => _.reduce(value, (result, search) => {
@@ -59,16 +51,16 @@ const mapStateToProps = (state, ownProps) => {
     }))
     .thru(value => _.transform(value, (result, value, key) => {
       result.push({
-        x: key >> 0,
-        y: value
+        label: key >> 0,
+        value: value
       });
     }, []))
     .value();
 
-  barData[0].values = ageData;
+  console.log(ageData);
 
   return {
-    chartData: barData
+    chartData: ageData
   };
 };
 
