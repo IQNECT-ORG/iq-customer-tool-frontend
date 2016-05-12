@@ -33,7 +33,7 @@ class Overview extends Component {
           );
         }}>
         <div className="container">
-          <div className="pane pane--filled">
+          <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <div className="row">
                 <div className="col-xs-10 col--tight">
@@ -52,8 +52,7 @@ class Overview extends Component {
             </div>
           </div>
 
-          <div className="row">
-
+          <div className="row m-b-g">
             <div className="col-xs-4 col--tight">
               <div className="pane pane--filled">
                 <div className="pane__body">
@@ -121,7 +120,7 @@ class Overview extends Component {
             </div>
           </div>
 
-          <div className="pane pane--filled">
+          <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <LocationMapContainer/>
             </div>
