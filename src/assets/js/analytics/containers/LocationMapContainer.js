@@ -5,7 +5,6 @@ import moment from 'moment';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
 import MarkerClusterer from 'react-google-maps/lib/addons/MarkerClusterer';
-import ui from 'redux-ui/transpiled';
 
 const mapStyle = [
   {
@@ -76,13 +75,11 @@ class LocationMap extends Component {
           googleMapElement={
             <GoogleMap
               ref="map"
-              defaultZoom={this.props.ui.zoom}
+              defaultZoom={2}
               defaultCenter={{lat: 0, lng: 0}}
               options={{
                 styles: mapStyle
-              }}
-              onClick={_ => {}}
-              onZoomChanged={eventWrapper(this.props.onZoomChanged).bind(this)}>
+              }}>
               <MarkerClusterer styles={[clusterStyle]}>
                 {this.props.markers.map((marker, index) => {
                   return (
@@ -144,21 +141,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onZoomChanged: (mapComponent) => {
-      const map = mapComponent.props.map;
-
-      ownProps.updateUI('zoom', map.zoom);
-    }
   };
 };
 
 let DecoratedComponent = LocationMap;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = ui({
-  state: {
-    zoom: 3
-  }
-})(DecoratedComponent);
-
 
 export default DecoratedComponent;
