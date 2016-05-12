@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
 import Metrics from '../components/Metrics';
+import colorScheme from '../colorScheme';
 
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
@@ -53,7 +54,8 @@ const mapStateToProps = (state, ownProps) => {
     .value();
 
   return {
-    metrics: ageData
+    metrics: ageData,
+    colorScheme
   };
 };
 
