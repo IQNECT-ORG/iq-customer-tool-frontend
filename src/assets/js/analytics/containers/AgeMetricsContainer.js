@@ -2,24 +2,57 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
-
-const render = (props) => {
-  return (
-    <div>
-      W% 13-24
-      X% 25-44
-      Y% 44+
-      Z% Unknown
-    </div>
-  );
-}
+import Metrics from '../components/Metrics';
 
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
-  const metrics = {};
+  // Get the total number
+  const total = _.size(allSearches);
+  const ageData = _(allSearches)
+    // Group and count
+    .thru(value => _.reduce(value, (result, search) => {
+      let key;
+      const age = search.age;
+
+      if(age == null) {
+        result[3]++;
+      } else if(age <= 24) {
+        result[0]++;
+      } else if(age <= 44) {
+        result[1]++;
+      } else {
+        result[2]++;
+      }
+
+      return result;
+    }, {
+      0: 0, // 0-24
+      1: 0, // 25-44
+      2: 0, // 45+
+      3: 0 // Unknown
+    }))
+    // Make them percentages
+    .map(count => ((count / total) * 100).toFixed(0))
+    // Pie format
+    .thru(value => _.transform(value, (result, value, key) => {
+      const labels = {
+        0: '0-24',
+        1: '25-44',
+        2: '45+',
+        3: 'Unknown'
+      }
+
+      result.push({
+        label: labels[key >> 0],
+        value: `${value}%`
+      });
+    }, []))
+    .value();
+
+  const metrics = ageData;
 
   return {
     metrics
@@ -31,7 +64,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = render;
+let DecoratedComponent = Metrics;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;
