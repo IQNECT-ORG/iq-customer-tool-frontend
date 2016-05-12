@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import _ from 'lodash';
 import moment from 'moment';
+import colorScheme from '../colorScheme';
 
 const render = (props) => {
   return (
@@ -13,12 +14,7 @@ const render = (props) => {
       radius={props.width / 2}
       innerRadius={(props.width / 4)}
       colors={segment => {
-        const colors = [
-          '#e91e63',
-          '#00bcd4',
-          '#37474f'
-        ];
-        return colors[segment];
+        return colorScheme[segment];
       }}
       showInnerLabels={false}
       showOuterLabels={false}

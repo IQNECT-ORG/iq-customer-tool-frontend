@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import _ from 'lodash';
 import moment from 'moment';
+import colorScheme from '../colorScheme';
 
 const render = (props) => {
   return (
@@ -18,12 +19,7 @@ const render = (props) => {
         height: 400
       }}
       colors={ series => {
-        const colors = [
-          '#e91e63',
-          '#00bcd4',
-          '#37474f'
-        ];
-        return colors[series];
+        return colorScheme[series];
       }}
       interpolationType='monotone'
       title='Overall Data'
