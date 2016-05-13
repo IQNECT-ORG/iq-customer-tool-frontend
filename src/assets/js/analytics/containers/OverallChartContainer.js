@@ -30,7 +30,7 @@ const render = (props) => {
       gridHorizontalStroke='#eceff1'
       circleRadius={0}
       domain={{
-        x: [new Date(2016, 0, 1), new Date(2016, 11, 31)],
+        x: [new Date(2015, 0, 1), new Date(2015, 11, 31)],
         y: [0, null]
       }}/>
   );
@@ -43,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 
   const timespan = {};
   _.times(12, n => {
-    const date = moment([2016, n]);
+    const date = moment([2015, n]);
     timespan[date.unix()] = {
       x: date.toDate(),
       y: 0
@@ -52,7 +52,12 @@ const mapStateToProps = (state, ownProps) => {
 
   var lineData = [
     {
-      name: 'series1'
+      name: 'Number of Scans',
+      strokeWidth: 3
+    },
+    {
+      name: 'Unique Scans',
+      strokeWidth: 3
     }
   ];
 
@@ -65,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
 
         const key = date.unix();
 
-        if(result[key]) {
+        if(_.has(result, key)) {
           result[key].y++;
         } else {
           result[key] = {
@@ -75,12 +80,45 @@ const mapStateToProps = (state, ownProps) => {
         }
 
         return result;
-      }, timespan)
+      }, _.clone(timespan))
     })
     .thru(_.toArray)
     .value();
 
+  const uniqueData = _(allSearches)
+    .sortBy('timestamp')
+    .thru(value => _.transform(value, (result, search) => {
+      const date = moment.unix(search.timestamp);
+      date.startOf('month');
+
+      const key = date.unix();
+
+      if(_.has(result, key)) {
+        if(_.has(result[key], 'deviceIds') === false) {
+          result[key].deviceIds = [];
+        }
+
+        if(_.includes(result[key].deviceIds, search.deviceId) === false) {
+          result[key].deviceIds.push(search.deviceId);
+        }
+      } else {
+        result[key] = {
+          x: date.toDate(),
+          y: 1,
+          deviceIds: [],
+        }
+      }
+    }, _.clone(timespan)))
+    .thru(value => _.transform(value, (result, search) => {
+      result.push({
+        x: search.x,
+        y: _.size(search.deviceIds)
+      });
+    }, []))
+    .value();
+
   lineData[0].values = overallData;
+  lineData[1].values = uniqueData;
 
   return {
     chartData: lineData
