@@ -2,27 +2,49 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
-
-const render = (props) => {
-  return (
-    <div>
-      W% 13-24
-      X% 25-44
-      Y% 44+
-      Z% Unknown
-    </div>
-  );
-}
+import HeadedMetrics from '../components/HeadedMetrics';
+import colorScheme from '../colorScheme';
 
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
-  const metrics = {};
+  const countAllSearches = _.size(allSearches);
+
+  const countUniqueScans = _(allSearches)
+    .thru(value => _.transform(value, (result, search) => {
+      result.push(search.deviceId);
+    }, []))
+    .thru(value => _.uniq(value))
+    .thru(value => _.size(value))
+    .value();
+
+  let averageScan;
+  if(countUniqueScans === 0) {
+    averageScan = 0;
+  } else {
+    averageScan = (countAllSearches / countUniqueScans).toFixed(2);
+  }
+
+  const metrics = [
+    {
+      label: 'Number of Scans',
+      value: countAllSearches
+    },
+    {
+      label: 'Unique Scans',
+      value: countUniqueScans
+    },
+    {
+      label: 'Average Scan per User',
+      value: averageScan
+    }
+  ];
 
   return {
-    metrics
+    metrics,
+    colorScheme
   };
 };
 
@@ -31,7 +53,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = render;
+let DecoratedComponent = HeadedMetrics;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;
