@@ -13,3 +13,8 @@
     display: none;
   }
 }
+
+// The chart tooltip
+.rd3-basic-chart + div {
+  z-index: 1;
+}
