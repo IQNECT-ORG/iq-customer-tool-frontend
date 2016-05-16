@@ -88,7 +88,8 @@ const mapStateToProps = (state, ownProps) => {
   const topBrandsIds = state.dashboard.topBrands;
 
   const topBrands = _.filter(getBrands(state), brand => {
-    return _.includes(topBrandsIds, brand.brandId);
+    // Have to cast string to int due to differences in the API.
+    return _.includes(topBrandsIds, brand.brandId >> 0);
   });
 
   console.log(topBrands);

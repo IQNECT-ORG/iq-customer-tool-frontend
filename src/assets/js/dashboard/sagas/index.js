@@ -26,7 +26,7 @@ function* load(action) {
     const { json, reponse } = yield call(topBrandsApi);
 
     const brandIds = _.map(json.topBrands, x => {
-      return x.brand.brandId;
+      return x.brand;
     });
 
     yield put({
