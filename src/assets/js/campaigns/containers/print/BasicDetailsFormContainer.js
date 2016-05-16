@@ -22,12 +22,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(pdfCampaignFormSubmit({
           values: {
             campaignId: values.campaignId,
-            defaultBrand: ownProps.selectedBrandId,
+            brandId: ownProps.selectedBrandId,
             type: ownProps.selectedCampaignTypeId,
             name: values.campaignTitle,
             url: values.defaultTarget,
             language: values.magazineLanguage,
-            image: _.get(values, ['media', 0]),
+            media: _.get(values, ['media', 0]),
             periodFrom: values.campaignPeriodFrom,
             periodTo: values.campaignPeriodTo
           },
