@@ -7,6 +7,9 @@ const Actions = Constants.ActionTypes;
 let reducer = createReducer({}, {
   'AUTH_LOGIN_SUCCESS': (state, action) => {
     return read(state, action, ['payload', 'entities', 'users'], 'userId');
+  },
+  'AUTH_AUTHENTICATE_SUCCESS': (state, action) => {
+    return read(state, action, ['payload', 'entities', 'users'], 'userId');
   }
 });
 reducer = crudReducer(reducer, {
