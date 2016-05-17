@@ -69,7 +69,7 @@ function* create(action) {
   // this will allow us to know if the data is new or old
   // as well as be able to retrieve data on step changes
   let changeAction = change('campaignId', campaignAction.payload.result);
-  changeAction.form = campaignAction.payload.form;
+  changeAction.form = action.payload.form;
   yield put(changeAction);
 
 
