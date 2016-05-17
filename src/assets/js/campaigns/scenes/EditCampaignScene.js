@@ -5,6 +5,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import CampaignTitlebar from '../components/CampaignTitlebar';
 import { loadCampaignEditPage, resetCampaignCreate } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
@@ -48,37 +49,14 @@ class EditCampaign extends Component {
       );
     }
 
-    let form;
-    let icon;
-    let steptracker;
-
-    switch(this.props.campaign.type >> 0) {
-      case Constants.CampaignTypes.IMAGE:
-        icon = 'icons8-picture';
-        break;
-      case Constants.CampaignTypes.PDF:
-        icon = 'icons8-magazine';
-        steptracker = (
-          <SteptrackerContainer/>
-        );
-        break;
-      case Constants.CampaignTypes.VIDEO:
-        icon = 'icons8-movie';
-        break;
-    }
-
-
     return (
       <DefaultLayout
         titleRender={_ => {
           return (
-            <Titlebar
-              title="Choose a Campaign Type"
-              avatars={[
-                { src: this.props.brand.imgPreview },
-                { icon: icon }
-              ]}
-              steptracker={steptracker}/>
+            <CampaignTitlebar
+              flow="create"
+              campaignType={this.props.campaign.type >> 0}
+              brand={this.props.brand}/>
           );
         }}>
         <div className="container">
