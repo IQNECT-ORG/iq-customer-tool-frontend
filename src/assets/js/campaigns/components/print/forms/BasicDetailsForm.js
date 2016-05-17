@@ -150,6 +150,10 @@ class BasicDetailsForm extends Component {
 
     if(fields.campaignId.value) {
       const frame = _.find(this.props.trainingResults, x => x.frame === 0);
+      if(frame == null) {
+        return null;
+      }
+
       return (
         <div>
           <img className="img-fluid" src={frame.images.default}/>
