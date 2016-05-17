@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.updateUI({
         step: 1,
         pageView: 'ALL',
-        page: 1
+        page: 0
       });
     },
 
