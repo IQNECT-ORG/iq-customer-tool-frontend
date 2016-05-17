@@ -19,14 +19,6 @@ class DrawNavOpen extends Component {
 
             <hr/>
 
-            <div className="row">
-              <div className="col-xs-10 col-xs-offset-1">
-                <QuickActions/>
-              </div>
-            </div>
-
-            <hr/>
-
             <div className="row m-y-2">
               <div className="col-xs-10 col-xs-offset-1">
                 <Link to="/campaigns/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
