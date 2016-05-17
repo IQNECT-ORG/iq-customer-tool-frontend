@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onBackClick: (e) => {
       ownProps.updateUI({
-        step: 2,
+        step: 0,
         page: null
       });
     },
