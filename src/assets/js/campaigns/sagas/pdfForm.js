@@ -134,7 +134,7 @@ function* update(action) {
   }
 
   const triggers = yield select(function(state) {
-    return state.entities.get('triggers').filter(x => x.get('campaignId') === action.payload.values.campaignId).toJS();
+    return _.filter(state.entities.triggers, x => x.campaignId === action.payload.values.campaignId);
   });
 
   // Sync all of the pages
