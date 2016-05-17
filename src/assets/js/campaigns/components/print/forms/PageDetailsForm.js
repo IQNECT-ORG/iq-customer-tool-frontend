@@ -89,11 +89,13 @@ class PageDetailForm extends Component {
                         <button type="button" className="btn btn-block btn-secondary btn-radius-lg" onClick={this.props.onBackClick}>Back</button>
                       </div>
 
-                      <Submit
-                        className="btn btn-block btn-primary btn-radius-lg"
-                        isLoading={this.props.submitting}>
-                        Summary
-                      </Submit>
+                      <div className="col-xs-6">
+                        <Submit
+                          className="btn btn-block btn-primary btn-radius-lg"
+                          isLoading={this.props.submitting}>
+                          Summary
+                        </Submit>
+                      </div>
                     </div>
                   </div>
                 </div>
