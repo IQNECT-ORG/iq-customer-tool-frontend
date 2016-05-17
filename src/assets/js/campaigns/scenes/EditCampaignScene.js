@@ -10,9 +10,7 @@ import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
 import _ from 'lodash';
 
-import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
-import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
-import VideoCmapaignFormContainer from '../containers/video/CampaignFormContainer';
+import Campaign from '../components/Campaign';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -58,20 +56,9 @@ class EditCampaign extends Component {
     switch(this.props.campaign.type >> 0) {
       case Constants.CampaignTypes.IMAGE:
         icon = 'icons8-picture';
-        form = (
-          <ImageCampaignFormContainer
-            campaign={this.props.campaign}
-            triggers={this.props.triggers}/>
-        );
         break;
       case Constants.CampaignTypes.PDF:
         icon = 'icons8-magazine';
-        form = (
-          <PrintCampaignFormContainer
-            campaign={this.props.campaign}
-            triggers={this.props.triggers}
-            trainingResults={this.props.trainingResults}/>
-        );
         steptracker = (
           <Steptracker
             steps={[
@@ -95,11 +82,6 @@ class EditCampaign extends Component {
         break;
       case Constants.CampaignTypes.VIDEO:
         icon = 'icons8-movie';
-        form = (
-          <VideoCmapaignFormContainer
-            campaign={this.props.campaign}
-            triggers={this.props.triggers}/>
-        );
         break;
     }
 
@@ -118,7 +100,11 @@ class EditCampaign extends Component {
           );
         }}>
         <div className="container">
-          {form}
+          <Campaign
+            campaignType={this.props.campaign.type >> 0}
+            campaign={this.props.campaign}
+            triggers={this.props.triggers}
+            trainingResults={this.props.trainingResults}/>
         </div>
       </DefaultLayout>
     );
