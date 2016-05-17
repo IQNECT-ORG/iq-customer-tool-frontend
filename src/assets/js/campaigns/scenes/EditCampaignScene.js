@@ -10,10 +10,9 @@ import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import Constants from 'app/common/Constants';
 import _ from 'lodash';
 
-import Campaign from '../components/Campaign';
-
-import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
+import SteptrackerContainer from '../containers/SteptrackerContainer';
+import Campaign from '../components/Campaign';
 
 import { getUI } from 'app/core/selectors/ui';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
@@ -60,24 +59,7 @@ class EditCampaign extends Component {
       case Constants.CampaignTypes.PDF:
         icon = 'icons8-magazine';
         steptracker = (
-          <Steptracker
-            steps={[
-              {
-                label: 'Step 1',
-                isActive: this.props.steptrackerStep === 0,
-                isPast: this.props.steptrackerStep > 0
-              },
-              {
-                label: 'Step 2',
-                isActive: this.props.steptrackerStep === 1,
-                isPast: this.props.steptrackerStep > 1
-              },
-              {
-                label: 'Step 3',
-                isActive: this.props.steptrackerStep === 2,
-                isPast: this.props.steptrackerStep > 2
-              }
-            ]}/>
+          <SteptrackerContainer/>
         );
         break;
       case Constants.CampaignTypes.VIDEO:
