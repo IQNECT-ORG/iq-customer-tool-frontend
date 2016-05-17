@@ -37,7 +37,7 @@ function* create(action) {
 
   const trigger = _.assign(
     {
-      media: values.media[0], // Only get the first video in a filelist
+      media: values.media,
       triggerType: Constants.TriggerTypes.PDF,
       searchbarTitle: values.name
     },
