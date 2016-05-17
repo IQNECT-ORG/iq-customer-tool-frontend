@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import MenuContainer from '../../containers/MenuContainer';
-import AccountSummary from './AccountSummary';
+import AccountSummaryContainer from '../../containers/AccountSummaryContainer';
 import QuickActions from './QuickActions';
 import { Motion, spring } from 'react-motion';
 
@@ -13,7 +13,7 @@ class DrawNavOpen extends Component {
           <div className="container-fluid">
             <div className="row m-y-3">
               <div className="col-xs-10 col-xs-offset-1">
-                <AccountSummary/>
+                <AccountSummaryContainer/>
               </div>
             </div>
 

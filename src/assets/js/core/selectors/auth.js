@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const authSelector = state => state.auth;
-const userId = state => authSelector(state).userId;
+export const authSelector = state => state.auth;
+export const userId = state => authSelector(state).userId;
 
 export const isLoggedIn = createSelector(
   userId,
