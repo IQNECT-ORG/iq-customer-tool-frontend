@@ -10,9 +10,7 @@ import Constants from 'app/common/Constants';
 
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
-import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
-import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
-import VideoCampaignFormContainer from '../containers/video/CampaignFormContainer';
+import Campaign from '../components/Campaign';
 
 import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
@@ -111,27 +109,16 @@ class CreateCampaign extends Component {
       );
     }
 
-    let form;
     let steptracker;
     let icon;
 
     switch(this.props.selectedCampaignTypeId >> 0) {
       case Constants.CampaignTypes.IMAGE:
         icon = 'icons8-picture';
-        form = (
-          <ImageCampaignFormContainer
-            selectedBrandId={this.props.selectedBrandId}
-            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
-        );
         steptracker = null;
         break;
       case Constants.CampaignTypes.PDF:
         icon = 'icons8-magazine';
-        form = (
-          <PrintCampaignFormContainer
-            selectedBrandId={this.props.selectedBrandId}
-            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
-        );
         steptracker = (
           <Steptracker
             steps={[
@@ -155,11 +142,6 @@ class CreateCampaign extends Component {
         break;
       case Constants.CampaignTypes.VIDEO:
         icon = 'icons8-movie';
-        form = (
-          <VideoCampaignFormContainer
-            selectedBrandId={this.props.selectedBrandId}
-            selectedCampaignTypeId={this.props.selectedCampaignTypeId}/>
-        );
         break;
     }
 
@@ -177,7 +159,9 @@ class CreateCampaign extends Component {
           );
         }}>
         <div className="container container--gutter">
-          {form}
+          <Campaign
+            campaignType={this.props.selectedCampaignTypeId >> 0}
+            selectedBrandId={this.props.selectedBrandId}/>
         </div>
       </DefaultLayout>
     );
