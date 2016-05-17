@@ -11,6 +11,9 @@ export default (props) => {
     case Constants.CampaignTypes.IMAGE:
       form = (
         <ImageCampaignFormContainer
+          campaign={props.campaign}
+          triggers={props.triggers}
+          trainingResults={props.trainingResults}
           selectedBrandId={props.selectedBrandId}
           selectedCampaignTypeId={props.campaignType}/>
       );
@@ -18,6 +21,9 @@ export default (props) => {
     case Constants.CampaignTypes.PDF:
       form = (
         <PrintCampaignFormContainer
+          campaign={props.campaign}
+          triggers={props.triggers}
+          trainingResults={props.trainingResults}
           selectedBrandId={props.selectedBrandId}
           selectedCampaignTypeId={props.campaignType}/>
       );
@@ -25,6 +31,9 @@ export default (props) => {
     case Constants.CampaignTypes.VIDEO:
       form = (
         <VideoCampaignFormContainer
+          campaign={props.campaign}
+          triggers={props.triggers}
+          trainingResults={props.trainingResults}
           selectedBrandId={props.selectedBrandId}
           selectedCampaignTypeId={props.campaignType}/>
       );
