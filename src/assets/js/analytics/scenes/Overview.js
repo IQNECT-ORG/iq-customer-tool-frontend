@@ -18,6 +18,9 @@ import AgeMetricsContainer from '../containers/AgeMetricsContainer';
 import GenderMetricsContainer from '../containers/GenderMetricsContainer';
 import OSMetricsContainer from '../containers/OSMetricsContainer';
 
+import FilterBar from '../components/filters/FilterBar';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+
 class Overview extends Component {
 
   componentDidMount() {
@@ -33,6 +36,9 @@ class Overview extends Component {
           );
         }}>
         <div className="container">
+
+          <FilterBar/>
+
           <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <div className="row">
@@ -150,5 +156,6 @@ let DecoratedComponent = Overview;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

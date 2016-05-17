@@ -5,6 +5,7 @@ import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { } from '../actions';
 import CampaignListContainer from '../containers/CampaignListContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CatalogueCampaigns extends Component {
 
@@ -41,5 +42,6 @@ let DecoratedComponent = CatalogueCampaigns;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

@@ -18,6 +18,7 @@ import Steptracker from 'app/common/components/Steptracker';
 import Avatar from 'app/common/components/Avatar';
 
 import { getUI } from 'app/core/selectors/ui';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CreateCampaign extends Component {
   componentDidMount() {
@@ -233,5 +234,6 @@ DecoratedComponent = ui({
   state: {
   }
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

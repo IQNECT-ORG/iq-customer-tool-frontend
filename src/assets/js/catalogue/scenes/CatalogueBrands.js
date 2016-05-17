@@ -6,6 +6,7 @@ import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { loadBrandCatalogue } from '../actions';
 import BrandSelectorContainer from '../containers/BrandSelectorContainer';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CatalogueBrands extends Component {
 
@@ -65,5 +66,6 @@ let DecoratedComponent = CatalogueBrands;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

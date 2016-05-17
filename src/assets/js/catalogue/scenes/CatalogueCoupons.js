@@ -6,6 +6,7 @@ import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import { } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import CouponListContainer from '../containers/CouponListContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CatalogueCoupons extends Component {
 
@@ -57,5 +58,6 @@ let DecoratedComponent = CatalogueCoupons;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
 })(DecoratedComponent);
+DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;
