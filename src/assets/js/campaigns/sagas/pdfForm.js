@@ -108,7 +108,7 @@ function* create(action) {
   // Sync all of the pages
   _.times(
     triggerAction.payload.result.length,
-    n => action.payload.pagesAddField({})
+    n => action.payload.pagesAddField({}, n)
   );
 
   // Now go to the correct screen.
@@ -136,12 +136,6 @@ function* update(action) {
   const triggers = yield select(function(state) {
     return _.filter(state.entities.triggers, x => x.campaignId === action.payload.values.campaignId);
   });
-
-  // Sync all of the pages
-  _.times(
-    _.size(triggers),
-    n => action.payload.pagesAddField({})
-  );
 
   // Now go to the correct screen.
   action.payload.updateUI({
