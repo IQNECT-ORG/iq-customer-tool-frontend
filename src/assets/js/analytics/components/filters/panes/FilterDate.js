@@ -39,7 +39,7 @@ const render = (props) => {
                   mode="date"
                   id={joid.link(false, 'input')}
                   placeholder="From"
-                  {...fields.dateStart}
+                  {...fields.periodStart}
                   buttonIcon="icons8-date-from"/>
               </div>
             </fieldset>
@@ -52,7 +52,7 @@ const render = (props) => {
                   mode="date"
                   id={joid.link(false, 'input')}
                   placeholder="To"
-                  {...fields.dateEnd}
+                  {...fields.periodEnd}
                   buttonIcon="icons8-date-to"/>
               </div>
             </fieldset>

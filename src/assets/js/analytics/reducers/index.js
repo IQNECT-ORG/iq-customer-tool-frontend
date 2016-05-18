@@ -9,8 +9,12 @@ const filters = createReducer({
   campaignId: null,
   periodStart: null,
   periodEnd: null,
+  triggerId: null,
+  frameId: null
 }, {
-
+ ['ANALYTICS_FILTERS_UPDATE']: (state, action) => {
+  return _.assign({}, state, action.payload);
+ }
 });
 
 const data = createReducer({
@@ -22,7 +26,7 @@ const data = createReducer({
     return _.assign({}, state, {
       allSearches: action.payload
     });
-  }
+  },
 });
 
 export default combineReducers({

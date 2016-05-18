@@ -20,6 +20,7 @@ import OSMetricsContainer from '../containers/OSMetricsContainer';
 
 import FilterBar from '../components/filters/FilterBar';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import Dropdown from 'app/common/components/Dropdown';
 
 class Overview extends Component {
 
@@ -28,17 +29,39 @@ class Overview extends Component {
   }
 
   render() {
+
+    const filterCTA = (
+      <Dropdown>
+        {props => {
+          return (
+            <div className={props.className}>
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                onClick={props.onTriggerClick}>
+                Dropdown
+              </button>
+              <div className="dropdown-menu dropdown-menu-right">
+                <FilterBar/>
+              </div>
+            </div>
+          );
+        }}
+      </Dropdown>
+    );
+
+
     return (
       <DefaultLayout
         titleRender={_ => {
           return (
-            <Titlebar title="Analytics"/>
+            <Titlebar title="Analytics"
+            ctas={[filterCTA]}/>
           );
         }}>
         <div className="container">
-
-          <FilterBar/>
-
           <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <div className="row">
