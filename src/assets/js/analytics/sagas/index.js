@@ -2,6 +2,29 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import { base as baseAPI } from 'app/core/services/api/analytics';
 import filterFormSaga from './filterForm';
+import _ from 'lodash';
+import moment from 'moment';
+
+function formatFilters(filters) {
+  function formatDate(filter) {
+    return moment(_.parseInt(filter))
+      .startOf('day')
+      .format('YYYY-MM-DD');
+  }
+
+  return _.transform(filters, (result, filter, key) => {
+    switch(key) {
+      case 'periodStart':
+        result.ymd0 = formatDate(filter);
+        break;
+      case 'periodEnd':
+        result.ymd1 = formatDate(filter);
+        break;
+      default:
+        result[key] = filter;
+    }
+  }, {});
+}
 
 function* load() {
   const filters = yield select(state => state.analytics.filters);
@@ -9,12 +32,14 @@ function* load() {
 }
 
 function* updateData(filters) {
+  const formattedFilters = formatFilters(filters);
+
   try {
     let {json, response } = yield call(baseAPI, {
       types: {
         allSearches: 1,
-        filter: filters
-      }
+      },
+      filter: formattedFilters
     });
 
     yield put({
