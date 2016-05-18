@@ -168,7 +168,7 @@ const mapStateToProps = (state, ownProps) => {
   });
 
   return {
-    dropdownOpen: dropdownUI.open
+    dropdownOpen: _.get(dropdownUI, 'open')
   };
 };
 
