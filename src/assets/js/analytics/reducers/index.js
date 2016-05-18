@@ -2,13 +2,14 @@ import Constants from '../Constants';
 import { createReducer } from 'redux-create-reducer';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 const Actions = Constants.ActionTypes;
 
 const filters = createReducer({
   campaignId: null,
-  periodStart: null,
-  periodEnd: null,
+  periodStart: moment().valueOf(),
+  periodEnd: moment().valueOf(),
   triggerId: null,
   frameId: null
 }, {
