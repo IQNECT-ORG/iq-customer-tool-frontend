@@ -6,6 +6,7 @@ import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
 import { loadOverview } from '../actions';
+import { getUI } from 'app/core/selectors/ui';
 
 import OverallChartContainer from '../containers/OverallChartContainer';
 import AgeChartContainer from '../containers/AgeChartContainer';
@@ -29,7 +30,6 @@ class Overview extends Component {
   }
 
   render() {
-
     const filterCTA = (
       <Dropdown>
         {props => {
@@ -58,7 +58,7 @@ class Overview extends Component {
         titleRender={_ => {
           return (
             <Titlebar title="Analytics"
-            ctas={[filterCTA]}/>
+              ctas={[filterCTA]}/>
           );
         }}>
         <div className="container">
@@ -161,7 +161,14 @@ class Overview extends Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const ui = _.get(getUI(state), 'scene');
+
+  const dropdownUI = _.find(ui, (x, key) => {
+    return _.startsWith(key, 'Dropdown');
+  });
+
   return {
+    dropdownOpen: dropdownUI.open
   };
 };
 
@@ -178,6 +185,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 let DecoratedComponent = Overview;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = ui({
+  key: 'scene',
+  state: {
+  }
 })(DecoratedComponent);
 DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
