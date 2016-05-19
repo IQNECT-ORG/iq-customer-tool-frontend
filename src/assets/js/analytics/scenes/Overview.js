@@ -41,7 +41,7 @@ class Overview extends Component {
                 aria-haspopup="true"
                 aria-expanded="false"
                 onClick={props.onTriggerClick}>
-                Dropdown
+                Filters
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 <FilterBar/>
