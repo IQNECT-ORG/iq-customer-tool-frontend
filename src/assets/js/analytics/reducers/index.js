@@ -8,8 +8,8 @@ const Actions = Constants.ActionTypes;
 
 const filters = createReducer({
   campaignId: null,
-  periodStart: moment().valueOf(),
-  periodEnd: moment().valueOf(),
+  periodStart: moment().startOf('day').valueOf(),
+  periodEnd: moment().endOf('day').valueOf(),
   triggerId: null,
   frameId: null
 }, {
