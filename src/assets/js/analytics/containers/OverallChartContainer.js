@@ -30,7 +30,9 @@ const render = (props) => {
       gridHorizontalStroke='#eceff1'
       circleRadius={0}
       domain={{
-        x: [new Date(2015, 0, 1), new Date(2015, 11, 31)],
+        x: [
+          new Date(_.parseInt(props.filters.periodStart)),
+          new Date(_.parseInt(props.filters.periodEnd))],
         y: [0, null]
       }}/>
   );
@@ -41,9 +43,43 @@ const mapStateToProps = (state, ownProps) => {
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
+  let scope;
+  let periodStart = moment(_.parseInt(filters.periodStart));
+  let periodEnd = moment(_.parseInt(filters.periodEnd));
+  let diff = periodEnd.diff(periodStart);
+  let duration = moment.duration(diff);
+  let durations = {
+    hours: duration.asHours(),
+    days: duration.asDays(),
+    weeks: duration.asWeeks(),
+    months: duration.asMonths(),
+    years: duration.asYears()
+  };
+
+  {
+
+    console.log(durations)
+
+    if(durations.years >= 2) {
+      scope = 'years';
+    } else if(durations.months >= 4) {
+      scope = 'months';
+    } else if(durations.weeks >= 4) {
+      scope = 'weeks';
+    } else if(durations.days >= 4) {
+      scope = 'days';
+    } else {
+      scope = 'hours';
+    }
+  }
+
+  const span = Math.abs(durations[scope]);
+  
   const timespan = {};
-  _.times(12, n => {
-    const date = moment([2015, n]);
+  _.times(span, n => {
+    const date = moment(periodStart);
+    date.add(n, scope);
+
     timespan[date.unix()] = {
       x: date.toDate(),
       y: 0
@@ -121,6 +157,7 @@ const mapStateToProps = (state, ownProps) => {
   lineData[1].values = uniqueData;
 
   return {
+    filters: filters,
     chartData: lineData
   };
 };
