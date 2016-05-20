@@ -9,6 +9,15 @@ class PageDetailForm extends Component {
   render() {
     const fields = this.props.fields.pages[this.props.page];
 
+    /*
+    <button
+      type="button"
+      className="btn btn-secondary-outline m-l-1"
+      onClick={this.props.onSwitchViewClick}>
+      <i className="icons8-activity-grid-2"/>
+    </button>
+    */
+
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
@@ -38,13 +47,6 @@ class PageDetailForm extends Component {
                         disabled={!this.props.hasNext}
                         onClick={this.props.onNextPageClick}>
                         <i className="icons8-right"/>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="btn btn-secondary-outline m-l-1"
-                        onClick={this.props.onSwitchViewClick}>
-                        <i className="icons8-activity-grid-2"/>
                       </button>
                     </div>
                     <h2 className="m-b-3">Page {this.props.page + 1}</h2>

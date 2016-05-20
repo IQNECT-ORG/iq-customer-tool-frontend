@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onBackClick: e => {
       ownProps.updateUI({
         step: 1,
-        pageView: 'ALL',
+        pageView: 'DETAIL',
         page: 0
       });
     },

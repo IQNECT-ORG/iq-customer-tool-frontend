@@ -113,7 +113,7 @@ function* create(action) {
 
   // Now go to the correct screen.
   action.payload.updateUI({
-    pageView: 'ALL',
+    pageView: 'DETAIL',
     step: 1,
     page: 0
   });
@@ -139,7 +139,7 @@ function* update(action) {
 
   // Now go to the correct screen.
   action.payload.updateUI({
-    pageView: 'ALL',
+    pageView: 'DETAIL',
     step: 1,
     page: 0
   });
