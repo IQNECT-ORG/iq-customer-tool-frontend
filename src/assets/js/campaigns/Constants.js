@@ -21,5 +21,6 @@ export default {
     CAMPAIGN_PDF_FORM_SUBMIT: null,
     CAMPAIGN_IMAGE_FORM_SUBMIT: null,
     CAMPAIGN_VIDEO_FORM_SUBMIT: null,
+    CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT: null,
   })
 };

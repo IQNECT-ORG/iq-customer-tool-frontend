@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import SummaryForm from '../../components/print/forms/SummaryForm';
 import ui from 'redux-ui/transpiled';
 import _ from 'lodash';
-import { updateTrigger } from 'app/common/actions/triggers';
-import { getTriggers } from 'app/core/selectors/entities/triggers';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import { pdfCampaignSummaryFormSubmit } from '../../actions';
+//import { updateTrigger } from 'app/common/actions/triggers';
+//import { getTriggers } from 'app/core/selectors/entities/triggers';
+//import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 const mapStateToProps = (state, ownProps) => {
   const pages = ownProps.values.pages;
@@ -49,22 +50,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
-      dispatch(updateModalPath('success'));
-      dispatch(updateModalData({
-      }));
-      dispatch(openModal());
-      // let payload = {};
-
-      // return new Promise((resolve, reject) => {
-      //   dispatch(updateTrigger({
-      //     values: {
-      //       triggerId: ownProps.values.triggerId,
-      //       //payload: 
-      //     },
-      //     resolve,
-      //     reject
-      //   }));
-      // });
+      return new Promise((resolve, reject) => {
+        dispatch(pdfCampaignSummaryFormSubmit({
+          values: values,
+          updateUI: ownProps.updateUI,
+          form: 'campaignPrint',
+          resolve,
+          reject
+        }));
+      });
     })
   };
 }

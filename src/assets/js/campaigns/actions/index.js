@@ -22,3 +22,4 @@ export const resetCampaignCreate = createAction(Actions.CAMPAIGN_CREATE_RESET);
 export const pdfCampaignFormSubmit = createAction(Actions.CAMPAIGN_PDF_FORM_SUBMIT);
 export const imageCampaignFormSubmit = createAction(Actions.CAMPAIGN_IMAGE_FORM_SUBMIT);
 export const videoCampaignFormSubmit = createAction(Actions.CAMPAIGN_VIDEO_FORM_SUBMIT);
+export const pdfCampaignSummaryFormSubmit = createAction(Actions.CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT);
