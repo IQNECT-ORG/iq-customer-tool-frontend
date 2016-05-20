@@ -44,6 +44,7 @@ const render = (props) => {
                       <input
                         type="text"
                         {...inputProps}
+                        pattern={null}
                         className={`${inputProps.className} form-control`}/>
                     );
                   }}
@@ -63,6 +64,7 @@ const render = (props) => {
                       <input
                         type="text"
                         {...inputProps}
+                        pattern={null}
                         className={`${inputProps.className} form-control`}/>
                     );
                   }}
