@@ -4,6 +4,7 @@ import FilterForm from '../components/filters/forms/FilterForm';
 import _ from 'lodash';
 import { reduxForm } from 'redux-form';
 import { filterFormSubmit } from '../actions';
+import moment from 'moment';
 import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -67,8 +68,12 @@ DecoratedComponent = reduxForm(
     fields
   },
   (state, ownProps) => { // mapStateToProps
+    const filters = state.analytics.filters;
+
     return {
       initialValues: {
+        periodStart: filters.periodStart,
+        periodEnd: filters.periodEnd
       }
     };
   }
