@@ -4,6 +4,7 @@ import FilterForm from '../components/filters/forms/FilterForm';
 import _ from 'lodash';
 import { reduxForm } from 'redux-form';
 import { filterFormSubmit } from '../actions';
+import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
