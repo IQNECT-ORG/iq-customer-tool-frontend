@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import DateTimeField from 'react-bootstrap-datetimepicker';
 import joid from 'joid';
+import { DatePicker } from 'react-input-enhancements';
+import moment from 'moment';
 
 const render = (props) => {
   const { fields } = props;
@@ -35,12 +36,18 @@ const render = (props) => {
           <div className="col-xs-12 col-sm-6">
             <fieldset className="form-group">
               <div className="input-group">
-                <DateTimeField
-                  mode="date"
-                  id={joid.link(false, 'input')}
-                  placeholder="From"
-                  {...fields.periodStart}
-                  buttonIcon="icons8-date-from"/>
+                <DatePicker
+                  onChange={fields.periodStart.onChange}
+                  value={moment(fields.periodStart.value).format('ddd DD/MM/YYYY')}>
+                  { inputProps => {
+                    return (
+                      <input
+                        type="text"
+                        {...inputProps}
+                        className={`${inputProps.className} form-control`}/>
+                    );
+                  }}
+                </DatePicker>
               </div>
             </fieldset>
           </div>
@@ -48,12 +55,18 @@ const render = (props) => {
             <fieldset className="form-group">
               <label className="sr-only" htmlFor={joid.link(true, 'input')}>From</label>
               <div className="input-group">
-                <DateTimeField
-                  mode="date"
-                  id={joid.link(false, 'input')}
-                  placeholder="To"
-                  {...fields.periodEnd}
-                  buttonIcon="icons8-date-to"/>
+                <DatePicker
+                  onChange={fields.periodEnd.onChange}
+                  value={moment(fields.periodEnd.value).format('ddd DD/MM/YYYY')}>
+                  { inputProps => {
+                    return (
+                      <input
+                        type="text"
+                        {...inputProps}
+                        className={`${inputProps.className} form-control`}/>
+                    );
+                  }}
+                </DatePicker>
               </div>
             </fieldset>
           </div>
