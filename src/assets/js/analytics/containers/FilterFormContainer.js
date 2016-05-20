@@ -21,7 +21,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           reject
         }));
       });
-    })
+    }),
+
+    onDatePresetClick: key => {
+      const presets = {
+        today: {
+          periodStart: moment().startOf('day').valueOf(),
+          periodEnd: moment().endOf('day').valueOf()
+        },
+        thisWeek: {
+          periodStart: moment().startOf('week').valueOf(),
+          periodEnd: moment().endOf('week').valueOf()
+        },
+        thisMonth: {
+          periodStart: moment().startOf('month').valueOf(),
+          periodEnd: moment().endOf('month').valueOf()
+        }
+      };
+
+      const values = presets[key];
+
+      const startChangeAction = change('periodStart', values.periodStart);
+      startChangeAction.form = 'filterForm';
+      dispatch(startChangeAction);
+
+      const endChangeAction = change('periodEnd', values.periodEnd);
+      endChangeAction.form = 'filterForm';
+      dispatch(endChangeAction);
+    }
   };
 };
 

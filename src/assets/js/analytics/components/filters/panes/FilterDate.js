@@ -8,19 +8,19 @@ const render = (props) => {
   return (
     <div className="row">
       <div className="col-xs-3">
-        <ul>
+        <ul className="list-unstyled">
           <li>
-            <button type="button">
+            <button type="button" onClick={ _ => props.onDatePresetClick('today') }>
               Today
             </button>
           </li>
           <li>
-            <button type="button">
+            <button type="button" onClick={ _ => props.onDatePresetClick('thisWeek') }>
               This Week
             </button>
           </li>
           <li>
-            <button type="button">
+            <button type="button" onClick={ _ => props.onDatePresetClick('thisMonth') }>
               This Month
             </button>
           </li>

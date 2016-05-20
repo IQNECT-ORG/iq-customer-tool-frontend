@@ -17,7 +17,8 @@ const render = (props) => {
 
         <TabPanel>
           <FilterDate
-            fields={props.fields}/>
+            fields={props.fields}
+            onDatePresetClick={props.onDatePresetClick}/>
         </TabPanel>
         <TabPanel>
           <FilterTrigger
