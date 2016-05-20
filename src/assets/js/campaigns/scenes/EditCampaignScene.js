@@ -64,7 +64,8 @@ class EditCampaign extends Component {
             campaignType={this.props.campaign.type >> 0}
             campaign={this.props.campaign}
             triggers={this.props.triggers}
-            trainingResults={this.props.trainingResults}/>
+            trainingResults={this.props.trainingResults}
+            triggerPayloads={this.props.triggerPayloads}/>
         </div>
       </DefaultLayout>
     );
@@ -90,12 +91,18 @@ const mapStateToProps = (state, ownProps) => {
     return _.includes(triggerIds, x.triggerId);
   });
 
+
+  let triggerPayloads = _.filter(state.entities.triggerPayloads, triggerPayloads, x => {
+    return _.includes(triggerIds, x.triggerId);
+  });
+
   return {
     steptrackerStep: _.get(getUI(state), 'scene.campaignPrint.step'),
     campaign,
     brand,
     triggers,
-    trainingResults: trainingResults
+    trainingResults,
+    triggerPayloads
   };
 };
 

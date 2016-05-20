@@ -24,6 +24,7 @@ export default (props) => {
           campaign={props.campaign}
           triggers={props.triggers}
           trainingResults={props.trainingResults}
+          triggerPayloads={props.triggerPayloads}
           selectedBrandId={props.selectedBrandId}
           selectedCampaignTypeId={props.campaignType}/>
       );

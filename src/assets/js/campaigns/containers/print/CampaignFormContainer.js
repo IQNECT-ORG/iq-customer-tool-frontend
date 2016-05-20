@@ -46,9 +46,15 @@ DecoratedComponent = reduxForm(
     fields
   },
   (state, ownProps) => { // mapStateToProps
-    const pages = _.reduce(ownProps.triggers, (result, trigger) => {
+    const trigger = _.get(ownProps, 'triggers.0');
+
+    const pages = _.reduce(ownProps.trainingResults, (result, trainingResult) => {
+      const payload = _.find(ownProps.triggerPayloads, payload => {
+        return payload.index == trainingResult.frame;
+      });
+
       result.push({
-        url: trigger.url,
+        url: _.get(payload, 'data'),
         coupon: undefined,
         tags: undefined
       });
@@ -62,7 +68,7 @@ DecoratedComponent = reduxForm(
         magazineLanguage: _.get(ownProps, 'triggers.0.language'),
         defaultTarget: _.get(ownProps, 'triggers.0.url'),
 
-        triggerId: _.get(ownProps, 'triggers.0.triggerId'),
+        triggerId: _.get(trigger, 'triggerId'),
 
         pages
       }
