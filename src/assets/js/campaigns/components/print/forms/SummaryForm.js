@@ -13,7 +13,7 @@ class SummaryForm extends Component {
         <li className="row" key={page.index}>
           <div className="col-xs-2">Page {page.index + 1}</div>
           <div className="col-xs-4">{page.url}</div>
-          <div className="col-xs-6">{page.tags}</div>
+          <div className="col-xs-6">{page.coupon}</div>
           <div className="col-xs-6">
             <button type="button" onClick={ _ => this.props.gotoPage(page.index) }>
               Edit
@@ -35,7 +35,7 @@ class SummaryForm extends Component {
                 <div className="row">
                   <div className="col-xs-2">Page</div>
                   <div className="col-xs-4">Target</div>
-                  <div className="col-xs-6">Tags</div>
+                  <div className="col-xs-6">Coupon</div>
                 </div>
                 <ol className="list-unstyled">
                   {rows}
