@@ -17,9 +17,12 @@ class CampaignForm extends Component {
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
-          <div className="col-xs-12 col-sm-12 col-md-6 equal-height-container">
-            <div className="pane pane--filled pane--scrollable-y media-pane equal-height-item flex m-b-g">
+          <div className="col-xs-12 col-sm-12 col-md-6">
+            <div className="pane pane--filled pane--scrollable-y m-b-g">
               {this._renderTriggers()}
+            </div>
+
+            <div className="pane pane--filled pane--scrollable-y media-pane m-b-g">
               {this._renderMedia()}
             </div>
           </div>
