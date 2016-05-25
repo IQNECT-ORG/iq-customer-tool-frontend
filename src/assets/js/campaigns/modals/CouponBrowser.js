@@ -7,10 +7,8 @@ import { loadCampaignCouponBrowserModal } from '../actions';
 
 class CouponBrowser extends Component {
 
-  componentDidUpdate(prevProps) {
-    if(this.props.isOpen === true && prevProps.isOpen === false) {
-      this.props.actions.load();
-    }
+  componentDidMount(prevProps) {
+    this.props.actions.load();
   }
 
   render() {
