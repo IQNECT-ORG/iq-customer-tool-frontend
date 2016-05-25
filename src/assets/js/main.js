@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { createAppStore } from './core/store';
+import { createAppStore, sagaMiddleware } from './core/store';
 import React, { Component, PropTypes } from 'react';
 import { Router, browserHistory } from 'react-router';
 import routes from './core/routes';
@@ -8,6 +8,7 @@ import { IntlProvider, addLocaleData, defineMessages } from 'react-intl';
 import enUS from './core/locales/en-us';
 import enLocaleData from 'react-intl/locale-data/en';
 import { Provider } from 'react-redux';
+import saga from './core/sagas';
 
 // Store
 const store = createAppStore();
@@ -16,6 +17,8 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 addLocaleData(enLocaleData);
+
+sagaMiddleware.run(saga);
 
 ReactDOM.render((
   <Provider store={store}>

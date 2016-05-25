@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import customerToolReducer from './reducers/customerTool';
 import createSagaMiddleware from 'redux-saga';
-import saga from './sagas';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
-const sagaMiddleware = createSagaMiddleware(saga);
+export const sagaMiddleware = createSagaMiddleware();
 
 export const createAppStore = function() {
   const finalCreateStore = compose(
