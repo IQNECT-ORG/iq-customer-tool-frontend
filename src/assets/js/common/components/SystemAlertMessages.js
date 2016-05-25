@@ -12,15 +12,18 @@ export default (props) => {
 
   const alert = props.messages[index];
 
-  const className = classNames('alert', `alert-${alert.level}`);
+  const className = classNames('alert alert-dismissible', `alert-${alert.level}`);
   return (
     <Expire
-      delay={4000}
+      delay={10 * 1000}
       onExpire={ _ => props.onExpire(index) }>
       <div
         className={className}
         role="alert"
         data-alert-name={alert.name}>
+        <button type="button" className="close" aria-label="Close" onClick={ _ => props.onDismiss(index) }>
+          <span aria-hidden="true">&times;</span>
+        </button>
         {alert.message}
       </div>
     </Expire>

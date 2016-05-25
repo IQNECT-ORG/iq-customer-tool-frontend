@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onExpire: (index) => {
       dispatch(readAlertMessage(index));
+    },
+    onDismiss: (index) => {
+      dispatch(readAlertMessage(index));
     }
   };
 };
