@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class Expire extends Component {
+
+  static get propTypes() {
+    return {
+      onReset: React.PropTypes.func
+    };
+  }
+
+  static get defaultProps() {
+    return {
+      onReset: _.noop
+    };
+  }
 
   componentWillReceiveProps(nextProps) {
     // reset the timer if children are changed
