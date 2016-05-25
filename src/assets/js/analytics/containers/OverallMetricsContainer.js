@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import HeadedMetrics from '../components/HeadedMetrics';
 import colorScheme from '../colorScheme';
@@ -12,13 +13,16 @@ const mapStateToProps = (state, ownProps) => {
 
   const countAllSearches = _.size(allSearches);
 
-  const countUniqueScans = _(allSearches)
-    .thru(value => _.transform(value, (result, search) => {
-      result.push(search.deviceId);
-    }, []))
-    .thru(value => _.uniq(value))
-    .thru(value => _.size(value))
-    .value();
+  const countUniqueScans = fp.flow(
+    fp.transform(
+      (result, search) => {
+        result.push(search.deviceId);
+      },
+      []
+    ),
+    fp.uniq(),
+    fp.size()
+  )(allSearches);
 
   let averageScan;
   if(countUniqueScans === 0) {

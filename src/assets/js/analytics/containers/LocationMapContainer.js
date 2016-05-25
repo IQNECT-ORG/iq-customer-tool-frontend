@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 import MarkerWithLabel from 'app/common/components/maps/MarkerWithLabel';
@@ -102,36 +103,38 @@ const mapStateToProps = (state, ownProps) => {
 
   let ignoredCount = 0;
 
-  const markers = _(allSearches)
-    .thru(value => _.reduce(value, (result, search) => {
-      // Do not include 0,0. As that is unknown
-      if(
-        search.lat >= 0 && search.lat <= 0.1
-        &&
-        search.long >= 0 && search.lat <= 0.1
-      ) {
-        ignoredCount++;
-        return result;
-      }
+  const markers = fp.flow(
+    fp.reduce(
+      (result, search) => {
+        // Do not include 0,0. As that is unknown
+        if(
+          search.lat >= 0 && search.lat <= 0.1
+          &&
+          search.long >= 0 && search.lat <= 0.1
+        ) {
+          ignoredCount++;
+          return result;
+        }
 
-      const key = `${search.lat}:${search.long}`;
-      result[key] = {
-        position: {
-          lat: search.lat,
-          lng: search.long,
-        },
-        key: key,
-        defaultAnimation: 2,
-        icon: markerIcon,
-        labelContent: 1,
-        //labelAnchor: new google.maps.Point(22, 0),
-        labelClass: 'map-label', // the CSS class for the label,
-        labelAnchor: new google.maps.Point(25, 25)
-      };
-      return result;
-    }, {}))
-    .thru(_.toArray)
-    .value();
+        const key = `${search.lat}:${search.long}`;
+        result[key] = {
+          position: {
+            lat: search.lat,
+            lng: search.long,
+          },
+          key: key,
+          defaultAnimation: 2,
+          icon: markerIcon,
+          labelContent: 1,
+          //labelAnchor: new google.maps.Point(22, 0),
+          labelClass: 'map-label', // the CSS class for the label,
+          labelAnchor: new google.maps.Point(25, 25)
+        };
+        return result;
+      },
+      {}
+    )
+  )(allSearches);
 
   return {
     ignoredCount,

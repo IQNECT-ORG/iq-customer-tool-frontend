@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import colorScheme from '../colorScheme';
 
@@ -27,28 +28,34 @@ const mapStateToProps = (state, ownProps) => {
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
-  const osData = _(allSearches)
+  const osData = fp.flow(
     // Need to merge bad values down to unknown
-    .thru(value => _.transform(value, (result, search) => {
-      const deviceType = search.deviceType;
+    fp.transform(
+      (result, search) => {
+        const deviceType = search.deviceType;
 
-      if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
-        search.deviceType = 'Unknown'
-      }
+        if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
+          search.deviceType = 'Unknown'
+        }
 
-      result.push(search);
-    }, []))
+        result.push(search);
+      },
+      []
+    ),
     // Count each type
-    .thru(value => _.countBy(value, search => search.deviceType))
+    fp.countBy(search => search.deviceType),
     // Converting the data to the chart format
-    .thru(value => _.reduce(value, (result, value, key) => {
-      result.push({
-        label: key,
-        value
-      });
-      return result;
-    }, []))
-    .value();
+    fp.reduce(
+      (result, value, key) => {
+        result.push({
+          label: key,
+          value
+        });
+        return result;
+      },
+      []
+    )
+  )(allSearches);
 
   return {
     chartData: osData

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import colorScheme from '../colorScheme';
 
@@ -97,10 +98,10 @@ const mapStateToProps = (state, ownProps) => {
     }
   ];
 
-  const overallData = _(allSearches)
-    .sortBy('timestamp')
-    .thru(value => {
-      return _.reduce(value, (result, search) => {
+  const overallData = fp.flow(
+    fp.sortBy('timestamp'),
+    fp.reduce(
+      (result, search) => {
         const date = moment.unix(search.timestamp);
         date.startOf('month');
 
@@ -116,42 +117,49 @@ const mapStateToProps = (state, ownProps) => {
         }
 
         return result;
-      }, _.clone(timespan))
-    })
-    .thru(_.toArray)
-    .value();
+      },
+      _.clone(timespan)
+    ),
+    fp.toArray()
+  )(allSearches);
 
-  const uniqueData = _(allSearches)
-    .sortBy('timestamp')
-    .thru(value => _.transform(value, (result, search) => {
-      const date = moment.unix(search.timestamp);
-      date.startOf('month');
+  const uniqueData = fp.flow(
+    fp.sortBy('timestamp'),
+    fp.transform(
+      (result, search) => {
+        const date = moment.unix(search.timestamp);
+        date.startOf('month');
 
-      const key = date.unix();
+        const key = date.unix();
 
-      if(_.has(result, key)) {
-        if(_.has(result[key], 'deviceIds') === false) {
-          result[key].deviceIds = [];
+        if(_.has(result, key)) {
+          if(_.has(result[key], 'deviceIds') === false) {
+            result[key].deviceIds = [];
+          }
+
+          if(_.includes(result[key].deviceIds, search.deviceId) === false) {
+            result[key].deviceIds.push(search.deviceId);
+          }
+        } else {
+          result[key] = {
+            x: date.toDate(),
+            y: 1,
+            deviceIds: [],
+          }
         }
-
-        if(_.includes(result[key].deviceIds, search.deviceId) === false) {
-          result[key].deviceIds.push(search.deviceId);
-        }
-      } else {
-        result[key] = {
-          x: date.toDate(),
-          y: 1,
-          deviceIds: [],
-        }
-      }
-    }, _.clone(timespan)))
-    .thru(value => _.transform(value, (result, search) => {
-      result.push({
-        x: search.x,
-        y: _.size(search.deviceIds)
-      });
-    }, []))
-    .value();
+      },
+      _.clone(timespan)
+    ),
+    fp.transform(
+      (result, search) => {
+        result.push({
+          x: search.x,
+          y: _.size(search.deviceIds)
+        });
+      },
+      []
+    )
+  )(allSearches);
 
   lineData[0].values = overallData;
   lineData[1].values = uniqueData;

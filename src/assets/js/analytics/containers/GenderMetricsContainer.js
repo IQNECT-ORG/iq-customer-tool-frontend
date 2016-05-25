@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import Metrics from '../components/Metrics';
 import colorScheme from '../colorScheme';
@@ -12,27 +13,34 @@ const mapStateToProps = (state, ownProps) => {
 
   // Get the total number
   const total = _.size(allSearches);
-  const genderData = _(allSearches)
+
+  const genderData = fp.flow(
     // Count each gender type
-    .thru(value => _.countBy(value, search => search.gender))
+    fp.countBy(search => search.gender),
     // Make them percentages
-    .thru(value => _.transform(value, (result, value, key) => {
-      result[key] = ((value / total) * 100).toFixed(0);
-    }, {}))
+    fp.transform(
+      (result, value, key) => {
+        result[key] = ((value / total) * 100).toFixed(0);
+      },
+      {}
+    ),
     // Converting the data to the chart format
-    .thru(value => _.reduce(value, (result, value, key) => {
-      const labels = {
-        'f': 'Female',
-        'm': 'Male',
-        null: 'Unknown'
-      }
-      result.push({
-        label: labels[key],
-        value: `${value}%`
-      });
-      return result;
-    }, []))
-    .value();
+    fp.reduce(
+      (result, value, key) => {
+        const labels = {
+          'f': 'Female',
+          'm': 'Male',
+          null: 'Unknown'
+        }
+        result.push({
+          label: labels[key],
+          value: `${value}%`
+        });
+        return result;
+      },
+      []
+    )
+  )(allSearches);
 
   return {
     metrics: genderData,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import fp from 'lodash/fp';
 import moment from 'moment';
 import Metrics from '../components/Metrics';
 import colorScheme from '../colorScheme';
@@ -12,32 +13,41 @@ const mapStateToProps = (state, ownProps) => {
 
   // Get the total number
   const total = _.size(allSearches);
-  const osData = _(allSearches)
+  const osData = fp.flow(
     // Need to merge bad values down to unknown
-    .thru(value => _.transform(value, (result, search) => {
-      const deviceType = search.deviceType;
+    fp.transform(
+      (result, search) => {
+        const deviceType = search.deviceType;
 
-      if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
-        search.deviceType = 'Unknown'
-      }
+        if(deviceType == null || deviceType === 'deviceType' || deviceType === 'null') {
+          search.deviceType = 'Unknown'
+        }
 
-      result.push(search);
-    }, []))
+        result.push(search);
+      },
+      []
+    ),
     // Count each type
-    .thru(value => _.countBy(value, search => search.deviceType))
+    fp.countBy(search => search.deviceType),
     // Make them percentages
-    .thru(value => _.transform(value, (result, value, key) => {
-      result[key] = ((value / total) * 100).toFixed(0);
-    }, {}))
+    fp.transform(
+      (result, value, key) => {
+        result[key] = ((value / total) * 100).toFixed(0);
+      },
+      {}
+    ),
     // Converting the data to the chart format
-    .thru(value => _.reduce(value, (result, value, key) => {
-      result.push({
-        label: key,
-        value: `${value}%`
-      });
-      return result;
-    }, []))
-    .value();
+    fp.reduce(
+      (result, value, key) => {
+        result.push({
+          label: key,
+          value: `${value}%`
+        });
+        return result;
+      },
+      []
+    )
+  )(allSearches);
 
   return {
     metrics: osData,
