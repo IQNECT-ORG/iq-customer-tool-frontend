@@ -14,11 +14,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: ownProps.handleSubmit((values) => {
-      dispatch(authActions.login({
-        email: values.email,
-        password: values.password,
-        remember: 0
-      }));
+      return new Promise((resolve, reject) => {
+        dispatch(authActions.login({
+          values,
+          form: 'loginForm',
+          resolve,
+          reject
+        }));
+      });
     })
   };
 };

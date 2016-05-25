@@ -20,8 +20,10 @@ function* authLoginAsync(action) {
 
     yield put(authActions.loginSuccess(parsedData));
     yield put(routerActions.push('/'));
+    action.payload.resolve();
   } catch(err) {
     yield put(authActions.loginFailure(err));
+    action.payload.reject();
   }
 };
 
