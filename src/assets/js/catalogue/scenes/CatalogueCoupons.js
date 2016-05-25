@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
-import { } from '../actions';
+import { loadCouponCatalogue } from '../actions';
 import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 import CouponListContainer from '../containers/CouponListContainer';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CatalogueCoupons extends Component {
+
+  componentDidMount() {
+    this.props.actions.load();
+  }
 
   render() {
     return (
@@ -44,6 +48,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
+      load: _ => {
+        dispatch(loadCouponCatalogue());
+      },
       openAddCouponModal: _ => {
         dispatch(updateModalPath('createCoupon'));
         dispatch(updateModalData({

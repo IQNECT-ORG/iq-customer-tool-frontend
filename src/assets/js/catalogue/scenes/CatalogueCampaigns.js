@@ -3,11 +3,15 @@ import { connect } from 'react-redux';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
-import { } from '../actions';
+import { loadCampaignCatalogue } from '../actions';
 import CampaignListContainer from '../containers/CampaignListContainer';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 
 class CatalogueCampaigns extends Component {
+
+  componentDidMount() {
+    this.props.actions.load();
+  }
 
   render() {
     return (
@@ -34,6 +38,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
+      load: _ => {
+        dispatch(loadCampaignCatalogue());
+      }
     }
   };
 };

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
-class CampaignListThumbnail extends Component {
-  render() {
-    return (
-      <button className="campaign-list__thumbnail" type="button" onClick={this.props.onClick}>
-        <img className src="http://placehold.it/350x150" />
-      </button>
-    );
-  }
+export default (props) => {
+  return (
+    <button className="campaign-list__thumbnail" type="button" onClick={props.onClick}>
+      <img className src={props.src} />
+    </button>
+  );
 };
-
-export default CampaignListThumbnail;
