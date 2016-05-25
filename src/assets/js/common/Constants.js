@@ -3,6 +3,9 @@ import keyMirror from 'keymirror';
 export default {
   ActionTypes: keyMirror({
     DRAW_NAV_TOGGLE_MENU: null,
+
+    // Alert Messages
+    ALERT_MESSAGE_READ: null,
     
     // Previews
     PREVIEW_JOB_REQUEST_SUCCESS: null,

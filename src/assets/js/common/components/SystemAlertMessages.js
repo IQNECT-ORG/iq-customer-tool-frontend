@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
+import Expire from './Expire';
 
-class SysAlertManager extends Component {
-  render() {
-    if(this.props.alerts == null || this.props.alerts.length === 0) {
-      return null;
-    }
+export default (props) => {
+  const index = _.findIndex(props.messages, x => x.read === false);
 
-    return this._renderAlert();
+  if(index === -1) {
+    return null;
   }
 
-  _renderAlert() {
-    const alert = _.last(this.props.alerts);
+  const alert = props.messages[index];
 
-    const className = classNames('alert', `alert-${alert.level}`);
-    return (
+  const className = classNames('alert', `alert-${alert.level}`);
+  return (
+    <Expire
+      delay={4000}
+      onExpire={ _ => props.onExpire(index) }>
       <div
         className={className}
         role="alert"
         data-alert-name={alert.name}>
         {alert.message}
       </div>
-    );
-  }
+    </Expire>
+  );
 };
-
-export default SysAlertManager;

@@ -6,7 +6,7 @@ import { reducer as ui } from 'redux-ui/transpiled';
 import { reducer as form }  from 'redux-form';
 import modal from 'app/modal/reducer';
 import entities from './entities';
-import errors from './errors';
+import alertMessages from './alertMessages';
 import dashboard from 'app/dashboard/reducers';
 import analytics from 'app/analytics/reducers';
 
@@ -18,7 +18,7 @@ const customerTool = combineReducers({
   ui,
   form,
   modal,
-  errors,
+  alertMessages,
   dashboard,
   analytics
 });
