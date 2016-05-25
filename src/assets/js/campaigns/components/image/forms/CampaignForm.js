@@ -14,13 +14,20 @@ class CampaignForm extends Component {
   render() {
     const fields = this.props.fields;
 
+    let triggerPane;
+    if(_.size(this.props.triggers) > 0) {
+      triggerPane = (
+        <div className="pane pane--filled pane--scrollable-y m-b-g">
+          {this._renderTriggers()}
+        </div>
+      );
+    }
+
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-6">
-            <div className="pane pane--filled pane--scrollable-y m-b-g">
-              {this._renderTriggers()}
-            </div>
+            {triggerPane}
 
             <div className="pane pane--filled pane--scrollable-y media-pane m-b-g">
               {this._renderMedia()}
