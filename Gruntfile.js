@@ -5,6 +5,7 @@ var webpackConfigs = {
 
 module.exports = grunt => {
   require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('gruntify-eslint');
 
   // Project configuration.
   grunt.initConfig({
@@ -168,19 +169,14 @@ module.exports = grunt => {
       }
     },
 
-    jshint: {
-      options: {
-          reporter: require('jshint-stylish'),
-          jshintrc: true
-      },
-
-      all: ['Gruntfile.js', 'src/assets/js']
-    },
-
     webdriver: {
       test: {
         configFile: 'tools/wdio.conf.js'
       }
+    },
+
+    eslint: {
+      src: ['src/assets/js/**/*.js']
     },
   });
   // Default task(s).
