@@ -7,6 +7,7 @@ import { loadDashboardPage } from '../actions';
 import _ from 'lodash';
 import { getBrands } from 'app/core/selectors/entities/brands';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import BrandThumbnail from 'app/common/components/BrandThumbnail';
 
 class Dashboard extends Component {
 
@@ -75,8 +76,7 @@ class Dashboard extends Component {
     return _.map(this.props.topBrands, (brand, index) => {
       return (
         <li className="col-xs-2" key={index}>
-          <img src={brand.imgPreview}/>
-          <span>{brand.name}</span>
+          <BrandThumbnail brand={brand}/>
         </li>
       );
     });
