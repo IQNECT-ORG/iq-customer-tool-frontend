@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt karma:unit",
-    "dev-server": "node webpackserver.js"
+    "dev-server": "node webpackserver.js",
+    "build-prd": "node -e \"require('grunt').tasks(['build-prd']);\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "eslint": "^2.10.2",
     "eslint-plugin-react": "^5.1.1",
     "exports-loader": "^0.6.3",
+    "flow-bin": "^0.25.0",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
     "grunt-contrib-copy": "^1.0.0",
@@ -36,6 +38,7 @@
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-flow": "^1.0.3",
     "grunt-karma": "^1.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-webdriver": "^2.0.1",
