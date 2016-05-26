@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import fp from 'lodash/fp';
 import _ from 'lodash';
-import moment from 'moment';
 import Metrics from '../components/Metrics';
 import colorScheme from '../colorScheme';
 
-const mapStateToProps = (state, ownProps) => {
-  const filters = state.analytics.filters;
+const mapStateToProps = (state) => {
+  //const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
 
@@ -17,7 +15,6 @@ const mapStateToProps = (state, ownProps) => {
     // Group and count
     fp.reduce(
       (result, search) => {
-        let key;
         const age = search.age;
 
         if(age == null) {
@@ -49,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
           1: '25-44',
           2: '45+',
           3: 'Unknown'
-        }
+        };
 
         result.push({
           label: labels[key >> 0],

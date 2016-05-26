@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import React from 'react';
 import FilterFormContainer from '../../containers/FilterFormContainer';
 
-const render = (props) => {
+const render = () => {
   return (
-    <div>
+    <div style={{
+      width: 800 // @TODO: Make this responsive
+    }}>
       <FilterFormContainer/>
     </div>
   );

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import rd3 from 'rd3';
-import _ from 'lodash';
 import fp from 'lodash/fp';
 import moment from 'moment';
 import colorScheme from '../colorScheme';
@@ -25,10 +24,10 @@ const render = (props) => {
       showOuterLabels={false}
       title='Age'/>
   );
-}
+};
 
-const mapStateToProps = (state, ownProps) => {
-  const filters = state.analytics.filters;
+const mapStateToProps = (state) => {
+  //const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
   let ageData = null;
@@ -37,7 +36,6 @@ const mapStateToProps = (state, ownProps) => {
     ageData = fp.flow(
       fp.reduce(
         (result, search) => {
-          let key;
           const age = search.age;
 
           if(age == null) {
@@ -71,14 +69,12 @@ const mapStateToProps = (state, ownProps) => {
     )(allSearches);
   }
 
-  console.log(ageData);
-
   return {
     chartData: ageData
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = () => {
   return {
   };
 };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import FilterDate from '../panes/FilterDate';
 import FilterTrigger from '../panes/FilterTrigger';
@@ -8,7 +8,7 @@ const render = (props) => {
   return (
     <form className="form--content" onSubmit={props.onSubmit}>
       <Tabs
-        onSelect={ _ => {} }
+        onSelect={ () => {} }
         selectedIndex={0}>
         <TabList>
           <Tab>By Date</Tab>

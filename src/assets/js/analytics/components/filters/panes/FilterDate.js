@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import joid from 'joid';
 import { DatePicker } from 'react-input-enhancements';
 import moment from 'moment';
@@ -11,17 +11,17 @@ const render = (props) => {
       <div className="col-xs-3">
         <ul className="list-unstyled">
           <li>
-            <button type="button" onClick={ _ => props.onDatePresetClick('today') }>
+            <button type="button" onClick={ () => props.onDatePresetClick('today') }>
               Today
             </button>
           </li>
           <li>
-            <button type="button" onClick={ _ => props.onDatePresetClick('thisWeek') }>
+            <button type="button" onClick={ () => props.onDatePresetClick('thisWeek') }>
               This Week
             </button>
           </li>
           <li>
-            <button type="button" onClick={ _ => props.onDatePresetClick('thisMonth') }>
+            <button type="button" onClick={ () => props.onDatePresetClick('thisMonth') }>
               This Month
             </button>
           </li>
