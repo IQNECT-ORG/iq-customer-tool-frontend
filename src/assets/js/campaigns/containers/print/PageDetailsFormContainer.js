@@ -12,13 +12,12 @@ const mapStateToProps = (state, ownProps) => {
   const page = ownProps.ui.page;
   const pageCount = ownProps.values.pages.length;
 
-
   return {
     imageSrc: _.find(trainingResults, x => x.frame === page).images.default,
     page,
     pageCount,
     hasPrev: page > 0,
-    hasNext: page < pageCount
+    hasNext: page < pageCount - 1
   };
 }
 
