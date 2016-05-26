@@ -122,11 +122,9 @@ const mapStateToProps = (state, ownProps) => {
             lat: search.lat,
             lng: search.long,
           },
-          key: key,
-          defaultAnimation: 2,
+          draggable: false,
           icon: markerIcon,
           labelContent: 1,
-          //labelAnchor: new google.maps.Point(22, 0),
           labelClass: 'map-label', // the CSS class for the label,
           labelAnchor: new google.maps.Point(25, 25)
         };
