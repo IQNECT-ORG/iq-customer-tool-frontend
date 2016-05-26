@@ -24,7 +24,7 @@ export default createReducer(initialState, {
   },
   [Actions.DASHBOARD_UPDATE_MATCHES_COUNT]: (state, action) => {
     return _.assign({}, state, {
-      matchesCount: action.payload.count
+      matchesCount: action.payload
     });
   },
   [Actions.DASHBOARD_UPDATE_TOP_BRANDS]: (state, action) => {
