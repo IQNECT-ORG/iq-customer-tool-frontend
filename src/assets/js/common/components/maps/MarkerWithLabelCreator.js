@@ -10,7 +10,9 @@ import composeOptions from 'react-google-maps/lib/utils/composeOptions';
 import componentLifecycleDecorator from 'react-google-maps/lib/utils/componentLifecycleDecorator';
 
 import GoogleMapHolder from 'react-google-maps/lib/creators/GoogleMapHolder';
-import MarkerWithLabel from 'markerwithlabel';
+import markerWithLabelConstructor from 'markerwithlabel';
+
+const MarkerWithLabel = markerWithLabelConstructor(google.maps);
 
 export const markerControlledPropTypes = {
 // NOTICE!!!!!!
