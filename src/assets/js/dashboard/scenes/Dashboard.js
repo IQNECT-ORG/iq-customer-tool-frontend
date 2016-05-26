@@ -22,9 +22,9 @@ class Dashboard extends Component {
             <Titlebar title="Dashboard"/>
           );
         }}>
-        <div className="container">
+        <div className="container container--gutter">
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-xs-7">
               <div className="row">
                 <div className="col-xs-4">
                   <div className="pane pane--filled m-b-g">
