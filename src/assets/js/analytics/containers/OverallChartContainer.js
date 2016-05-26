@@ -99,7 +99,7 @@ const mapStateToProps = (state, ownProps) => {
   ];
 
   const overallData = fp.flow(
-    fp.sortBy('timestamp'),
+    fp.sortBy.bind(null, 'timestamp'),
     fp.reduce(
       (result, search) => {
         const date = moment.unix(search.timestamp);
@@ -120,11 +120,11 @@ const mapStateToProps = (state, ownProps) => {
       },
       _.clone(timespan)
     ),
-    fp.toArray()
+    fp.toArray
   )(allSearches);
 
   const uniqueData = fp.flow(
-    fp.sortBy('timestamp'),
+    fp.sortBy.bind(null, 'timestamp'),
     fp.transform(
       (result, search) => {
         const date = moment.unix(search.timestamp);

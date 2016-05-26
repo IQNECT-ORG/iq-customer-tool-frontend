@@ -20,8 +20,8 @@ const mapStateToProps = (state, ownProps) => {
       },
       []
     ),
-    fp.uniq(),
-    fp.size()
+    fp.uniq,
+    fp.size
   )(allSearches);
 
   let averageScan;

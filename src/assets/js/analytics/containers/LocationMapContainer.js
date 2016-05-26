@@ -133,7 +133,8 @@ const mapStateToProps = (state, ownProps) => {
         return result;
       },
       {}
-    )
+    ),
+    fp.toArray
   )(allSearches);
 
   return {

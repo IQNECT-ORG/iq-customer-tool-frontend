@@ -7,6 +7,10 @@ import moment from 'moment';
 import colorScheme from '../colorScheme';
 
 const render = (props) => {
+  if(props.chartData == null) {
+    return null;
+  }
+
   return (
     <rd3.PieChart
       data={props.chartData}
@@ -27,42 +31,47 @@ const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
   const data = state.analytics.data;
   const allSearches = data.allSearches;
+  let ageData = null;
 
-  const ageData = fp.flow(
-    fp.reduce(
-      (result, search) => {
-        let key;
-        const age = search.age;
+  if(allSearches != null) {
+    ageData = fp.flow(
+      fp.reduce(
+        (result, search) => {
+          let key;
+          const age = search.age;
 
-        if(age == null) {
-          result[3]++;
-        } else if(age <= 24) {
-          result[0]++;
-        } else if(age <= 44) {
-          result[1]++;
-        } else {
-          result[2]++;
+          if(age == null) {
+            result[3]++;
+          } else if(age <= 24) {
+            result[0]++;
+          } else if(age <= 44) {
+            result[1]++;
+          } else {
+            result[2]++;
+          }
+
+          return result;
+        },
+        {
+          0: 0, // 0-24
+          1: 0, // 25-44
+          2: 0, // 45+
+          3: 0 // Unknown
         }
+      ),
+      fp.transform(
+        (result, value, key) => {
+          result.push({
+            label: key >> 0,
+            value: value
+          });
+        },
+        []
+      )
+    )(allSearches);
+  }
 
-        return result;
-      },
-      {
-        0: 0, // 0-24
-        1: 0, // 25-44
-        2: 0, // 45+
-        3: 0 // Unknown
-      }
-    ),
-    fp.transform(
-      (result, value, key) => {
-        result.push({
-          label: key >> 0,
-          value: value
-        });
-      },
-      []
-    )
-  )(allSearches);
+  console.log(ageData);
 
   return {
     chartData: ageData
