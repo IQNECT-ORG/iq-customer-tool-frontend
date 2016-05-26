@@ -4,6 +4,7 @@ import { base as baseAPI } from 'app/core/services/api/analytics';
 import filterFormSaga from './filterForm';
 import _ from 'lodash';
 import moment from 'moment';
+import * as campaignListSaga from 'app/common/sagas/campaignList';
 
 function formatFilters(filters) {
   function formatDate(filter) {
@@ -28,7 +29,9 @@ function formatFilters(filters) {
 
 function* load() {
   const filters = yield select(state => state.analytics.filters);
-  yield call(updateData, filters);
+
+  yield call(campaignListSaga.load);
+  //yield call(updateData, filters);
 }
 
 function* updateData(filters) {

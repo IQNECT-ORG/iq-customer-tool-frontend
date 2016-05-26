@@ -22,6 +22,7 @@ import OSMetricsContainer from '../containers/OSMetricsContainer';
 import FilterBar from '../components/filters/FilterBar';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 import Dropdown from 'app/common/components/Dropdown';
+import CampaignListContainer from '../containers/CampaignListContainer';
 
 class Overview extends Component {
 
@@ -30,6 +31,21 @@ class Overview extends Component {
   }
 
   render() {
+    if(this.props.isCampaignSelected === false) {
+      return (
+        <DefaultLayout
+          titleRender={_ => {
+            return (
+              <Titlebar title="Analytics / Select Campaign"/>
+            );
+          }}>
+          <div className="container container--gutter">
+            <CampaignListContainer/>
+          </div>
+        </DefaultLayout>
+      );
+    }
+
     const filterCTA = (
       <Dropdown>
         {props => {
@@ -52,7 +68,6 @@ class Overview extends Component {
       </Dropdown>
     );
 
-
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -61,7 +76,7 @@ class Overview extends Component {
               ctas={[filterCTA]}/>
           );
         }}>
-        <div className="container">
+        <div className="container container--gutter">
           <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <div className="row">
@@ -167,7 +182,10 @@ const mapStateToProps = (state, ownProps) => {
     return _.startsWith(key, 'Dropdown');
   });
 
+  const filters = state.analytics.filters;
+
   return {
+    isCampaignSelected: !!filters.campaignId,
     dropdownOpen: _.get(dropdownUI, 'open')
   };
 };
