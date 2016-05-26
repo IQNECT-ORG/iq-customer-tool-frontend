@@ -18,10 +18,21 @@ class PageDetailForm extends Component {
     </button>
     */
 
+    let warning;
+    if(this.props.isTrained === false) {
+      warning = (
+        <div className="alert alert-warning" role="alert">
+          <strong>Warning!</strong>
+          <span> This page could not be trained.</span>
+        </div>
+      );
+    }
+
     return (
       <form className="form--content" onSubmit={this.props.onSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
+            {warning}
             <div className="pane pane--filled m-b-g">
               <img className="img-fluid" src={this.props.imageSrc}/>
             </div>

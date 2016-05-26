@@ -6,14 +6,17 @@ import ui from 'redux-ui/transpiled';
 import { change } from 'redux-form/lib/actions';
 import { getTrainingResults } from 'app/core/selectors/entities/trainingResults';
 import _ from 'lodash';
+import Constants from 'app/common/Constants';
 
 const mapStateToProps = (state, ownProps) => {
   const trainingResults = getTrainingResults(state);
   const page = ownProps.ui.page;
   const pageCount = ownProps.values.pages.length;
+  const trainingResult = _.find(trainingResults, x => x.frame === page);
 
   return {
-    imageSrc: _.find(trainingResults, x => x.frame === page).images.default,
+    imageSrc: trainingResult.images.default,
+    isTrained: trainingResult.status === Constants.TrainingResultStatuses.OK,
     page,
     pageCount,
     hasPrev: page > 0,

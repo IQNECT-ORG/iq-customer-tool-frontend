@@ -96,5 +96,9 @@ export default {
     VIDEO: 4,
     BEACON: 5,
     PDF: 6,
+  },
+
+  TrainingResultStatuses: {
+    OK: 0
   }
 };
