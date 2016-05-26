@@ -3,9 +3,9 @@ import parser from 'redux-entity-crud/lib/parsers';
 
 const triggerParser = (schema, data, options) => {
   const parsePayload = (item) => {
-    const payload = JSON.parse(item.payload);
+    //const payload = JSON.parse(item.payload);
 
-    item.payload = _.transform(payload, (result, payload, index) => {
+    item.payload = _.transform(item.payload, (result, payload, index) => {
       result.push({
         triggerPayloadId: `${item.triggerId}-${index}`,
         triggerId: item.triggerId,
