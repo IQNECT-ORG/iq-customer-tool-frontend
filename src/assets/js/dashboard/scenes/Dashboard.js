@@ -27,7 +27,7 @@ class Dashboard extends Component {
             <div className="col-xs-6">
               <div className="row">
                 <div className="col-xs-4">
-                  <div className="pane pane--filled">
+                  <div className="pane pane--filled m-b-g">
                     <div className="pane__body">
                       <div>Campaigns</div>
                       {this.props.campaignsCount}
@@ -56,10 +56,10 @@ class Dashboard extends Component {
             </div>
 
             <div className="col-xs-12">
-              <div className="pane pane--filled">
+              <div className="pane pane--filled m-b-g">
                 <div className="pane__body">
                   <span>Top Brands</span>
-                  <ul>
+                  <ul className="row list-unstyled">
                     {this._renderTopBrands()}
                   </ul>
                 </div>
@@ -74,7 +74,7 @@ class Dashboard extends Component {
   _renderTopBrands() {
     return _.map(this.props.topBrands, (brand, index) => {
       return (
-        <li key={index}>
+        <li className="col-xs-2" key={index}>
           <img src={brand.imgPreview}/>
           <span>{brand.name}</span>
         </li>
@@ -91,8 +91,6 @@ const mapStateToProps = (state, ownProps) => {
     // Have to cast string to int due to differences in the API.
     return _.includes(topBrandsIds, brand.brandId >> 0);
   });
-
-  console.log(topBrands);
 
   return {
     campaignsCount: state.dashboard.campaignsCount,
