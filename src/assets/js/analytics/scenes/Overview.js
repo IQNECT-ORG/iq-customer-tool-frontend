@@ -68,6 +68,15 @@ class Overview extends Component {
       </Dropdown>
     );
 
+    let notice;
+    if(this.props.numberOfResults === 0) {
+      notice = (
+        <div className="alert alert-info" role="alert">
+          Your selected filters has no results
+        </div>
+      );
+    }
+
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -77,6 +86,8 @@ class Overview extends Component {
           );
         }}>
         <div className="container container--gutter">
+          {notice}
+
           <div className="pane pane--filled m-b-g">
             <div className="pane__body">
               <div className="row">
@@ -186,7 +197,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     isCampaignSelected: !!filters.campaignId,
-    dropdownOpen: _.get(dropdownUI, 'open')
+    dropdownOpen: _.get(dropdownUI, 'open'),
+    numberOfResults: _.size(state.analytics.data.allSearches)
   };
 };
 
