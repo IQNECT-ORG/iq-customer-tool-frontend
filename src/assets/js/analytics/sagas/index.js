@@ -5,6 +5,7 @@ import filterFormSaga from './filterForm';
 import _ from 'lodash';
 import moment from 'moment';
 import * as campaignListSaga from 'app/common/sagas/campaignList';
+import { getTrainingResults } from 'app/core/sagas/entities';
 
 function formatFilters(filters) {
   function formatDate(filter) {
@@ -35,6 +36,11 @@ function* load() {
 }
 
 function* updateData(filters) {
+  yield call(updateSearchData, filters);
+  yield call(updateFrames, filters);
+}
+
+function* updateSearchData(filters) {
   const formattedFilters = formatFilters(filters);
 
   try {
@@ -51,6 +57,24 @@ function* updateData(filters) {
     });
   } catch(err) {
     throw err;
+  }
+}
+
+function* updateFrames(filters) {
+  const triggers = yield select(state => state.entities.triggers);
+  const trigger = _.find(triggers, x => x.campaignId === filters.campaignId);
+
+  if(trigger == null) {
+    return;
+  }
+
+  if(_.has(trigger, 'trainingResult') && trigger.trainingResult != null) {
+    yield call(getTrainingResults, {
+      url: trigger.trainingResult,
+      parserOptions: {
+        triggerId: trigger.triggerId
+      }
+    });
   }
 }
 

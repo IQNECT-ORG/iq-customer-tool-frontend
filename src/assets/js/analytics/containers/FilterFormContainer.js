@@ -9,8 +9,11 @@ import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
   const triggers = _.filter(state.entities.triggers, x => x.campaignId === state.analytics.filters.campaignId);
+  const frames = _.filter(state.entities.trainingResults, x => x.triggerId === _.get(triggers, '[0].triggerId'));
+
   return {
-    triggers
+    triggers,
+    frames
   };
 };
 
@@ -57,6 +60,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onTriggerClick: (trigger, index) => {
       dispatch(filtersUpdate({
         triggerId: trigger.triggerId
+      }));
+    },
+
+    onFrameClick: (frame, index) => {
+      dispatch(filtersUpdate({
+        frameId: frame.trainingResultId
       }));
     }
   };
