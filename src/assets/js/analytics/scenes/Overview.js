@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import _ from 'lodash';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
@@ -36,7 +37,9 @@ class Overview extends Component {
         <DefaultLayout
           titleRender={_ => {
             return (
-              <Titlebar title="Analytics / Select Campaign"/>
+              <Titlebar title={
+                <FormattedMessage id="app.analytics.headerSelectCampaign" tagName="h1"/>
+              }/>
             );
           }}>
           <div className="container container--gutter">
@@ -81,7 +84,10 @@ class Overview extends Component {
       <DefaultLayout
         titleRender={_ => {
           return (
-            <Titlebar title="Analytics"
+            <Titlebar
+              title={
+                <FormattedMessage id="app.analytics.header" tagName="h1"/>
+              }
               ctas={[filterCTA]}/>
           );
         }}>

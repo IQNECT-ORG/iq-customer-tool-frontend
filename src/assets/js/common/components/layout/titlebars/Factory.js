@@ -39,9 +39,7 @@ class TitlebarFactory extends Component {
       );
     } else {
       // Should be a react component
-      return (
-        {title}
-      );
+      return title;
     }
   }
 

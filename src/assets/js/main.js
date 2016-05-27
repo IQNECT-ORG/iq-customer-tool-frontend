@@ -4,11 +4,12 @@ import React, { Component, PropTypes } from 'react';
 import { Router, browserHistory } from 'react-router';
 import routes from './core/routes';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { IntlProvider, addLocaleData, defineMessages } from 'react-intl';
+import { IntlProvider, addLocaleData } from 'react-intl';
 import enUS from './core/locales/en-us';
 import enLocaleData from 'react-intl/locale-data/en';
 import { Provider } from 'react-redux';
 import saga from './core/sagas';
+import { getLang } from './core/utils/locale';
 
 // Store
 const store = createAppStore();
@@ -22,7 +23,7 @@ sagaMiddleware.run(saga);
 
 ReactDOM.render((
   <Provider store={store}>
-    <IntlProvider locale="en" messages={enUS.messages}>
+    <IntlProvider locale={getLang()} messages={enUS.messages}>
       <Router history={history}>
         {routes}
       </Router>

@@ -1,6 +1,7 @@
 export default {
   locales: 'en-US',
   messages: {
-    test: 'Testing'
+    'app.analytics.header': 'Analytics',
+    'app.analytics.headerSelectCampaign': 'Analytics / Select Campaign'
   }
 };
