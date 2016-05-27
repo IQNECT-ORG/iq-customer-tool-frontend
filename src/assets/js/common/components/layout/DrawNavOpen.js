@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import MenuContainer from '../../containers/MenuContainer';
 import AccountSummaryContainer from '../../containers/AccountSummaryContainer';
 import QuickActions from './QuickActions';
-import { Motion, spring } from 'react-motion';
+import { FormattedMessage } from 'react-intl';
 
 class DrawNavOpen extends Component {
   render() {
@@ -21,7 +21,9 @@ class DrawNavOpen extends Component {
 
             <div className="row m-y-2">
               <div className="col-xs-10 col-xs-offset-1">
-                <Link to="/campaigns/create" className="btn btn-primary btn-block btn-radius-lg">Create Campaign</Link>
+                <Link to="/campaigns/create" className="btn btn-primary btn-block btn-radius-lg">
+                  <FormattedMessage id="app.menu.createCampaign"/>
+                </Link>
               </div>
             </div>
 
