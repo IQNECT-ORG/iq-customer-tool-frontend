@@ -43,11 +43,11 @@ DEPLOYED=0
 if [ ! -d "$DEPLOY" ]; then
     echo "Deploy '$DEPLOY' directory not found.'";
     echo "Untarring project to '$DEPLOY'";
-    mkdir -p $DEPLOY $CACHE;
-    tar xf $NAME.tgz -C $DEPLOY --strip-components=1;
+    mkdir -p $DEPLOY;
+    tar xf project.tgz -C $DEPLOY --strip-components=1;
     DEPLOYED=1;
-    chown -R $WWW_USER:$WWW_USER $DEPLOY/build;
-    chmod 0711 $DEPLOY/build;
+    chown -R $WWW_USER:$WWW_USER $DEPLOY;
+    chmod 0711 $DEPLOY;
 fi
 
 # handle container stop
@@ -55,7 +55,7 @@ sigterm() {
     rm /etc/nginx/sites-enabled/$VHOST.conf || true;
     # clean up if untared previously
     if [ "$DEPLOYED" == 1 ]; then
-        rm -Rf $DEPLOY $CACHE;
+        rm -Rf $DEPLOY;
     fi
     exit 15;
 }
