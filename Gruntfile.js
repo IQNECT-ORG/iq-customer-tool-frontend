@@ -51,6 +51,9 @@ module.exports = grunt => {
           loadPath: [
             'node_modules/bootstrap/scss',
             'node_modules/font-awesome/scss'
+          ],
+          require: [
+            'sass-css-importer'
           ]
         },
         files: {
