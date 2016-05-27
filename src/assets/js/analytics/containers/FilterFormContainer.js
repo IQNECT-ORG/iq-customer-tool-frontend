@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import FilterForm from '../components/filters/forms/FilterForm';
 import _ from 'lodash';
 import { reduxForm } from 'redux-form';
-import { filterFormSubmit } from '../actions';
+import { filterFormSubmit, filtersUpdate } from '../actions';
 import moment from 'moment';
 import { change } from 'redux-form/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
+  const triggers = _.filter(state.entities.triggers, x => x.campaignId === state.analytics.filters.campaignId);
   return {
+    triggers
   };
 };
 
@@ -50,6 +52,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const endChangeAction = change('periodEnd', values.periodEnd);
       endChangeAction.form = 'filterForm';
       dispatch(endChangeAction);
+    },
+
+    onTriggerClick: (trigger, index) => {
+      dispatch(filtersUpdate({
+        triggerId: trigger.triggerId
+      }));
     }
   };
 };

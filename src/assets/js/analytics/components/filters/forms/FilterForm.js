@@ -22,7 +22,9 @@ const render = (props) => {
         </TabPanel>
         <TabPanel>
           <FilterTrigger
-            fields={props.fields}/>
+            fields={props.fields}
+            triggers={props.triggers}
+            onTriggerClick={props.onTriggerClick}/>
         </TabPanel>
       </Tabs>
       <div>
