@@ -194,7 +194,7 @@ class Overview extends Component {
       <ul className="list-unstyled clearfix">
         {_.map(activeFilters, (value, filter) => {
           return (
-            <li className="pull-xs-left m-a-1">
+            <li className="pull-xs-left m-a-1" key={filter}>
               <button type="button" className="close" aria-label="Close" onClick={ () => this.props.onFilterRemoveClick(filter) }>
                 <span aria-hidden="true">&times;</span>
               </button>
