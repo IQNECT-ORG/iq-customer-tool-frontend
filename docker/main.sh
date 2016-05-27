@@ -7,6 +7,10 @@ IQ_GIT_SSH_KEY=${IQ_GIT_SSH_KEY:-"${HOME}/.ssh/id_rsa"};
 IQ_GIT_SSH_PASS=${IQ_GIT_SSH_PASS:-""};
 JENKINS=${JENKINS:-""};
 
+# set directory
+DIR=$ROOT;
+if [[ "$JENKINS" ]]; then DIR=$IQ_HOST_ROOT/$PROJECT/workspace; fi
+
 PWD=`pwd`
 cd $ROOT
 TAG=${TAG:-"latest"};
@@ -17,10 +21,11 @@ docker build -t web/$PROJECT-build:$TAG -f $ROOT/docker/build/Dockerfile $ROOT
 # execute the build container to generate the app
 ti="-ti";
 if [[ "$JENKINS" ]]; then ti=""; fi
+
 docker run \
     $ti \
     --rm \
-    -v $ROOT:/opt/$PROJECT \
+    -v $DIR:/opt/$PROJECT \
     -v $IQ_GIT_SSH_KEY:/root/.ssh/id_rsa:ro \
     -e IQ_GIT_SSH_PASS=$IQ_GIT_SSH_PASS \
     -e PROJECT=$PROJECT \
