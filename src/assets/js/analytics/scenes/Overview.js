@@ -5,7 +5,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
-import { loadOverview } from '../actions';
+import { loadOverview, filtersUpdate } from '../actions';
 import { getUI } from 'app/core/selectors/ui';
 
 import OverallChartContainer from '../containers/OverallChartContainer';
@@ -87,6 +87,8 @@ class Overview extends Component {
         }}>
         <div className="container container--gutter">
           {notice}
+
+          {this._renderFilterTags()}
 
           <div className="pane pane--filled m-b-g">
             <div className="pane__body">
@@ -184,6 +186,25 @@ class Overview extends Component {
       </DefaultLayout>
     );
   }
+
+  _renderFilterTags() {
+    const activeFilters = _.omitBy(this.props.filters, _.isNil);
+
+    return (
+      <ul className="list-unstyled clearfix">
+        {_.map(activeFilters, (value, filter) => {
+          return (
+            <li className="pull-xs-left m-a-1">
+              <button type="button" className="close" aria-label="Close" onClick={ () => this.props.onFilterRemoveClick(filter) }>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {filter}: {value}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -196,6 +217,7 @@ const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
 
   return {
+    filters,
     isCampaignSelected: !!filters.campaignId,
     dropdownOpen: _.get(dropdownUI, 'open'),
     numberOfResults: _.size(state.analytics.data.allSearches)
@@ -208,6 +230,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       load: _ => {
         dispatch(loadOverview());
       }
+    },
+    onFilterRemoveClick: (filter) => {
+      dispatch(filtersUpdate({
+        [filter]: null
+      }));
     }
   };
 };
