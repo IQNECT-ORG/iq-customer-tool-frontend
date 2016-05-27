@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onBackClick: (e) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
-    },
+    }, 
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
