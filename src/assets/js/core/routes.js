@@ -8,11 +8,11 @@ import analyticsRoutes from 'app/analytics/routes';
 
 import { Route, IndexRoute } from 'react-router';
 
-import TestScene from './components/Test';
+//import TestScene from './components/Test';
+//<Route path="/test" component={TestScene}/>
 
 export default (
   <Route path="/" component={App}>
-    <Route path="/test" component={TestScene}/>
     {authRoutes}
     {campaignRoutes}
     {catalogueRoutes}
