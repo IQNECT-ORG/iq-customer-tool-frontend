@@ -39,6 +39,20 @@ const render = (props) => {
   );
 }
 
+function durationToScope(duration) {
+  if(duration.years >= 2) {
+    return 'years';
+  } else if(duration.months >= 4) {
+    return 'months';
+  } else if(duration.weeks >= 4) {
+    return 'weeks';
+  } else if(duration.days >= 4) {
+    return 'days';
+  }
+
+  return 'hours';
+}
+
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
   const data = state.analytics.data;
@@ -57,22 +71,7 @@ const mapStateToProps = (state, ownProps) => {
     years: duration.asYears()
   };
 
-  {
-
-    console.log(durations)
-
-    if(durations.years >= 2) {
-      scope = 'years';
-    } else if(durations.months >= 4) {
-      scope = 'months';
-    } else if(durations.weeks >= 4) {
-      scope = 'weeks';
-    } else if(durations.days >= 4) {
-      scope = 'days';
-    } else {
-      scope = 'hours';
-    }
-  }
+  scope = durationToScope(durations);
 
   const span = Math.abs(durations[scope]);
   
