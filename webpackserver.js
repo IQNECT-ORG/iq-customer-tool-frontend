@@ -1,6 +1,6 @@
 var WebpackDevServer = require("webpack-dev-server");
 var webpack = require("webpack");
-var webpackConfig = require('./tools/webpack.dev.config');
+var webpackConfig = require('./tools/webpack.lcl.config');
 var path = require("path");
 
 var compiler = webpack(webpackConfig);

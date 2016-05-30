@@ -1,7 +1,8 @@
+import config from 'app/core/config';
 
 export const forgottenPassword = async function(data) {
   try {
-    let response = await fetch('https://iq.api/api/user/reset-password', {
+    let response = await fetch(`${config.API_ROOT}/user/reset-password`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -18,7 +19,7 @@ export const forgottenPassword = async function(data) {
 
 export const resetPassword = async function(data) {
   try {
-    let response = await fetch('https://iq.api/api/user/new-password', {
+    let response = await fetch(`${config.API_ROOT}/user/new-password`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

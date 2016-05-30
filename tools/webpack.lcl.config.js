@@ -5,7 +5,7 @@ var path = require('path');
 const plugins = webpackConfig.plugins.slice();
 plugins.push(
   new webpack.DefinePlugin({
-    '__ENV__': '"dev"'
+    '__ENV__': '"lcl"'
   })
 );
 
