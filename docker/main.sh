@@ -31,7 +31,15 @@ docker run \
     -e PROJECT=$PROJECT \
     web/$PROJECT-build:$TAG
 
-tar cf project.tgz public
+tar cf project.tgz . \
+    --exclude=project.tgz \
+    --exclude=cookbooks \
+    --exclude=docker \
+    --exclude=node_modules \
+    --exclude=src \
+    --exclude=test \
+    --exclude=tools \
+    --exclude='.[^/]*'
 
 # build the distribution container
 docker build -t web/$PROJECT:$TAG -f $ROOT/docker/dist/Dockerfile $ROOT
