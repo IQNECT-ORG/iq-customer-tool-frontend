@@ -61,6 +61,15 @@ const mapStateToProps = (state, ownProps) => {
   let scope;
   let periodStart = moment(_.parseInt(filters.periodStart));
   let periodEnd = moment(_.parseInt(filters.periodEnd));
+
+  if(periodStart.isValid() === false) {
+    periodStart = moment(0);
+  }
+
+  if(periodEnd.isValid() === false) {
+    periodEnd = moment().endOf('day');
+  }
+
   let diff = periodEnd.diff(periodStart);
   let duration = moment.duration(diff);
   let durations = {
