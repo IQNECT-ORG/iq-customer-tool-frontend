@@ -1,0 +1,82 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+
+  @include element('content') {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @include element('backing') {
+    > img {
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 750ms;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -moz-animation-name: spin;
+      -moz-animation-duration: 750ms;
+      -moz-animation-iteration-count: infinite;
+      -moz-animation-timing-function: linear;
+      -ms-animation-name: spin;
+      -ms-animation-duration: 750ms;
+      -ms-animation-iteration-count: infinite;
+      -ms-animation-timing-function: linear;
+      animation-name: spin;
+      animation-duration: 750ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  @include element('logo') {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.come-appear {
+  opacity: 0.01;
+  transform: scale(0.5);
+
+}
+
+.come-appear.come-appear-active {
+  opacity: 1;
+  transform: scale(1);
+
+  transition: transform 750ms cubic-bezier(0.175, .885, .32, 1.275), opacity 750ms ease-in;
+}
+
+// .come-enter {
+//   opacity: 0.01;
+// }
+
+// .come-enter.come-enter-active {
+//   opacity: 1;
+//   transition: opacity 500ms ease-in;
+// }
+
+// .come-leave {
+//   opacity: 1;
+// }
+
+// .come-leave.come-leave-active {
+//   opacity: 0.01;
+//   transition: opacity 300ms ease-in;
+// }
