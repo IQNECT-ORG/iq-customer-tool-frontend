@@ -1,34 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Submit from 'app/common/components/forms/Submit';
 
-class ResetPasswordForm extends Component {
-  render() {
-    const fields = this.props.fields;
-    return (
-      <form onSubmit={this.props.onSubmit}>
-        <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput">Code</label>
-          <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input"
-            {...fields.token}/>
-        </fieldset>
-        <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput2">Password</label>
-          <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Another input"
-            {...fields.password}/>
-        </fieldset>
-        <fieldset className="form-group">
-          <label htmlFor="formGroupExampleInput3">Password Match</label>
-          <input type="password" className="form-control" id="formGroupExampleInput3" placeholder="Another input"
-            {...fields.passwordMatch}/>
-        </fieldset>
+const render = (props) => {
+  const fields = props.fields;
+  return (
+    <form className="form--content" onSubmit={props.onSubmit}>
+      <fieldset className="form-group">
+        <label htmlFor="token">Code</label>
+        <input
+          type="text"
+          className="form-control"
+          id="token"
+          placeholder="Token"
+          {...fields.token}/>
+      </fieldset>
+      <fieldset className="form-group">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          placeholder="Another input"
+          {...fields.password}/>
+      </fieldset>
+      <fieldset className="form-group">
+        <label htmlFor="passwordMatch">Password Match</label>
+        <input
+          type="password"
+          className="form-control"
+          id="passwordMatch"
+          placeholder="Another input"
+          {...fields.passwordMatch}/>
+      </fieldset>
 
-        <div className="row">
-          <div className="col-xs-12">
-            <button type="submit" className="btn btn-primary btn-block">Reset my password</button>
-          </div>
+      <div className="row">
+        <div className="col-xs-12">
+          <Submit
+            className="btn btn-block btn-primary"
+            isLoading={props.submitting}>
+            Reset My Password
+          </Submit>
         </div>
-      </form>
-    );
-  }
+      </div>
+    </form>
+  );
 };
 
-export default ResetPasswordForm;
+export default render;

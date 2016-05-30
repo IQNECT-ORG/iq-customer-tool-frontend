@@ -7,12 +7,20 @@ export default (props) => {
     <form className="form--content" onSubmit={props.onSubmit}>
       <fieldset className="form-group">
         <label htmlFor="email">Email Address</label>
-        <input type="email" className="form-control" id="email" placeholder="name@example.com"
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          placeholder="name@example.com"
           {...fields.email}/>
       </fieldset>
       <fieldset className="form-group">
         <label htmlFor="password">Password</label>
-        <input type="password" className="form-control" id="password" placeholder="password"
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          placeholder="password"
           {...fields.password}/>
       </fieldset>
 

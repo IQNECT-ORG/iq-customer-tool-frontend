@@ -21,7 +21,7 @@ class ResetPassword extends Component {
                   </div>
                 </div>
 
-                <div className="text-xs-center">
+                <div className="post-pane text-xs-center m-t-1">
                   <Link to="/signin" className="type-colour-02">Back to log in</Link>
                 </div>
               </div>
