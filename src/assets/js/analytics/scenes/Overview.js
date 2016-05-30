@@ -6,7 +6,7 @@ import DefaultLayout from 'app/common/components/layouts/Default';
 import ui from 'redux-ui/transpiled';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
-import { loadOverview, filtersUpdate } from '../actions';
+import { loadOverview, filtersUpdate, downloadCSV } from '../actions';
 import { getUI } from 'app/core/selectors/ui';
 
 import OverallChartContainer from '../containers/OverallChartContainer';
@@ -88,7 +88,17 @@ class Overview extends Component {
               title={
                 <FormattedMessage id="app.analytics.header" tagName="h1"/>
               }
-              ctas={[filterCTA]}/>
+              ctas={[
+                (
+                  <button
+                    className="btn btn-secondary"
+                    type="button"
+                    onClick={ e => this.props.onCSVDownloadClick(this.props.filters) }>
+                    Download CSV
+                  </button>
+                ),
+                filterCTA
+              ]}/>
           );
         }}>
         <div className="container container--gutter">
@@ -240,6 +250,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onFilterRemoveClick: (filter) => {
       dispatch(filtersUpdate({
         [filter]: null
+      }));
+    },
+    onCSVDownloadClick: (filters) => {
+      dispatch(downloadCSV({
+        filters
       }));
     }
   };

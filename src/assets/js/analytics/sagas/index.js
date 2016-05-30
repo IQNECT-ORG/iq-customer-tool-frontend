@@ -1,6 +1,9 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import { base as baseAPI } from 'app/core/services/api/analytics';
+import {
+  base as baseAPI,
+  csv as csvAPI
+} from 'app/core/services/api/analytics';
 import filterFormSaga from './filterForm';
 import _ from 'lodash';
 import moment from 'moment';
@@ -78,6 +81,37 @@ function* updateFrames(filters) {
   }
 }
 
+function dataToCSV(data) {
+  return 'data:text/csv;charset=utf-8,' + data;
+}
+
+function downloadCSVToFile(uri) {
+  var link = document.createElement('a');
+  link.setAttribute('href', uri);
+  link.setAttribute('download', 'analytics.csv');
+  document.body.appendChild(link); // Required for FF
+  link.click();
+  document.body.removeChild(link);
+}
+
+function* downloadCSV(action) {
+  const formattedFilters = formatFilters(action.payload.filters);
+
+  try {
+    let { text, response } = yield call(csvAPI, {
+      types: {
+        allSearches: 1,
+      },
+      filter: formattedFilters
+    });
+
+    const encodedUri = encodeURI(dataToCSV(text));
+    downloadCSVToFile(encodedUri);
+  } catch(err) {
+    throw err;
+  }
+}
+
 function* watchLoad() {
   yield takeEvery('LOAD_ANALYTICS_OVERVIEW_PAGE', load);
 }
@@ -89,8 +123,13 @@ function* watchFiltersUpdate() {
   });
 }
 
+function* watchDownloadCSV() {
+  yield takeEvery('ANALYICS_DOWNLOAD_CSV', downloadCSV);
+}
+
 export default function* () {
   yield fork(watchLoad);
   yield fork(watchFiltersUpdate);
+  yield fork(watchDownloadCSV);
   yield fork(filterFormSaga);
 };
