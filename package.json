@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "grunt karma:unit",
+    "test": "node -e \"require('grunt').tasks(['karma:unit']);\"",
     "dev-server": "node webpackserver.js",
     "build-prd": "node -e \"require('grunt').tasks(['build-prd']);\""
   },
