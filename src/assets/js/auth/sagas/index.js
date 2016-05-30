@@ -11,7 +11,7 @@ import { user as userSchema } from 'app/core/services/api/schemas';
 function* authLoginAsync(action) {
   yield put(authActions.loginRequest());
   try {
-    let { json, response } = yield sessionsApi.create(action.payload);
+    let { json, response } = yield sessionsApi.create(action.payload.values);
     if(response.status !== 200) {
       throw new NotFoundHttpError('User not found');
     }
