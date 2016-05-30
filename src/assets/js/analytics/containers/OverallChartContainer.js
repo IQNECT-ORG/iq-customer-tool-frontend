@@ -30,12 +30,7 @@ const render = (props) => {
       gridHorizontalStrokeDash='0'
       gridHorizontalStroke='#eceff1'
       circleRadius={0}
-      domain={{
-        x: [
-          new Date(_.parseInt(props.filters.periodStart)),
-          new Date(_.parseInt(props.filters.periodEnd))],
-        y: [0, null]
-      }}/>
+      domain={props.domains}/>
   );
 }
 
@@ -83,7 +78,7 @@ const mapStateToProps = (state, ownProps) => {
   scope = durationToScope(durations);
 
   const span = Math.abs(durations[scope]);
-  
+
   const timespan = {};
   _.times(span, n => {
     const date = moment(periodStart);
@@ -174,7 +169,17 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     filters: filters,
-    chartData: lineData
+    chartData: lineData,
+    domains: {
+      x: [
+        periodStart.toDate(),
+        periodEnd.toDate()
+      ],
+      y: [
+        0,
+        null
+      ]
+    }
   };
 };
 
