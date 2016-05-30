@@ -14,7 +14,7 @@ fi
 
 cd /opt/$PROJECT
 npm install
-npm run build-prd
+npm run ${NPM_RUN}
 
 # if test is set, run tests
 if [[ $TEST ]]; then
