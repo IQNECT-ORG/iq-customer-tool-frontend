@@ -14,10 +14,10 @@ RUN \
     && gem install --pre sass-css-importer \
     && gem install sass
     
-# node
+# node & phantomjs dep
 RUN \
-    apt-get install -yqq nodejs \
-    && npm install -g npm@3 \
+    apt-get install -yqq nodejs libfontconfig \
+    && npm install -g npm@3 phantomjs-prebuilt \
     && npm cache clear \
     && npm config set registry "http://registry.npmjs.org/" \
     && ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts \

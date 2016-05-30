@@ -15,3 +15,9 @@ fi
 cd /opt/$PROJECT
 npm install
 npm run build-prd
+
+# if test is set, run tests
+if [[ $TEST ]]; then
+    echo "Test test test ..."
+    # npm test
+fi

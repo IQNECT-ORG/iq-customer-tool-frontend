@@ -5,7 +5,15 @@ PROJECT=${PROJECT:-"iq-customer-tool-frontend"}
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 IQ_GIT_SSH_KEY=${IQ_GIT_SSH_KEY:-"${HOME}/.ssh/id_rsa"};
 IQ_GIT_SSH_PASS=${IQ_GIT_SSH_PASS:-""};
+TEST=${TEST:0}
 JENKINS=${JENKINS:-""};
+
+# test related
+BROWSERSTACK_USERNAME=${BROWSERSTACK_USERNAME:-""}
+BROWSERSTACK_ACCESSKEY=${BROWSERSTACK_ACCESSKEY:-""}
+E2E_USER_EMAIL=${E2E_USER_EMAIL:-""}
+E2E_USER_PASSWORD=${E2E_USER_PASSWORD:-""}
+PHANTOMJS_BIN=${PHANTOMJS_BIN:-""}
 
 # set directory
 DIR=$ROOT;
@@ -29,6 +37,11 @@ docker run \
     -v $IQ_GIT_SSH_KEY:/root/.ssh/id_rsa:ro \
     -e IQ_GIT_SSH_PASS=$IQ_GIT_SSH_PASS \
     -e PROJECT=$PROJECT \
+    -e TEST=$TEST \
+    -e BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME \
+    -e BROWSERSTACK_ACCESSKEY=$BROWSERSTACK_ACCESSKEY \
+    -e E2E_USER_EMAIL=$E2E_USER_EMAIL \
+    -e PHANTOMJS_BIN=$PHANTOMJS_BIN \
     web/$PROJECT-build:$TAG
 
 tar cf project.tgz . \
