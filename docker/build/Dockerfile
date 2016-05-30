@@ -17,8 +17,9 @@ RUN \
 # node & phantomjs dep
 RUN \
     apt-get install -yqq nodejs libfontconfig \
-    && npm install -g npm@3 phantomjs-prebuilt \
+    && npm install -g npm@3 \
     && npm cache clear \
+    && npm install -g phantomjs-prebuilt \
     && npm config set registry "http://registry.npmjs.org/" \
     && ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts \
     && apt-get autoremove \
