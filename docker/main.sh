@@ -5,8 +5,9 @@ PROJECT=${PROJECT:-"iq-customer-tool-frontend"}
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 IQ_GIT_SSH_KEY=${IQ_GIT_SSH_KEY:-"${HOME}/.ssh/id_rsa"};
 IQ_GIT_SSH_PASS=${IQ_GIT_SSH_PASS:-""};
-TEST=${TEST:0}
+TEST=${TEST:-0}
 JENKINS=${JENKINS:-""};
+NPM_RUN=${NPM_RUN:-"build-prd"}
 
 # test related
 BROWSERSTACK_USERNAME=${BROWSERSTACK_USERNAME:-""}
@@ -42,6 +43,7 @@ docker run \
     -e BROWSERSTACK_ACCESSKEY=$BROWSERSTACK_ACCESSKEY \
     -e E2E_USER_EMAIL=$E2E_USER_EMAIL \
     -e PHANTOMJS_BIN=$PHANTOMJS_BIN \
+    -e NPM_RUN=$NPM_RUN \
     web/$PROJECT-build:$TAG
 
 tar cf project.tgz . \
