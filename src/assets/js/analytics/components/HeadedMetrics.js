@@ -6,7 +6,7 @@ const render = (props) => {
     <div>
       {_.map(props.metrics, (metric, index) => {
         return (
-          <div key={metric.label} style={{
+          <div key={index} style={{
             color: props.colorScheme[index]
           }}>
             <div>{metric.label}</div>
