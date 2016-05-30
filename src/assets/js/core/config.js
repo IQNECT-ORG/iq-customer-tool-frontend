@@ -10,7 +10,7 @@ const envs = {
     API_ROOT: 'https://iq.api/api'
   }),
   dev: _.merge({}, base, {
-
+    API_ROOT: 'https://dev-api2.iqnect.org/api'
   }),
   prd: _.merge({}, base, {
 

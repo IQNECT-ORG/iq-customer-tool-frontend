@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node -e \"require('grunt').tasks(['karma:unit']);\"",
     "dev-server": "node webpackserver.js",
+    "build-dev": "node -e \"require('grunt').tasks(['build-dev']);\"",
     "build-prd": "node -e \"require('grunt').tasks(['build-prd']);\""
   },
   "repository": {
