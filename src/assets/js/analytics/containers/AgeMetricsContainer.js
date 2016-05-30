@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
   const allSearches = data.allSearches;
 
   // Get the total number
-  const total = _.size(allSearches);
+  const total = Math.max(1, _.size(allSearches));
+
   const ageData = fp.flow(
     // Group and count
     fp.reduce(
@@ -37,24 +38,29 @@ const mapStateToProps = (state) => {
       }
     ),
     // Make them percentages
-    fp.map(count => ((count / total) * 100).toFixed(0)),
+    fp.map((count) => {
+      return ((count / total) * 100).toFixed(0);
+    }),
     // Pie format
-    fp.transform(
-      (result, value, key) => {
-        const labels = {
-          0: '0-24',
-          1: '25-44',
-          2: '45+',
-          3: 'Unknown'
-        };
+    (collection) => {
+      return _.reduce(collection, (result, value, key, collection) => {
+          const labels = {
+            0: '0-24',
+            1: '25-44',
+            2: '45+',
+            3: 'Unknown'
+          };
 
-        result.push({
-          label: labels[key >> 0],
-          value: `${value}%`
-        });
-      },
-      []
-    )
+          result.push({
+            label: labels[_.parseInt(key)],
+            value: `${value}%`
+          });
+
+          return result;
+        },
+        []
+      );
+    }
   )(allSearches);
 
   return {
