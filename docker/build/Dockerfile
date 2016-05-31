@@ -6,7 +6,9 @@ RUN \
     && curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
 # utility
-RUN apt-get install -yqq curl tar git expect
+RUN \
+    apt-get install -yqq curl tar git expect \
+    && apt-get update
 
 # ruby
 RUN \
