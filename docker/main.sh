@@ -46,15 +46,28 @@ docker run \
     -e NPM_RUN=$NPM_RUN \
     web/$PROJECT-build:$TAG
 
-tar cf project.tgz . \
-    --exclude=project.tgz \
-    --exclude=cookbooks \
-    --exclude=docker \
-    --exclude=node_modules \
-    --exclude=src \
-    --exclude=test \
-    --exclude=tools \
-    --exclude='.[^/]*'
+if [[ `uname` == "Darwin" ]]; then
+    tar --exclude=project.tgz \
+        --exclude=cookbooks \
+        --exclude=docker \
+        --exclude=node_modules \
+        --exclude=src \
+        --exclude=test \
+        --exclude=tools \
+        --exclude '.*' \
+        --exclude 'project.tgz' \
+        -c -z -f project.tgz ./*
+else
+    tar -c -z --exclude=project.tgz \
+        --exclude=cookbooks \
+        --exclude=docker \
+        --exclude=node_modules \
+        --exclude=src \
+        --exclude=test \
+        --exclude=tools \
+        --exclude='.[^/]*' \
+	-f project.tgz ./*
+fi
 
 # build the distribution container
 docker build -t web/$PROJECT:$TAG -f $ROOT/docker/dist/Dockerfile $ROOT
