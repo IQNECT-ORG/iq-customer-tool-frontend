@@ -68,19 +68,6 @@ function* startup() {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchForbiddenNavigation() {
-  yield fork(function* () {
-    yield take('APP_STARTUP');
-    const pathname = yield select(getPathname);
-    yield checkForbiddenNavigation(pathname);
-  });
-  yield fork(function* () {
-    yield takeEvery('@@route/LOCATION_CHANGE', function*(action) {
-      yield checkForbiddenNavigation(action.payload.pathname);
-    });
-  });
-};
-
 export default function* root() {
   yield fork(startup);
 
@@ -93,6 +80,4 @@ export default function* root() {
   yield fork(commonSaga);
   yield fork(dashboardSaga);
   yield fork(analyticsSaga);
-
-  yield fork(watchForbiddenNavigation);
 };

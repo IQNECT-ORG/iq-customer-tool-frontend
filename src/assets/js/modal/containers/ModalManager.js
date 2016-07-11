@@ -1,37 +1,34 @@
-import React, { Component } from 'react';
+import ModalManager from '../components/ModalManager';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { closeModal, jumpModal } from '../actions';
+import { modalClose, modalJump } from '../signals';
+import { bindActionCreators } from 'redux';
+import { getModalPresent } from '../selectors';
 
-const render = (props) => {
-  const Modal = props.paths[props.path];
+const mapStateToProps = (state) => {
+  const modalState = getModalPresent(state);
 
-  if(Modal == null) {
-    return null;
-  }
-
-  return (
-    <Modal
-      isOpen={props.isOpen}
-      data={props.data}
-      onCloseClick={props.onCloseClick}
-      onRestoreClick={props.onRestoreClick}/>
-  );
-};
-
-const mapStateToProps = (state, ownProps) => {
   return {
-    path: state.modal.present.path,
-    isOpen: state.modal.present.isOpen,
-    data: state.modal.present.data
+    path: modalState.path,
+    isOpen: modalState.isOpen,
+    data: modalState.data
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onCloseClick: _ => dispatch(closeModal()),
-    onRestoreClick: _ => dispatch(jumpModal(-2))
+    actions: bindActionCreators({
+      modalClose,
+      modalJump
+    }, dispatch)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(render);
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
+    onCloseClick: () => dispatchProps.actions.modalClose(),
+    onRestoreClick: () => dispatchProps.actions.modalJump(-2)
+  });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ModalManager);

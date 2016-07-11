@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
 import ModalManager from 'app/modal/containers/ModalManager';
-
+// Modals
 import AddWebsiteModal from 'app/campaigns/modals/AddWebsite';
 import AddCouponModal from 'app/common/modals/AddCoupon';
 import CreateCouponModal from 'app/common/modals/CreateCoupon';
@@ -16,21 +14,9 @@ import EditCouponModal from 'app/common/modals/EditCoupon';
 import CampaignCouponBrowserModal from 'app/campaigns/modals/CouponBrowser';
 
 class App extends Component {
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object
-    };
-  }
-
-  componentWillMount() {
-    this.context.store.dispatch({
-      type: 'APP_STARTUP'
-    });
-  }
-
   render() {
     return (
-      <div>
+      <div className="app">
         {this.props.children}
         <ModalManager paths={{
           addWebsite: AddWebsiteModal,
@@ -49,4 +35,4 @@ class App extends Component {
   }
 };
 
-export default DragDropContext(HTML5Backend)(App);
+export default App;

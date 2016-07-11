@@ -6,7 +6,7 @@ import { routerMiddleware } from 'react-router-redux';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-export const createAppStore = function() {
+const createAppStore = function() {
   const finalCreateStore = compose(
     applyMiddleware(
       routerMiddleware(browserHistory),
@@ -16,4 +16,8 @@ export const createAppStore = function() {
   )(createStore);
 
   return finalCreateStore(customerToolReducer);
+};
+
+export const configureStore = () => {
+  return createAppStore();
 };
