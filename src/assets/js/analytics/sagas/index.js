@@ -1,14 +1,27 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+// Signals
+import {
+  S_ANALYTICS_LOAD_OVERVIEW_PAGE,
+  S_ANALYTICS_FILTERS_UPDATE,
+  S_ANALYTICS_DOWNLOAD_CSV
+} from '../signals';
+// Messages
+import {
+  analyticsUpdateDataAllSearches
+} from '../messages';
+// Utils
+import _ from 'lodash';
+import moment from 'moment';
+// Services
 import {
   base as baseAPI,
   csv as csvAPI
 } from 'app/core/services/api/analytics';
-import filterFormSaga from './filterForm';
-import _ from 'lodash';
-import moment from 'moment';
+// Sagas
 import * as campaignListSaga from 'app/common/sagas/campaignList';
 import { getTrainingResults } from 'app/core/sagas/entities';
+import filterFormSaga from './filterForm';
 
 function formatFilters(filters) {
   function formatDate(filter) {
@@ -31,13 +44,6 @@ function formatFilters(filters) {
   }, {});
 }
 
-function* load() {
-  const filters = yield select(state => state.analytics.filters);
-
-  yield call(campaignListSaga.load);
-  //yield call(updateData, filters);
-}
-
 function* updateData(filters) {
   yield call(updateSearchData, filters);
   yield call(updateFrames, filters);
@@ -54,10 +60,7 @@ function* updateSearchData(filters) {
       filter: formattedFilters
     });
 
-    yield put({
-      type: 'ANALYTICS_UPDATE_DATA_ALL_SEARCHES',
-      payload: json.allSearches
-    });
+    yield put(analyticsUpdateDataAllSearches(json.allSearches));
   } catch(err) {
     throw err;
   }
@@ -94,7 +97,21 @@ function downloadCSVToFile(uri) {
   document.body.removeChild(link);
 }
 
-function* downloadCSV(action) {
+// Handlers
+
+function* onLoad(action) {
+  const filters = yield select(state => state.analytics.filters);
+
+  yield call(campaignListSaga.load);
+  //yield call(updateData, filters);
+}
+
+function* onUpdateFilters(action) {
+  const filters = yield select(state => state.analytics.filters);
+  yield call(updateData, filters);
+}
+
+function* onDownloadCSV(action) {
   const formattedFilters = formatFilters(action.payload.filters);
 
   try {
@@ -112,19 +129,18 @@ function* downloadCSV(action) {
   }
 }
 
+// Watchers
+
 function* watchLoad() {
-  yield takeEvery('LOAD_ANALYTICS_OVERVIEW_PAGE', load);
+  yield takeEvery(S_ANALYTICS_LOAD_OVERVIEW_PAGE, onLoad);
 }
 
 function* watchFiltersUpdate() {
-  yield takeEvery('ANALYTICS_FILTERS_UPDATE', function* () {
-    const filters = yield select(state => state.analytics.filters);
-    yield call(updateData, filters);
-  });
+  yield takeEvery(S_ANALYTICS_FILTERS_UPDATE, onUpdateFilters);
 }
 
 function* watchDownloadCSV() {
-  yield takeEvery('ANALYICS_DOWNLOAD_CSV', downloadCSV);
+  yield takeEvery(S_ANALYTICS_DOWNLOAD_CSV, onDownloadCSV);
 }
 
 export default function* () {
