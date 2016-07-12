@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import fp from 'lodash/fp';
 import _ from 'lodash';
-import Metrics from '../components/Metrics';
+import Metric from '../components/molecules/Metric';
+import Metrics from '../components/molecules/Metrics';
 import colorScheme from '../colorScheme';
 
 const mapStateToProps = (state) => {
@@ -65,7 +66,8 @@ const mapStateToProps = (state) => {
 
   return {
     metrics: ageData,
-    colorScheme
+    colorScheme,
+    component: Metric
   };
 };
 

@@ -1,4 +1,4 @@
-export default [
+export const ChartColorScheme = [
   '#e91e63',
   '#00bcd4',
   '#37474f',
@@ -8,3 +8,7 @@ export default [
   '#0000000',
   '#0000000'
 ];
+
+export default {
+  ChartColorScheme
+};
