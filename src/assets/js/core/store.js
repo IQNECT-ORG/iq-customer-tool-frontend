@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import customerToolReducer from './reducers/customerTool';
+import reducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
@@ -15,7 +15,7 @@ const createAppStore = function() {
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 
-  return finalCreateStore(customerToolReducer);
+  return finalCreateStore(reducer);
 };
 
 export const configureStore = () => {

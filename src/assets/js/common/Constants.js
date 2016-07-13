@@ -29,9 +29,17 @@ export const TrainingResultStatuses = {
   OK: 0
 };
 
+export const AlertMessageLevels = {
+  SUCCESS: 0,
+  INFO: 1,
+  WARNING: 2,
+  DANGER: 3
+};
+
 export default {
   ChartColorScheme,
   CampaignTypes,
   TriggerTypes,
-  TrainingResultStatuses
+  TrainingResultStatuses,
+  AlertMessageLevels
 };

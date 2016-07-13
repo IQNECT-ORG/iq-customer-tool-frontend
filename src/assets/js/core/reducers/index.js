@@ -10,7 +10,7 @@ import alertMessages from './alertMessages';
 import dashboard from 'app/dashboard/reducers';
 import analytics from 'app/analytics/reducers';
 
-const customerTool = combineReducers({
+export default combineReducers({
   auth,
   routing,
   entities,
@@ -22,5 +22,3 @@ const customerTool = combineReducers({
   dashboard,
   analytics
 });
-
-export default customerTool;
