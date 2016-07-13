@@ -1,7 +1,7 @@
 import React from 'react';
 import Submit from 'app/common/components/forms/Submit';
 
-const render = (props) => {
+const ForgottenPasswordForm = (props) => {
   const fields = props.fields;
   return (
     <form className="form--content" onSubmit={props.onSubmit}>
@@ -28,4 +28,4 @@ const render = (props) => {
   );
 };
 
-export default render;
+export default ForgottenPasswordForm;
