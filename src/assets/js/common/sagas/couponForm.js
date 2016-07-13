@@ -1,11 +1,22 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import _ from 'lodash';
-import { createCoupon, updateCoupon } from 'app/core/sagas/entities';
-import { closeModal } from 'app/modal/actions';
+// Actions
 import { change } from 'redux-form/lib/actions';
+// Signals
+import {
+  S_COUPON_CREATE_FORM_SUBMIT,
+  S_COUPON_EDIT_FORM_SUBMIT
+} from '../signals';
+// Messages
+import { modalClose } from 'app/modal/messages';
+// Utils
+import _ from 'lodash';
+// Services
+// Selectors
+// Sagas
+import { createCoupon, updateCoupon } from 'app/core/sagas/entities';
 
-function* couponCreateFormSubmit(action) {
+function* onCreateFormSubmit(action) {
   const couponTask = yield fork(createCoupon, {
     data: action.payload.values
   });
@@ -28,11 +39,11 @@ function* couponCreateFormSubmit(action) {
   action.payload.resolve();
   // Need to go somewhere now...
   if(action.payload.isModal === true) {
-    yield put(closeModal());
+    yield put(modalClose());
   }
 };
 
-function* couponEditFormSubmit(action) {
+function* onEditFormSubmit(action) {
   const couponTask = yield fork(updateCoupon, {
     id: action.payload.values.couponId,
     data: action.payload.values
@@ -49,7 +60,7 @@ function* couponEditFormSubmit(action) {
   action.payload.resolve();
   // Need to go somewhere now...
   if(action.payload.isModal === true) {
-    yield put(closeModal());
+    yield put(modalClose());
   }
 }
 
@@ -58,11 +69,11 @@ function* couponEditFormSubmit(action) {
 //-----------------------------------------------------------
 
 function* watchCreateFormSubmit() {
-  yield takeEvery('COUPON_CREATE_FORM_SUBMIT', couponCreateFormSubmit);
+  yield takeEvery(S_COUPON_CREATE_FORM_SUBMIT, onCreateFormSubmit);
 };
 
 function* watchEditFormSubmit() {
-  yield takeEvery('COUPON_EDIT_FORM_SUBMIT', couponEditFormSubmit);
+  yield takeEvery(S_COUPON_EDIT_FORM_SUBMIT, onEditFormSubmit);
 };
 
 

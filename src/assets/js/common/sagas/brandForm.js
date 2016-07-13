@@ -1,10 +1,20 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+// Signals
+import {
+  S_BRAND_ADD_FORM_SUBMIT,
+  S_BRAND_EDIT_FORM_SUBMIT
+} from '../signals';
+// Messages
+import { modalClose } from 'app/modal/messages';
+// Utils
 import _ from 'lodash';
+// Services
+// Selectors
+// Sagas
 import { createBrand, updateBrand } from 'app/core/sagas/entities';
-import { closeModal } from 'app/modal/actions';
 
-function* brandAddFormSubmit(action) {
+function* onAddFormSubmit(action) {
   const brandTask = yield fork(createBrand, {
     data: action.payload.values
   });
@@ -20,11 +30,11 @@ function* brandAddFormSubmit(action) {
   action.payload.resolve();
   // Need to go somewhere now...
   if(action.payload.isModal === true) {
-    yield put(closeModal());
+    yield put(modalClose());
   }
 };
 
-function* brandEditFormSubmit(action) {
+function* onEditFormSubmit(action) {
   const brandTask = yield fork(updateBrand, {
     id: action.payload.values.brandId,
     data: action.payload.values
@@ -41,7 +51,7 @@ function* brandEditFormSubmit(action) {
   action.payload.resolve();
   // Need to go somewhere now...
   if(action.payload.isModal === true) {
-    yield put(closeModal());
+    yield put(modalClose());
   }
 };
 
@@ -50,12 +60,12 @@ function* brandEditFormSubmit(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchBrandAddFormSubmit() {
-  yield takeEvery('BRAND_ADD_FORM_SUBMIT', brandAddFormSubmit);
+function* watchAddFormSubmit() {
+  yield takeEvery(S_BRAND_ADD_FORM_SUBMIT, onAddFormSubmit);
 };
 
-function* watchBrandEditFormSubmit() {
-  yield takeEvery('BRAND_EDIT_FORM_SUBMIT', brandEditFormSubmit);
+function* watchEditFormSubmit() {
+  yield takeEvery(S_BRAND_EDIT_FORM_SUBMIT, onEditFormSubmit);
 };
 
 export default function* root() {
