@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 35729, host: 35729
 
-  config.omnibus.chef_version = :latest
+  config.omnibus.chef_version = '12.10.24'
 
   config.vm.provision :shell, :inline => "ulimit -n 4048"
   # Use Chef Solo to provision our virtual machine
