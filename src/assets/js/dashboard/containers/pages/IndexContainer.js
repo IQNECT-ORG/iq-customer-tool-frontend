@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { dashboardLoadIndexPage } from '../../signals';
-import ui from 'redux-ui/transpiled';
+import ui from 'redux-ui';
 import { getBrands } from 'app/core/selectors/entities/brands';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 import IndexPage from '../../components/pages/Index';
@@ -44,10 +44,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+const mergeProps = undefined;
+
 let DecoratedComponent = IndexContainer;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = ui({
-})(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
+// DecoratedComponent = ui({
+// })(DecoratedComponent);
 DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;
