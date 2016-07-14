@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 class SummaryForm extends Component {
   render() {

@@ -1,8 +1,5 @@
-import Constants from '../../Constants';
 import { createReducer } from 'redux-create-reducer';
 import crudReducer from 'redux-entity-crud/lib/reducer'
-
-const Actions = Constants.ActionTypes;
 
 let reducer = createReducer({}, {
 

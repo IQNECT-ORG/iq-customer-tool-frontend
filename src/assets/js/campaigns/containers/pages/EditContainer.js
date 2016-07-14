@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ui from 'redux-ui/transpiled';
+import ui from 'redux-ui';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
-import { campaignLoadEditPage } from '../signals';
+import { campaignLoadEditPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import _ from 'lodash';
 import { getUI } from 'app/core/selectors/ui';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Login from './scenes/Login';
-import ForgottenPassword from './scenes/ForgottenPassword';
-import ResetPassword from './scenes/ResetPassword';
+import Login from './containers/pages/LoginContainer';
+import ForgottenPassword from './containers/pages/ForgottenPasswordContainer';
+import ResetPassword from './containers/pages/ResetPasswordContainer';
 import { Route } from 'react-router';
 
 export default [

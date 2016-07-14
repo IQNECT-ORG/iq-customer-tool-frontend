@@ -1,5 +1,5 @@
 import React from 'react';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 const ForgottenPasswordForm = (props) => {
   const fields = props.fields;

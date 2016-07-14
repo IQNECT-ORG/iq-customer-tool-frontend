@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AllPagesForm from '../../components/print/forms/AllPagesForm';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
-import ui from 'redux-ui/transpiled';
-import { change } from 'redux-form/lib/actions';
+import { bindActionCreators } from 'redux';
+import ui from 'redux-ui';
+import AllPagesForm from '../../components/organisms/PrintAllPagesForm';
+import { changeForm } from 'app/common/actions';
 import { getTrainingResults } from 'app/core/selectors/entities/trainingResults';
 import _ from 'lodash';
 
@@ -15,10 +14,18 @@ const mapStateToProps = (state, ownProps) => {
       return x.images.default;
     })
   };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    actions: bindActionCreators({
+      changeForm: changeForm.bind(ownProps.formKey)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     gotoPage: (page) => {
       ownProps.updateUI({
         pageView: 'DETAIL',
@@ -45,45 +52,43 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onAddWebsiteClick: (e) => {
-      dispatch(updateModalPath('addWebsite'));
-      dispatch(updateModalData({
-        form: 'campaignPrint',
-        field: 'fallback.url'
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addWebsite'));
+      // dispatch(updateModalData({
+      //   form: 'campaignPrint',
+      //   field: 'fallback.url'
+      // }));
+      // dispatch(openModal());
     },
 
     onAddCouponClick: (e) => {
-      dispatch(updateModalPath('addCoupon'));
-      dispatch(updateModalData({
-        form: 'campaignPrint',
-        field: 'fallback.coupon'
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addCoupon'));
+      // dispatch(updateModalData({
+      //   form: 'campaignPrint',
+      //   field: 'fallback.coupon'
+      // }));
+      // dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change('fallback.url', null);
-      changeAction.form = 'campaignPrint';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm('fallback.url', null);
     },
 
     onCouponDeleteClick: (e) => {
-      const changeAction = change('fallback.coupon', null);
-      changeAction.form = 'campaignPrint';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm('fallback.coupon', null);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change('fallback.tags', tags);
-      changeAction.form = 'campaignPrint';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm('fallback.tags', tags);
     }
-  };
-}
+  });
+};
 
 let DecoratedComponent = AllPagesForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

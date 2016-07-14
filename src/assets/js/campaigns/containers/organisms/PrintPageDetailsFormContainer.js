@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PageDetailsForm from '../../components/print/forms/PageDetailsForm';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
-import ui from 'redux-ui/transpiled';
-import { change } from 'redux-form/lib/actions';
+import PageDetailsForm from '../../components/organisms/PrintPageDetailsForm';
+import ui from 'redux-ui';
+import { changeForm } from 'app/common/actions';
 import { getTrainingResults } from 'app/core/selectors/entities/trainingResults';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
@@ -22,10 +21,18 @@ const mapStateToProps = (state, ownProps) => {
     hasPrev: page > 0,
     hasNext: page < pageCount - 1
   };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    actions: bindActionCreators({
+      changeForm: changeForm.bind(ownProps.formKey)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onBackClick: (e) => {
       ownProps.updateUI({
         step: 0,
@@ -33,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       });
     },
 
-    onSubmit: ownProps.handleSubmit((...args) => {
+    onSubmit: ownProps.handleSubmit((values) => {
       ownProps.updateUI({
         step: 2,
         page: null
@@ -59,41 +66,39 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
 
     onAddWebsiteClick: (e) => {
-      dispatch(updateModalPath('addWebsite'));
-      dispatch(updateModalData({
-        form: 'campaignPrint',
-        field: `pages[${ownProps.ui.page}].url`
-      }));
-      dispatch(openModal());
+    //   dispatch(updateModalPath('addWebsite'));
+    //   dispatch(updateModalData({
+    //     form: 'campaignPrint',
+    //     field: `pages[${ownProps.ui.page}].url`
+    //   }));
+    //   dispatch(openModal());
     },
 
     onAddCouponClick: (e) => {
-      dispatch(updateModalPath('addCoupon'));
-      dispatch(updateModalData({
-        form: 'campaignPrint',
-        field: `pages[${ownProps.ui.page}].coupon`
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addCoupon'));
+      // dispatch(updateModalData({
+      //   form: 'campaignPrint',
+      //   field: `pages[${ownProps.ui.page}].coupon`
+      // }));
+      // dispatch(openModal());
     },
 
-    onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`pages[${ownProps.ui.page}].url`, null);
-      changeAction.form = 'campaignPrint';
-      dispatch(changeAction);
+    onWebsiteDeleteClick: () => {
+      dispatchProps.actions.changeForm(`pages[${ownProps.ui.page}].url`, null);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change(`pages[${ownProps.ui.page}].tags`, tags);
-      changeAction.form = 'campaignPrint';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm(`pages[${ownProps.ui.page}].tags`, tags);
     }
-  };
-}
-
-
+  });
+};
 
 let DecoratedComponent = PageDetailsForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

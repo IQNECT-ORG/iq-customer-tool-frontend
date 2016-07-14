@@ -8,7 +8,6 @@ import { createCampaign, updateCampaign, getTriggers, getTrainingResults, create
 import { change } from 'redux-form/lib/actions';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
-import * as modalActions from 'app/modal/actions';
 import { takeN } from 'app/core/sagas/utils';
 
 function* uploadTriggers(triggers) {

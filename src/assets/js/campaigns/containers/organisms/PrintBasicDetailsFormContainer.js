@@ -1,25 +1,29 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BasicDetailsForm from '../../components/print/forms/BasicDetailsForm';
-import ui from 'redux-ui/transpiled';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import { bindActionCreators } from 'redux';
+import BasicDetailsForm from '../../components/organisms/PrintBasicDetailsForm';
+import ui from 'redux-ui';
 import _ from 'lodash';
-import { pdfCampaignFormSubmit } from '../../actions';
+import { campaignPDFFormSubmit } from '../../signals';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = undefined;
+
+const mapDispatchToProps = (dispatch) => {
   return {
+    actions: bindActionCreators({
+      campaignPDFFormSubmit
+    }, dispatch)
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onBackClick: (e) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(pdfCampaignFormSubmit({
+        dispatchProps.actions.campaignPDFFormSubmit({
           values: {
             campaignId: values.campaignId,
             brandId: ownProps.selectedBrandId,
@@ -33,26 +37,30 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           },
           updateUI: ownProps.updateUI,
           pagesAddField: ownProps.fields.pages.addField,
-          form: 'campaignPrint',
+          form: ownPropss.formKey,
           resolve,
           reject
-        }));
+        });
       });
     }),
 
     onPreviewWebsiteClick: (e) => {
-      dispatch(updateModalPath('previewWebsite'));
-      dispatch(updateModalData({
-        website: 'http://www.google.com/'
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('previewWebsite'));
+      // dispatch(updateModalData({
+      //   website: 'http://www.google.com/'
+      // }));
+      // dispatch(openModal());
     }
-  };
+  });
 };
 
 
 let DecoratedComponent = BasicDetailsForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

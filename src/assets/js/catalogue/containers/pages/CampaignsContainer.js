@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
-import { catalogueLoadCampaignPage } from '../signals';
+import { catalogueLoadCampaignPage } from '../../signals';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 import CampaignsPage from '../../components/pages/Campaigns';
 

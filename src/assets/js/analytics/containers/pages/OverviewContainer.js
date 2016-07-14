@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import ui from 'redux-ui/transpiled';
-import { analyticsLoadOverviewPage } from '../signals';
+import { analyticsLoadOverviewPage } from '../../signals';
 import { getUI } from 'app/core/selectors/ui';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 import OverviewPage from '../../components/pages/Overview';

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import ui from 'redux-ui/transpiled';
+import ui from 'redux-ui';
 import { updateUI } from 'redux-ui/transpiled/action-reducer';
 import {
   campaignLoadCreatePage,
   campaignSelectBrand,
   campaignSelectCampaignType,
   campaignResetCreate
-} from '../signals';
+} from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import { getUI } from 'app/core/selectors/ui';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';

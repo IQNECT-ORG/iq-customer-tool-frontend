@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ui from 'redux-ui/transpiled';
-import { catalogueLoadCouponsPage } from '../signals';
+import { catalogueLoadCouponsPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
 import CouponsPage from '../../components/pages/Coupons';

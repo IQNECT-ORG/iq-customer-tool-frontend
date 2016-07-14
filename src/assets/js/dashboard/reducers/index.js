@@ -1,5 +1,11 @@
 import { createReducer } from 'redux-create-reducer';
 import _ from 'lodash';
+import {
+  M_DASHBOARD_UPDATE_CAMPAIGNS_COUNT,
+  M_DASHBOARD_UPDATE_TRIGGERS_COUNT,
+  M_DASHBOARD_UPDATE_MATCHES_COUNT,
+  M_DASHBOARD_UPDATE_TOP_BRANDS
+} from '../messages';
 
 export const initialState = {
   campaignsCount: null,

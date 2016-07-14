@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
-import { dashboardLoadIndexPage } from '../signals';
+import { dashboardLoadIndexPage } from '../../signals';
 import ui from 'redux-ui/transpiled';
 import { getBrands } from 'app/core/selectors/entities/brands';
 import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';

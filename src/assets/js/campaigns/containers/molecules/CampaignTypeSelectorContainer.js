@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ui from 'redux-ui/transpiled';
+import { bindActionCreators } from 'redux';
+//import ui from 'redux-ui/transpiled';
 import CampaignTypeSelectorList from 'app/common/components/campaignTypeSelector/CampaignTypeSelectorList';
-import { selectCampaignType } from '../actions';
+import { campaignSelectCampaignType } from '../../signals';
 import Constants from 'app/common/Constants';
 import _ from 'lodash';
 
@@ -10,18 +10,31 @@ const mapStateToProps = (state, ownProps) => {
   return {
     campignTypes: _.values(Constants.CampaignTypes)
   };
-}
+};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onOptionClick: (e, campaignType) => {
-      dispatch(selectCampaignType(campaignType));
-    }
+    actions: bindActionCreators({
+      campaignSelectCampaignType
+    }, dispatch)
   };
-}
+};
+
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
+    onOptionClick: (e, campaignType) => {
+      dispatchProps.actions.campaignSelectCampaignType(campaignType);
+    }
+  });
+};
 
 let DecoratedComponent = CampaignTypeSelectorList;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = ui()(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
+//DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

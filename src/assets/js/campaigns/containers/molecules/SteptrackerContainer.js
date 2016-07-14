@@ -28,12 +28,14 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  };
-}
+const mapDispatchToProps = undefined;
+const mergeProps = undefined;
 
 let DecoratedComponent = Steptracker;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 
 export default DecoratedComponent;

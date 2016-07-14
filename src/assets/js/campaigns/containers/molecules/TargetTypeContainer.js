@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ui from 'redux-ui/transpiled';
-import TargetType from '../components/TargetType';
+import TargetType from '../../components/molecules/TargetType';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,12 +8,14 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  };
-}
+const mapDispatchToProps = undefined;
+const mergeProps = undefined;
 
 let DecoratedComponent = TargetType;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 
 export default DecoratedComponent;

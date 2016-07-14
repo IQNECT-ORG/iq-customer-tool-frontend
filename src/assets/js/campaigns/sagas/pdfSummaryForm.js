@@ -3,7 +3,6 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import { updateTrigger } from 'app/core/sagas/entities';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
-import * as modalActions from 'app/modal/actions';
 
 function* submit(action) {
   const { values } = action.payload;
@@ -32,9 +31,9 @@ function* submit(action) {
 
   action.payload.resolve();
 
-  yield put(modalActions.updateModalPath('success'));
-  yield put(modalActions.updateModalData({}));
-  yield put(modalActions.openModal());
+  // yield put(modalActions.updateModalPath('success'));
+  // yield put(modalActions.updateModalData({}));
+  // yield put(modalActions.openModal());
 }
 
 //-----------------------------------------------------------

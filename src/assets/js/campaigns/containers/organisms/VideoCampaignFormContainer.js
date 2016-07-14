@@ -1,77 +1,84 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import CampaignForm from '../../components/video/forms/CampaignForm';
-import ui from 'redux-ui/transpiled';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import { bindActionCreators } from 'redux';
+import CampaignForm from '../../components/organisms/VideoCampaignForm';
+import ui from 'redux-ui';
 import _ from 'lodash';
-import { videoCampaignFormSubmit } from '../../actions';
+import { campaignVideoFormSubmit } from '../../signals';
 import { reduxForm } from 'redux-form';
-import { change } from 'redux-form/lib/actions';
+import { changeForm } from 'app/common/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
+
+const FORM_KEY = 'campaignVideo';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    initialValues: {
+      name: _.get(ownProps, 'campaign.name'),
+      url: _.get(ownProps, 'triggers.0.url'),
+    }
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    actions: bindActionCreators({
+      campaignVideoFormSubmit,
+      changeForm: changeForm.bind(FORM_KEY)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onBackClick: (e) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
-    }, 
+    },
 
     onSubmit: ownProps.handleSubmit((values) => {
-      return new Promise((resolve, reject) => {
-        dispatch(videoCampaignFormSubmit({
-          values: {
-            media: values.media,
-            url: values.url,
-            campaignId: values.campaignId,
-            brandId: ownProps.selectedBrandId,
-            type: ownProps.selectedCampaignTypeId,
-            name: values.name,
-            periodFrom: values.periodFrom,
-            periodTo: values.periodTo,
-            couponId: values.coupon
-          },
-          updateUI: ownProps.updateUI,
-          form: 'campaignVideo',
-          resolve,
-          reject
-        }));
+      dispatchProps.actions.campaignVideoFormSubmit({
+        values: {
+          media: values.media,
+          url: values.url,
+          campaignId: values.campaignId,
+          brandId: ownProps.selectedBrandId,
+          type: ownProps.selectedCampaignTypeId,
+          name: values.name,
+          periodFrom: values.periodFrom,
+          periodTo: values.periodTo,
+          couponId: values.coupon
+        },
+        updateUI: ownProps.updateUI,
+        form: FORM_KEY,
+        resolve,
+        reject
       });
     }),
 
     onAddWebsiteClick: (e) => {
-      dispatch(updateModalPath('addWebsite'));
-      dispatch(updateModalData({
-        form: 'campaignVideo',
-        field: `url`
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addWebsite'));
+      // dispatch(updateModalData({
+      //   form: 'campaignVideo',
+      //   field: `url`
+      // }));
+      // dispatch(openModal());
     },
 
     onAddCouponClick: (e) => {
-      dispatch(updateModalPath('addCoupon'));
-      dispatch(updateModalData({
-        form: 'campaignVideo',
-        field: 'couponId'
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addCoupon'));
+      // dispatch(updateModalData({
+      //   form: 'campaignVideo',
+      //   field: 'couponId'
+      // }));
+      // dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`url`, null);
-      changeAction.form = 'campaignVideo';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm(`url`, null);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change(`tags`, tags);
-      changeAction.form = 'campaignVideo';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm(`tags`, tags);
     }
-  };
+  });
 };
 
 const fields = [
@@ -92,24 +99,18 @@ const validate = (values, props) => {
 };
 
 let DecoratedComponent = CampaignForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm(
   {
-    form: 'campaignVideo',
+    form: FORM_KEY,
     fields,
     validate
   },
-  (state, ownProps) => { // mapStateToProps
-    return {
-      initialValues: {
-        name: _.get(ownProps, 'campaign.name'),
-        url: _.get(ownProps, 'triggers.0.url'),
-      }
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'campaignVideo',
+  key: FORM_KEY,
   state: {
   }
 })(DecoratedComponent);

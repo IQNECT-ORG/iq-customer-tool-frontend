@@ -2,7 +2,6 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import couponActions from 'app/common/actions/coupons';
-import { closeModal } from 'app/modal/actions';
 import { change } from 'redux-form/lib/actions';
 
 function* load(action) {
@@ -14,7 +13,7 @@ function* selectCoupon(action) {
   changeAction.form = action.payload.form;
 
   yield put(changeAction);
-  yield put(closeModal());
+  //yield put(closeModal());
 }
 
 //-----------------------------------------------------------

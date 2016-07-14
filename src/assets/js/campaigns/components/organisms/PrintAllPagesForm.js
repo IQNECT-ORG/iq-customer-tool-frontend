@@ -4,7 +4,7 @@ import joid from 'joid';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
 import GalleryList from 'app/common/components/gallery/GalleryList';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 class AllPagesForm extends Component {
   render() {

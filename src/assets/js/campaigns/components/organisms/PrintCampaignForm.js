@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import joid from 'joid';
-import BasicDetailsFormContainer from '../../../containers/print/BasicDetailsFormContainer';
-import AllPagesFormContainer from '../../../containers/print/AllPagesFormContainer';
-import PageDetailsFormContainer from '../../../containers/print/PageDetailsFormContainer';
-import SummaryFormContainer from '../../../containers/print/SummaryFormContainer';
+import BasicDetailsFormContainer from '../../containers/organisms/PrintBasicDetailsFormContainer';
+import AllPagesFormContainer from '../../containers/organisms/PrintAllPagesFormContainer';
+import PageDetailsFormContainer from '../../containers/organisms/PrintPageDetailsFormContainer';
+import SummaryFormContainer from '../../containers/organisms/PrintSummaryFormContainer';
 
 class CreateCampaign extends Component {
   render() {

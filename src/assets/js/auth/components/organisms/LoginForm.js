@@ -1,5 +1,5 @@
 import React from 'react';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 export default (props) => {
   const fields = props.fields;

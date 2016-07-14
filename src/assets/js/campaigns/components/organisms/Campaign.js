@@ -1,8 +1,8 @@
 import React from 'react';
 import Constants from 'app/common/Constants';
-import PrintCampaignFormContainer from '../containers/print/CampaignFormContainer';
-import ImageCampaignFormContainer from '../containers/image/CampaignFormContainer';
-import VideoCampaignFormContainer from '../containers/video/CampaignFormContainer';
+import PrintCampaignFormContainer from '../../containers/organisms/PrintCampaignFormContainer';
+import ImageCampaignFormContainer from '../../containers/organisms/ImageCampaignFormContainer';
+import VideoCampaignFormContainer from '../../containers/organisms/VideoCampaignFormContainer';
 
 export default (props) => {
   let form;

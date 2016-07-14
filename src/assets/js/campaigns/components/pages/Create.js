@@ -6,9 +6,9 @@ import Constants from 'app/common/Constants';
 
 import SteptrackerContainer from '../containers/SteptrackerContainer';
 import Avatar from 'app/common/components/Avatar';
-import Campaign from '../components/Campaign';
-import BrandSelectorContainer from '../containers/BrandSelectorContainer';
-import CampaignTypeSelectorContainer from '../containers/CampaignTypeSelectorContainer';
+import Campaign from '../organisms/Campaign';
+import BrandSelectorContainer from '../../containers/molecules/BrandSelectorContainer';
+import CampaignTypeSelectorContainer from '../../containers/molecules/CampaignTypeSelectorContainer';
 
 const Create = (props) => {
   if(this.props.selectedBrandId == null) {

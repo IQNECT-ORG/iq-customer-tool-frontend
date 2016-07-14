@@ -1,5 +1,5 @@
 import React from 'react';
-import ForgottenPasswordFormContainer from '../containers/ForgottenPasswordFormContainer';
+import ForgottenPasswordFormContainer from '../../containers/organisms/ForgottenPasswordFormContainer';
 import FocusLayout from 'app/common/components/layouts/Focus';
 import { Link } from 'react-router';
 

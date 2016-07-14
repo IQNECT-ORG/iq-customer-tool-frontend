@@ -1,26 +1,39 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ui from 'redux-ui/transpiled';
+import { bindActionCreators } from 'redux';
+//import ui from 'redux-ui/transpiled';
 import BrandSelectorList from 'app/common/components/brandSelector/BrandSelectorList';
 import { getBrands } from 'app/core/selectors/entities/brands';
-import { selectBrand } from '../actions';
+import { campaignSelectBrand } from '../../signals';
+import _ from 'lodash';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     brands: getBrands(state)
   };
-}
+};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onOptionClick: (e, brand) => {
-      dispatch(selectBrand(brand.brandId));
-    }
+    actions: bindActionCreators({
+      campaignSelectBrand
+    }, dispatch)
   };
-}
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
+    onOptionClick: (e, brand) => {
+      dispatchProps.actions.campaignSelectBrand(brand.brandId);
+    }
+  });
+};
 
 let DecoratedComponent = BrandSelectorList;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
-DecoratedComponent = ui()(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
+//DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

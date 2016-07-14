@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
 import CouponBrowser from 'app/common/components/couponBrowser/CouponBrowser';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
-import { selectCoupon } from '../actions';
+import { campaignSelectCoupon } from '../../signals';
+import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
   let filteredCoupons = _.filter(getCoupons(state), coupon => {
@@ -16,22 +17,31 @@ const mapStateToProps = (state, ownProps) => {
   return {
     coupons: filteredCoupons
   };
-}
+};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
+    actions: bindActionCreators({
+      campaignSelectCoupon
+    }, dispatch)
+  };
+};
+
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onCouponClick: (e, coupon) => {
-      dispatch(selectCoupon({
+      dispatchProps.actions.campaignSelectCoupon({
         couponId: coupon.couponId,
         form: ownProps.form,
         field: ownProps.field
-      }));
+      });
     },
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
     }
-  };
-}
+  });
+};
 
 let DecoratedComponent = CouponBrowser;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);

@@ -1,5 +1,5 @@
 import React from 'react';
-import ResetPasswordForm from '../../containers/forms/ResetPasswordForm';
+import ResetPasswordForm from '../../containers/organisms/ResetPasswordFormContainer';
 
 const ResetPassword = (props) => {
   return (

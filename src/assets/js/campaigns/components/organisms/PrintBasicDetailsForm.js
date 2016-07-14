@@ -6,7 +6,7 @@ import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import AssetField from 'app/common/components/forms/AssetField';
 import classNames from 'classnames';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 class BasicDetailsForm extends Component {
   render() {

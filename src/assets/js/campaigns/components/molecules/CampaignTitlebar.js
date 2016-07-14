@@ -1,7 +1,7 @@
 import React from 'react';
 import Constants from 'app/common/Constants';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
-import SteptrackerContainer from '../containers/SteptrackerContainer';
+import SteptrackerContainer from '../../containers/molecules/SteptrackerContainer';
 
 export default (props) => {
   let icon;

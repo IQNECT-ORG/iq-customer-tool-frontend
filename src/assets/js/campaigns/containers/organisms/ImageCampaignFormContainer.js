@@ -1,28 +1,50 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import CampaignForm from '../../components/image/forms/CampaignForm';
-import ui from 'redux-ui/transpiled';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
+import { bindActionCreators } from 'redux';
+import ui from 'redux-ui';
+import CampaignForm from '../../components/organisms/ImageCampaignForm';
 import _ from 'lodash';
-import { imageCampaignFormSubmit } from '../../actions';
+import { campaignImageFormSubmit } from '../../signals';
 import { reduxForm } from 'redux-form';
-import { change } from 'redux-form/lib/actions';
+import { changeForm } from 'app/common/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 
+const FORM_KEY = 'campaignImage';
+
 const mapStateToProps = (state, ownProps) => {
+  // This is needed purely to get the consistent
+  // attributes from a given trigger to apply to the form
+  let anyTrigger;
+  if(ownProps.triggers) {
+    anyTrigger = ownProps.triggers[_.keys(ownProps.triggers)[0]];
+  }
+
   return {
+    initialValues: {
+      campaignId: _.get(ownProps, 'campaign.campaignId'),
+      name: _.get(ownProps, 'campaign.name'),
+      url: _.get(anyTrigger, 'url'),
+      //triggerId: _.get(ownProps, 'trigger.triggerId')
+    }
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
+    actions: bindActionCreators({
+      campaignImageFormSubmit,
+      changeForm: changeForm.bind(FORM_KEY)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onBackClick: (e) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(imageCampaignFormSubmit({
+        dispatchProps.actions.campaignImageFormSubmit({
           values: {
             media: values.media,
             url: values.url,
@@ -35,51 +57,45 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             couponId: values.coupon
           },
           updateUI: ownProps.updateUI,
-          form: 'campaignImage',
+          form: FORM_KEY,
           resolve,
           reject
-        }));
+        });
       });
     }),
 
     onAddWebsiteClick: (e) => {
-      dispatch(updateModalPath('addWebsite'));
-      dispatch(updateModalData({
-        form: 'campaignImage',
-        field: `url`
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addWebsite'));
+      // dispatch(updateModalData({
+      //   form: 'campaignImage',
+      //   field: `url`
+      // }));
+      // dispatch(openModal());
     },
 
     onAddCouponClick: (e) => {
-      dispatch(updateModalPath('addCoupon'));
-      dispatch(updateModalData({
-        form: 'campaignImage',
-        field: 'couponId'
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('addCoupon'));
+      // dispatch(updateModalData({
+      //   form: 'campaignImage',
+      //   field: 'couponId'
+      // }));
+      // dispatch(openModal());
     },
 
     onWebsiteDeleteClick: (e) => {
-      const changeAction = change(`url`, null);
-      changeAction.form = 'campaignImage';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm('url', null);
     },
 
     onTagsChange: (tags) => {
-      const changeAction = change(`tags`, tags);
-      changeAction.form = 'campaignImage';
-      dispatch(changeAction);
+      dispatchProps.actions.changeForm('tags', tags);
     },
 
     onMediaChange: (fileGroup) => {
       _.each(fileGroup, (files, index) => {
-        const changeAction = change(`media[${index}]`, files);
-        changeAction.form = 'campaignImage';
-        dispatch(changeAction);
+        dispatchProps.actions.changeForm(`media[${index}]`, files);
       });
     }
-  };
+  });
 };
 
 const fields = [
@@ -94,29 +110,14 @@ const fields = [
 ];
 
 let DecoratedComponent = CampaignForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm(
   {
-    form: 'campaignImage',
+    form: FORM_KEY,
     fields
   },
-  (state, ownProps) => { // mapStateToProps
-    // This is needed purely to get the consistent
-    // attributes from a given trigger to apply to the form
-    let anyTrigger;
-    if(ownProps.triggers) {
-      anyTrigger = ownProps.triggers[_.keys(ownProps.triggers)[0]];
-    }
-
-    return {
-      initialValues: {
-        campaignId: _.get(ownProps, 'campaign.campaignId'),
-        name: _.get(ownProps, 'campaign.name'),
-        url: _.get(anyTrigger, 'url'),
-        //triggerId: _.get(ownProps, 'trigger.triggerId')
-      }
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 

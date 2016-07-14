@@ -9,7 +9,7 @@ import {
   M_MODAL_UNDO,
   M_MODAL_REDO,
   M_MODAL_JUMP
-} from '../messages';
+} from './messages';
 
 const initialState = {
   isOpen: false,

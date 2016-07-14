@@ -6,9 +6,9 @@ import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import MultipleAssetField from 'app/common/components/forms/MultipleAssetField';
 import classNames from 'classnames';
-import TargetType from '../../../containers/TargetTypeContainer';
-import TagsInput from '../../TagsInput';
-import Submit from 'app/common/components/forms/Submit';
+import TargetType from '../../containers/molecules/TargetTypeContainer';
+import TagsInput from '../molecules/TagsInput';
+import Submit from 'app/common/components/atoms/Submit';
 
 class CampaignForm extends Component {
   render() {

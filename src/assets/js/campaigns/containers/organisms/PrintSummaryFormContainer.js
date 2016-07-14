@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import SummaryForm from '../../components/print/forms/SummaryForm';
-import ui from 'redux-ui/transpiled';
+import SummaryForm from '../../components/organisms/PrintSummaryForm';
+import ui from 'redux-ui';
 import _ from 'lodash';
-import { pdfCampaignSummaryFormSubmit } from '../../actions';
+import { campaignPDFSummaryFormSubmit } from '../../signals';
 //import { updateTrigger } from 'app/common/actions/triggers';
 //import { getTriggers } from 'app/core/selectors/entities/triggers';
 //import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
@@ -29,10 +29,19 @@ const mapStateToProps = (state, ownProps) => {
   return {
     pages: diff
   };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    actions: bindActionCreators({
+      campaignPDFSummaryFormSubmit
+      //changeForm: changeForm.bind(ownProps.formKey)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     gotoPage: (page) => {
       ownProps.updateUI({
         pageView: 'DETAIL',
@@ -51,20 +60,24 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(pdfCampaignSummaryFormSubmit({
+        dispatchProps.actions.campaignPDFSummaryFormSubmit({
           values: values,
           updateUI: ownProps.updateUI,
-          form: 'campaignPrint',
+          form: ownProps.formKey,
           resolve,
           reject
-        }));
+        });
       });
     })
-  };
-}
+  });
+};
 
 let DecoratedComponent = SummaryForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

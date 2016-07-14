@@ -1,22 +1,46 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ui from 'redux-ui/transpiled';
-import CreateCampaign from '../../components/print/forms/CampaignForm';
+import ui from 'redux-ui';
+import CreateCampaign from '../../components/organisms/PrintCampaignForm';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 
+const FORM_KEY = 'campaignPrint';
+
 const mapStateToProps = (state, ownProps) => {
+  const trigger = _.get(ownProps, 'triggers.0');
+
+  const pages = _.reduce(ownProps.trainingResults, (result, trainingResult) => {
+    const payload = _.find(ownProps.triggerPayloads, payload => {
+      return payload.index == trainingResult.frame;
+    });
+
+    result.push({
+      url: _.get(payload, 'data'),
+      coupon: undefined,
+      tags: undefined
+    });
+    return result;
+  }, []);
+
   return {
     step: ownProps.ui.step,
     page: ownProps.ui.page,
-    pageView: ownProps.ui.pageView
+    pageView: ownProps.ui.pageView,
+
+    initialValues: {
+      campaignId: _.get(ownProps, 'campaign.campaignId'),
+      campaignTitle: _.get(ownProps, 'campaign.name'),
+      magazineLanguage: _.get(ownProps, 'triggers.0.language'),
+      defaultTarget: _.get(ownProps, 'triggers.0.url'),
+
+      triggerId: _.get(trigger, 'triggerId'),
+
+      pages
+    }
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  };
-};
+const mapDispatchToProps = undefined;
+const mergeProps = undefined;
 
 const fields = [
   'campaignId',
@@ -39,44 +63,17 @@ const fields = [
 ];
 
 let DecoratedComponent = CreateCampaign;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm(
   {
-    form: 'campaignPrint',
+    form: FORM_KEY,
     fields
   },
-  (state, ownProps) => { // mapStateToProps
-    const trigger = _.get(ownProps, 'triggers.0');
-
-    const pages = _.reduce(ownProps.trainingResults, (result, trainingResult) => {
-      const payload = _.find(ownProps.triggerPayloads, payload => {
-        return payload.index == trainingResult.frame;
-      });
-
-      result.push({
-        url: _.get(payload, 'data'),
-        coupon: undefined,
-        tags: undefined
-      });
-      return result;
-    }, []);
-
-    return {
-      initialValues: {
-        campaignId: _.get(ownProps, 'campaign.campaignId'),
-        campaignTitle: _.get(ownProps, 'campaign.name'),
-        magazineLanguage: _.get(ownProps, 'triggers.0.language'),
-        defaultTarget: _.get(ownProps, 'triggers.0.url'),
-
-        triggerId: _.get(trigger, 'triggerId'),
-
-        pages
-      }
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(DecoratedComponent);
 DecoratedComponent = ui({
-  key: 'campaignPrint',
+  key: FORM_KEY,
   state: {
     step: 0,
     page: null,
