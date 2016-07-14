@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import CouponList from 'app/common/components/couponList/CouponList';
-import ui from 'redux-ui/transpiled';
+import CouponList from 'app/common/components/molecules/CouponList';
+import ui from 'redux-ui';
 import couponActions from 'app/common/actions/coupons';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
-import { push } from 'react-router-redux/lib/actions';
-import { openModal, updateModalPath, updateModalData } from 'app/modal/actions';
 
 class CouponListContainer extends Component {
 
@@ -32,33 +31,40 @@ const mapStateToProps = (state, ownProps) => {
   return {
     coupons: filteredCoupons
   };
-}
+};
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: {
-      fetchCoupons: () => {
-        dispatch(couponActions.fetch());
-      }
-    },
+    actions: bindActionCreators({
+      fetchCoupons: couponActions.fetch
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
     },
     onDeleteClick: (coupon) => {
-      dispatch(deletecoupon(coupon.couponId));
+      //dispatch(deletecoupon(coupon.couponId));
     },
     onThumbnailClick: (coupon) => {
-      dispatch(updateModalPath('editCoupon'));
-      dispatch(updateModalData({
-        couponId: coupon.couponId
-      }));
-      dispatch(openModal());
+      // dispatch(updateModalPath('editCoupon'));
+      // dispatch(updateModalData({
+      //   couponId: coupon.couponId
+      // }));
+      // dispatch(openModal());
     }
-  };
-}
+  });
+};
 
 let DecoratedComponent = CouponListContainer;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui({
   key: 'couponList',
   state: {

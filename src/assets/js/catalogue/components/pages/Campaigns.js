@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
-import CampaignListContainer from '../containers/CampaignListContainer';
+import CampaignListContainer from '../../containers/moleculesCampaignListContainer';
 
 const Campaigns = () => {
   return (

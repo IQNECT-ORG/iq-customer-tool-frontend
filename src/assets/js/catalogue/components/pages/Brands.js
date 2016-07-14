@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultLayout from 'app/common/components/layouts/Default';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
-import BrandSelectorContainer from '../containers/BrandSelectorContainer';
+import BrandSelectorContainer from '../../containers/molecules/BrandSelectorContainer';
 
 const Brands = (props) => {
   return (
