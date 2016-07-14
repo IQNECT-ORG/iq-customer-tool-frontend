@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const render = (props) => {
+const ModalManager = (props) => {
   const Modal = props.paths[props.path];
 
   if(Modal == null) {
@@ -15,9 +15,9 @@ const render = (props) => {
       onRestoreClick={props.onRestoreClick}/>
   );
 };
-render.displayName = 'ModalManager';
-render.propTypes = {
+ModalManager.displayName = 'ModalManager';
+ModalManager.propTypes = {
 
 };
 
-export default render;
+export default ModalManager;
