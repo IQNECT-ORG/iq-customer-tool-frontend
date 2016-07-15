@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import rd3 from 'rd3';
 import fp from 'lodash/fp';
 import moment from 'moment';
-import colorScheme from '../colorScheme';
+import { ChartColorScheme } from 'app/common/Constants';
 
 const render = (props) => {
   if(props.chartData == null) {
@@ -18,7 +18,7 @@ const render = (props) => {
       radius={props.width / 2}
       innerRadius={(props.width / 4)}
       colors={segment => {
-        return colorScheme[segment];
+        return ChartColorScheme[segment];
       }}
       showInnerLabels={false}
       showOuterLabels={false}

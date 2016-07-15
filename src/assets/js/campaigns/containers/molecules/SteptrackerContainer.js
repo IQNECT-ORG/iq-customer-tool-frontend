@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Steptracker from 'app/common/components/Steptracker';
+import Steptracker from 'app/common/components/molecules/Steptracker';
 import { getUI } from 'app/core/selectors/ui';
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Titlebar from '../Titlebar';
-import Avatar from '../../Avatar';
+import Titlebar from './Titlebar';
+import Avatar from './Avatar';
 
 class TitlebarFactory extends Component {
   static defaultProps = {

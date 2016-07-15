@@ -4,7 +4,7 @@ import rd3 from 'rd3';
 import _ from 'lodash';
 import fp from 'lodash/fp';
 import moment from 'moment';
-import colorScheme from '../colorScheme';
+import { ChartColorScheme } from 'app/common/Constants';
 
 const render = (props) => {
   return (
@@ -15,7 +15,7 @@ const render = (props) => {
       radius={props.width / 2}
       innerRadius={(props.width / 4)}
       colors={segment => {
-        return colorScheme[segment];
+        return ChartColorScheme[segment];
       }}
       showInnerLabels={false}
       showOuterLabels={false}

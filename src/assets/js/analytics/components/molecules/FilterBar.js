@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterFormContainer from '../../containers/FilterFormContainer';
+import FilterFormContainer from '../../containers/organisms/FilterFormContainer';
 
 const render = () => {
   return (

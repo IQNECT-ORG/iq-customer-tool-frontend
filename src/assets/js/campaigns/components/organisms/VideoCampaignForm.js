@@ -4,7 +4,7 @@ import joid from 'joid';
 import ReactDOM from 'react-dom';
 import { Combobox } from 'react-input-enhancements';
 import DateTimeField from 'react-bootstrap-datetimepicker';
-import AssetField from 'app/common/components/forms/AssetField';
+import AssetField from 'app/common/components/molecules/AssetField';
 import classNames from 'classnames';
 import TargetType from '../../containers/molecules/TargetTypeContainer';
 import TagsInput from '../molecules/TagsInput';

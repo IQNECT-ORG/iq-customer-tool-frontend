@@ -1,9 +1,15 @@
 import { connect } from 'react-redux';
 import fp from 'lodash/fp';
 import _ from 'lodash';
-import Metric from '../components/molecules/Metric';
-import Metrics from '../components/molecules/Metrics';
-import colorScheme from '../colorScheme';
+import Metric from '../../components/molecules/Metric';
+import Metrics from '../../components/molecules/Metrics';
+import { ChartColorScheme } from 'app/common/Constants';
+
+const OverallMetricsContainer = (props) => {
+  return (
+    <Metrics {...props} component={Metric}/>
+  );
+};
 
 const mapStateToProps = (state) => {
   //const filters = state.analytics.filters;
@@ -66,7 +72,7 @@ const mapStateToProps = (state) => {
 
   return {
     metrics: ageData,
-    colorScheme,
+    colorScheme: ChartColorScheme,
     component: Metric
   };
 };
@@ -76,7 +82,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = Metrics;
+let DecoratedComponent = OverallMetricsContainer;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;

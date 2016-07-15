@@ -3,8 +3,15 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import fp from 'lodash/fp';
 import moment from 'moment';
-import Metrics from '../components/Metrics';
-import colorScheme from '../colorScheme';
+import Metrics from '../../components/molecules/Metrics';
+import Metric from '../../components/molecules/Metric';
+import { ChartColorScheme } from 'app/common/Constants';
+
+const OSMetricsContainer = (props) => {
+  return (
+    <Metrics {...props} component={Metric}/>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
@@ -51,7 +58,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     metrics: osData,
-    colorScheme
+    colorScheme: ChartColorScheme
   };
 };
 
@@ -60,7 +67,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = Metrics;
+let DecoratedComponent = OSMetricsContainer;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;

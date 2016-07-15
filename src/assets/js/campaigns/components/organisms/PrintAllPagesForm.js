@@ -3,7 +3,7 @@ import _ from 'lodash';
 import joid from 'joid';
 import TagsInput from 'react-tagsinput';
 import classNames from 'classnames';
-import GalleryList from 'app/common/components/gallery/GalleryList';
+import GalleryList from 'app/common/components/molecules/GalleryList';
 import Submit from 'app/common/components/atoms/Submit';
 
 class AllPagesForm extends Component {

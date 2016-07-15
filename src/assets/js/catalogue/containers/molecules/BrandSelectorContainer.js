@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 //import ui from 'redux-ui';
-import BrandSelectorList from 'app/common/components/brandSelector/BrandSelectorList';
+import BrandSelectorList from 'app/common/components/molecules/BrandSelectorList';
 import { getBrands } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
 

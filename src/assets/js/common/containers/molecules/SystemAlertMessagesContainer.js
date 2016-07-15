@@ -1,39 +1,40 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-//import ui from 'redux-ui/transpiled';
-import BrandSelectorList from 'app/common/components/molecules/BrandSelectorList';
-import { getBrands } from 'app/core/selectors/entities/brands';
-import { campaignSelectBrand } from '../../signals';
+import SystemAlertMessages from '../../components/SystemAlertMessages';
+import { getAlertMessages } from 'app/core/selectors/alertMessages';
 import _ from 'lodash';
+import { alertMessageRead } from '../../signals';
 
 const mapStateToProps = (state) => {
   return {
-    brands: getBrands(state)
+    messages: getAlertMessages(state)
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      campaignSelectBrand
+      alertMessageRead
     }, dispatch)
   };
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
-    onOptionClick: (e, brand) => {
-      dispatchProps.actions.campaignSelectBrand(brand.brandId);
+    onExpire: (index) => {
+      dispatchProps.actions.alertMessageRead(index);
+    },
+    onDismiss: (index) => {
+      dispatchProps.actions.alertMessageRead(index);
     }
   });
 };
 
-let DecoratedComponent = BrandSelectorList;
+let DecoratedComponent = SystemAlertMessages;
 DecoratedComponent = connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
 )(DecoratedComponent);
-//DecoratedComponent = ui()(DecoratedComponent);
 
 export default DecoratedComponent;

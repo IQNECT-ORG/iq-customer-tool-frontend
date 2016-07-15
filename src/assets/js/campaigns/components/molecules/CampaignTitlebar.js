@@ -1,6 +1,6 @@
 import React from 'react';
 import Constants from 'app/common/Constants';
-import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import SteptrackerContainer from '../../containers/molecules/SteptrackerContainer';
 
 export default (props) => {

@@ -6,7 +6,7 @@ import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import { getTriggers } from 'app/core/selectors/entities/triggers';
 import _ from 'lodash';
-import { filtersUpdate } from '../actions';
+//import { filtersUpdate } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   let filteredCampaigns = _.filter(getCampaigns(state), campaign => {
@@ -39,19 +39,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: {
       fetchCampaigns: () => {
-        dispatch(campaignActions.fetch());
+       // dispatch(campaignActions.fetch());
       }
     },
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
     },
     onDeleteClick: (campaign) => {
-      dispatch(deleteCampaign(campaign.campaignId));
+      //dispatch(deleteCampaign(campaign.campaignId));
     },
     onThumbnailClick: (campaign) => {
-      dispatch(filtersUpdate({
-        campaignId: campaign.campaignId
-      }));
+      // dispatch(filtersUpdate({
+      //   campaignId: campaign.campaignId
+      // }));
     }
   };
 }

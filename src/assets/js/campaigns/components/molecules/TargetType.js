@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import joid from 'joid';
-import Coupon from 'app/common/components/coupon/Coupon';
+import Coupon from 'app/common/components/molecules/Coupon';
 
 class TargetType extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import _ from 'lodash';
-import BrandThumbnail from 'app/common/components/BrandThumbnail';
+import BrandThumbnail from 'app/common/components/atoms/BrandThumbnail';
 
 const Index = (props) => {
   return (

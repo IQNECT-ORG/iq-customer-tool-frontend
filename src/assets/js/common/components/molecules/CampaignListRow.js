@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CampaignListThumbnail from './CampaignListThumbnail';
+import CampaignListThumbnail from '../atoms/CampaignListThumbnail';
 import Constants from 'app/common/Constants';
 
 export default (props) => {

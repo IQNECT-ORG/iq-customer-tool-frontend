@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import fp from 'lodash/fp';
 import moment from 'moment';
-import HeadedMetrics from '../components/HeadedMetrics';
-import colorScheme from '../colorScheme';
+import Metrics from '../../components/molecules/Metrics';
+import HeadedMetric from '../../components/molecules/HeadedMetric';
+import { ChartColorScheme } from 'app/common/Constants';
+
+const OverallMetricsContainer = (props) => {
+  return (
+    <Metrics {...props} component={HeadedMetric}/>
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   const filters = state.analytics.filters;
@@ -48,7 +55,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     metrics,
-    colorScheme
+    colorScheme: ChartColorScheme
   };
 };
 
@@ -57,7 +64,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = HeadedMetrics;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+let DecoratedComponent = OverallMetricsContainer;
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DecoratedComponent);
 
 export default DecoratedComponent;

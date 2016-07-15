@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CouponListThumbnail from './CouponListThumbnail';
+import CouponListThumbnail from '../atoms/CouponListThumbnail';
 import Constants from 'app/common/Constants';
 
 class CouponListRow extends Component {

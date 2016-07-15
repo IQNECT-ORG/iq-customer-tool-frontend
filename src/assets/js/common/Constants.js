@@ -36,10 +36,25 @@ export const AlertMessageLevels = {
   DANGER: 3
 };
 
+export const ModalSizes = {
+  EXTRA_SMALL: 'xs',
+  SMALL: 'sm',
+  MEDIUM: 'md',
+  LARGE: 'lg',
+  EXTRA_LARGE: 'xl'
+};
+
+export const ModalPaths = {
+  COUPON_BROWSER: 'couponBrowser',
+  COUPON_CREATE: 'couponCreate'
+};
+
 export default {
   ChartColorScheme,
   CampaignTypes,
   TriggerTypes,
   TrainingResultStatuses,
-  AlertMessageLevels
+  AlertMessageLevels,
+  ModalSizes,
+  ModalPaths
 };

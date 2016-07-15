@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import DotsSpinner from '../spinners/Dots';
+import DotsSpinner from './DotsSpinner';
 
 export default function(props) {
   const className = classNames(props.className);

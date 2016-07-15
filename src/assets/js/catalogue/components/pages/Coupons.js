@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/molecules/TitlebarFactory';
-import CouponListContainer from '../../containers/moleculesCouponListContainer';
+import CouponListContainer from '../../containers/molecules/CouponListContainer';
 
 const Coupons = (props) => {
   return (

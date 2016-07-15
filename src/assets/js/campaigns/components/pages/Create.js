@@ -1,11 +1,11 @@
 import React from 'react';
 import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/molecules/TitlebarFactory';
-import CampaignTitlebar from '../components/CampaignTitlebar';
+import CampaignTitlebar from '../molecules/CampaignTitlebar';
 import Constants from 'app/common/Constants';
 
-import SteptrackerContainer from '../containers/SteptrackerContainer';
-import Avatar from 'app/common/components/Avatar';
+import SteptrackerContainer from '../../containers/molecules/SteptrackerContainer';
+import Avatar from 'app/common/components/molecules/Avatar';
 import Campaign from '../organisms/Campaign';
 import BrandSelectorContainer from '../../containers/molecules/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/molecules/CampaignTypeSelectorContainer';

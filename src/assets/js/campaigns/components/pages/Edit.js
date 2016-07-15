@@ -1,11 +1,10 @@
 import React from 'react';
 import DefaultLayout from 'app/common/components/templates/Default';
-import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import CampaignTitlebar from '../molecules/CampaignTitlebar';
 import Constants from 'app/common/Constants';
 import _ from 'lodash';
 
-import Avatar from 'app/common/components/Avatar';
+import Avatar from 'app/common/components/molecules/Avatar';
 import SteptrackerContainer from '../../containers/molecules/SteptrackerContainer';
 import Campaign from '../organisms/Campaign';
 

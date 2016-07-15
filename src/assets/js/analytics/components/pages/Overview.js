@@ -2,23 +2,23 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import _ from 'lodash';
 import DefaultLayout from 'app/common/components/templates/Default';
-import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import AutoWidth from 'app/common/components/AutoWidth';
 
-import OverallChartContainer from '../containers/OverallChartContainer';
-import AgeChartContainer from '../containers/AgeChartContainer';
-import GenderChartContainer from '../containers/GenderChartContainer';
-import OSChartContainer from '../containers/OSChartContainer';
-import LocationMapContainer from '../containers/LocationMapContainer';
+import OverallChartContainer from '../../containers/molecules/OverallChartContainer';
+import AgeChartContainer from '../../containers/molecules/AgeChartContainer';
+import GenderChartContainer from '../../containers/molecules/GenderChartContainer';
+import OSChartContainer from '../../containers/molecules/OSChartContainer';
+import LocationMapContainer from '../../containers/molecules/LocationMapContainer';
 
-import OverallMetricsContainer from '../containers/OverallMetricsContainer';
-import AgeMetricsContainer from '../containers/AgeMetricsContainer';
-import GenderMetricsContainer from '../containers/GenderMetricsContainer';
-import OSMetricsContainer from '../containers/OSMetricsContainer';
+import OverallMetricsContainer from '../../containers/molecules/OverallMetricsContainer';
+import AgeMetricsContainer from '../../containers/molecules/AgeMetricsContainer';
+import GenderMetricsContainer from '../../containers/molecules/GenderMetricsContainer';
+import OSMetricsContainer from '../../containers/molecules/OSMetricsContainer';
 
-import FilterBar from '../components/filters/FilterBar';
+import FilterBar from '../molecules/FilterBar';
 import Dropdown from 'app/common/components/Dropdown';
-import CampaignListContainer from '../containers/CampaignListContainer';
+import CampaignListContainer from '../../containers/molecules/CampaignListContainer';
 
 const Overview = (props) => {
   if(props.isCampaignSelected === false) {

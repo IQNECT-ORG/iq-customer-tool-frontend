@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //import ui from 'redux-ui/transpiled';
-import CampaignTypeSelectorList from 'app/common/components/campaignTypeSelector/CampaignTypeSelectorList';
+import CampaignTypeSelectorList from 'app/common/components/molecules/CampaignTypeSelectorList';
 import { campaignSelectCampaignType } from '../../signals';
 import Constants from 'app/common/Constants';
 import _ from 'lodash';
