@@ -1,6 +1,6 @@
 import React from 'react';
-import DefaultLayout from 'app/common/components/layouts/Default';
-import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import DefaultLayout from 'app/common/components/templates/Default';
+import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import CampaignTitlebar from '../components/CampaignTitlebar';
 import Constants from 'app/common/Constants';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginFormContainer from '../../containers/organisms/LoginFormContainer';
-import FocusLayout from 'app/common/components/layouts/Focus';
+import FocusLayout from 'app/common/components/templates/Focus';
 import { Link } from 'react-router';
 
 const Login = (props) => {

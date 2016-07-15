@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DefaultLayout from 'app/common/components/layouts/Default';
-import Titlebar from 'app/common/components/layout/titlebars/Factory';
+import DefaultLayout from 'app/common/components/templates/Default';
+import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import _ from 'lodash';
 import BrandThumbnail from 'app/common/components/BrandThumbnail';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ForgottenPasswordFormContainer from '../../containers/organisms/ForgottenPasswordFormContainer';
-import FocusLayout from 'app/common/components/layouts/Focus';
+import FocusLayout from 'app/common/components/templates/Focus';
 import { Link } from 'react-router';
 
 const ForgottenPassword = (props) => {

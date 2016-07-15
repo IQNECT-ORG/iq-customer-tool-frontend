@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import _ from 'lodash';
-import DefaultLayout from 'app/common/components/layouts/Default';
+import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/layout/titlebars/Factory';
 import AutoWidth from 'app/common/components/AutoWidth';
 
