@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import PreviewCoupon from '../components/coupon/PreviewCoupon';
+import PreviewCoupon from '../molecules/PreviewCoupon';
 import { ModalSizes } from '../../Constants';
 
 const PreviewCouponModal = props => {

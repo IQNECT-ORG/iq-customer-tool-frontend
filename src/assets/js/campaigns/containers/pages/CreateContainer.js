@@ -12,7 +12,7 @@ import {
 } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import { getUI } from 'app/core/selectors/ui';
-import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import CreatePage from '../../components/pages/Create';
 
 class CreateContainer extends Component {

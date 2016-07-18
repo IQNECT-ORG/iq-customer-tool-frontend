@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ui from 'redux-ui/transpiled';
-import CouponBrowser from 'app/common/components/couponBrowser/CouponBrowser';
+import CouponBrowser from 'app/common/components/organisms/CouponBrowser';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 //import { campaignSelectCoupon } from '../../signals';
 import _ from 'lodash';

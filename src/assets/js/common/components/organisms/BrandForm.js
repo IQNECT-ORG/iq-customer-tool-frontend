@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AssetField from './AssetField';
+import AssetField from '../molecules/AssetField';
 import joid from 'joid';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 class AddBrandForm extends Component {
   render() {

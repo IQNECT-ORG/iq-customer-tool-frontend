@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import ui from 'redux-ui/transpiled';
-import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import { catalogueLoadBrandPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import BrandsPage from '../../components/pages/Brands';

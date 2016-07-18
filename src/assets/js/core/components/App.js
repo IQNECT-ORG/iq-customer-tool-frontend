@@ -3,16 +3,16 @@ import _ from 'lodash';
 import ModalManager from 'app/modal/containers/ModalManager';
 import { ModalPaths } from 'app/common/Constants';
 // Modals
-import AddWebsiteModal from 'app/common/containers/modals/AddWebsite';
-import AddCouponModal from 'app/common/containers/modals/AddCoupon';
-import CreateCouponModal from 'app/common/containers/modals/CreateCoupon';
-import PreviewWebsiteModal from 'app/common/containers/modals/PreviewWebsite';
-import PreviewCouponModal from 'app/common/containers/modals/PreviewCoupon';
-import SuccessModal from 'app/common/containers/modals/Success';
-import AddBrandModal from 'app/common/containers/modals/AddBrand';
-import EditBrandModal from 'app/common/containers/modals/EditBrand';
-import EditCouponModal from 'app/common/containers/modals/EditCoupon';
-import CouponBrowserModal from 'app/common/containers/modals/CouponBrowser';
+import AddWebsiteModal from 'app/common/components/modals/AddWebsite';
+import AddCouponModal from 'app/common/containers/modals/AddCouponContainer';
+import CreateCouponModal from 'app/common/components/modals/CreateCoupon';
+import PreviewWebsiteModal from 'app/common/components/modals/PreviewWebsite';
+import PreviewCouponModal from 'app/common/components/modals/PreviewCoupon';
+import SuccessModal from 'app/common/containers/modals/SuccessContainer';
+import AddBrandModal from 'app/common/components/modals/AddBrand';
+import EditBrandModal from 'app/common/components/modals/EditBrand';
+import EditCouponModal from 'app/common/components/modals/EditCoupon';
+import CouponBrowserModal from 'app/common/components/modals/CouponBrowser';
 
 class App extends Component {
   render() {
@@ -31,9 +31,9 @@ class App extends Component {
           [ModalPaths.COUPON_BROWSER]: CouponBrowserModal,
           // Brand
           [ModalPaths.BRAND_CREATE]: AddBrandModal,
-          [ModalPaths.BRAND_EDIT]: EditBrandModal
+          [ModalPaths.BRAND_EDIT]: EditBrandModal,
           // Misc
-          [ModalPaths.SUCCESS]: SuccessModal,
+          [ModalPaths.SUCCESS]: SuccessModal
         }}/>
       </div>
     );

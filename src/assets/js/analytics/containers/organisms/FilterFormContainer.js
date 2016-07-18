@@ -1,32 +1,48 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import FilterForm from '../components/filters/forms/FilterForm';
+import { bindActionCreators } from 'redux';
+import FilterForm from '../../components/organisms/FilterForm';
 import _ from 'lodash';
 import { reduxForm } from 'redux-form';
-import { filterFormSubmit, filtersUpdate } from '../actions';
+import { analyticsFilterFormSubmit, analyticsFiltersUpdate } from '../../signals';
 import moment from 'moment';
-import { change } from 'redux-form/lib/actions';
+import { changeForm } from 'app/common/actions';
 
-const mapStateToProps = (state, ownProps) => {
+const FORM_KEY = 'filterForm';
+
+const mapStateToProps = state => {
+  const filters = state.analytics.filters;
   const triggers = _.filter(state.entities.triggers, x => x.campaignId === state.analytics.filters.campaignId);
   const frames = _.filter(state.entities.trainingResults, x => x.triggerId === _.get(triggers, '[0].triggerId'));
 
   return {
     triggers,
-    frames
+    frames,
+    initialValues: {
+      periodStart: filters.periodStart,
+      periodEnd: filters.periodEnd
+    }
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
+    actions: bindActionCreators({
+      analyticsFilterFormSubmit,
+      analyticsFiltersUpdate,
+      changeForm: changeForm.bind(FORM_KEY)
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, disptachProps, ownProps) => {
+  return _.assign({}, stateProps, disptachProps, ownProps, {
     onSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
-        dispatch(filterFormSubmit({
+        disptachProps.actions.analyticsFilterFormSubmit({
           values: values,
           form: 'filterForm',
           resolve,
           reject
-        }));
+        });
       });
     }),
 
@@ -48,27 +64,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       const values = presets[key];
 
-      const startChangeAction = change('periodStart', values.periodStart);
-      startChangeAction.form = 'filterForm';
-      dispatch(startChangeAction);
-
-      const endChangeAction = change('periodEnd', values.periodEnd);
-      endChangeAction.form = 'filterForm';
-      dispatch(endChangeAction);
+      disptachProps.actions.changeForm('periodStart', values.periodStart);
+      disptachProps.actions.changeForm('periodEnd', values.periodEnd);
     },
 
     onTriggerClick: (trigger, index) => {
-      dispatch(filtersUpdate({
+      disptachProps.actions.analyticsFiltersUpdate({
         triggerId: trigger.triggerId
-      }));
+      });
     },
 
     onFrameClick: (frame, index) => {
-      dispatch(filtersUpdate({
+      disptachProps.actions.analyticsFiltersUpdate({
         frameId: frame.trainingResultId
-      }));
+      });
     }
-  };
+  });
 };
 
 const fields = [
@@ -78,22 +89,14 @@ const fields = [
 ];
 
 let DecoratedComponent = FilterForm;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 DecoratedComponent = reduxForm(
   {
-    form: 'filterForm',
+    form: FORM_KEY,
     fields
   },
-  (state, ownProps) => { // mapStateToProps
-    const filters = state.analytics.filters;
-
-    return {
-      initialValues: {
-        periodStart: filters.periodStart,
-        periodEnd: filters.periodEnd
-      }
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(DecoratedComponent);
 
 export default DecoratedComponent;

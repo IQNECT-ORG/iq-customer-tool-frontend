@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import ui from 'redux-ui/transpiled';
 import { catalogueLoadCouponsPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
-import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import CouponsPage from '../../components/pages/Coupons';
 import _ from 'lodash';
 

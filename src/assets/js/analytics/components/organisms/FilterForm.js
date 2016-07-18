@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import FilterDate from '../panes/FilterDate';
-import FilterTrigger from '../panes/FilterTrigger';
-import FilterFrame from '../panes/FilterFrame';
-import Submit from 'app/common/components/forms/Submit';
+import FilterDate from './panes/FilterDate';
+import FilterTrigger from './panes/FilterTrigger';
+import FilterFrame from './panes/FilterFrame';
+import Submit from 'app/common/components/atoms/Submit';
 
 const render = (props) => {
   return (

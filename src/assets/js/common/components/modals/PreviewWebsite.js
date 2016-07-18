@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'app/modal/components/Modal';
-import PreviewerContainer from '../containers/PreviewerContainer'
+import PreviewerContainer from '../../containers/organisms/PreviewerContainer'
 
 class PreviewWebsite extends Component {
   render() {

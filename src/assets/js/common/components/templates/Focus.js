@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DrawNav from 'app/common/containers/DrawNavContainer';
-import SystemAlertMessagesContainer from 'app/common/containers/SystemAlertMessagesContainer';
+import DrawNav from 'app/common/containers/organisms/DrawNavContainer';
+import SystemAlertMessagesContainer from 'app/common/containers/molecules/SystemAlertMessagesContainer';
 
 class FocusLayout extends Component {
   render() {

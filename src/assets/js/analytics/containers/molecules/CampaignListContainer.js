@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CampaignList from 'app/common/components/campaignList/CampaignList';
+import CampaignList from 'app/common/components/molecules/CampaignList';
 import ui from 'redux-ui/transpiled';
 import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';

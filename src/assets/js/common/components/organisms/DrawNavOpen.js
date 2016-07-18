@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import MenuContainer from '../../containers/MenuContainer';
-import AccountSummaryContainer from '../../containers/AccountSummaryContainer';
-import QuickActions from './QuickActions';
+import MenuContainer from '../../containers/molecules/MenuContainer';
+import AccountSummaryContainer from '../../containers/molecules/AccountSummaryContainer';
+import QuickActions from '../molecules/QuickActions';
 import { FormattedMessage } from 'react-intl';
 
 class DrawNavOpen extends Component {

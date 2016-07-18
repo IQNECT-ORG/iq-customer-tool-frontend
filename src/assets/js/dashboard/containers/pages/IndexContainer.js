@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { dashboardLoadIndexPage } from '../../signals';
 import ui from 'redux-ui';
 import { getBrands } from 'app/core/selectors/entities/brands';
-import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import IndexPage from '../../components/pages/Index';
 
 class IndexContainer extends Component {

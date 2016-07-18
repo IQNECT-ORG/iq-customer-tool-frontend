@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PhoneShell from './PhoneShell';
+import PhoneShell from '../molecules/PhoneShell';
 
 class Previewer extends Component {
   render() {

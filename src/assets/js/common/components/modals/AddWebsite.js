@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import AddWebsiteFormContainer from 'app/common/containers/AddWebsiteFormContainer';
+import AddWebsiteFormContainer from 'app/common/containers/organisms/AddWebsiteFormContainer';
 import { ModalSizes } from '../../Constants';
 
 const AddWebsite = (props) => {

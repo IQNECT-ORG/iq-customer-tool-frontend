@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AccountSummary from '../../components/organisms/AccountSummary';
+import AccountSummary from '../../components/molecules/AccountSummary';
 import { getLoggedInUser } from 'app/core/selectors/entities/users';
 
 const mapStateToProps = (state, ownProps) => {

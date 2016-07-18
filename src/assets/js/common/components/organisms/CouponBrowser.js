@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Coupon from '../coupon/Coupon';
+import Coupon from '../molecules/Coupon';
 import _ from 'lodash';
-import CouponBrowserFilterFormContainer from '../../containers/CouponListFilterFormContainer';
+import CouponBrowserFilterFormContainer from '../../containers/molecules/CouponListFilterFormContainer';
 
 class CouponBrowser extends Component {
   render() {

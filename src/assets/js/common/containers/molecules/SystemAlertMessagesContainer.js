@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SystemAlertMessages from '../../components/SystemAlertMessages';
+import SystemAlertMessages from '../../components/molecules/SystemAlertMessages';
 import { getAlertMessages } from 'app/core/selectors/alertMessages';
 import _ from 'lodash';
 import { alertMessageRead } from '../../signals';

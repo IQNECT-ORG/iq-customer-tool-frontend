@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AssetInput from './AssetInput';
-import LocalFileAssetPreviewContainer from '../../containers/LocalFileAssetPreviewContainer';
+import LocalFileAssetPreviewContainer from '../../containers/molecules/LocalFileAssetPreviewContainer';
 import _ from 'lodash';
 import classNames from 'classnames';
 

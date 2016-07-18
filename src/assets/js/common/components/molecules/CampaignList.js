@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CampaignListRow from './CampaignListRow';
 import _ from 'lodash';
-import CampaignListFilterFormContainer from '../../containers/CampaignListFilterFormContainer';
+import CampaignListFilterFormContainer from '../../containers/molecules/CampaignListFilterFormContainer';
 
 class CampaignList extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import joid from 'joid';
-import Submit from 'app/common/components/forms/Submit';
+import Submit from 'app/common/components/atoms/Submit';
 
 class AddWebsiteForm extends Component {
   render() {

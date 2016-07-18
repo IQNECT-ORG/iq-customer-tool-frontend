@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CouponListRow from './CouponListRow';
 import _ from 'lodash';
-import CouponListFilterFormContainer from '../../containers/CouponListFilterFormContainer';
+import CouponListFilterFormContainer from '../../containers/molecules/CouponListFilterFormContainer';
 
 class CouponList extends Component {
   render() {

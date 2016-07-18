@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
-import Expire from './Expire';
+import Expire from '../Expire';
 
 export default (props) => {
   const index = _.findIndex(props.messages, x => x.read === false);

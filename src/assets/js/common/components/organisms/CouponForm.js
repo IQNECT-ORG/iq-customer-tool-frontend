@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DateTimeField from 'react-bootstrap-datetimepicker';
 import joid from 'joid';
-import AssetField from './AssetField';
-import Submit from 'app/common/components/forms/Submit';
+import AssetField from '../molecules/AssetField';
+import Submit from 'app/common/components/atoms/Submit';
 
 class CouponForm extends Component {
   render() {

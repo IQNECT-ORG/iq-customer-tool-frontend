@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import CouponBrowserContainer from '../containers/CouponBrowserContainer';
+import CouponBrowserContainer from '../../containers/organisms/CouponBrowserContainer';
 import { ModalSizes } from '../../Constants';
 
 const CouponBrowser = (props) => {

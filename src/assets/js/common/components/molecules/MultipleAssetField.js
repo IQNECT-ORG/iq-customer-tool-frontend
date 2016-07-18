@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AssetField from './AssetField';
+import AssetField from '../molecules/AssetField';
 import _ from 'lodash';
 import classNames from 'classnames';
 

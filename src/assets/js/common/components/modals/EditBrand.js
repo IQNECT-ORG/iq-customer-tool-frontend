@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import EditBrandFormContainer from '../containers/EditBrandFormContainer';
+import EditBrandFormContainer from '../../containers/organisms/EditBrandFormContainer';
 import { ModalSizes } from '../../Constants';
 
 const EditBrand = (props) => {

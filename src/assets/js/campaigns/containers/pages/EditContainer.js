@@ -7,7 +7,7 @@ import { campaignLoadEditPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import _ from 'lodash';
 import { getUI } from 'app/core/selectors/ui';
-import AuthenticationRequiredContainer from 'app/common/containers/AuthenticationRequiredContainer';
+import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import EditPage from '../../components/pages/Edit';
 
 class EditContainer extends Component {
