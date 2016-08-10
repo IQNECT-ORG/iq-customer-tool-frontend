@@ -1,104 +1,68 @@
-import keyMirror from 'keymirror';
+export const ChartColorScheme = [
+  '#e91e63',
+  '#00bcd4',
+  '#37474f',
+  '#B0BEC5',
+  '#0000000',
+  '#0000000',
+  '#0000000',
+  '#0000000'
+];
+
+export const CampaignTypes = {
+  IMAGE: 0,
+  PDF: 1,
+  VIDEO: 2,
+};
+
+export const TriggerTypes = {
+  KEYWORD: 0,
+  IMAGE: 1,
+  BARCODE: 2,
+  QR: 3,
+  VIDEO: 4,
+  BEACON: 5,
+  PDF: 6,
+};
+
+export const TrainingResultStatuses = {
+  OK: 0
+};
+
+export const AlertMessageLevels = {
+  SUCCESS: 0,
+  INFO: 1,
+  WARNING: 2,
+  DANGER: 3
+};
+
+export const ModalSizes = {
+  EXTRA_SMALL: 'xs',
+  SMALL: 'sm',
+  MEDIUM: 'md',
+  LARGE: 'lg',
+  EXTRA_LARGE: 'xl'
+};
+
+export const ModalPaths = {
+  WEBSITE_ADD: 'WEBSITE_ADD',
+  WEBSITE_PREVIEW: 'WEBSITE_PREVIEW',
+  COUPON_ADD: 'COUPON_ADD',
+  COUPON_CREATE: 'COUPON_CREATE',
+  COUPON_PREVIEW: 'COUPON_PREVIEW',
+  COUPON_EDIT: 'COUPON_EDIT',
+  COUPON_BROWSER: 'COUPON_BROWSER',
+  BRAND_CREATE: 'BRAND_CREATE',
+  BRAND_EDIT: 'BRAND_EDIT',
+  SUCCESS: 'SUCCESS',
+};
 
 export default {
-  ActionTypes: keyMirror({
-    DRAW_NAV_TOGGLE_MENU: null,
-
-    // Alert Messages
-    ALERT_MESSAGE_READ: null,
-    
-    // Previews
-    PREVIEW_JOB_REQUEST_SUCCESS: null,
-    PREVIEW_JOB_STATUS_SUCCESS: null,
-    
-    // Brands
-    BRANDS_FETCH_REQUEST: null,
-    BRANDS_FETCH_SUCCESS: null,
-    BRANDS_FETCH_FAILURE: null,
-
-    BRANDS_CREATE_REQUEST: null,
-    BRANDS_CREATE_SUCCESS: null,
-    BRANDS_CREATE_FAILURE: null,
-
-    BRANDS_UPDATE_REQUEST: null,
-    BRANDS_UPDATE_SUCCESS: null,
-    BRANDS_UPDATE_FAILURE: null,
-
-    BRANDS_DELETE_REQUEST: null,
-    BRANDS_DELETE_SUCCESS: null,
-    BRANDS_DELETE_FAILURE: null,
-
-    BRAND_ADD_FORM_SUBMIT: null,
-    BRAND_EDIT_FORM_SUBMIT: null,
-    
-    // Campaigns
-    CAMPAIGN_CREATE_REQUEST: null,
-    CAMPAIGN_CREATE_SUCCESS: null,
-    CAMPAIGN_CREATE_FAILURE: null,
-
-    CAMPAIGN_FETCH_REQUEST: null,
-    CAMPAIGN_FETCH_SUCCESS: null,
-    CAMPAIGN_FETCH_FAILURE: null,
-
-    CAMPAIGN_DELETE_REQUEST: null,
-    CAMPAIGN_DELETE_SUCCESS: null,
-    CAMPAIGN_DELETE_FAILURE: null,
-    
-    // Triggers
-    TRIGGERS_FETCH_REQUEST: null,
-    TRIGGERS_FETCH_SUCCESS: null,
-    TRIGGERS_FETCH_FAILURE: null,
-
-    TRIGGER_UPDATE_REQUEST: null,
-    TRIGGER_UPDATE_SUCCESS: null,
-    TRIGGER_UPDATE_FAILURE: null,
-
-    // Training Results
-    TRAINING_RESULTS_FETCH_REQUEST: null,
-    TRAINING_RESULTS_FETCH_SUCCESS: null,
-    TRAINING_RESULTS_FETCH_FAILURE: null,
-
-    // Coupons
-    COUPON_CREATE_FORM_SUBMIT: null,
-    COUPON_EDIT_FORM_SUBMIT: null,
-
-    COUPONS_FETCH_REQUEST: null,
-    COUPONS_FETCH_SUCCESS: null,
-    COUPONS_FETCH_FAILURE: null,
-
-    COUPONS_CREATE_REQUEST: null,
-    COUPONS_CREATE_SUCCESS: null,
-    COUPONS_CREATE_FAILURE: null,
-
-    COUPONS_UPDATE_REQUEST: null,
-    COUPONS_UPDATE_SUCCESS: null,
-    COUPONS_UPDATE_FAILURE: null,
-
-    COUPONS_DELETE_REQUEST: null,
-    COUPONS_DELETE_SUCCESS: null,
-    COUPONS_DELETE_FAILURE: null,
-
-    // Modals / Pages
-    LOAD_BROWSE_COUPONS_MODAL: null,
-  }),
-
-  CampaignTypes: {
-    IMAGE: 0,
-    PDF: 1,
-    VIDEO: 2,
-  },
-
-  TriggerTypes: {
-    KEYWORD: 0,
-    IMAGE: 1,
-    BARCODE: 2,
-    QR: 3,
-    VIDEO: 4,
-    BEACON: 5,
-    PDF: 6,
-  },
-
-  TrainingResultStatuses: {
-    OK: 0
-  }
+  ChartColorScheme,
+  CampaignTypes,
+  TriggerTypes,
+  TrainingResultStatuses,
+  AlertMessageLevels,
+  ModalSizes,
+  ModalPaths
 };

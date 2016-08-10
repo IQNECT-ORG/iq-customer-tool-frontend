@@ -1,15 +1,34 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import * as sessionsApi from 'app/core/services/api/sessions';
-import authActions from 'app/auth/actions';
-import * as routerActions from 'react-router-redux/lib/actions';
-import { HttpError, NotFoundHttpError, BadRequestHttpError } from 'complication/lib/http';
+// Signals
+import {
+  S_AUTH_LOGIN,
+  S_AUTH_FORGOTTEN_PASSWORD,
+  S_AUTH_RESET_PASSWORD
+} from '../signals';
+// Messages
+import {
+  authLoginRequest,
+  authLoginSuccess,
+  authLoginFailure,
+  authForgottenPasswordRequest,
+  authForgottenPasswordSuccess,
+  authForgottenPasswordFailure,
+  authResetPasswordRequest,
+  authResetPasswordSuccess,
+  authResetPasswordFailure
+} from '../messages';
+// Utils
 import parser from 'redux-entity-crud/lib/parsers';
+import { HttpError, NotFoundHttpError, BadRequestHttpError } from 'complication/lib/http';
+// Services
+import * as sessionsApi from 'app/core/services/api/sessions';
+import * as routerActions from 'react-router-redux/lib/actions';
 import { user as userSchema } from 'app/core/services/api/schemas';
 
-// Auth / Sessions
-function* authLoginAsync(action) {
-  yield put(authActions.loginRequest());
+// Handlers
+function* onLogin(action) {
+  yield put(authLoginRequest());
   try {
     let { json, response } = yield sessionsApi.create(action.payload.values);
     if(response.status !== 200) {
@@ -18,33 +37,33 @@ function* authLoginAsync(action) {
 
     const parsedData = parser(userSchema, json, {});
 
-    yield put(authActions.loginSuccess(parsedData));
+    yield put(authLoginSuccess(parsedData));
     yield put(routerActions.push('/'));
     action.payload.resolve();
   } catch(err) {
-    yield put(authActions.loginFailure(err));
+    yield put(authLoginFailure(err));
     action.payload.reject();
   }
 };
 
-function* authForgottenPasswordAsync(action) {
-  yield put(authActions.forgottenPasswordRequest());
+function* onForgottenPassword(action) {
+  yield put(authForgottenPasswordRequest());
   try {
     let result = yield usersApi.forgottenPassword(action.payload);
-    yield put(authActions.forgottenPasswordSuccess(result));
+    yield put(authForgottenPasswordSuccess(result));
     yield put(routerActions.push('/reset-password'));
   } catch(err) {
-    yield put(authActions.forgottenPasswordFailure(err));
+    yield put(authForgottenPasswordFailure(err));
   }
 };
 
-function* authResetPasswordAsync(action) {
-  yield put(authActions.resetPasswordRequest());
+function* onResetPassword(action) {
+  yield put(authResetPasswordRequest());
   try {
     let result = yield usersApi.resetPassword(action.payload);
-    yield put(authActions.resetPasswordSuccess(result));
+    yield put(authResetPasswordSuccess(result));
   } catch(err) {
-    yield put(authActions.resetPasswordFailure(err));
+    yield put(authResetPasswordFailure(err));
     return;
   }
 
@@ -55,21 +74,21 @@ function* authResetPasswordAsync(action) {
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
 
-function* watchAuthLogin() {
-  yield takeEvery('AUTH_LOGIN', authLoginAsync);
+function* watchLogin() {
+  yield takeEvery(S_AUTH_LOGIN, onLogin);
 };
 
-function* watchAuthForgottenPassword() {
-  yield takeEvery('AUTH_FORGOTTEN_PASSWORD', authForgottenPasswordAsync);
+function* watchForgottenPassword() {
+  yield takeEvery(S_AUTH_FORGOTTEN_PASSWORD, onForgottenPassword);
 };
 
-function* watchAuthResetPassword() {
-  yield takeEvery('AUTH_RESET_PASSWORD', authResetPasswordAsync);
+function* watchResetPassword() {
+  yield takeEvery(S_AUTH_RESET_PASSWORD, onResetPassword);
 }
 
 
 export default function* () {
-  yield fork(watchAuthLogin);
-  yield fork(watchAuthForgottenPassword);
-  yield fork(watchAuthResetPassword);
+  yield fork(watchLogin);
+  yield fork(watchForgottenPassword);
+  yield fork(watchResetPassword);
 };

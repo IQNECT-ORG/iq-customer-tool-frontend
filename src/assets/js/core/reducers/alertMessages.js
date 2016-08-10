@@ -1,25 +1,29 @@
-import Immutable from 'immutable';
-import Constants from '../Constants';
 import { createReducer } from 'redux-create-reducer';
 import _ from 'lodash';
+import {
+  M_ALERT_MESSAGE_READ
+} from 'app/common/messages';
+import {
+  AlertMessageLevels
+} from 'app/common/Constants';
 
-const Actions = Constants.ActionTypes;
+const initialState = [];
 
-let coreReducer = createReducer([], {
-  ALERT_MESSAGE_READ: (state, action) => {
+const coreReducer = createReducer(initialState, {
+  [M_ALERT_MESSAGE_READ]: (state, action) => {
     const newState = _.cloneDeep(state);
     newState[action.payload].read = true;
     return newState;
   }
 });
 
-let reducer = (state, action) => {
+export default (state, action) => {
   if(action.error === true) {
     const newState = _.cloneDeep(state);
     const error = action.payload;
 
     const message = {
-      level: 'danger',
+      level: AlertMessageLevels.DANGER,
       message: error.message,
       name: error.name,
       read: false
@@ -31,5 +35,3 @@ let reducer = (state, action) => {
     return coreReducer(state, action);
   }
 };
-
-export default reducer;

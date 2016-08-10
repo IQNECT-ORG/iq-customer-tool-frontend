@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import App from './components/App';
+import React from 'react';
+import App from './containers/AppContainer';
 import authRoutes from 'app/auth/routes';
 import campaignRoutes from 'app/campaigns/routes';
 import catalogueRoutes from 'app/catalogue/routes';

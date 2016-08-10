@@ -3,32 +3,39 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
-import * as routerActions from 'react-router-redux/lib/actions';
-import _ from 'lodash';
 import * as campaignListSaga from 'app/common/sagas/campaignList';
+import {
+  S_CATALOGUE_LOAD_BRAND_PAGE,
+  S_CATALOGUE_LOAD_CAMPAIGN_PAGE,
+  S_CATALOGUE_LOAD_COUPON_PAGE
+} from '../signals';
 
-function* loadBrandsPage() {
+// Handlers
+
+function* onLoadBrandsPage() {
   yield put(brandActions.fetch());
 }
 
-function* loadCampaignsPage() {
+function* onLoadCampaignsPage() {
   yield call(campaignListSaga.load);
 }
 
-function* loadCouponsPate() {
+function* onLoadCouponsPage() {
 
 }
 
+// Watchers
+
 function* watchLoadBrandsPage() {
-  yield takeEvery('LOAD_CATALOGUE_BRAND_PAGE', loadBrandsPage);
+  yield takeEvery(S_CATALOGUE_LOAD_BRAND_PAGE, onLoadBrandsPage);
 }
 
 function* watchLoadCampaignsPage() {
-  yield takeEvery('LOAD_CATALOGUE_CAMPAIGN_PAGE', loadCampaignsPage);
+  yield takeEvery(S_CATALOGUE_LOAD_CAMPAIGN_PAGE, onLoadCampaignsPage);
 }
 
 function* watchLoadCouponsPage() {
-  yield takeEvery('LOAD_CATALOGUE_COUPON_PAGE', loadCouponsPate);
+  yield takeEvery(S_CATALOGUE_LOAD_COUPON_PAGE, onLoadCouponsPage);
 }
 
 export default function* () {

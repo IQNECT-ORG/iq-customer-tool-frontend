@@ -3,7 +3,6 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import { createCampaign, createTrigger, updateCampaign, updateTrigger, validateEntity } from 'app/core/sagas/entities';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
-import * as modalActions from 'app/modal/actions';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
 import { takeN } from 'app/core/sagas/utils';
@@ -138,9 +137,9 @@ function* create(action) {
 
   action.payload.resolve();
 
-  yield put(modalActions.updateModalPath('success'));
-  yield put(modalActions.updateModalData({}));
-  yield put(modalActions.openModal());
+  // yield put(modalActions.updateModalPath('success'));
+  // yield put(modalActions.updateModalData({}));
+  // yield put(modalActions.openModal());
 };
 
 function* update(action) {
@@ -170,9 +169,9 @@ function* update(action) {
 
   action.payload.resolve();
 
-  yield put(modalActions.updateModalPath('success'));
-  yield put(modalActions.updateModalData({}));
-  yield put(modalActions.openModal());
+  // yield put(modalActions.updateModalPath('success'));
+  // yield put(modalActions.updateModalData({}));
+  // yield put(modalActions.openModal());
 };
 
 function* submit(action) {

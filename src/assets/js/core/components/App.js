@@ -1,52 +1,43 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import _ from 'lodash';
 import ModalManager from 'app/modal/containers/ModalManager';
-
-import AddWebsiteModal from 'app/campaigns/modals/AddWebsite';
-import AddCouponModal from 'app/common/modals/AddCoupon';
-import CreateCouponModal from 'app/common/modals/CreateCoupon';
-import PreviewWebsiteModal from 'app/common/modals/PreviewWebsite';
-import PreviewCouponModal from 'app/common/modals/PreviewCoupon';
-import SuccessModal from 'app/common/modals/Success';
-import AddBrandModal from 'app/common/modals/AddBrand';
-import EditBrandModal from 'app/common/modals/EditBrand';
-import EditCouponModal from 'app/common/modals/EditCoupon';
-import CampaignCouponBrowserModal from 'app/campaigns/modals/CouponBrowser';
+import { ModalPaths } from 'app/common/Constants';
+// Modals
+import AddWebsiteModal from 'app/common/components/modals/AddWebsite';
+import AddCouponModal from 'app/common/containers/modals/AddCouponContainer';
+import CreateCouponModal from 'app/common/components/modals/CreateCoupon';
+import PreviewWebsiteModal from 'app/common/components/modals/PreviewWebsite';
+import PreviewCouponModal from 'app/common/components/modals/PreviewCoupon';
+import SuccessModal from 'app/common/containers/modals/SuccessContainer';
+import AddBrandModal from 'app/common/components/modals/AddBrand';
+import EditBrandModal from 'app/common/components/modals/EditBrand';
+import EditCouponModal from 'app/common/components/modals/EditCoupon';
+import CouponBrowserModal from 'app/common/components/modals/CouponBrowser';
 
 class App extends Component {
-  static get contextTypes() {
-    return {
-      store: React.PropTypes.object
-    };
-  }
-
-  componentWillMount() {
-    this.context.store.dispatch({
-      type: 'APP_STARTUP'
-    });
-  }
-
   render() {
     return (
-      <div>
+      <div className="app">
         {this.props.children}
         <ModalManager paths={{
-          addWebsite: AddWebsiteModal,
-          addCoupon: AddCouponModal,
-          previewWebsite: PreviewWebsiteModal,
-          createCoupon: CreateCouponModal,
-          previewCoupon: PreviewCouponModal,
-          success: SuccessModal,
-          addBrand: AddBrandModal,
-          editBrand: EditBrandModal,
-          editCoupon: EditCouponModal,
-          campaignCouponBrowser: CampaignCouponBrowserModal
+          // Website
+          [ModalPaths.WEBSITE_ADD]: AddWebsiteModal,
+          [ModalPaths.WEBSITE_PREVIEW]: PreviewWebsiteModal,
+          // Coupon
+          [ModalPaths.COUPON_ADD]: AddCouponModal,
+          [ModalPaths.COUPON_CREATE]: CreateCouponModal,
+          [ModalPaths.COUPON_PREVIEW]: PreviewCouponModal,
+          [ModalPaths.COUPON_EDIT]: EditCouponModal,
+          [ModalPaths.COUPON_BROWSER]: CouponBrowserModal,
+          // Brand
+          [ModalPaths.BRAND_CREATE]: AddBrandModal,
+          [ModalPaths.BRAND_EDIT]: EditBrandModal,
+          // Misc
+          [ModalPaths.SUCCESS]: SuccessModal
         }}/>
       </div>
     );
   }
 };
 
-export default DragDropContext(HTML5Backend)(App);
+export default App;

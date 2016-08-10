@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Overview from './scenes/Overview';
+import Overview from './containers/pages/OverviewContainer';
 import { Route } from 'react-router';
 
 export default [
