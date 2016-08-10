@@ -4,7 +4,7 @@ import Submit from 'app/common/components/atoms/Submit';
 export default (props) => {
   const fields = props.fields;
   return (
-    <form className="form--content" onSubmit={props.onSubmit}>
+    <form className="form--content" onSubmit={props.handleSubmit}>
       <fieldset className="form-group">
         <label htmlFor="email">Email Address</label>
         <input
