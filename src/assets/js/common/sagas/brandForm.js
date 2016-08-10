@@ -69,6 +69,6 @@ function* watchEditFormSubmit() {
 };
 
 export default function* root() {
-  yield fork(watchBrandAddFormSubmit);
-  yield fork(watchBrandEditFormSubmit);
+  yield fork(watchAddFormSubmit);
+  yield fork(watchEditFormSubmit);
 };
