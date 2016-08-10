@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { isLoggedIn } from 'app/core/selectors/auth';
+import { verifyAuthentication } from '../../signals';
+import { bindActionCreators } from 'redux';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isLoggedIn: isLoggedIn(state)
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: {
-    }
+    actions: bindActionCreators({
+      verifyAuthentication
+    }, dispatch)
   };
 };
 
 const AuthenticationRequiredContainer = options => {
   return WrappedComponent => {
     class AuthenticationRequired extends Component {
+
+      componentWillMount() {
+        this.props.actions.verifyAuthentication();
+      }
+
       render() {
         if(this.props.isLoggedIn === true) {
           return (

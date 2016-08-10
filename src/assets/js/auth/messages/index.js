@@ -26,3 +26,8 @@ export const M_AUTH_RESET_PASSWORD_FAILURE = 'M_AUTH_RESET_PASSWORD_FAILURE';
 export const authResetPasswordRequest = createAction(M_AUTH_RESET_PASSWORD_REQUEST);
 export const authResetPasswordSuccess = createAction(M_AUTH_RESET_PASSWORD_SUCCESS);
 export const authResetPasswordFailure = createAction(M_AUTH_RESET_PASSWORD_FAILURE);
+
+// Authentication
+export const M_AUTH_AUTHENTICATED = 'M_AUTH_AUTHENTICATED';
+
+export const authAuthenticated = createAction(M_AUTH_AUTHENTICATED);

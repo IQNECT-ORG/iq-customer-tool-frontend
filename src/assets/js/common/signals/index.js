@@ -18,3 +18,8 @@ export const S_COUPON_EDIT_FORM_SUBMIT = 'S_COUPON_EDIT_FORM_SUBMIT';
 
 export const couponCreateFormSubmit = createAction(S_COUPON_CREATE_FORM_SUBMIT);
 export const couponEditFormSubmit = createAction(S_COUPON_EDIT_FORM_SUBMIT);
+
+// Verify Authentication
+export const S_VERIFY_AUTHENTICATION = 'S_VERIFY_AUTHENTICATION';
+
+export const verifyAuthentication = createAction(S_VERIFY_AUTHENTICATION);

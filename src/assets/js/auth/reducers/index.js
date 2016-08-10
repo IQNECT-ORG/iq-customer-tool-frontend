@@ -10,7 +10,8 @@ import {
   M_AUTH_FORGOTTEN_PASSWORD_FAILURE,
   M_AUTH_RESET_PASSWORD_REQUEST,
   M_AUTH_RESET_PASSWORD_SUCCESS,
-  M_AUTH_RESET_PASSWORD_FAILURE
+  M_AUTH_RESET_PASSWORD_FAILURE,
+  M_AUTH_AUTHENTICATED
 } from '../messages';
 
 export const initialState = {
@@ -22,12 +23,12 @@ let reducer = createReducer(initialState, {
     return _.assign({}, state, {
       userId: action.payload.result
     });
-  }//,
-  // ['AUTH_AUTHENTICATE_SUCCESS']: (state, action) => {
-  //   return _.assign({}, state, {
-  //     userId: action.payload.result
-  //   });
-  // }
+  },
+  [M_AUTH_AUTHENTICATED]: (state, action) => {
+    return _.assign({}, state, {
+      userId: action.payload.result
+    });
+  }
 });
 
 reducer = recycleState(reducer, [], initialState);

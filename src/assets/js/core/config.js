@@ -7,7 +7,7 @@ const base = {
 
 const envs = {
   lcl: _.merge({}, base, {
-    API_ROOT: 'https://iq.api/api'
+    API_ROOT: 'https://dev-api2.iqnect.org/api'
   }),
   dev: _.merge({}, base, {
     API_ROOT: 'https://dev-api2.iqnect.org/api'
