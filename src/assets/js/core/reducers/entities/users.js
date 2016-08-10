@@ -1,11 +1,15 @@
 import { createReducer } from 'redux-create-reducer';
 import crudReducer, { read } from 'redux-entity-crud/lib/reducer';
+import {
+  M_AUTH_LOGIN_SUCCESS,
+  M_AUTH_AUTHENTICATED
+} from 'app/auth/messages';
 
 let reducer = createReducer({}, {
-  'AUTH_LOGIN_SUCCESS': (state, action) => {
+  M_AUTH_LOGIN_SUCCESS: (state, action) => {
     return read(state, action, ['payload', 'entities', 'users'], 'userId');
   },
-  'AUTH_AUTHENTICATE_SUCCESS': (state, action) => {
+  M_AUTH_AUTHENTICATED: (state, action) => {
     return read(state, action, ['payload', 'entities', 'users'], 'userId');
   }
 });
