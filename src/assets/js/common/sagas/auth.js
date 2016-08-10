@@ -18,6 +18,8 @@ import * as routerActions from 'react-router-redux/lib/actions';
 import _ from 'lodash';
 // Services
 import { get as getSession } from 'app/core/services/api/sessions';
+import { user as userSchema } from 'app/core/services/api/schemas';
+import parser from 'redux-entity-crud/lib/parsers';
 // Selectors
 // Sagas
 
@@ -36,7 +38,7 @@ function* onVerify(action) {
     }
 
     // The user is logged in
-    const parsedData = parser(userSchema, json, {});
+    const parsedData = yield call(parser, userSchema, json, {});
     yield put(authAuthenticated(parsedData));
 
   } catch(err) {
