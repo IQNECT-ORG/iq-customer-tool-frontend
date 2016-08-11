@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       load: catalogueLoadCampaignPage
-    })
+    }, dispatch)
   };
 };
 
