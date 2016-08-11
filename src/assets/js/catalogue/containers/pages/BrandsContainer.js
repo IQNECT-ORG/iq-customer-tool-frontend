@@ -7,6 +7,7 @@ import AuthenticationRequiredContainer from 'app/common/containers/hoc/Authentic
 import { catalogueLoadBrandPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import BrandsPage from '../../components/pages/Brands';
+import { ModalPaths } from 'app/common/Constants';
 
 class BrandsContainer extends Component {
 
@@ -41,7 +42,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     onAddBrandClick: () => {
       dispatchProps.actions.modalOpen({
-        
+        path: ModalPaths.BRAND_CREATE
       });
     }
   });

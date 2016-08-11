@@ -17,15 +17,15 @@ import _ from 'lodash';
 
 // Handlers
 function* onOpen(action) {
-  if(_.has(action, 'path') === true) {
+  if(_.has(action.payload, 'path') === true) {
     yield put(modalMessages.modalUpdatePath({
-      path: action.path
+      path: action.payload.path
     }));
   }
 
-  if(_.has(action, 'data') === true) {
+  if(_.has(action.payload, 'data') === true) {
     yield put(modalMessages.modalUpdateData({
-      data: action.data
+      data: action.payload.data
     }));
   }
 

@@ -14,7 +14,7 @@ const Brands = (props) => {
               <button
                 className="btn btn-secondary btn-radius-lg btn-block"
                 type="button"
-                onClick={ () => {} }>
+                onClick={props.onAddBrandClick}>
                 Add New Brand
               </button>
             )]}/>
