@@ -5,6 +5,7 @@ import Constants from 'app/common/Constants';
 class CouponListRow extends Component {
   render() {
     const { coupon } = this.props;
+    const props = this.props;
 
     return (
       <li className="coupon-list__row faux-table__row">
@@ -19,8 +20,22 @@ class CouponListRow extends Component {
           <button
             type="button"
             className="btn btn-secondary-hollow"
-            onClick={this.props.onDeleteClick}>
+            onClick={props.onViewClick}>
+            <i className="icons8-visible"/>
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary-hollow"
+            onClick={props.onDeleteClick}>
             <i className="icons8-trash"/>
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-secondary-hollow"
+            onClick={props.onEditClick}>
+            <i className="icons8-settings"/>
           </button>
         </div>
       </li>
