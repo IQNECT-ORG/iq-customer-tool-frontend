@@ -4,11 +4,8 @@ import CouponFormContainer from './CouponFormContainer';
 import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
-  const coupon = ownProps.coupon;
-
   return {
     initialValues: {
-      couponName: _.get(coupon, 'title')
     }
   };
 };
