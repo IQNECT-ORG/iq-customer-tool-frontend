@@ -12,7 +12,13 @@ const initialState = [];
 const coreReducer = createReducer(initialState, {
   [M_ALERT_MESSAGE_READ]: (state, action) => {
     const newState = _.cloneDeep(state);
-    newState[action.payload].read = true;
+    // Using lodash to get the element
+    // as the payload is typeof object
+    // when it should be a number
+    // therefore it is unable to get
+    // the element from the array
+    const message = _.nth(newState, action.payload);
+    message.read = true;
     return newState;
   }
 });
