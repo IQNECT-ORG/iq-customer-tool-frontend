@@ -10,8 +10,8 @@ import Campaign from '../organisms/Campaign';
 import BrandSelectorContainer from '../../containers/molecules/BrandSelectorContainer';
 import CampaignTypeSelectorContainer from '../../containers/molecules/CampaignTypeSelectorContainer';
 
-const Create = (props) => {
-  if(this.props.selectedBrandId == null) {
+const Create = props => {
+  if(props.selectedBrandId == null) {
     return (
       <DefaultLayout
         titleRender={_ => {
@@ -22,7 +22,7 @@ const Create = (props) => {
                 <button
                   className="btn btn-secondary btn-radius-lg btn-block"
                   type="button"
-                  onClick={this.props.actions.openAddBrandModal}>
+                  onClick={props.actions.openAddBrandModal}>
                   Add New Brand
                 </button>
               )]}/>
@@ -35,8 +35,8 @@ const Create = (props) => {
     );
   }
 
-  if(this.props.selectedCampaignTypeId == null) {
-    if(this.props.selectedBrand == null) {
+  if(props.selectedCampaignTypeId == null) {
+    if(props.selectedBrand == null) {
       return (
         <div>Loading...</div>
       );
@@ -49,7 +49,7 @@ const Create = (props) => {
             <Titlebar
               title="Choose a Campaign Type"
               avatars={[
-                { src: this.props.selectedBrand.imgPreview }
+                { src: props.selectedBrand.imgPreview }
               ]}/>
           );
         }}>
@@ -60,7 +60,7 @@ const Create = (props) => {
     );
   }
 
-  if(this.props.selectedBrand == null) {
+  if(props.selectedBrand == null) {
     return (
       <div>Loading...</div>
     );
@@ -72,14 +72,14 @@ const Create = (props) => {
         return (
           <CampaignTitlebar
             flow="create"
-            campaignType={this.props.selectedCampaignTypeId >> 0}
-            brand={this.props.selectedBrand}/>
+            campaignType={props.selectedCampaignTypeId >> 0}
+            brand={props.selectedBrand}/>
         );
       }}>
       <div className="container container--gutter">
         <Campaign
-          campaignType={this.props.selectedCampaignTypeId >> 0}
-          selectedBrandId={this.props.selectedBrandId}/>
+          campaignType={props.selectedCampaignTypeId >> 0}
+          selectedBrandId={props.selectedBrandId}/>
       </div>
     </DefaultLayout>
   );

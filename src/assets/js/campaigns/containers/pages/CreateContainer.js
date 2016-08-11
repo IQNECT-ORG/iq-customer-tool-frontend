@@ -26,7 +26,7 @@ class CreateContainer extends Component {
     }
 
     if(this.props.params.brandId == null && this.props.params.campaignTypeId == null) {
-      this.props.actions.reset();
+      this.props.actions.campaignResetCreate();
     }
 
     this.props.actions.load();
@@ -44,7 +44,7 @@ class CreateContainer extends Component {
 
     if(nextProps.params.brandId == null && nextProps.params.campaignTypeId == null) {
       if(this.props.selectedBrandId || this.props.selectedCampaignTypeId) {
-        nextProps.actions.reset();
+        nextProps.actions.campaignResetCreate();
       }
     }
 
@@ -79,7 +79,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       campaignSelectBrand,
       campaignSelectCampaignType,
       campaignResetCreate,
-      modalOpen
+      modalOpen,
+      closeMenu: () => { return updateUI(['scene', 'drawNav'], 'isOpen', false) }
     }, dispatch)
 
     // {
@@ -87,7 +88,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     //     dispatch(loadCampaignCreatePage());
     //   },
     //   closeMenu: _ => {
-    //     dispatch(updateUI(['scene', 'drawNav'], 'isOpen', false));
+    //     dispatch();
     //   },
     //   selectBrand: (brandId) => {
     //     dispatch(selectBrand(brandId));
@@ -95,7 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     //   selectCampaignType: (campaignTypeId) => {
     //     dispatch(selectCampaignType(campaignTypeId));
     //   },
-    //   reset: _ => dispatch(resetCampaignCreate()),
+    //   campaignResetCreate: _ => dispatch(campaignResetCreateCampaignCreate()),
 
     //   openAddBrandModal: _ => {
     //     dispatch(updateModalPath('addBrand'));
@@ -109,7 +110,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
-
+    actions: {
+      ...dispatchProps.actions,
+      ...ownProps.actions
+    }
   });
 };
 

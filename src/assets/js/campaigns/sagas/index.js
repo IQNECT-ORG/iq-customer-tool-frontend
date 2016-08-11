@@ -1,17 +1,26 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+// Legacy Actions
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
+// Signals
+import {
+  S_CAMPAIGN_LOAD_CREATE_PAGE
+} from '../signals';
+// Messages
+// Sagas
 import { getTriggers, getTrainingResults } from 'app/core/sagas/entities';
-import _ from 'lodash';
-import Constants from 'app/common/Constants';
 import imageForm from './imageForm';
 import pdfForm from './pdfForm';
 import videoForm from './videoForm';
 import pdfSummaryForm from './pdfSummaryForm';
 import browseCoupons from './browseCoupons';
+// Services
+// Utils
+import _ from 'lodash';
+import Constants from 'app/common/Constants';
 
 function* loadCampaignCreatePage(action) {
   yield put(brandActions.fetch());
@@ -55,7 +64,7 @@ function* loadCampaignEditPage(action) {
 //-----------------------------------------------------------
 
 function* watchLoadCampaignCreatePage() {
-  yield takeEvery('LOAD_CAMPAIGN_CREATE_PAGE', loadCampaignCreatePage);
+  yield takeEvery(S_CAMPAIGN_LOAD_CREATE_PAGE, loadCampaignCreatePage);
 };
 
 function* watchLoadCampaignEditPage() {
@@ -88,15 +97,15 @@ function* watchCampaignCreateCampaignTypeSelect() {
 };
 
 export default function* () {
-  yield fork(watchLoadCampaignCreatePage);
-  yield fork(watchLoadCampaignEditPage);
-  yield fork(browseCoupons);
-
-  yield fork(imageForm);
-  yield fork(pdfForm);
-  yield fork(videoForm);
-  yield fork(pdfSummaryForm);
-
-  yield fork(watchCampaignCreateBrandSelect);
-  yield fork(watchCampaignCreateCampaignTypeSelect);
+  yield [
+    watchLoadCampaignCreatePage(),
+    watchLoadCampaignEditPage(),
+    browseCoupons(),
+    imageForm(),
+    pdfForm(),
+    videoForm(),
+    pdfSummaryForm(),
+    watchCampaignCreateBrandSelect(),
+    watchCampaignCreateCampaignTypeSelect()
+  ];
 };
