@@ -45,7 +45,11 @@ class AddBrandForm extends Component {
       return (
         <div className="row">
           <div className="col-xs-6 col-xs-offset-3">
-            <button type="submit" className="btn btn-primary btn-block btn-radius-lg">Add Brand</button>
+            <Submit
+              className="btn btn-block btn-primary btn-radius-lg"
+              isLoading={this.props.submitting}>
+              Add Brand
+            </Submit>
           </div>
         </div>
       );

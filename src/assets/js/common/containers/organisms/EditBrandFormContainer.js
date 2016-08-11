@@ -33,7 +33,6 @@ const makeMapStateToProps = () => {
 
     return {
       brand: brand,
-      flow: 'edit',
       initialValues: {
         brandId: brand.brandId,
         name: brand.name,
@@ -56,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
+    flow: 'edit',
     onSubmit: values => {
       return new Promise((resolve, reject) => {
         dispatchProps.actions.brandEditFormSubmit({
