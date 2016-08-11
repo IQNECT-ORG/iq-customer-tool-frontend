@@ -18,7 +18,7 @@ const EditBrand = (props) => {
 
         <div className="modal-body">
           <EditBrandFormContainer
-            brand={props.brand}/>
+            brandId={props.data.brandId}/>
         </div>
       </div>
     </Modal>

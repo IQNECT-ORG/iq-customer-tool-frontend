@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import BrandSelectorList from 'app/common/components/molecules/BrandSelectorList';
 import { getBrands } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
+import { modalOpen } from 'app/modal/signals';
+import { ModalPaths } from 'app/common/Constants';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,7 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-
+      modalOpen
     }, dispatch)
   };
 };
@@ -22,11 +24,12 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onOptionClick: (e, brand) => {
-      // dispatch(updateModalPath('editBrand'));
-      // dispatch(updateModalData({
-      //   brandId: brand.brandId
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.BRAND_EDIT,
+        data: {
+          brandId: brand.brandId
+        }
+      });
     }
   });
 };
