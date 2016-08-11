@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 const BrandDetails = props => {
-  console.log(props);
   return (
     <div className="brand-details">
       <ul>
