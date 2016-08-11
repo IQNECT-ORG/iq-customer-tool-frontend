@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ui from 'redux-ui/transpiled';
-import { catalogueLoadCouponsPage } from '../../signals';
+import { catalogueLoadCouponPage } from '../../signals';
 import { modalOpen } from 'app/modal/signals';
 import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import CouponsPage from '../../components/pages/Coupons';
@@ -22,10 +22,10 @@ class CouponsContainer extends Component {
 
 const mapStateToProps = undefined;
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      load: catalogueLoadCouponsPage,
+      load: catalogueLoadCouponPage,
       modalOpen
     }, dispatch)
   };

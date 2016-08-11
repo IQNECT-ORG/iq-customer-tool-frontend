@@ -25,14 +25,35 @@ export default (props) => {
       </div>
       <div className="faux-table__cell col-xs-2">{campaignType}</div>
       <div className="faux-table__cell col-xs-2">{campaign.name}</div>
-      <div className="faux-table__cell col-xs-2">NI - NI</div>
+      <div className="faux-table__cell col-xs-2">{campaign.defaultBrand}</div>
       <div className="faux-table__cell col-xs-2">NI</div>
       <div className="faux-table__cell col-xs-2">
         <button
           type="button"
           className="btn btn-secondary-hollow"
+          onClick={props.onViewClick}>
+          <i className="icons8-visible"/>
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-secondary-hollow"
           onClick={props.onDeleteClick}>
           <i className="icons8-trash"/>
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-secondary-hollow"
+          onClick={props.onEditClick}>
+          <i className="icons8-settings"/>
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-secondary-hollow"
+          onClick={props.onAnalyticsClick}>
+          <i className="icons8-statistics"/>
         </button>
       </div>
     </li>
