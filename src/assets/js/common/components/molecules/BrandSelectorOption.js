@@ -8,6 +8,12 @@ class BrandSelectorOptions extends Component {
         <button type="button" onClick={this.props.onOptionClick}>
           {this._renderCore()}
         </button>
+        <button type="button">
+          <span>View</span>
+        </button>
+        <button type="button">
+          <span>Edit</span>
+        </button>
       </div>
     );
   }

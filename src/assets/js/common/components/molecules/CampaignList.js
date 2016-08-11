@@ -18,7 +18,7 @@ class CampaignList extends Component {
                 <div className="faux-table__cell col-xs-2">Thumbnail</div>
                 <div className="faux-table__cell col-xs-2">Type</div>
                 <div className="faux-table__cell col-xs-2">Title</div>
-                <div className="faux-table__cell col-xs-2">Period</div>
+                <div className="faux-table__cell col-xs-2">Brand</div>
                 <div className="faux-table__cell col-xs-2">Status</div>
                 <div className="faux-table__cell col-xs-2">&nbsp;</div>
               </div>
