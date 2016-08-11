@@ -7,7 +7,7 @@ class AddBrandForm extends Component {
   render() {
     const fields = this.props.fields;
     return (
-      <form onSubmit={this.props.onSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         <fieldset className="form-group">
           <div className="row">
             <div className="col-xs-4 col-xs-offset-4 aspect-1-1-container">

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import BrandForm from '../../components/organisms/BrandForm';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { getBrands } from 'app/core/selectors/entities/brands';
-//import { brandEditFormSubmit } from '../actions/brands';
+import { brandEditFormSubmit } from '../../signals';
 import { createSelector } from 'reselect';
 
 const FORM_KEY = 'editBrand';
@@ -47,7 +48,9 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    actions: bindActionCreators({
+      brandEditFormSubmit
+    }, dispatch)
   };
 };
 
@@ -55,16 +58,16 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onSubmit: values => {
       return new Promise((resolve, reject) => {
-        // dispatch(brandEditFormSubmit({
-        //   values: {
-        //     brandId: values.brandId,
-        //     image: _.get(values, 'artwork.0'),
-        //     name: values.name,
-        //   },
-        //   isModal: true,
-        //   resolve,
-        //   reject
-        // }));
+        dispatchProps.actions.brandEditFormSubmit({
+          values: {
+            brandId: values.brandId,
+            image: _.get(values, 'artwork.0'),
+            name: values.name,
+          },
+          isModal: true,
+          resolve,
+          reject
+        });
       });
     }
   });
