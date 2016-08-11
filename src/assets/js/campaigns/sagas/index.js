@@ -7,9 +7,15 @@ import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
 // Signals
 import {
-  S_CAMPAIGN_LOAD_CREATE_PAGE
+  S_CAMPAIGN_LOAD_CREATE_PAGE,
+  S_CAMPAIGN_SELECT_BRAND,
+  S_CAMPAIGN_SELECT_CAMPAIGN_TYPE
 } from '../signals';
 // Messages
+import {
+  campaignCreateSelectBrand,
+  campaignCreateSelectCampaignType
+} from '../messages';
 // Sagas
 import { getTriggers, getTrainingResults } from 'app/core/sagas/entities';
 import imageForm from './imageForm';
@@ -73,13 +79,14 @@ function* watchLoadCampaignEditPage() {
 
 // Selecting
 function* watchCampaignCreateBrandSelect() {
-  yield takeEvery('CAMPAIGN_CREATE_BRAND_SELECT', function* (action) {
+  yield takeEvery(S_CAMPAIGN_SELECT_BRAND, function* (action) {
+    yield put(campaignCreateSelectBrand(action.payload));
     yield put(routerActions.push(`/campaigns/create/${action.payload || ''}`));
   });
 };
 
 function* watchCampaignCreateCampaignTypeSelect() {
-  yield takeEvery('CAMPAIGN_CREATE_CAMPAIGN_TYPE_SELECT', function* (action) {
+  yield takeEvery(S_CAMPAIGN_SELECT_CAMPAIGN_TYPE, function* (action) {
     const selectedBrandId = yield select((state) => {
       return state.campaigns.create.selectedBrandId;
     });
@@ -92,6 +99,7 @@ function* watchCampaignCreateCampaignTypeSelect() {
     } else {
       url = `/campaigns/create/${selectedBrandId}/${action.payload}`;
     }
+    yield put(campaignCreateSelectCampaignType(action.payload));
     yield put(routerActions.push(url));
   });
 };

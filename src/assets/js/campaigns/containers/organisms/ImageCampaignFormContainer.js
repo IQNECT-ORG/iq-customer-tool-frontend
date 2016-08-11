@@ -42,7 +42,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
-    onSubmit: ownProps.handleSubmit((values) => {
+    onSubmit: values => {
       return new Promise((resolve, reject) => {
         dispatchProps.actions.campaignImageFormSubmit({
           values: {
@@ -62,7 +62,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
           reject
         });
       });
-    }),
+    },
 
     onAddWebsiteClick: (e) => {
       // dispatch(updateModalPath('addWebsite'));

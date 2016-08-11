@@ -18,11 +18,11 @@ import CreatePage from '../../components/pages/Create';
 class CreateContainer extends Component {
   componentDidMount() {
     if(this.props.params.brandId) {
-      this.props.actions.selectBrand(this.props.params.brandId);
+      this.props.actions.campaignSelectBrand(this.props.params.brandId);
     }
 
     if(this.props.params.campaignTypeId) {
-      this.props.actions.selectCampaignType(this.props.params.campaignTypeId);
+      this.props.actions.campaignSelectCampaignType(this.props.params.campaignTypeId);
     }
 
     if(this.props.params.brandId == null && this.props.params.campaignTypeId == null) {
@@ -35,11 +35,11 @@ class CreateContainer extends Component {
 
   componentWillUpdate(nextProps) {
     if(nextProps.params.brandId && nextProps.params.brandId !== this.props.params.brandId) {
-      nextProps.actions.selectBrand(nextProps.params.brandId);
+      nextProps.actions.campaignSelectBrand(nextProps.params.brandId);
     }
 
     if(nextProps.params.campaignTypeId && nextProps.params.campaignTypeId !== this.props.params.campaignTypeId) {
-      nextProps.actions.selectCampaignType(nextProps.params.campaignTypeId);
+      nextProps.actions.campaignSelectCampaignType(nextProps.params.campaignTypeId);
     }
 
     if(nextProps.params.brandId == null && nextProps.params.campaignTypeId == null) {
@@ -90,8 +90,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     //   closeMenu: _ => {
     //     dispatch();
     //   },
-    //   selectBrand: (brandId) => {
-    //     dispatch(selectBrand(brandId));
+    //   campaignSelectBrand: (brandId) => {
+    //     dispatch(campaignSelectBrand(brandId));
     //   },
     //   selectCampaignType: (campaignTypeId) => {
     //     dispatch(selectCampaignType(campaignTypeId));
