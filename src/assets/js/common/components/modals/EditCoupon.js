@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import CouponForm from 'app/common/containers/organisms/CouponFormContainer';
+import CouponForm from 'app/common/containers/organisms/EditCouponFormContainer';
 import { ModalSizes } from '../../Constants';
 
 const EditCoupon = (props) => {
@@ -18,7 +18,7 @@ const EditCoupon = (props) => {
         </div>
 
         <div className="modal-body">
-          <CouponForm/>
+          <CouponForm couponId={props.data.couponId}/>
         </div>
       </div>
     </Modal>

@@ -6,6 +6,8 @@ import ui from 'redux-ui';
 import couponActions from 'app/common/actions/coupons';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
+import { modalOpen } from 'app/modal/signals';
+import { ModalPaths } from 'app/common/Constants';
 
 class CouponListContainer extends Component {
 
@@ -36,7 +38,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      fetchCoupons: couponActions.fetch
+      fetchCoupons: couponActions.fetch,
+      modalOpen
     }, dispatch)
   };
 };
@@ -50,11 +53,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       //dispatch(deletecoupon(coupon.couponId));
     },
     onThumbnailClick: (coupon) => {
-      // dispatch(updateModalPath('editCoupon'));
-      // dispatch(updateModalData({
-      //   couponId: coupon.couponId
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.COUPON_EDIT,
+        data: {
+          couponId: coupon.couponId
+        }
+      });
     }
   });
 };
