@@ -11,7 +11,7 @@ class AllPagesForm extends Component {
     const fields = this.props.fields.fallback;
 
     return (
-      <form className="form--content" onSubmit={this.props.onSubmit}>
+      <form className="form--content" onSubmit={this.props.handleSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div className="pane pane--filled m-b-g">

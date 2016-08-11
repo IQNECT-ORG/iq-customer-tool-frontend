@@ -33,25 +33,27 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
-    onSubmit: ownProps.handleSubmit((values) => {
-      dispatchProps.actions.campaignVideoFormSubmit({
-        values: {
-          media: values.media,
-          url: values.url,
-          campaignId: values.campaignId,
-          brandId: ownProps.selectedBrandId,
-          type: ownProps.selectedCampaignTypeId,
-          name: values.name,
-          periodFrom: values.periodFrom,
-          periodTo: values.periodTo,
-          couponId: values.coupon
-        },
-        updateUI: ownProps.updateUI,
-        form: FORM_KEY,
-        resolve,
-        reject
+    onSubmit: values => {
+      return new Promise((resolve, reject) => {
+        dispatchProps.actions.campaignVideoFormSubmit({
+          values: {
+            media: values.media,
+            url: values.url,
+            campaignId: values.campaignId,
+            brandId: ownProps.selectedBrandId,
+            type: ownProps.selectedCampaignTypeId,
+            name: values.name,
+            periodFrom: values.periodFrom,
+            periodTo: values.periodTo,
+            couponId: values.coupon
+          },
+          updateUI: ownProps.updateUI,
+          form: FORM_KEY,
+          resolve,
+          reject
+        });
       });
-    }),
+    },
 
     onAddWebsiteClick: (e) => {
       // dispatch(updateModalPath('addWebsite'));

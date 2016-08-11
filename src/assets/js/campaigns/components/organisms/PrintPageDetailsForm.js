@@ -29,7 +29,7 @@ class PageDetailForm extends Component {
     }
 
     return (
-      <form className="form--content" onSubmit={this.props.onSubmit}>
+      <form className="form--content" onSubmit={this.props.handleSubmit}>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             {warning}

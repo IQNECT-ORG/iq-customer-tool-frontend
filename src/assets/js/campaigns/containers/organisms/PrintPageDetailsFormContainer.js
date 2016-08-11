@@ -40,7 +40,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       });
     },
 
-    onSubmit: ownProps.handleSubmit((values) => {
+    handleSubmit: ownProps.handleSubmit((values) => {
       ownProps.updateUI({
         step: 2,
         page: null

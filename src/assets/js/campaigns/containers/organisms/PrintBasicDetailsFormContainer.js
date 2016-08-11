@@ -21,7 +21,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       //ownProps.updateUI('step', ownProps.ui.step - 1);
     },
 
-    onSubmit: ownProps.handleSubmit((values) => {
+    handleSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
         dispatchProps.actions.campaignPDFFormSubmit({
           values: {
@@ -37,7 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
           },
           updateUI: ownProps.updateUI,
           pagesAddField: ownProps.fields.pages.addField,
-          form: ownPropss.formKey,
+          form: ownProps.formKey,
           resolve,
           reject
         });

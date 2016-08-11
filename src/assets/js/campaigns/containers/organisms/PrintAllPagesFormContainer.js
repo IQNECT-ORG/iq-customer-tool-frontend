@@ -37,7 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       ownProps.updateUI('step', 0);
     },
 
-    onSubmit: ownProps.handleSubmit((...args) => {
+    handleSubmit: ownProps.handleSubmit(values => {
       ownProps.updateUI({
         step: 2,
         page: null,
