@@ -6,6 +6,7 @@ import Coupons from './containers/pages/CouponsContainer';
 
 import Brand from './components/pages/Brand';
 import Campaign from './components/pages/Campaign';
+import Coupon from './components/pages/Coupon';
 import { Route, IndexRoute } from 'react-router';
 
 export default [
@@ -15,5 +16,6 @@ export default [
   <Route path="manage/coupons" component={Coupons} key="manage/coupons"/>,
 
   <Route path="manage/brands/:brandId" component={Brand} key="manage/brand"/>,
-  <Route path="manage/campaigns/:campaignId" component={Campaign} key="manage/campaign"/>
+  <Route path="manage/campaigns/:campaignId" component={Campaign} key="manage/campaign"/>,
+  <Route path="manage/coupons/:couponId" component={Coupon} key="manage/coupon"/>
 ];
