@@ -29,12 +29,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     actions: bindActionCreators({
       load: catalogueLoadBrandPage,
       modalOpen
-    })
+    }, dispatch)
   };
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
+    actions: {
+      ...dispatchProps.actions,
+      ...ownProps.actions
+    },
     onAddBrandClick: () => {
       dispatchProps.actions.modalOpen({
         
