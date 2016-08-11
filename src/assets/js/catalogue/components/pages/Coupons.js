@@ -14,7 +14,7 @@ const Coupons = (props) => {
               <button
                 className="btn btn-secondary btn-radius-lg btn-block"
                 type="button"
-                onClick={() => {}}>
+                onClick={props.onAddCouponClick}>
                 Add New Coupon
               </button>
             )]}/>

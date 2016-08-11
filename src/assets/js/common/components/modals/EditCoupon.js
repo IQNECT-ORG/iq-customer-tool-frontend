@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import CouponForm from 'app/common/containers/organisms/CouponFormContanier';
+import CouponForm from 'app/common/containers/organisms/CouponFormContainer';
 import { ModalSizes } from '../../Constants';
 
 const EditCoupon = (props) => {

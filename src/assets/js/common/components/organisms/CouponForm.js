@@ -8,7 +8,7 @@ class CouponForm extends Component {
   render() {
     const fields = this.props.fields;
     return (
-      <form className="form--modal" onSubmit={this.props.onSubmit}>
+      <form className="form--modal" onSubmit={this.props.handleSubmit}>
         <fieldset className="form-group">
           <div className="row">
             <div className="col-xs-6 aspect-1-1-container">

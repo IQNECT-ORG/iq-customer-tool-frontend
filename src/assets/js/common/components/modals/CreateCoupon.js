@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'app/modal/components/Modal';
-import CouponForm from 'app/common/containers/organisms/CouponFormContanier';
+import CreateCouponForm from '../../containers/organisms/CreateCouponFormContainer';
 import { ModalSizes } from '../../Constants';
 
 const CreateCoupon = (props) => {
@@ -18,7 +18,7 @@ const CreateCoupon = (props) => {
         </div>
 
         <div className="modal-body">
-          <CouponForm onFormSubmit={props.onSubmit} onPreviewClick={props.onPreviewClick}/>
+          <CreateCouponForm/>
         </div>
       </div>
     </Modal>
