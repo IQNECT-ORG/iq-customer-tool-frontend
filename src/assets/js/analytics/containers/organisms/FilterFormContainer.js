@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => {
 
 const mergeProps = (stateProps, disptachProps, ownProps) => {
   return _.assign({}, stateProps, disptachProps, ownProps, {
-    onSubmit: ownProps.handleSubmit((values) => {
+    onSubmit: values => {
       return new Promise((resolve, reject) => {
         disptachProps.actions.analyticsFilterFormSubmit({
           values: values,
@@ -44,7 +44,7 @@ const mergeProps = (stateProps, disptachProps, ownProps) => {
           reject
         });
       });
-    }),
+    },
 
     onDatePresetClick: key => {
       const presets = {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import CampaignList from 'app/common/components/molecules/CampaignList';
 import ui from 'redux-ui/transpiled';
 import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import { getTriggers } from 'app/core/selectors/entities/triggers';
 import _ from 'lodash';
-//import { filtersUpdate } from '../actions';
+import { analyticsFiltersUpdate } from '../../signals';
 
 const mapStateToProps = (state, ownProps) => {
   let filteredCampaigns = _.filter(getCampaigns(state), campaign => {
@@ -35,13 +36,16 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actions: {
-      fetchCampaigns: () => {
-       // dispatch(campaignActions.fetch());
-      }
-    },
+    actions: bindActionCreators({
+      analyticsFiltersUpdate
+    }, dispatch)
+  };
+};
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return _.assign({}, stateProps, dispatchProps, ownProps, {
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
     },
@@ -49,15 +53,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       //dispatch(deleteCampaign(campaign.campaignId));
     },
     onThumbnailClick: (campaign) => {
-      // dispatch(filtersUpdate({
-      //   campaignId: campaign.campaignId
-      // }));
+      dispatchProps.actions.analyticsFiltersUpdate({
+        campaignId: campaign.campaignId
+      });
     }
-  };
-}
+  });
+};
 
 let DecoratedComponent = CampaignList;
-DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
+DecoratedComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(DecoratedComponent);
 DecoratedComponent = ui({
   key: 'campaignList',
   state: {

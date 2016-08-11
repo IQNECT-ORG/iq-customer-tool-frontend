@@ -8,7 +8,8 @@ import {
 } from '../signals';
 // Messages
 import {
-  analyticsUpdateDataAllSearches
+  analyticsUpdateDataAllSearches,
+  analyticsUpdateFilters
 } from '../messages';
 // Utils
 import _ from 'lodash';
@@ -107,6 +108,8 @@ function* onLoad(action) {
 }
 
 function* onUpdateFilters(action) {
+  yield put(analyticsUpdateFilters(action.payload));
+
   const filters = yield select(state => state.analytics.filters);
   yield call(updateData, filters);
 }

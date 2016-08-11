@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import fp from 'lodash/fp';
 import _ from 'lodash';
@@ -5,7 +6,7 @@ import Metric from '../../components/molecules/Metric';
 import Metrics from '../../components/molecules/Metrics';
 import { ChartColorScheme } from 'app/common/Constants';
 
-const OverallMetricsContainer = (props) => {
+const AgeMetricsContainer = (props) => {
   return (
     <Metrics {...props} component={Metric}/>
   );
@@ -82,7 +83,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-let DecoratedComponent = OverallMetricsContainer;
+let DecoratedComponent = AgeMetricsContainer;
 DecoratedComponent = connect(mapStateToProps, mapDispatchToProps)(DecoratedComponent);
 
 export default DecoratedComponent;
