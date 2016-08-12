@@ -5,20 +5,14 @@ RUN \
     apt-add-repository ppa:brightbox/ruby-ng \
     && curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
-# utility
+# utility, ruby, node & phantomjs dep
 RUN \
-    apt-get install -yqq curl tar git expect \
-    && apt-get update
-
-# ruby
-RUN \
-    apt-get install -yqq ruby2.3 ruby2.3-dev \
+    apt-get update \
+    && apt-get install -yqq curl tar git expect \
+    && apt-get install -yqq ruby2.3 ruby2.3-dev \
     && gem install --pre sass-css-importer \
-    && gem install sass
-    
-# node & phantomjs dep
-RUN \
-    apt-get install -yqq nodejs libfontconfig \
+    && gem install sass \ 
+    && apt-get install -yqq nodejs libfontconfig \
     && npm install -g npm@3 \
     && npm cache clear \
     && npm install -g phantomjs-prebuilt \
