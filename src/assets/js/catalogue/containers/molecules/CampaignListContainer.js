@@ -45,6 +45,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const editCTA = (campaign) => {
+    dispatchProps.actions.push(`/campaigns/edit/${campaign.campaignId}`);
+  };
+
+
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
@@ -52,8 +57,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     onDeleteClick: (campaign) => {
       //dispatch(deleteCampaign(campaign.campaignId));
     },
-    onThumbnailClick: (campaign) => {
-      dispatchProps.actions.push(`/campaigns/edit/${campaign.campaignId}`);
+    onThumbnailClick: editCTA,
+    onViewClick: (campaign) => {
+      dispatchProps.actions.push(`/manage/campaigns/${campaign.campaignId}`);
+    },
+    onEditClick: editCTA,
+    onAnalyticsClick: (campaign) => {
+
     }
   });
 };

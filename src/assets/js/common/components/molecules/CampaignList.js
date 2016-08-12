@@ -41,7 +41,10 @@ class CampaignList extends Component {
         campaign={campaign}
         key={index}
         onThumbnailClick={ _ => { this.props.onThumbnailClick(campaign) }}
-        onDeleteClick={ _ => { this.props.onDeleteClick(campaign) }}/>
+        onDeleteClick={ _ => { this.props.onDeleteClick(campaign) }}
+        onViewClick={ _ => { this.props.onViewClick(campaign) }}
+        onEditClick={ _ => { this.props.onEditClick(campaign) }}
+        onAnalyticsClick={ _ => { this.props.onAnalyticsClick(campaign) }}/>
     );
   }
 };
