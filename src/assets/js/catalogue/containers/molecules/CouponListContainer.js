@@ -8,6 +8,7 @@ import { getCoupons } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
 import { modalOpen } from 'app/modal/signals';
 import { ModalPaths } from 'app/common/Constants';
+import { push } from 'react-router-redux/lib/actions';
 
 class CouponListContainer extends Component {
 
@@ -39,12 +40,22 @@ const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
       fetchCoupons: couponActions.fetch,
-      modalOpen
+      modalOpen,
+      push
     }, dispatch)
   };
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const editCTA = (coupon) => {
+    dispatchProps.actions.modalOpen({
+      path: ModalPaths.COUPON_EDIT,
+      data: {
+        couponId: coupon.couponId
+      }
+    });
+  };
+
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
@@ -52,14 +63,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     onDeleteClick: (coupon) => {
       //dispatch(deletecoupon(coupon.couponId));
     },
-    onThumbnailClick: (coupon) => {
-      dispatchProps.actions.modalOpen({
-        path: ModalPaths.COUPON_EDIT,
-        data: {
-          couponId: coupon.couponId
-        }
-      });
-    }
+    onThumbnailClick: editCTA,
+    onViewClick: (coupon) => {
+      dispatchProps.actions.push(`/manage/coupons/${coupon.couponId}`);
+    },
+    onEditClick: editCTA
   });
 };
 

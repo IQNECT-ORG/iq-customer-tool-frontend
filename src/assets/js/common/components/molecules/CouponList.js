@@ -41,7 +41,9 @@ class CouponList extends Component {
         coupon={coupon}
         key={index}
         onThumbnailClick={ _ => { this.props.onThumbnailClick(coupon) }}
-        onDeleteClick={ _ => { this.props.onDeleteClick(coupon) }}/>
+        onDeleteClick={ _ => { this.props.onDeleteClick(coupon) }}
+        onViewClick={ _ => { this.props.onViewClick(coupon) }}
+        onEditClick={ _ => { this.props.onEditClick(coupon) }}/>
     );
   }
 };
