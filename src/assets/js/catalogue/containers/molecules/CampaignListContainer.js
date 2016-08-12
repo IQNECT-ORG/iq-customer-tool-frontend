@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import CampaignList from 'app/common/components/molecules/CampaignList';
 import ui from 'redux-ui';
 import campaignActions from 'app/common/actions/campaigns';
-import { getCampaigns } from 'app/core/selectors/entities/campaigns';
+import { getCampaignsOrderedByNewest } from 'app/core/selectors/entities/campaigns';
 import { getTriggers } from 'app/core/selectors/entities/triggers';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
 
 const mapStateToProps = (state, ownProps) => {
-  let filteredCampaigns = _.filter(getCampaigns(state), campaign => {
+  let filteredCampaigns = _.filter(getCampaignsOrderedByNewest(state), campaign => {
     if(ownProps.ui.filter == null) {
       return true;
     }

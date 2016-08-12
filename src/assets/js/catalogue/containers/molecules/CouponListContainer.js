@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CouponList from 'app/common/components/molecules/CouponList';
 import ui from 'redux-ui';
 import couponActions from 'app/common/actions/coupons';
-import { getCoupons } from 'app/core/selectors/entities/coupons';
+import { getCouponsOrderedByNewest } from 'app/core/selectors/entities/coupons';
 import _ from 'lodash';
 import { modalOpen } from 'app/modal/signals';
 import { ModalPaths } from 'app/common/Constants';
@@ -24,7 +24,7 @@ class CouponListContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let filteredCoupons = _.filter(getCoupons(state), coupon => {
+  let filteredCoupons = _.filter(getCouponsOrderedByNewest(state), coupon => {
     if(ownProps.ui.filter == null) {
       return true;
     }
