@@ -5,7 +5,7 @@ import _ from 'lodash';
 export default props => {
   return (
     <div className="account-summary">
-      <UserAvatar src="/assets/images/user-fallback.svg"/>
+      <UserAvatar src="/assets/images/user-fallback.png"/>
       <span className="user-name">
         {_.get(props, 'user.firstName')} {_.get(props, 'user.lastName')}
       </span>
