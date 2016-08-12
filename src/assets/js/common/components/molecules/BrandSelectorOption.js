@@ -5,15 +5,19 @@ class BrandSelectorOptions extends Component {
   render() {
     return (
       <div className="selector__option">
-        <button type="button" onClick={this.props.onOptionClick}>
-          {this._renderCore()}
-        </button>
-        <button type="button">
-          <span>View</span>
-        </button>
-        <button type="button">
-          <span>Edit</span>
-        </button>
+        <div className="selector__option__primary">
+          <button type="button" onClick={this.props.onOptionClick}>
+            {this._renderCore()}
+          </button>
+        </div>
+        <div className="selector__option__secondary">
+          <button type="button" onClick={this.props.onViewClick}>
+            <span>View</span>
+          </button>
+          <button type="button" onClick={this.props.onEditClick}>
+            <span>Edit</span>
+          </button>
+        </div>
       </div>
     );
   }

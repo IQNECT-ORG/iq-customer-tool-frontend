@@ -6,6 +6,7 @@ import { getBrandsOrderedByNewest } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
 import { modalOpen } from 'app/modal/signals';
 import { ModalPaths } from 'app/common/Constants';
+import { push } from 'react-router-redux/lib/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,20 +17,36 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      modalOpen
+      modalOpen,
+      push
     }, dispatch)
   };
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const editCTA = (brand) => {
+    dispatchProps.actions.modalOpen({
+      path: ModalPaths.BRAND_EDIT,
+      data: {
+        brandId: brand.brandId
+      }
+    });
+  };
+
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onOptionClick: (e, brand) => {
-      dispatchProps.actions.modalOpen({
-        path: ModalPaths.BRAND_EDIT,
-        data: {
+      dispatchProps.actions.push({
+        pathname: '/manage/campaigns',
+        query: {
           brandId: brand.brandId
         }
       });
+    },
+    onViewClick: (e, brand) => {
+      dispatchProps.actions.push(`/manage/brands/${brand.brandId}`);
+    },
+    onEditClick: (e, brand) => {
+      editCTA(brand);
     }
   });
 };
