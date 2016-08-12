@@ -90,7 +90,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     onEditClick: editCTA,
     onAnalyticsClick: (campaign) => {
-
+      dispatchProps.actions.push({
+        pathname: '/analytics',
+        query: {
+          campaignId: campaign.campaignId
+        }
+      });
     }
   });
 };
