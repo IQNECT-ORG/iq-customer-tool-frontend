@@ -3,7 +3,7 @@ import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import CampaignListContainer from '../../containers/molecules/CampaignListContainer';
 
-const Campaigns = () => {
+const Campaigns = props => {
   return (
     <DefaultLayout
       titleRender={_ => {
@@ -12,7 +12,7 @@ const Campaigns = () => {
         );
       }}>
       <div className="container container--gutter">
-        <CampaignListContainer/>
+        <CampaignListContainer location={props.location}/>
       </div>
     </DefaultLayout>
   );

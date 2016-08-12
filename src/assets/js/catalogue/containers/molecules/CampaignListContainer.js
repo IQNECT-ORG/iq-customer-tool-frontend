@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CampaignList from 'app/common/components/molecules/CampaignList';
@@ -7,14 +8,39 @@ import { getCampaignsOrderedByNewest } from 'app/core/selectors/entities/campaig
 import { getTriggers } from 'app/core/selectors/entities/triggers';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
+import fp from 'lodash/fp';
+
+class CampaignListContainer extends Component {
+
+  componentWillMount() {
+    this.props.updateUI(this.props.location.query);
+  }
+
+  render() {
+    return (
+      <CampaignList {...this.props}/>
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
-  let filteredCampaigns = _.filter(getCampaignsOrderedByNewest(state), campaign => {
-    if(ownProps.ui.filter == null) {
-      return true;
-    }
-    return _.includes(_.lowerCase(campaign.name), _.lowerCase(ownProps.ui.filter));
-  });
+  const filteredCampaigns = fp.flow(
+    fp.filter(campaign => {
+      // By name filter
+      if(ownProps.ui.filter == null) {
+        return true;
+      }
+      return _.includes(_.lowerCase(campaign.name), _.lowerCase(ownProps.ui.filter));
+    }),
+    fp.filter(campaign => {
+      // By Brand Id
+      if(ownProps.ui.brandId == null) {
+        return true;
+      }
+
+      return campaign.defaultBrand === ownProps.ui.brandId;
+    })
+  )(getCampaignsOrderedByNewest(state));
 
   let triggers = getTriggers(state);
 
@@ -68,7 +94,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   });
 };
 
-let DecoratedComponent = CampaignList;
+let DecoratedComponent = CampaignListContainer;
 DecoratedComponent = connect(
   mapStateToProps,
   mapDispatchToProps,
@@ -77,7 +103,8 @@ DecoratedComponent = connect(
 DecoratedComponent = ui({
   key: 'campaignList',
   state: {
-    filter: null
+    filter: null,
+    brandId: null
   }
 })(DecoratedComponent);
 
