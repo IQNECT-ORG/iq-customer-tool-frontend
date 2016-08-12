@@ -42,9 +42,9 @@ const mapStateToProps = (state, ownProps) => {
     })
   )(getCampaignsOrderedByNewest(state));
 
-  let triggers = getTriggers(state);
+  const triggers = getTriggers(state);
 
-  let campaigns = _.map(filteredCampaigns, campaign => {
+  const campaigns = _.map(filteredCampaigns, campaign => {
     const trigger = _.find(triggers, x => x.campaignId === campaign.campaignId);
 
     if(trigger == null) {
@@ -52,7 +52,8 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     return _.assign({}, campaign, {
-      thumbnail: trigger.imgPreview
+      thumbnail: trigger.imgPreview,
+      state: trigger.state
     });
   });
 
