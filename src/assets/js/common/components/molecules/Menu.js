@@ -18,7 +18,7 @@ class Menu extends Component {
             <button
               type="button"
               className="btn-link"
-              onClick={this.props.toggleSubMenu}>
+              onClick={this.props.onToggleSubMenuClick}>
               <i className="icons8-package"/>
               <FormattedMessage id="app.menu.catalogue"/>
             </button>
@@ -61,6 +61,12 @@ class Menu extends Component {
               <i className="icons8-questions"/>
               <FormattedMessage id="app.menu.help"/>
             </a>
+          </li>
+          <li>
+            <button type="button" className="btn btn-link" onClick={this.props.onLogoutClick}>
+              <i className="icons8-settings"/>
+              <FormattedMessage id="app.menu.logout"/>
+            </button>
           </li>
         </ul>
       </div>

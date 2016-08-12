@@ -23,3 +23,8 @@ export const couponEditFormSubmit = createAction(S_COUPON_EDIT_FORM_SUBMIT);
 export const S_VERIFY_AUTHENTICATION = 'S_VERIFY_AUTHENTICATION';
 
 export const verifyAuthentication = createAction(S_VERIFY_AUTHENTICATION);
+
+// Session
+export const S_SESSION_LOGOUT = 'S_SESSION_LOGOUT';
+
+export const sessionLogout = createAction(S_SESSION_LOGOUT);
