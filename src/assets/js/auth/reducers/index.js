@@ -14,6 +14,10 @@ import {
   M_AUTH_AUTHENTICATED
 } from '../messages';
 
+import {
+  M_SESSION_LOGOUT_SUCCESS
+} from 'app/common/messages';
+
 export const initialState = {
   userId: null
 };
@@ -27,6 +31,11 @@ let reducer = createReducer(initialState, {
   [M_AUTH_AUTHENTICATED]: (state, action) => {
     return _.assign({}, state, {
       userId: action.payload.result
+    });
+  },
+  [M_SESSION_LOGOUT_SUCCESS]: (state, action) => {
+    return _.assign({}, state, {
+      userId: null
     });
   }
 });
