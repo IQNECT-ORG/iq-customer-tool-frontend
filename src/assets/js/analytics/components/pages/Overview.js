@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import _ from 'lodash';
+import moment from 'moment';
 import DefaultLayout from 'app/common/components/templates/Default';
 import Titlebar from 'app/common/components/molecules/TitlebarFactory';
 import AutoWidth from 'app/common/components/AutoWidth';
@@ -199,15 +200,36 @@ Overview.propTypes = {
 const renderFilterTags = (props) => {
   const activeFilters = _.omitBy(props.filters, _.isNil);
 
+  const renderDate = (date) => moment(date).format('DD/MM/YYYY');
+
+  const renderAsIs = (v) => v;
+
+  const filterDisplayLookup = {
+    campaignId: {
+      label: 'Campaign Id',
+      value: renderAsIs
+    },
+    periodStart: {
+      label: 'Period Start',
+      value: renderDate
+    },
+    periodEnd: {
+      label: 'Period End',
+      value: renderDate
+    }
+  };
+
   return (
     <ul className="list-unstyled clearfix">
       {_.map(activeFilters, (value, filter) => {
+        const lookedup = filterDisplayLookup[filter];
+
         return (
           <li className="pull-xs-left m-a-1" key={filter}>
             <button type="button" className="close" aria-label="Close" onClick={ () => props.onFilterRemoveClick(filter) }>
               <span aria-hidden="true">&times;</span>
             </button>
-            {filter}: {value}
+            {lookedup.label}: {lookedup.value(value)}
           </li>
         );
       })}
