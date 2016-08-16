@@ -5,15 +5,18 @@ import { reduxForm } from 'redux-form';
 import { analyticsFilterFormSubmit, analyticsFiltersUpdate } from '../../signals';
 import moment from 'moment';
 import { changeForm } from 'app/common/actions';
+import { getFilteredCampaign } from 'app/core/selectors/analytics';
 
 const FORM_KEY = 'filterForm';
 
 const mapStateToProps = state => {
+  const campaign = getFilteredCampaign(state);
   const filters = state.analytics.filters;
   const triggers = _.filter(state.entities.triggers, x => x.campaignId === state.analytics.filters.campaignId);
   const frames = _.filter(state.entities.trainingResults, x => x.triggerId === _.get(triggers, '[0].triggerId'));
 
   return {
+    campaign,
     triggers,
     frames,
     initialValues: {

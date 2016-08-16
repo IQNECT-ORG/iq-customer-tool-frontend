@@ -3,36 +3,77 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import FilterDate from './panes/FilterDate';
 import FilterTrigger from './panes/FilterTrigger';
 import FilterFrame from './panes/FilterFrame';
+import FilterImage from './panes/FilterImage';
 import Submit from 'app/common/components/atoms/Submit';
+import Constants from 'app/common/Constants';
 
 const render = (props) => {
-  return (
-    <form className="form--content" onSubmit={props.onSubmit}>
-      <Tabs
-        onSelect={ () => {} }
-        selectedIndex={0}>
+  let tabList;
+  let tabPanel;
+
+  switch(props.campaign.type >> 0) {
+    case Constants.CampaignTypes.IMAGE:
+      tabList = (
         <TabList>
           <Tab>By Date</Tab>
-          <Tab>By Trigger</Tab>
-          <Tab>By Frame</Tab>
+          <Tab>By Image</Tab>
         </TabList>
+      );
 
+      tabPanel = (
         <TabPanel>
-          <FilterDate
-            fields={props.fields}
-            onDatePresetClick={props.onDatePresetClick}/>
+          <FilterImage/>
         </TabPanel>
+      );
+      break;
+    case Constants.CampaignTypes.PDF:
+      tabList = (
+        <TabList>
+          <Tab>By Date</Tab>
+          <Tab>By Page</Tab>
+        </TabList>
+      );
+
+      tabPanel = (
         <TabPanel>
           <FilterTrigger
             fields={props.fields}
             triggers={props.triggers}
             onTriggerClick={props.onTriggerClick}/>
         </TabPanel>
+      );
+      break;
+    case Constants.CampaignTypes.VIDEO:
+      tabList = (
+        <TabList>
+          <Tab>By Date</Tab>
+          <Tab>By Frame</Tab>
+        </TabList>
+      );
+
+      tabPanel = (
         <TabPanel>
           <FilterFrame
             frames={props.frames}
             onFrameClick={props.onFrameClick}/>
         </TabPanel>
+      );
+      break;
+  }
+
+  return (
+    <form className="form--content" onSubmit={props.onSubmit}>
+      <Tabs
+        onSelect={ () => {} }
+        selectedIndex={0}>
+        {tabList}
+
+        <TabPanel>
+          <FilterDate
+            fields={props.fields}
+            onDatePresetClick={props.onDatePresetClick}/>
+        </TabPanel>
+        {tabPanel}
       </Tabs>
       <div>
         <Submit
