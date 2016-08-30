@@ -14,7 +14,6 @@ class CouponListRow extends Component {
         </div>
         <div className="faux-table__cell col-xs-2">{coupon.brand}</div>
         <div className="faux-table__cell col-xs-2">{coupon.title}</div>
-        <div className="faux-table__cell col-xs-2">NI - NI</div>
         <div className="faux-table__cell col-xs-2">{coupon.code}</div>
         <div className="faux-table__cell col-xs-2">
           <button

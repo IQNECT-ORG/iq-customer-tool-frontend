@@ -18,7 +18,6 @@ class CouponList extends Component {
                 <div className="faux-table__cell col-xs-2">Artwork</div>
                 <div className="faux-table__cell col-xs-2">Product Brand</div>
                 <div className="faux-table__cell col-xs-2">Name</div>
-                <div className="faux-table__cell col-xs-2">Validity</div>
                 <div className="faux-table__cell col-xs-2">Code</div>
                 <div className="faux-table__cell col-xs-2">&nbsp;</div>
               </div>
