@@ -12,10 +12,10 @@ class BrandSelectorOptions extends Component {
         </div>
         <div className="selector__option__secondary">
           <button type="button" onClick={this.props.onViewClick}>
-            <span>View</span>
+            <i className="icons8-visible"/>
           </button>
           <button type="button" onClick={this.props.onEditClick}>
-            <span>Edit</span>
+            <i className="icons8-settings"/>
           </button>
         </div>
       </div>
