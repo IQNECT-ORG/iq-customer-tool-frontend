@@ -6,9 +6,12 @@ import ui from 'redux-ui/transpiled';
 import campaignActions from 'app/common/actions/campaigns';
 import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 import { getTriggers } from 'app/core/selectors/entities/triggers';
+import { getBrands } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
 import { analyticsFiltersUpdate } from '../../signals';
 
+// @TODO: This and the catalogue version
+// need to be refactored into one peice.
 const mapStateToProps = (state, ownProps) => {
   let filteredCampaigns = _.filter(getCampaigns(state), campaign => {
     if(ownProps.ui.filter == null) {
@@ -18,16 +21,16 @@ const mapStateToProps = (state, ownProps) => {
   });
 
   let triggers = getTriggers(state);
+  const brands = getBrands(state);
 
   let campaigns = _.map(filteredCampaigns, campaign => {
     const trigger = _.find(triggers, x => x.campaignId === campaign.campaignId);
-
-    if(trigger == null) {
-      return campaign;
-    }
+    const brand = _.find(brands, x => x.brandId === campaign.defaultBrand);
 
     return _.assign({}, campaign, {
-      thumbnail: trigger.imgPreview
+      thumbnail: _.get(trigger, 'imgPreview'),
+      state: _.get(trigger, 'state'),
+      brand
     });
   });
 
