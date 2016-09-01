@@ -6,6 +6,7 @@ import ui from 'redux-ui';
 import campaignActions from 'app/common/actions/campaigns';
 import { getCampaignsOrderedByNewest } from 'app/core/selectors/entities/campaigns';
 import { getTriggers } from 'app/core/selectors/entities/triggers';
+import { getBrands } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
 import fp from 'lodash/fp';
@@ -43,9 +44,11 @@ const mapStateToProps = (state, ownProps) => {
   )(getCampaignsOrderedByNewest(state));
 
   const triggers = getTriggers(state);
+  const brands = getBrands(state);
 
   const campaigns = _.map(filteredCampaigns, campaign => {
     const trigger = _.find(triggers, x => x.campaignId === campaign.campaignId);
+    const brand = _.find(brands, x => x.brandId === campaign.defaultBrand);
 
     if(trigger == null) {
       return campaign;
@@ -53,7 +56,8 @@ const mapStateToProps = (state, ownProps) => {
 
     return _.assign({}, campaign, {
       thumbnail: trigger.imgPreview,
-      state: trigger.state
+      state: trigger.state,
+      brand
     });
   });
 

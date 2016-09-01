@@ -25,7 +25,7 @@ export default (props) => {
       </div>
       <div className="faux-table__cell col-xs-2">{campaignType}</div>
       <div className="faux-table__cell col-xs-2">{campaign.name}</div>
-      <div className="faux-table__cell col-xs-2">{campaign.defaultBrand}</div>
+      <div className="faux-table__cell col-xs-2">{_.get(campaign, 'brand.name')}</div>
       <div className="faux-table__cell col-xs-2">{campaign.state}</div>
       <div className="faux-table__cell col-xs-2">
         <button
