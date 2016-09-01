@@ -1,6 +1,7 @@
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
+import brandActions from 'app/common/actions/brands';
 import _ from 'lodash';
 
 export function* load() {
@@ -22,5 +23,18 @@ export function* load() {
         campaignId: batch
       }
     }));
+
+
+  });
+
+  const brandIds = _.map(campaignAction.payload.entities.campaigns, x => x.defaultBrand);
+  const brandIdBatches = _.chunk(brandIds, 10);
+
+  yield _.map(brandIdBatches, function*(batch) {
+    yield put(brandActions.fetch({
+      params: {
+        brandId: batch
+      }
+    }))
   });
 }
