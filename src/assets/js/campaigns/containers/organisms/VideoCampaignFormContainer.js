@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       campaignVideoFormSubmit,
-      changeForm: changeForm.bind(FORM_KEY)
+      changeForm: changeForm.bind(null, FORM_KEY)
     }, dispatch)
   };
 };

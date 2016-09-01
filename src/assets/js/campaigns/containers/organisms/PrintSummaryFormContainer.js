@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       campaignPDFSummaryFormSubmit
-      //changeForm: changeForm.bind(ownProps.formKey)
+      //changeForm: changeForm.bind(null, ownProps.formKey)
     }, dispatch)
   };
 };

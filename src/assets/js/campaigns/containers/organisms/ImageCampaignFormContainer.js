@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators({
       campaignImageFormSubmit,
-      changeForm: changeForm.bind(FORM_KEY)
+      changeForm: changeForm.bind(null, FORM_KEY)
     }, dispatch)
   };
 };
@@ -90,9 +90,11 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       dispatchProps.actions.changeForm('tags', tags);
     },
 
-    onMediaChange: (fileGroup) => {
+    onMediaChange: (fileGroup) => {;
       _.each(fileGroup, (files, index) => {
-        dispatchProps.actions.changeForm(`media[${index}]`, files);
+        const field = `media[${index}]`;
+        const file = files;
+        dispatchProps.actions.changeForm(field, file);
       });
     }
   });
