@@ -10,7 +10,7 @@ class AddBrandForm extends Component {
       <form onSubmit={this.props.handleSubmit}>
         <fieldset className="form-group">
           <div className="row">
-            <div className="col-xs-4 col-xs-offset-4 aspect-1-1-container">
+            <div className="col-xs-4 offset-xs-4 aspect-1-1-container">
               <div className="aspect-item">
                 <AssetField
                   onChange={fields.artwork.onChange}
@@ -44,7 +44,7 @@ class AddBrandForm extends Component {
     if(this.props.flow === 'add') {
       return (
         <div className="row">
-          <div className="col-xs-6 col-xs-offset-3">
+          <div className="col-xs-6 offset-xs-3">
             <Submit
               className="btn btn-block btn-primary btn-radius-lg"
               isLoading={this.props.submitting}>

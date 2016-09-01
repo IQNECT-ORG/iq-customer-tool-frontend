@@ -12,7 +12,7 @@ class DrawNavOpen extends Component {
         <nav className="draw-nav draw-nav--open" role="navigation">
           <div className="container-fluid">
             <div className="row m-y-3">
-              <div className="col-xs-10 col-xs-offset-1">
+              <div className="col-xs-10 offset-xs-1">
                 <AccountSummaryContainer/>
               </div>
             </div>
@@ -20,7 +20,7 @@ class DrawNavOpen extends Component {
             <hr/>
 
             <div className="row m-y-2">
-              <div className="col-xs-10 col-xs-offset-1">
+              <div className="col-xs-10 offset-xs-1">
                 <Link to="/campaigns/create" className="btn btn-primary btn-block btn-radius-lg">
                   <FormattedMessage id="app.menu.createCampaign"/>
                 </Link>
@@ -30,7 +30,7 @@ class DrawNavOpen extends Component {
             <hr/>
 
             <div className="row">
-              <div className="col-xs-10 col-xs-offset-1">
+              <div className="col-xs-10 offset-xs-1">
                 <MenuContainer/>
               </div>
             </div>

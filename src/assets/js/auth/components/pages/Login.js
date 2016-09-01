@@ -9,7 +9,7 @@ const Login = (props) => {
       <div className="vertically-align">
         <div className="container">
           <div className="row">
-            <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div className="col-xs-10 offset-xs-1 col-sm-8 col-sm-offset-2 col-md-6 offset-md-3">
               <h1 className="type-colour-02 text-xs-center m-b-2">
                 Welcome to iQNECT
                 <br/>
