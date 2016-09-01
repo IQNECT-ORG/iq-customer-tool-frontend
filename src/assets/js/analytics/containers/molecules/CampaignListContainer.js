@@ -48,6 +48,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const view = (campaign) => {
+    dispatchProps.actions.analyticsFiltersUpdate({
+      campaignId: campaign.campaignId
+    });
+  };
+
   return _.assign({}, stateProps, dispatchProps, ownProps, {
     onFilterSubmit: (values) => {
       ownProps.updateUI('filter', values.filter);
@@ -55,11 +61,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     onDeleteClick: (campaign) => {
       //dispatch(deleteCampaign(campaign.campaignId));
     },
-    onThumbnailClick: (campaign) => {
-      dispatchProps.actions.analyticsFiltersUpdate({
-        campaignId: campaign.campaignId
-      });
-    }
+    onThumbnailClick: view,
+    onViewClick: view
   });
 };
 
