@@ -6,6 +6,8 @@ import { campaignImageFormSubmit } from '../../signals';
 import { reduxForm } from 'redux-form';
 import { changeForm, removeArrayValueForm } from 'app/common/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
+import { ModalPaths } from 'app/common/Constants';
+import { modalOpen } from 'app/modal/signals';
 
 const FORM_KEY = 'campaignImage';
 
@@ -32,7 +34,8 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators({
       campaignImageFormSubmit,
       changeForm: changeForm.bind(null, FORM_KEY),
-      removeArrayValueForm: removeArrayValueForm.bind(null, FORM_KEY)
+      removeArrayValueForm: removeArrayValueForm.bind(null, FORM_KEY),
+      modalOpen
     }, dispatch)
   };
 };
@@ -66,12 +69,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
 
     onAddWebsiteClick: (e) => {
-      // dispatch(updateModalPath('addWebsite'));
-      // dispatch(updateModalData({
-      //   form: 'campaignImage',
-      //   field: `url`
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.WEBSITE_ADD,
+        data: {
+          form: 'campaignImage',
+          field: `url`
+        }
+      });
     },
 
     onAddCouponClick: (e) => {
