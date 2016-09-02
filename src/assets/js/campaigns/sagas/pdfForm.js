@@ -1,14 +1,24 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
+// Actions
 import brandActions from 'app/common/actions/brands';
 import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import * as routerActions from 'react-router-redux/lib/actions';
-import { createCampaign, updateCampaign, getTriggers, getTrainingResults, createTrigger } from 'app/core/sagas/entities';
 import { change } from 'redux-form/lib/actions';
+// Signals
+import {
+  S_CAMPAIGN_PDF_FORM_SUBMIT
+} from '../signals';
+// Messages
+// Sagas
+import { createCampaign, updateCampaign, getTriggers, getTrainingResults, createTrigger } from 'app/core/sagas/entities';
+// Utils
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import { takeN } from 'app/core/sagas/utils';
+// Services
+// Selectors
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -158,7 +168,7 @@ function* submit(action) {
 //-----------------------------------------------------------
 
 function* watchSubmit() {
-  yield takeEvery('CAMPAIGN_PDF_FORM_SUBMIT', submit);
+  yield takeEvery(S_CAMPAIGN_PDF_FORM_SUBMIT, submit);
 };
 
 export default function* () {
