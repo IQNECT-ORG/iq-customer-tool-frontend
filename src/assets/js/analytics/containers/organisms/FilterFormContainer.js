@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
     actions: bindActionCreators({
       analyticsFilterFormSubmit,
       analyticsFiltersUpdate,
-      changeForm: changeForm.bind(FORM_KEY)
+      changeForm: changeForm.bind(null, FORM_KEY)
     }, dispatch)
   };
 };
