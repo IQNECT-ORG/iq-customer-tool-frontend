@@ -17,7 +17,7 @@ class MultipleAssetField extends Component {
                 className="aspect-item"
                 label={this.props.label}
                 icon={this.props.icon}
-                onChange={::this.handleChange}/>
+                onChange={this.handleChange.bind(this, void 0)}/>
             </li>
             {this._renderInputs()}
           </ul>
@@ -29,7 +29,7 @@ class MultipleAssetField extends Component {
           <AssetField
             label={this.props.label}
             icon={this.props.icon}
-            onChange={::this.handleChange}/>
+            onChange={this.handleChange.bind(this, void 0)}/>
         </div>
       );
     }
@@ -42,20 +42,29 @@ class MultipleAssetField extends Component {
           <AssetField
             className="aspect-item"
             value={file}
-            onChange={::this.handleChange}/>
+            onChange={this.handleChange.bind(this, index)}/>
         </li>
       );
     });
   }
 
-  handleChange(e) {
+  handleChange(index, e) {
+    // Lets convert the file array to something managable
     let files;
     if(_.isArray(this.props.files)) {
       files = this.props.files.slice(0);
     } else {
       files = [];
     }
-    files.push(e.target.files);
+
+    if(index == null) {
+      // It isn't trying to replace an exiting item
+      files.push(e.target.files);
+    } else {
+      // Replace
+      files[index] = e.target.files;
+    }
+
     this.props.onChange(files);
   }
 };

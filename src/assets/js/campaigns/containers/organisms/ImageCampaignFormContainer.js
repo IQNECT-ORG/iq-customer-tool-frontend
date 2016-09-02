@@ -4,7 +4,7 @@ import CampaignForm from '../../components/organisms/ImageCampaignForm';
 import _ from 'lodash';
 import { campaignImageFormSubmit } from '../../signals';
 import { reduxForm } from 'redux-form';
-import { changeForm } from 'app/common/actions';
+import { changeForm, removeArrayValueForm } from 'app/common/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
 
 const FORM_KEY = 'campaignImage';
@@ -31,7 +31,8 @@ const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators({
       campaignImageFormSubmit,
-      changeForm: changeForm.bind(null, FORM_KEY)
+      changeForm: changeForm.bind(null, FORM_KEY),
+      removeArrayValueForm: removeArrayValueForm.bind(null, FORM_KEY)
     }, dispatch)
   };
 };
@@ -90,11 +91,19 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       dispatchProps.actions.changeForm('tags', tags);
     },
 
-    onMediaChange: (fileGroup) => {;
+    onMediaChange: (fileGroup) => {
       _.each(fileGroup, (files, index) => {
         const field = `media[${index}]`;
-        const file = files;
-        dispatchProps.actions.changeForm(field, file);
+
+        // This is the only way to get redux form
+        // to detect a difference in file fields.
+        // First you have to remove the field and
+        // then re-add it. But not just a normal add
+        // you have to defer it!
+        dispatchProps.actions.removeArrayValueForm('media', index);
+        setTimeout(() => {
+          dispatchProps.actions.changeForm(field, files);
+        }, 0);
       });
     }
   });
