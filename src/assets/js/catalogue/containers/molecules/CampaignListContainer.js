@@ -69,7 +69,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      fetchCampaigns: campaignActions.fetch,
+      deleteCampaign: campaignActions.delete,
       push
     }, dispatch)
   };
@@ -86,7 +86,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       ownProps.updateUI('filter', values.filter);
     },
     onDeleteClick: (campaign) => {
-      //dispatch(deleteCampaign(campaign.campaignId));
+      dispatchProps.actions.deleteCampaign(campaign.campaignId);
     },
     onThumbnailClick: editCTA,
     onViewClick: (campaign) => {
