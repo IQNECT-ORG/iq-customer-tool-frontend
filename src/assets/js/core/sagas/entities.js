@@ -8,6 +8,10 @@ import campaignActions from 'app/common/actions/campaigns';
 import triggerActions from 'app/common/actions/triggers';
 import trainingResultActions from 'app/common/actions/trainingResults';
 import couponActions from 'app/common/actions/coupons';
+// Signals
+import {
+  S_DELETE_ENTITY
+} from 'app/common/signals';
 // API
 import * as brandsApi from '../services/api/brands';
 import * as usersApi from '../services/api/users';
@@ -15,7 +19,8 @@ import * as campaignsApi from '../services/api/campaigns';
 import * as triggersApi from '../services/api/triggers';
 import * as trainingResultsApi from '../services/api/trainingResults';
 import * as couponsApi from '../services/api/coupons';
-
+// Utils
+import { EntitieNames } from 'app/common/Constants';
 // Parsers
 import { triggerParser, trainingResultsParser, countParser } from '../services/api/parsers';
 import parser from 'redux-entity-crud/lib/parsers';
@@ -218,6 +223,22 @@ export const deleteCoupon = deleteEntity.bind(
   }
 );
 
+// Handlers
+function* onDeleteEntity(action) {
+  const canDelete = confirm('Are you sure you want to delete this entity?');
+  if(canDelete === false) {
+    return;
+  }
+
+  const sagaMap = {
+    [EntitieNames.CAMPAIGN]: deleteCampaign
+  };
+
+  const saga = sagaMap[action.payload.entity];
+
+  yield call(saga, action);
+}
+
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
 //-----------------------------------------------------------
@@ -278,6 +299,10 @@ function* watchCouponsFetch() {
   });
 };
 
+function* watchDeleteEntity() {
+  yield takeEvery(S_DELETE_ENTITY, onDeleteEntity);
+}
+
 
 export default function* () {
   yield fork(watchBrandsFetch);
@@ -288,4 +313,7 @@ export default function* () {
   yield fork(watchTriggerUpdate);
   yield fork(watchTriggersFetch);
   yield fork(watchCouponsFetch);
+  yield [
+    watchDeleteEntity()
+  ];
 };

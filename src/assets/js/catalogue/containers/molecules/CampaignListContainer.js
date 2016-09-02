@@ -10,6 +10,8 @@ import { getBrands } from 'app/core/selectors/entities/brands';
 import _ from 'lodash';
 import { push } from 'react-router-redux/lib/actions';
 import fp from 'lodash/fp';
+import { deleteEntity } from 'app/common/signals';
+import { EntitieNames } from 'app/common/Constants';
 
 class CampaignListContainer extends Component {
 
@@ -69,7 +71,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      deleteCampaign: campaignActions.delete,
+      //deleteCampaign: campaignActions.delete,
+      deleteEntity,
       push
     }, dispatch)
   };
@@ -86,7 +89,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       ownProps.updateUI('filter', values.filter);
     },
     onDeleteClick: (campaign) => {
-      dispatchProps.actions.deleteCampaign(campaign.campaignId);
+      dispatchProps.actions.deleteEntity({
+        id: campaign.campaignId,
+        entity: EntitieNames.CAMPAIGN
+      });
     },
     onThumbnailClick: editCTA,
     onViewClick: (campaign) => {

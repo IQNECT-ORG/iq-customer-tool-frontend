@@ -33,3 +33,9 @@ export const sessionLogout = createAction(S_SESSION_LOGOUT);
 export const S_ADD_WEBSITE_FORM_SUBMIT = 'S_ADD_WEBSITE_FORM_SUBMIT';
 
 export const addWebsiteFormSubmit = createAction(S_ADD_WEBSITE_FORM_SUBMIT);
+
+// Delete Confirmation
+
+export const S_DELETE_ENTITY = 'S_DELETE_ENTITY';
+
+export const deleteEntity = createAction(S_DELETE_ENTITY);

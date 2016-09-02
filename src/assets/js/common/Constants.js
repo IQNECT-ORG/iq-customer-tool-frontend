@@ -57,6 +57,10 @@ export const ModalPaths = {
   SUCCESS: 'SUCCESS',
 };
 
+export const EntitieNames = {
+  CAMPAIGN: 'CAMPAIGN'
+};
+
 export default {
   ChartColorScheme,
   CampaignTypes,
@@ -64,5 +68,6 @@ export default {
   TrainingResultStatuses,
   AlertMessageLevels,
   ModalSizes,
-  ModalPaths
+  ModalPaths,
+  EntitieNames
 };

@@ -1,11 +1,27 @@
 import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
-import { createCampaign, createTrigger, updateCampaign, updateTrigger, validateEntity } from 'app/core/sagas/entities';
+// Signals
+import {
+  S_CAMPAIGN_IMAGE_FORM_SUBMIT
+} from '../signals';
+// Messages
+// Actions
+// Sagas
+import {
+  createCampaign,
+  createTrigger,
+  updateCampaign,
+  updateTrigger,
+  validateEntity
+} from 'app/core/sagas/entities';
+// Utils
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
 import { takeN } from 'app/core/sagas/utils';
+// Selectors
+// Services
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -25,7 +41,7 @@ function* create(action) {
 
   // Setting up data models
   const campaign = _.assign({
-    defaultBrand: values.brandId
+    defaultBrand: values.brandId,
   },_.pick(values, [
     'name',
     'type'
@@ -187,7 +203,7 @@ function* submit(action) {
 //-----------------------------------------------------------
 
 function* watchSubmit() {
-  yield takeEvery('CAMPAIGN_IMAGE_FORM_SUBMIT', submit);
+  yield takeEvery(S_CAMPAIGN_IMAGE_FORM_SUBMIT, submit);
 }
 
 export default function* () {
