@@ -5,7 +5,7 @@ import Submit from 'app/common/components/atoms/Submit';
 class AddWebsiteForm extends Component {
   render() {
     return (
-      <form onSubmit={this.props.onSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')} className="sr-only">Website URL</label>
           <input

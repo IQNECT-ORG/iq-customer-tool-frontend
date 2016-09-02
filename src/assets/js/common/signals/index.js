@@ -28,3 +28,8 @@ export const verifyAuthentication = createAction(S_VERIFY_AUTHENTICATION);
 export const S_SESSION_LOGOUT = 'S_SESSION_LOGOUT';
 
 export const sessionLogout = createAction(S_SESSION_LOGOUT);
+
+// Add Website
+export const S_ADD_WEBSITE_FORM_SUBMIT = 'S_ADD_WEBSITE_FORM_SUBMIT';
+
+export const addWebsiteFormSubmit = createAction(S_ADD_WEBSITE_FORM_SUBMIT);
