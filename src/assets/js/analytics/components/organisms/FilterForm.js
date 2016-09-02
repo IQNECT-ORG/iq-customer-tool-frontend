@@ -22,7 +22,8 @@ const render = (props) => {
 
       tabPanel = (
         <TabPanel>
-          <FilterImage/>
+          <FilterImage
+            triggers={props.triggers}/>
         </TabPanel>
       );
       break;
@@ -85,5 +86,6 @@ const render = (props) => {
     </form>
   );
 };
+render.displayName = 'FilterForm';
 
 export default render;
