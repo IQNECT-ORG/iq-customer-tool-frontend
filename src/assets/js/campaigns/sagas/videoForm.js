@@ -6,6 +6,9 @@ import Constants from 'app/common/Constants';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
 import { takeN } from 'app/core/sagas/utils';
+import {
+  S_CAMPAIGN_VIDEO_FORM_SUBMIT
+} from '../signals';
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -153,7 +156,7 @@ function* submit(action) {
 //-----------------------------------------------------------
 
 function* watchSubmit() {
-  yield takeEvery('CAMPAIGN_VIDEO_FORM_SUBMIT', submit);
+  yield takeEvery(S_CAMPAIGN_VIDEO_FORM_SUBMIT, submit);
 }
 
 export default function* () {

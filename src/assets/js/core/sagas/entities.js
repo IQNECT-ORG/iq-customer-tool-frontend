@@ -245,7 +245,7 @@ function* onDeleteEntity(action) {
 
 // Brands
 function* watchBrandsFetch() {
-  yield takeEvery('BRANDS_FETCH', function* (action) {
+  yield takeEvery(brandActions.BRAND_FETCH, function* (action) {
     yield getBrands({
       id: _.get(action, 'payload.id'),
       params: _.get(action, 'payload.params')
@@ -254,16 +254,16 @@ function* watchBrandsFetch() {
 };
 
 function* watchBrandCreate() {
-  yield takeEvery('BRANDS_CREATE', createBrand);
+  yield takeEvery(brandActions.BRANDS_CREATE, createBrand);
 };
 
 // Campaigns
 function* watchCampaignCreate() {
-  yield takeEvery('CAMPAIGNS_CREATE', createCampaign);
+  yield takeEvery(campaignActions.CAMPAIGNS_CREATE, createCampaign);
 };
 
 function* watchCampaignFetch() {
-  yield takeEvery('CAMPAIGNS_FETCH', function* (action) {
+  yield takeEvery(campaignActions.CAMPAIGNS_FETCH, function* (action) {
     yield getCampaigns({
       id: _.get(action, 'payload.id'),
       params: _.get(action, 'payload.params')
@@ -272,12 +272,12 @@ function* watchCampaignFetch() {
 };
 
 function* watchCampaignDelete() {
-  yield takeEvery('CAMPAIGNS_DELETE', deleteCampaign);
+  yield takeEvery(campaignActions.CAMPAIGNS_DELETE, deleteCampaign);
 };
 
 // Triggers
 function* watchTriggersFetch() {
-  yield takeEvery('TRIGGERS_FETCH', function* (action) {
+  yield takeEvery(triggerActions.TRIGGERS_FETCH, function* (action) {
     yield getTriggers({
       id: _.get(action, 'payload.id'),
       params: _.get(action, 'payload.params')
@@ -286,12 +286,12 @@ function* watchTriggersFetch() {
 };
 
 function* watchTriggerUpdate() {
-  yield takeEvery('TRIGGERS_UPDATE', updateTrigger);
+  yield takeEvery(triggerActions.TRIGGERS_UPDATE, updateTrigger);
 };
 
 // Coupons
 function* watchCouponsFetch() {
-  yield takeEvery('COUPONS_FETCH', function* (action) {
+  yield takeEvery(couponActions.COUPONS_FETCH, function* (action) {
     yield getCoupons({
       id: _.get(action, 'payload.id'),
       params: _.get(action, 'payload.params')
@@ -305,15 +305,15 @@ function* watchDeleteEntity() {
 
 
 export default function* () {
-  yield fork(watchBrandsFetch);
-  yield fork(watchBrandCreate);
-  yield fork(watchCampaignCreate);
-  yield fork(watchCampaignFetch);
-  yield fork(watchCampaignDelete);
-  yield fork(watchTriggerUpdate);
-  yield fork(watchTriggersFetch);
-  yield fork(watchCouponsFetch);
   yield [
+    watchBrandsFetch(),
+    watchBrandCreate(),
+    watchCampaignCreate(),
+    watchCampaignFetch(),
+    watchCampaignDelete(),
+    watchTriggerUpdate(),
+    watchTriggersFetch(),
+    watchCouponsFetch(),
     watchDeleteEntity()
   ];
 };

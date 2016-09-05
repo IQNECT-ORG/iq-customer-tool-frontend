@@ -8,6 +8,7 @@ import * as routerActions from 'react-router-redux/lib/actions';
 // Signals
 import {
   S_CAMPAIGN_LOAD_CREATE_PAGE,
+  S_CAMPAIGN_LOAD_EDIT_PAGE,
   S_CAMPAIGN_SELECT_BRAND,
   S_CAMPAIGN_SELECT_CAMPAIGN_TYPE
 } from '../signals';
@@ -74,7 +75,7 @@ function* watchLoadCampaignCreatePage() {
 };
 
 function* watchLoadCampaignEditPage() {
-  yield takeEvery('LOAD_CAMPAIGN_EDIT_PAGE', loadCampaignEditPage);
+  yield takeEvery(S_CAMPAIGN_LOAD_EDIT_PAGE, loadCampaignEditPage);
 };
 
 // Selecting

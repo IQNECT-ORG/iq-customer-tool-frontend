@@ -3,6 +3,10 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import couponActions from 'app/common/actions/coupons';
 import { change } from 'redux-form/lib/actions';
+import {
+  S_CAMPAIGN_LOAD_COUPON_BROWSER_MODAL,
+  S_CAMPAIGN_SELECT_COUPON
+} from '../signals';
 
 function* load(action) {
   yield put(couponActions.fetch());
@@ -21,11 +25,11 @@ function* selectCoupon(action) {
 //-----------------------------------------------------------
 
 function* watchLoad() {
-  yield takeEvery('LOAD_CAMPAIGN_COUPON_BROWSER_MODAL', load);
+  yield takeEvery(S_CAMPAIGN_LOAD_COUPON_BROWSER_MODAL, load);
 };
 
 function* watchSelectCoupon() {
-  yield takeEvery('CAMPAIGN_SELECT_COUPON', selectCoupon);
+  yield takeEvery(S_CAMPAIGN_SELECT_COUPON, selectCoupon);
 }
 
 

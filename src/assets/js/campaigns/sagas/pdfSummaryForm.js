@@ -3,6 +3,9 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import { updateTrigger } from 'app/core/sagas/entities';
 import _ from 'lodash';
 import Constants from 'app/common/Constants';
+import {
+  S_CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT
+} from '../signals';
 
 function* submit(action) {
   const { values } = action.payload;
@@ -41,7 +44,7 @@ function* submit(action) {
 //-----------------------------------------------------------
 
 function* watchSubmit() {
-  yield takeEvery('CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT', submit);
+  yield takeEvery(S_CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT, submit);
 }
 
 export default function* () {
