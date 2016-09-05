@@ -79,12 +79,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
 
     onAddCouponClick: (e) => {
-      // dispatch(updateModalPath('addCoupon'));
-      // dispatch(updateModalData({
-      //   form: 'campaignImage',
-      //   field: 'couponId'
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.COUPON_ADD,
+        data: {
+          form: 'campaignImage',
+          field: `couponId`
+        }
+      });
     },
 
     onWebsiteDeleteClick: (e) => {
