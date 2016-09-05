@@ -28,7 +28,8 @@ export const rawMessages = {
       help: 'Help',
       brands: 'Brands',
       campaigns: 'Campaigns',
-      coupons: 'Coupons'
+      coupons: 'Coupons',
+      logout: 'Logout'
     },
     analytics: {
       header: 'Analytics',
