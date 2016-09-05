@@ -245,7 +245,7 @@ function* onDeleteEntity(action) {
 
 // Brands
 function* watchBrandsFetch() {
-  yield takeEvery(brandActions.BRAND_FETCH, function* (action) {
+  yield takeEvery(brandActions.BRANDS_FETCH, function* (action) {
     yield getBrands({
       id: _.get(action, 'payload.id'),
       params: _.get(action, 'payload.params')
