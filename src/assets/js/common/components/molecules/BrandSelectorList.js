@@ -19,8 +19,7 @@ class BrandSelector extends Component {
   _renderOption(brand, index) {
     return (
       <BrandSelectorOption
-        imgSrc={brand.imgPreview}
-        label={brand.name}
+        brand={brand}
         onOptionClick={ e => this.props.onOptionClick(e, brand, index) }
         onViewClick={ e => this.props.onViewClick(e, brand, index) }
         onEditClick={ e => this.props.onEditClick(e, brand, index) }/>

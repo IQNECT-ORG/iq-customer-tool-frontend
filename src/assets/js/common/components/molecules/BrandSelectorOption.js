@@ -1,39 +1,40 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { PropTypes } from 'react';
+import BrandThumbnail from '../atoms/BrandThumbnail';
 
-class BrandSelectorOptions extends Component {
-  render() {
-    return (
-      <div className="selector__option">
-        <div className="selector__option__primary">
-          <button type="button" onClick={this.props.onOptionClick}>
-            {this._renderCore()}
-          </button>
-        </div>
-        <div className="selector__option__secondary">
-          <button type="button" onClick={this.props.onViewClick}>
-            <i className="icons8-visible"/>
-          </button>
-          <button type="button" onClick={this.props.onEditClick}>
-            <i className="icons8-settings"/>
-          </button>
+const BrandSelectorOption = props => {
+  return (
+    <div className="selector__option">
+      <div className="selector__option__primary">
+        <button type="button" onClick={props.onOptionClick} style={{
+          overflow: 'hidden'
+        }}>
+          <BrandThumbnail brand={props.brand}/>
+        </button>
+      </div>
+      <div className="selector__option__secondary">
+        <div className="row">
+          <div className="col-xs-6">
+            <button title="View" className="btn btn-block btn-hollow" type="button" onClick={props.onViewClick}>
+              <i className="icons8-visible"/>
+            </button>
+          </div>
+          <div className="col-xs-6">
+            <button title="Edit" className="btn btn-block btn-hollow" type="button" onClick={props.onEditClick}>
+              <i className="icons8-settings"/>
+            </button>
+          </div>
         </div>
       </div>
-    );
-  }
-
-  _renderCore() {
-    if(this.props.imgSrc == null) {
-      return (
-        <span>{this.props.label}</span>
-      );
-    }
-
-    return (
-      <img src={this.props.imgSrc}/>
-    );
-
-  }
+    </div>
+  );
+};
+BrandSelectorOption.displayName = 'BrandSelectorOption';
+BrandSelectorOption.propTypes = {
+  brand: PropTypes.object.isRequired,
+  // Events
+  onOptionClick: PropTypes.func.isRequired,
+  onViewClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired
 };
 
-export default BrandSelectorOptions;
+export default BrandSelectorOption;
