@@ -21,7 +21,7 @@ const Brands = (props) => {
         );
       }}>
       <div className="container container--gutter">
-        <BrandSelectorContainer/>
+        <BrandSelectorContainer showCTAs={true}/>
       </div>
     </DefaultLayout>
   );

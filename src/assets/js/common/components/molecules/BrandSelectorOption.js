@@ -1,16 +1,9 @@
 import React, { PropTypes } from 'react';
 import BrandThumbnail from '../atoms/BrandThumbnail';
 
-const BrandSelectorOption = props => {
-  return (
-    <div className="selector__option">
-      <div className="selector__option__primary">
-        <button type="button" onClick={props.onOptionClick} style={{
-          overflow: 'hidden'
-        }}>
-          <BrandThumbnail brand={props.brand}/>
-        </button>
-      </div>
+function renderSecondary(props) {
+  if(props.showCTAs === true) {
+    return (
       <div className="selector__option__secondary">
         <div className="row">
           <div className="col-xs-6">
@@ -25,16 +18,37 @@ const BrandSelectorOption = props => {
           </div>
         </div>
       </div>
+    );
+  }
+}
+
+const BrandSelectorOption = props => {
+  return (
+    <div className="selector__option">
+      <div className="selector__option__primary">
+        <button type="button" onClick={props.onOptionClick} style={{
+          overflow: 'hidden'
+        }}>
+          <BrandThumbnail brand={props.brand}/>
+        </button>
+      </div>
+      {renderSecondary(props)}
     </div>
   );
 };
 BrandSelectorOption.displayName = 'BrandSelectorOption';
 BrandSelectorOption.propTypes = {
+  // Data
   brand: PropTypes.object.isRequired,
+  // Flags
+  showCTAs: PropTypes.bool,
   // Events
   onOptionClick: PropTypes.func.isRequired,
   onViewClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired
+};
+BrandSelectorOption.defaultProps = {
+  showCTAs: false
 };
 
 export default BrandSelectorOption;
