@@ -3,6 +3,10 @@
   border: 0 transparent;
 }
 
+.btn-hollow {
+  @extend %btn-hollow;
+}
+
 .btn {
   padding: 0.6rem 1rem;
   outline: 0;
