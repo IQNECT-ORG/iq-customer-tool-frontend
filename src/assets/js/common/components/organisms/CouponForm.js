@@ -42,11 +42,7 @@ class CouponForm extends Component {
         </fieldset>
 
         <div className="row">
-          <div className="col-xs-6">
-            <button type="button" className="btn btn-block btn-secondary btn-radius-lg" onClick={this.props.onPreviewClick}>Preview</button>
-          </div>
-
-          <div className="col-xs-6">
+          <div className="col-xs-6 offset-xs-6">
             <Submit
               className="btn btn-block btn-primary btn-radius-lg"
               isLoading={this.props.submitting}>
