@@ -31,43 +31,6 @@ class CouponForm extends Component {
             {...fields.couponName}/>
         </fieldset>
 
-        <div className="row">
-          <div className="col-xs-12">
-            <label htmlFor={joid.link(true, 'input')}>Validity</label>
-          </div>
-          <div className="col-xs-12 col-sm-6">
-            <fieldset className="form-group">
-              <div className="input-group">
-                <DateTimeField
-                  mode="date"
-                  placeholder="From"
-                  buttonIcon="icons8-date-from"
-                  onChange={fields.validityFrom.onChange}
-                  defaultText={fields.validityFrom.value}
-                  inputProps={{
-                    id: joid.link(false, 'input')
-                  }}/>
-              </div>
-            </fieldset>
-          </div>
-          <div className="col-xs-12 col-sm-6">
-            <fieldset className="form-group">
-              <label className="sr-only" htmlFor={joid.link(true, 'input')}>From</label>
-              <div className="input-group">
-                <DateTimeField
-                  mode="date"
-                  placeholder="To"
-                  buttonIcon="icons8-date-to"
-                  onChange={fields.validityTo.onChange}
-                  defaultText={fields.validityTo.value}
-                  inputProps={{
-                    id: joid.link(false, 'input')
-                  }}/>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
         <fieldset className="form-group">
           <label htmlFor={joid.link(true, 'input')}>Discount Code</label>
           <input
