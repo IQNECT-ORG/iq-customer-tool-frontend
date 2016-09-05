@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import SelectorList from '../selector/SelectorList';
+import SelectorList from './SelectorList';
 import FeatureSelectorOption from './FeatureSelectorOption';
 
 class FeatureSelector extends Component {
