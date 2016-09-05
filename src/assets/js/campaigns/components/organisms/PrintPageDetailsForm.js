@@ -65,36 +65,6 @@ class PageDetailForm extends Component {
 
                     {this._renderTargetType()}
 
-                    <hr/>
-
-                    <fieldset className="form-group">
-                      <label htmlFor={joid.link(true, 'input')}>Add Tags</label>
-                      <TagsInput
-                        value={fields.tags.value || []}
-                        renderInput={(props) => {
-                          const {onChange, value, className, ...other} = props;
-                          return (
-                            <input
-                              type="text"
-                              id={joid.link(false, 'input')}
-                              className={classNames(className, 'form-control')}
-                              placeholder="#example"
-                              onChange={onChange}
-                              value={value}
-                              {...other}/>
-                          );
-                        }}
-                        renderLayout={(tagComponents, inputComponent) => {
-                          return (
-                            <span>
-                              {inputComponent}
-                              {tagComponents}
-                            </span>
-                          )
-                        }}
-                        onChange={this.props.onTagsChange} />
-                    </fieldset>
-
                     <hr className="m-y-2"/>
 
                     <div className="row">
