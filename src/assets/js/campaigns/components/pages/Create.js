@@ -22,7 +22,7 @@ const Create = props => {
                 <button
                   className="btn btn-secondary btn-radius-lg btn-block"
                   type="button"
-                  onClick={props.actions.openAddBrandModal}>
+                  onClick={props.onAddBrandClick}>
                   Add New Brand
                 </button>
               )]}/>

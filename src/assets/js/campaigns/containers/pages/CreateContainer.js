@@ -14,6 +14,7 @@ import { modalOpen } from 'app/modal/signals';
 import { getUI } from 'app/core/selectors/ui';
 import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import CreatePage from '../../components/pages/Create';
+import { ModalPaths } from 'app/common/Constants';
 
 class CreateContainer extends Component {
   componentDidMount() {
@@ -82,29 +83,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       modalOpen,
       closeMenu: () => { return updateUI(['scene', 'drawNav'], 'isOpen', false) }
     }, dispatch)
-
-    // {
-    //   load: () => {
-    //     dispatch(loadCampaignCreatePage());
-    //   },
-    //   closeMenu: _ => {
-    //     dispatch();
-    //   },
-    //   campaignSelectBrand: (brandId) => {
-    //     dispatch(campaignSelectBrand(brandId));
-    //   },
-    //   selectCampaignType: (campaignTypeId) => {
-    //     dispatch(selectCampaignType(campaignTypeId));
-    //   },
-    //   campaignResetCreate: _ => dispatch(campaignResetCreateCampaignCreate()),
-
-    //   openAddBrandModal: _ => {
-    //     dispatch(updateModalPath('addBrand'));
-    //     dispatch(updateModalData({
-    //     }));
-    //     dispatch(openModal());
-    //   }
-    // }
   };
 };
 
@@ -113,6 +91,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     actions: {
       ...dispatchProps.actions,
       ...ownProps.actions
+    },
+
+    onAddBrandClick: () => {
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.BRAND_CREATE
+      });
     }
   });
 };
