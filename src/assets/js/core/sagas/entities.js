@@ -236,7 +236,7 @@ function* onDeleteEntity(action) {
 
   const saga = sagaMap[action.payload.entity];
 
-  yield call(saga, action);
+  yield call(saga, action.payload);
 }
 
 //-----------------------------------------------------------
