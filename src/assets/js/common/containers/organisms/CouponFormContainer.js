@@ -2,7 +2,7 @@ import CouponForm from '../../components/organisms/CouponForm';
 import { reduxForm } from 'redux-form';
 
 const FORM_KEY = 'couponForm';
-const fields = ['artwork', 'couponName', 'discountCode', 'validityFrom', 'validityTo'];
+const fields = ['artwork', 'couponName', 'discountCode'];
 
 let DecoratedComponent = CouponForm;
 DecoratedComponent = reduxForm({

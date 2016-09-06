@@ -17,8 +17,14 @@ import _ from 'lodash';
 import { createCoupon, updateCoupon } from 'app/core/sagas/entities';
 
 function* onCreateFormSubmit(action) {
+  const values = action.payload.values;
+
   const couponTask = yield fork(createCoupon, {
-    data: action.payload.values
+    data: {
+      title: values.couponName,
+      subtitle: values.discountCode,
+      media: values.artwork
+    }
   });
   // Wait for request to finish
   const couponAction = yield take(['COUPONS_CREATE_SUCCESS', 'COUPONS_CREATE_FAILURE']);
@@ -44,9 +50,15 @@ function* onCreateFormSubmit(action) {
 };
 
 function* onEditFormSubmit(action) {
+  const values = action.payload.values;
+  
   const couponTask = yield fork(updateCoupon, {
     id: action.payload.values.couponId,
-    data: action.payload.values
+    data: {
+      title: values.couponName,
+      subtitle: values.discountCode,
+      media: values.artwork
+    }
   });
   // Wait for request to finish
   const couponAction = yield take(['COUPONS_UPDATE_SUCCESS', 'COUPONS_UPDATE_FAILURE']);
