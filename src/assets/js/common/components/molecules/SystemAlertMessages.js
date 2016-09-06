@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import _ from 'lodash';
 import Expire from '../Expire';
+import { AlertMessageLevels } from 'app/common/Constants';
 
 export default (props) => {
   const index = _.findIndex(props.messages, x => x.read === false);
@@ -10,9 +11,17 @@ export default (props) => {
     return null;
   }
 
-  const alert = props.messages[index];
+  const alertLevelMap = {
+    [AlertMessageLevels.SUCCESS]: 'alert-success',
+    [AlertMessageLevels.INFO]: 'alert-info',
+    [AlertMessageLevels.WARNING]: 'alert-warning',
+    [AlertMessageLevels.DANGER]: 'alert-danger'
+  };
 
-  const className = classNames('alert alert-dismissible', `alert-${alert.level}`);
+  const alert = props.messages[index];
+  const alertLevelClass = alertLevelMap[alert.level];
+
+  const className = classNames('alert alert-dismissible', alertLevelClass);
   return (
     <Expire
       delay={10 * 1000}
