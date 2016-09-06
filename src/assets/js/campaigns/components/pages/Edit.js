@@ -8,11 +8,11 @@ import Avatar from 'app/common/components/molecules/Avatar';
 import SteptrackerContainer from '../../containers/molecules/SteptrackerContainer';
 import Campaign from '../organisms/Campaign';
 
-const Edit = (props) => {
+const Edit = props => {
   if(
-    this.props.campaign == null ||
-    this.props.brand == null ||
-    _.size(this.props.triggers) === 0
+    props.campaign == null ||
+    props.brand == null ||
+    _.size(props.triggers) === 0
   ) {
     return (
       <div>Loading...</div>
@@ -20,8 +20,8 @@ const Edit = (props) => {
   }
 
   if(
-    this.props.campaign.type >> 0 === Constants.CampaignTypes.PDF &&
-    _.size(this.props.trainingResults) === 0
+    props.campaign.type >> 0 === Constants.CampaignTypes.PDF &&
+    _.size(props.trainingResults) === 0
   ) {
     return (
       <div>Loading...</div>
@@ -34,17 +34,17 @@ const Edit = (props) => {
         return (
           <CampaignTitlebar
             flow="create"
-            campaignType={this.props.campaign.type >> 0}
-            brand={this.props.brand}/>
+            campaignType={props.campaign.type >> 0}
+            brand={props.brand}/>
         );
       }}>
       <div className="container">
         <Campaign
-          campaignType={this.props.campaign.type >> 0}
-          campaign={this.props.campaign}
-          triggers={this.props.triggers}
-          trainingResults={this.props.trainingResults}
-          triggerPayloads={this.props.triggerPayloads}/>
+          campaignType={props.campaign.type >> 0}
+          campaign={props.campaign}
+          triggers={props.triggers}
+          trainingResults={props.trainingResults}
+          triggerPayloads={props.triggerPayloads}/>
       </div>
     </DefaultLayout>
   );

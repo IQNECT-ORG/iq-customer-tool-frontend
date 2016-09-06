@@ -107,11 +107,6 @@ DecoratedComponent = connect(
   mapDispatchToProps,
   mergeProps
 )(DecoratedComponent);
-// DecoratedComponent = ui({
-//   key: 'scene',
-//   state: {
-//   }
-// })(DecoratedComponent);
 DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;

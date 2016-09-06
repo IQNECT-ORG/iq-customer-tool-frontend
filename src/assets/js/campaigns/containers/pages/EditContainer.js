@@ -65,7 +65,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       load: campaignLoadEditPage,
-      modalOpen
+      modalOpen,
+      closeMenu: () => { return updateUI(['scene', 'drawNav'], 'isOpen', false) }
     }, dispatch)
 
     // {
@@ -87,7 +88,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return _.assign({}, stateProps, dispatchProps, ownProps, {
-
+    actions: {
+      ...dispatchProps.actions,
+      ...ownProps.actions
+    }
   });
 };
 
@@ -97,11 +101,6 @@ DecoratedComponent = connect(
   mapDispatchToProps,
   mergeProps
 )(DecoratedComponent);
-// DecoratedComponent = ui({
-//   key: 'scene',
-//   state: {
-//   }
-// })(DecoratedComponent);
 DecoratedComponent = AuthenticationRequiredContainer()(DecoratedComponent);
 
 export default DecoratedComponent;
