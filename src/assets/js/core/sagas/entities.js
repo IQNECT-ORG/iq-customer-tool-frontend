@@ -231,7 +231,8 @@ function* onDeleteEntity(action) {
   }
 
   const sagaMap = {
-    [EntitieNames.CAMPAIGN]: deleteCampaign
+    [EntitieNames.CAMPAIGN]: deleteCampaign,
+    [EntitieNames.COUPON]: deleteCoupon
   };
 
   const saga = sagaMap[action.payload.entity];

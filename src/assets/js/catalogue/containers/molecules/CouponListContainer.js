@@ -9,6 +9,8 @@ import _ from 'lodash';
 import { modalOpen } from 'app/modal/signals';
 import { ModalPaths } from 'app/common/Constants';
 import { push } from 'react-router-redux/lib/actions';
+import { deleteEntity } from 'app/common/signals';
+import { EntitieNames } from 'app/common/Constants';
 
 class CouponListContainer extends Component {
 
@@ -40,6 +42,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
       fetchCoupons: couponActions.fetch,
+      deleteEntity,
       modalOpen,
       push
     }, dispatch)
@@ -61,7 +64,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       ownProps.updateUI('filter', values.filter);
     },
     onDeleteClick: (coupon) => {
-      //dispatch(deletecoupon(coupon.couponId));
+      dispatchProps.actions.deleteEntity({
+        id: coupon.couponId,
+        entity: EntitieNames.COUPON
+      });
     },
     onThumbnailClick: editCTA,
     onViewClick: (coupon) => {

@@ -58,7 +58,8 @@ export const ModalPaths = {
 };
 
 export const EntitieNames = {
-  CAMPAIGN: 'CAMPAIGN'
+  CAMPAIGN: 'CAMPAIGN',
+  COUPON: 'COUPON'
 };
 
 export default {
