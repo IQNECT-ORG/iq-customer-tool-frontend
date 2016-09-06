@@ -9,13 +9,12 @@ class CouponListRow extends Component {
 
     return (
       <li className="coupon-list__row faux-table__row">
-        <div className="faux-table__cell col-xs-2">
+        <div className="faux-table__cell col-xs-3">
           <CouponListThumbnail onClick={this.props.onThumbnailClick}/>
         </div>
-        <div className="faux-table__cell col-xs-2">{coupon.brand}</div>
-        <div className="faux-table__cell col-xs-2">{coupon.title}</div>
-        <div className="faux-table__cell col-xs-2">{coupon.code}</div>
-        <div className="faux-table__cell col-xs-2">
+        <div className="faux-table__cell col-xs-3">{coupon.title}</div>
+        <div className="faux-table__cell col-xs-3">{coupon.subtitle}</div>
+        <div className="faux-table__cell col-xs-3">
           <button
             type="button"
             className="btn btn-secondary-hollow"

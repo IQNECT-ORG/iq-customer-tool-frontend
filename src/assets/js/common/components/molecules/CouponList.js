@@ -15,11 +15,10 @@ class CouponList extends Component {
 
             <div className="faux-table coupon-list__table">
               <div className="faux-table__head">
-                <div className="faux-table__cell col-xs-2">Artwork</div>
-                <div className="faux-table__cell col-xs-2">Product Brand</div>
-                <div className="faux-table__cell col-xs-2">Name</div>
-                <div className="faux-table__cell col-xs-2">Code</div>
-                <div className="faux-table__cell col-xs-2">&nbsp;</div>
+                <div className="faux-table__cell col-xs-3">Artwork</div>
+                <div className="faux-table__cell col-xs-3">Name</div>
+                <div className="faux-table__cell col-xs-3">Code</div>
+                <div className="faux-table__cell col-xs-3">&nbsp;</div>
               </div>
               <ul className="faux-table__body list-unstyled">
                 {this._renderRows()}
