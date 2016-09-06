@@ -4,7 +4,7 @@ class CouponListThumbnail extends Component {
   render() {
     return (
       <button className="coupon-list__thumbnail" type="button" onClick={this.props.onClick}>
-        <img className src="http://placehold.it/350x150" />
+        <img className src={this.props.src} />
       </button>
     );
   }
