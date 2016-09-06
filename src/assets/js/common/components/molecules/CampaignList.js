@@ -20,7 +20,7 @@ class CampaignList extends Component {
                 <div className="faux-table__cell col-xs-2">Title</div>
                 <div className="faux-table__cell col-xs-2">Brand</div>
                 <div className="faux-table__cell col-xs-2">Status</div>
-                <div className="faux-table__cell col-xs-2">&nbsp;</div>
+                {this._renderCTAsHeader()}
               </div>
               <ul className="faux-table__body list-unstyled">
                 {this._renderRows()}
@@ -31,6 +31,15 @@ class CampaignList extends Component {
       </div>
     );
   }
+
+  _renderCTAsHeader() {
+    if(this.props.showCTAs === true) {
+      return (
+        <div className="faux-table__cell col-xs-2">&nbsp;</div>
+      );
+    }
+  }
+
   _renderRows() {
     return _.map(this.props.campaigns, ::this._renderRow);
   }
@@ -40,6 +49,7 @@ class CampaignList extends Component {
       <CampaignListRow
         campaign={campaign}
         key={index}
+        showCTAs={this.props.showCTAs}
         onThumbnailClick={ _ => { this.props.onThumbnailClick(campaign) }}
         onDeleteClick={ _ => { this.props.onDeleteClick(campaign) }}
         onViewClick={ _ => { this.props.onViewClick(campaign) }}

@@ -2,31 +2,9 @@ import React, { Component } from 'react';
 import CampaignListThumbnail from '../atoms/CampaignListThumbnail';
 import Constants from 'app/common/Constants';
 
-export default (props) => {
-  const { campaign } = props;
-
-  let campaignType;
-  switch(campaign.type >> 0) {
-    case Constants.CampaignTypes.IMAGE:
-      campaignType = 'Image';
-      break;
-    case Constants.CampaignTypes.PDF:
-      campaignType = 'Magazine';
-      break;
-    case Constants.CampaignTypes.VIDEO:
-      campaignType = 'Video';
-      break;
-  }
-
-  return (
-    <li className="campaign-list__row faux-table__row">
-      <div className="faux-table__cell col-xs-2">
-        <CampaignListThumbnail src={campaign.thumbnail} onClick={props.onThumbnailClick}/>
-      </div>
-      <div className="faux-table__cell col-xs-2">{campaignType}</div>
-      <div className="faux-table__cell col-xs-2">{campaign.name}</div>
-      <div className="faux-table__cell col-xs-2">{_.get(campaign, 'brand.name')}</div>
-      <div className="faux-table__cell col-xs-2">{campaign.state}</div>
+function renderCTAs(props) {
+  if(props.showCTAs === true) {
+    return (
       <div className="faux-table__cell col-xs-2">
         <button
           type="button"
@@ -56,6 +34,36 @@ export default (props) => {
           <i className="icons8-statistics"/>
         </button>
       </div>
+    );
+  }
+}
+
+export default (props) => {
+  const { campaign } = props;
+
+  let campaignType;
+  switch(campaign.type >> 0) {
+    case Constants.CampaignTypes.IMAGE:
+      campaignType = 'Image';
+      break;
+    case Constants.CampaignTypes.PDF:
+      campaignType = 'Magazine';
+      break;
+    case Constants.CampaignTypes.VIDEO:
+      campaignType = 'Video';
+      break;
+  }
+
+  return (
+    <li className="campaign-list__row faux-table__row">
+      <div className="faux-table__cell col-xs-2">
+        <CampaignListThumbnail src={campaign.thumbnail} onClick={props.onThumbnailClick}/>
+      </div>
+      <div className="faux-table__cell col-xs-2">{campaignType}</div>
+      <div className="faux-table__cell col-xs-2">{campaign.name}</div>
+      <div className="faux-table__cell col-xs-2">{_.get(campaign, 'brand.name')}</div>
+      <div className="faux-table__cell col-xs-2">{campaign.state}</div>
+      {renderCTAs(props)}
     </li>
   );
 };

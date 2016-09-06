@@ -12,7 +12,7 @@ const Campaigns = props => {
         );
       }}>
       <div className="container container--gutter">
-        <CampaignListContainer location={props.location}/>
+        <CampaignListContainer showCTAs={true} location={props.location}/>
       </div>
     </DefaultLayout>
   );
