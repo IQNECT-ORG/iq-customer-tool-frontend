@@ -229,11 +229,13 @@ const renderFilterTags = (props) => {
         const lookedup = filterDisplayLookup[filter];
 
         return (
-          <li className="pull-xs-left m-a-1" key={filter}>
-            <button type="button" className="close" aria-label="Close" onClick={ () => props.onFilterRemoveClick(filter) }>
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {lookedup.label}: {lookedup.value(value)}
+          <li className="pull-xs-left m-y-1 m-r-1" key={filter}>
+            <span className="tag tag-default">
+              <button type="button" className="close" aria-label="Close" onClick={ () => props.onFilterRemoveClick(filter) }>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {lookedup.label}: {lookedup.value(value)}
+            </span>
           </li>
         );
       })}
