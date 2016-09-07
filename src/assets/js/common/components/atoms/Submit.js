@@ -3,20 +3,23 @@ import classNames from 'classnames';
 import DotsSpinner from './DotsSpinner';
 
 export default function(props) {
-  const className = classNames(props.className);
+  const buttonProps = {
+    className: classNames(props.className),
+    type: 'submit'
+  };
 
-  let content;
   if(props.isLoading === true) {
-    content = (
+    buttonProps.children = (
       <DotsSpinner className="spinner--primary"/>
     );
+    buttonProps.disabled = true;
   } else {
-    content = props.children;
+    buttonProps.children = props.children;
   }
 
   return (
-    <button type="submit" className={className}>
-      {content}
+    <button {...buttonProps}>
+      {buttonProps.children}
     </button>
   );
 };
