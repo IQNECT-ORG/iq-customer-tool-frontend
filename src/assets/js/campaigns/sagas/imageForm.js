@@ -4,6 +4,7 @@ import { call, put, take, fork, select } from 'redux-saga/effects';
 import {
   S_CAMPAIGN_IMAGE_FORM_SUBMIT
 } from '../signals';
+import { modalOpen } from 'app/modal/signals';
 // Messages
 // Actions
 // Sagas
@@ -16,7 +17,7 @@ import {
 } from 'app/core/sagas/entities';
 // Utils
 import _ from 'lodash';
-import Constants from 'app/common/Constants';
+import Constants, { ModalPaths } from 'app/common/Constants';
 import * as validatorSchemas from 'app/core/services/validators/schemas';
 import ValidationError from 'yup/lib/util/validation-error';
 import { takeN } from 'app/core/sagas/utils';
@@ -153,9 +154,9 @@ function* create(action) {
 
   action.payload.resolve();
 
-  // yield put(modalActions.updateModalPath('success'));
-  // yield put(modalActions.updateModalData({}));
-  // yield put(modalActions.openModal());
+  yield put(modalOpen({
+    path: ModalPaths.SUCCESS
+  }));
 };
 
 function* update(action) {
@@ -185,9 +186,9 @@ function* update(action) {
 
   action.payload.resolve();
 
-  // yield put(modalActions.updateModalPath('success'));
-  // yield put(modalActions.updateModalData({}));
-  // yield put(modalActions.openModal());
+  yield put(modalOpen({
+    path: ModalPaths.SUCCESS
+  }));
 };
 
 function* submit(action) {
