@@ -9,7 +9,7 @@ const render = (props) => {
           return (
             <li className="col-xs-3">
               <button type="button" onClick={ () => { props.onImageClick(trigger, index) } }>
-                <img src={trigger.imgPreview}/>
+                <img className="img-fluid" src={trigger.imgPreview}/>
               </button>
             </li>
           );
