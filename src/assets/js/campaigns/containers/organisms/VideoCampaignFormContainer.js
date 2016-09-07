@@ -6,6 +6,8 @@ import { campaignVideoFormSubmit } from '../../signals';
 import { reduxForm } from 'redux-form';
 import { changeForm } from 'app/common/actions';
 import { getCoupons } from 'app/core/selectors/entities/coupons';
+import { ModalPaths } from 'app/common/Constants';
+import { modalOpen } from 'app/modal/signals';
 
 const FORM_KEY = 'campaignVideo';
 
@@ -22,7 +24,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       campaignVideoFormSubmit,
-      changeForm: changeForm.bind(null, FORM_KEY)
+      changeForm: changeForm.bind(null, FORM_KEY),
+      modalOpen
     }, dispatch)
   };
 };
@@ -56,21 +59,23 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
 
     onAddWebsiteClick: (e) => {
-      // dispatch(updateModalPath('addWebsite'));
-      // dispatch(updateModalData({
-      //   form: 'campaignVideo',
-      //   field: `url`
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.WEBSITE_ADD,
+        data: {
+          form: FORM_KEY,
+          field: `url`
+        }
+      });
     },
 
     onAddCouponClick: (e) => {
-      // dispatch(updateModalPath('addCoupon'));
-      // dispatch(updateModalData({
-      //   form: 'campaignVideo',
-      //   field: 'couponId'
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.COUPON_ADD,
+        data: {
+          form: FORM_KEY,
+          field: `couponId`
+        }
+      });
     },
 
     onWebsiteDeleteClick: (e) => {
