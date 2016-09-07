@@ -2,10 +2,11 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put, take, fork, select } from 'redux-saga/effects';
 import { updateTrigger } from 'app/core/sagas/entities';
 import _ from 'lodash';
-import Constants from 'app/common/Constants';
+import Constants, { ModalPaths } from 'app/common/Constants';
 import {
   S_CAMPAIGN_PDF_SUMMARY_FORM_SUBMIT
 } from '../signals';
+import { modalOpen } from 'app/modal/signals';
 
 function* submit(action) {
   const { values } = action.payload;
@@ -34,9 +35,9 @@ function* submit(action) {
 
   action.payload.resolve();
 
-  // yield put(modalActions.updateModalPath('success'));
-  // yield put(modalActions.updateModalData({}));
-  // yield put(modalActions.openModal());
+  yield put(modalOpen({
+    path: ModalPaths.SUCCESS
+  }));
 }
 
 //-----------------------------------------------------------
