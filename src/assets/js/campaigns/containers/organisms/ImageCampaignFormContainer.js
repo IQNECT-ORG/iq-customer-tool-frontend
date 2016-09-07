@@ -72,7 +72,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       dispatchProps.actions.modalOpen({
         path: ModalPaths.WEBSITE_ADD,
         data: {
-          form: 'campaignImage',
+          form: FORM_KEY,
           field: `url`
         }
       });
@@ -82,7 +82,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       dispatchProps.actions.modalOpen({
         path: ModalPaths.COUPON_ADD,
         data: {
-          form: 'campaignImage',
+          form: FORM_KEY,
           field: `couponId`
         }
       });
