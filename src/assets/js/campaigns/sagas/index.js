@@ -10,12 +10,14 @@ import {
   S_CAMPAIGN_LOAD_CREATE_PAGE,
   S_CAMPAIGN_LOAD_EDIT_PAGE,
   S_CAMPAIGN_SELECT_BRAND,
-  S_CAMPAIGN_SELECT_CAMPAIGN_TYPE
+  S_CAMPAIGN_SELECT_CAMPAIGN_TYPE,
+  S_CAMPAIGN_RESET_CREATE
 } from '../signals';
 // Messages
 import {
   campaignCreateSelectBrand,
-  campaignCreateSelectCampaignType
+  campaignCreateSelectCampaignType,
+  campaignCreateReset
 } from '../messages';
 // Sagas
 import { getTriggers, getTrainingResults } from 'app/core/sagas/entities';
@@ -65,6 +67,10 @@ function* loadCampaignEditPage(action) {
   }
 }
 
+function* onReset(action) {
+  yield put(campaignCreateReset());
+}
+
 
 //-----------------------------------------------------------
 //----------------------- Watchers --------------------------
@@ -105,10 +111,15 @@ function* watchCampaignCreateCampaignTypeSelect() {
   });
 };
 
+function* watchReset() {
+  yield takeEvery([S_CAMPAIGN_RESET_CREATE], onReset);
+}
+
 export default function* () {
   yield [
     watchLoadCampaignCreatePage(),
     watchLoadCampaignEditPage(),
+    watchReset(),
     browseCoupons(),
     imageForm(),
     pdfForm(),
