@@ -71,6 +71,12 @@ const mergeProps = (stateProps, disptachProps, ownProps) => {
       disptachProps.actions.changeForm('periodEnd', values.periodEnd);
     },
 
+    onImageClick: (trigger, index) => {
+      disptachProps.actions.analyticsFiltersUpdate({
+        triggerId: trigger.triggerId
+      });
+    },
+
     onTriggerClick: (trigger, index) => {
       disptachProps.actions.analyticsFiltersUpdate({
         triggerId: trigger.triggerId

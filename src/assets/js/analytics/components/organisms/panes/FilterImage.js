@@ -5,11 +5,11 @@ const render = (props) => {
   return (
     <div>
       <ul className="row">
-        {_.map(props.images, (image, index) => {
+        {_.map(props.triggers, (trigger, index) => {
           return (
             <li className="col-xs-3">
-              <button type="button" onClick={ () => { props.onImageClick(image, index) } }>
-                <img/>
+              <button type="button" onClick={ () => { props.onImageClick(trigger, index) } }>
+                <img src={trigger.imgPreview}/>
               </button>
             </li>
           );

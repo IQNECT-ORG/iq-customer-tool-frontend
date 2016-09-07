@@ -23,7 +23,8 @@ const render = (props) => {
       tabPanel = (
         <TabPanel>
           <FilterImage
-            triggers={props.triggers}/>
+            triggers={props.triggers}
+            onImageClick={props.onImageClick}/>
         </TabPanel>
       );
       break;

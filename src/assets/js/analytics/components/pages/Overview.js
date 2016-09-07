@@ -216,6 +216,10 @@ const renderFilterTags = (props) => {
     periodEnd: {
       label: 'Period End',
       value: renderDate
+    },
+    triggerId: {
+      label: 'Trigger',
+      value: renderAsIs
     }
   };
 
