@@ -9,6 +9,8 @@ import { takeN } from 'app/core/sagas/utils';
 import {
   S_CAMPAIGN_VIDEO_FORM_SUBMIT
 } from '../signals';
+import { ModalPaths } from 'app/common/Constants';
+import { modalOpen } from 'app/modal/signals';
 
 function* uploadTriggers(triggers) {
   for(let i = 0; i < _.size(triggers); i++) {
@@ -106,9 +108,9 @@ function* create(action) {
 
   action.payload.resolve();
 
-  // yield put(modalActions.updateModalPath('success'));
-  // yield put(modalActions.updateModalData({}));
-  // yield put(modalActions.openModal());
+  yield put(modalOpen({
+    path: ModalPaths.SUCCESS
+  }));
 };
 
 function* update(action) {
@@ -138,9 +140,9 @@ function* update(action) {
 
   action.payload.resolve();
 
-  // yield put(modalActions.updateModalPath('success'));
-  // yield put(modalActions.updateModalData({}));
-  // yield put(modalActions.openModal());
+  yield put(modalOpen({
+    path: ModalPaths.SUCCESS
+  }));
 };
 
 function* submit(action) {
