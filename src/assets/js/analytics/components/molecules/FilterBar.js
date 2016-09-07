@@ -4,7 +4,7 @@ import FilterFormContainer from '../../containers/organisms/FilterFormContainer'
 const render = () => {
   return (
     <div style={{
-      width: 800 // @TODO: Make this responsive
+      width: 500 // @TODO: Make this responsive
     }}>
       <FilterFormContainer/>
     </div>
