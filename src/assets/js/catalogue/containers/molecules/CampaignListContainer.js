@@ -49,16 +49,18 @@ const mapStateToProps = (state, ownProps) => {
   const brands = getBrands(state);
 
   const campaigns = _.map(filteredCampaigns, campaign => {
-    const trigger = _.find(triggers, x => x.campaignId === campaign.campaignId);
+    const campaignTriggers = _.filter(triggers, x => x.campaignId === campaign.campaignId);
+    const primaryTrigger = _.find(campaignTriggers, x => _.has(x, 'imgPreview') || _.has(x, 'vidPreview'));
+
     const brand = _.find(brands, x => x.brandId === campaign.defaultBrand);
 
-    if(trigger == null) {
+    if(primaryTrigger == null) {
       return campaign;
     }
 
     return _.assign({}, campaign, {
-      thumbnail: trigger.imgPreview,
-      state: trigger.state,
+      thumbnail: primaryTrigger.imgPreview || primaryTrigger.vidPreview,
+      state: primaryTrigger.state,
       brand
     });
   });
