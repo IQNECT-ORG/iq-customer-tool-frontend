@@ -7,7 +7,7 @@ const CampaignDetails = props => {
         {_.map(props.campaign, (value, key) => {
           return (
             <li key={key}>
-              {key}: {value}
+              {key}: {'' + value}
             </li>
           );
         })}
