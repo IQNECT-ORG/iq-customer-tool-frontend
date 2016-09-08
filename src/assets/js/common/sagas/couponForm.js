@@ -23,6 +23,7 @@ function* onCreateFormSubmit(action) {
     data: {
       title: values.couponName,
       subtitle: values.discountCode,
+      url: values.url,
       media: values.artwork
     }
   });
