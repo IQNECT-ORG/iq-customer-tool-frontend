@@ -5,7 +5,8 @@ import ui from 'redux-ui';
 import { changeForm } from 'app/common/actions';
 import { getTrainingResults } from 'app/core/selectors/entities/trainingResults';
 import _ from 'lodash';
-import Constants from 'app/common/Constants';
+import Constants, { ModalPaths } from 'app/common/Constants'; 'app/common/Constants';
+import { modalOpen } from 'app/modal/signals';
 
 const mapStateToProps = (state, ownProps) => {
   const trainingResults = getTrainingResults(state);
@@ -26,7 +27,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
-      changeForm: changeForm.bind(null, ownProps.formKey)
+      changeForm: changeForm.bind(null, ownProps.formId),
+      modalOpen
     }, dispatch)
   };
 };
@@ -66,21 +68,23 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
 
     onAddWebsiteClick: (e) => {
-    //   dispatch(updateModalPath('addWebsite'));
-    //   dispatch(updateModalData({
-    //     form: 'campaignPrint',
-    //     field: `pages[${ownProps.ui.page}].url`
-    //   }));
-    //   dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.WEBSITE_ADD,
+        data: {
+          form: ownProps.formId,
+          field: `pages[${ownProps.ui.page}].url`
+        }
+      });
     },
 
     onAddCouponClick: (e) => {
-      // dispatch(updateModalPath('addCoupon'));
-      // dispatch(updateModalData({
-      //   form: 'campaignPrint',
-      //   field: `pages[${ownProps.ui.page}].coupon`
-      // }));
-      // dispatch(openModal());
+      dispatchProps.actions.modalOpen({
+        path: ModalPaths.COUPON_ADD,
+        data: {
+          form: ownProps.formId,
+          field: `pages[${ownProps.ui.page}].couponId`
+        }
+      });
     },
 
     onWebsiteDeleteClick: () => {

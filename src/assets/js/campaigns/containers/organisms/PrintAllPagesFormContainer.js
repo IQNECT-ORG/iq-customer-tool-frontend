@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
-      changeForm: changeForm.bind(null, ownProps.formKey)
+      changeForm: changeForm.bind(null, ownProps.formId)
     }, dispatch)
   };
 };

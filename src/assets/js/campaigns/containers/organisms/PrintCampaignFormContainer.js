@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     step: ownProps.ui.step,
     page: ownProps.ui.page,
     pageView: ownProps.ui.pageView,
+    formId: FORM_KEY,
 
     initialValues: {
       campaignId: _.get(ownProps, 'campaign.campaignId'),

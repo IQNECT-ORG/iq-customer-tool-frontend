@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     actions: bindActionCreators({
       campaignPDFSummaryFormSubmit
-      //changeForm: changeForm.bind(null, ownProps.formKey)
+      //changeForm: changeForm.bind(null, ownProps.formId)
     }, dispatch)
   };
 };
@@ -58,12 +58,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       });
     },
 
-    onSubmit: ownProps.handleSubmit((values) => {
+    handleSubmit: ownProps.handleSubmit((values) => {
       return new Promise((resolve, reject) => {
         dispatchProps.actions.campaignPDFSummaryFormSubmit({
           values: values,
           updateUI: ownProps.updateUI,
-          form: ownProps.formKey,
+          form: ownProps.formId,
           resolve,
           reject
         });

@@ -37,7 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
           },
           updateUI: ownProps.updateUI,
           pagesAddField: ownProps.fields.pages.addField,
-          form: ownProps.formKey,
+          form: ownProps.formId,
           resolve,
           reject
         });
