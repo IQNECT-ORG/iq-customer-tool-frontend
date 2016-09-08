@@ -7,6 +7,7 @@ const CampaignDetails = props => {
         {_.map(props.campaign, (value, key) => {
           return (
             <li key={key}>
+              {/* @TODO: Make this render nicely */}
               {key}: {'' + value}
             </li>
           );
