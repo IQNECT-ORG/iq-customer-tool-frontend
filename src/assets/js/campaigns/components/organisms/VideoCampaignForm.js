@@ -10,7 +10,7 @@ import TargetType from '../../containers/molecules/TargetTypeContainer';
 import TagsInput from '../molecules/TagsInput';
 import Submit from 'app/common/components/atoms/Submit';
 
-class CreateCampaign extends Component {
+class VideoCampaignForm extends Component {
   render() {
     const fields = this.props.fields;
     return (
@@ -75,15 +75,29 @@ class CreateCampaign extends Component {
   }
 
   _renderMedia() {
-    return (
-      <AssetField
-        value={this.props.values.media}
-        label={'Drag & Drop or click here to upload your video'}
-        onChange={ e => {
-          this.props.fields.media.onChange(e);
-        }}/>
-    );
+    if(_.isString(this.props.values.media) === true) {
+      return (
+        <video
+          className="img-fluid"
+          src={this.props.values.media}
+          autoPlay={true}
+          controls={false}
+          muted={true}
+          loop={true}>
+        </video>
+      );
+    } else {
+      return (
+        <AssetField
+          value={this.props.values.media}
+          label={'Drag & Drop or click here to upload your video'}
+          onChange={ e => {
+            this.props.fields.media.onChange(e);
+          }}/>
+      );
+    }
+
   }
 };
 
-export default CreateCampaign;
+export default VideoCampaignForm;

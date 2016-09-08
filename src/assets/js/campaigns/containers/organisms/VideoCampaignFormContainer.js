@@ -16,6 +16,7 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: {
       name: _.get(ownProps, 'campaign.name'),
       url: _.get(ownProps, 'triggers.0.url'),
+      media: _.get(ownProps, 'triggers.0.vidStream')
     }
   };
 };
