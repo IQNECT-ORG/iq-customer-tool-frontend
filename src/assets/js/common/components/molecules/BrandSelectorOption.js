@@ -6,12 +6,7 @@ function renderSecondary(props) {
     return (
       <div className="selector__option__secondary">
         <div className="row">
-          <div className="col-xs-6">
-            <button title="View" className="btn btn-block btn-hollow" type="button" onClick={props.onViewClick}>
-              <i className="icons8-visible"/>
-            </button>
-          </div>
-          <div className="col-xs-6">
+          <div className="col-xs-12">
             <button title="Edit" className="btn btn-block btn-hollow" type="button" onClick={props.onEditClick}>
               <i className="icons8-settings"/>
             </button>
