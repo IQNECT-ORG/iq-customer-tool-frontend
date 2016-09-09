@@ -30,7 +30,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
             type: ownProps.selectedCampaignTypeId,
             name: values.campaignTitle,
             url: values.defaultTarget,
-            language: values.magazineLanguage,
+            language: values.language,
             media: _.get(values, ['media', 0]),
             periodFrom: values.campaignPeriodFrom,
             periodTo: values.campaignPeriodTo

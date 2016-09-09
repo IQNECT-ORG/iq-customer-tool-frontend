@@ -30,7 +30,7 @@ const mapStateToProps = (state, ownProps) => {
     initialValues: {
       campaignId: _.get(ownProps, 'campaign.campaignId'),
       campaignTitle: _.get(ownProps, 'campaign.name'),
-      magazineLanguage: _.get(ownProps, 'triggers.0.language'),
+      language: _.get(ownProps, 'triggers.0.language'),
       defaultTarget: _.get(ownProps, 'triggers.0.url'),
 
       triggerId: _.get(trigger, 'triggerId'),
@@ -47,7 +47,7 @@ const fields = [
   'campaignId',
   'media',
   'campaignTitle',
-  'magazineLanguage',
+  'language',
   'campaignPeriodFrom',
   'campaignPeriodTo',
   'defaultTarget',

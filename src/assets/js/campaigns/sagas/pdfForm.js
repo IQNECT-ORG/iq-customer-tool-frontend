@@ -35,7 +35,7 @@ function* uploadTriggers(triggers) {
 
 function* create(action) {
   const { values } = action.payload;
-
+  
   // Data Models
   const campaign = _.assign({
     defaultBrand: values.brandId
@@ -52,7 +52,8 @@ function* create(action) {
     },
     _.pick(values, [
       'brandId',
-      'url'
+      'url',
+      'language'
     ])
   );
 
