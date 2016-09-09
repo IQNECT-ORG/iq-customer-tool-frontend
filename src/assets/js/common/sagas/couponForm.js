@@ -24,7 +24,7 @@ function* onCreateFormSubmit(action) {
       title: values.couponName,
       subtitle: values.discountCode,
       url: values.url,
-      media: values.artwork
+      media: values.artwork[0]
     }
   });
   // Wait for request to finish
