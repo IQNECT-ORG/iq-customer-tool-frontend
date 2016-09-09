@@ -12,6 +12,7 @@ import {
 import { getUI } from 'app/core/selectors/ui';
 import AuthenticationRequiredContainer from 'app/common/containers/hoc/AuthenticationRequiredContainer';
 import OverviewPage from '../../components/pages/Overview';
+import { getCampaigns } from 'app/core/selectors/entities/campaigns';
 
 class OverviewContainer extends Component {
 
@@ -37,6 +38,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     filters,
+    campaign: _.find(getCampaigns(state), campaign => campaign.campaignId === filters.campaignId),
     isCampaignSelected: !!filters.campaignId,
     dropdownOpen: _.get(dropdownUI, 'open'),
     numberOfResults: _.size(state.analytics.data.allSearches)

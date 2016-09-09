@@ -204,10 +204,15 @@ const renderFilterTags = (props) => {
 
   const renderAsIs = (v) => v;
 
+  const renderCampaignId = (campaignId) => {
+    const campaignName = _.get(props, ['campaign', 'name']);
+    return `(${campaignId}) ${campaignName}`;
+  };
+
   const filterDisplayLookup = {
     campaignId: {
-      label: 'Campaign Id',
-      value: renderAsIs
+      label: 'Campaign',
+      value: renderCampaignId
     },
     periodStart: {
       label: 'Period Start',
