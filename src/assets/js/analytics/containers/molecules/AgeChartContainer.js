@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
         (result, search) => {
           const age = search.age;
 
-          if(age == null) {
+          if(age == null || age <= 4) {
             result[3]++;
           } else if(age <= 24) {
             result[0]++;
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
           return result;
         },
         {
-          0: 0, // 0-24
+          0: 0, // 5-24
           1: 0, // 25-44
           2: 0, // 45+
           3: 0 // Unknown
