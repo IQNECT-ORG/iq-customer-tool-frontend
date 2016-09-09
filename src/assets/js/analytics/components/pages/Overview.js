@@ -245,10 +245,15 @@ const renderFilterTags = (props) => {
         return (
           <li className="pull-xs-left m-y-1 m-r-1" key={filter}>
             <span className="tag tag-default">
-              <button type="button" className="close" aria-label="Close" onClick={ () => props.onFilterRemoveClick(filter) }>
+              <button type="button" className="close m-l-1" aria-label="Close" onClick={ () => props.onFilterRemoveClick(filter) }>
                 <span aria-hidden="true">&times;</span>
               </button>
-              {lookedup.label}: {lookedup.value(value)}
+              <span style={{
+                display: 'inline-block',
+                transform: 'translateY(50%)'
+              }}>
+                {lookedup.label}: {lookedup.value(value)}
+              </span>
             </span>
           </li>
         );
