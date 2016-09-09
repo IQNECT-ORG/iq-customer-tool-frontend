@@ -64,7 +64,7 @@ const render = (props) => {
   }
 
   return (
-    <form className="form--content" onSubmit={props.onSubmit}>
+    <form className="form--content" onSubmit={props.handleSubmit}>
       <Tabs
         onSelect={ () => {} }
         selectedIndex={0}>

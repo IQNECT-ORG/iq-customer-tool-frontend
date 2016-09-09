@@ -6,12 +6,15 @@ import {
 } from '../signals';
 // Messages
 import {
-  analyticsUpdateFilers
+  analyticsUpdateFilters
 } from '../messages';
+// Sagas
+import * as sagas from './sagas';
 
 function* onSubmit(action) {
-  yield put(analyticsUpdateFilers(action.payload.values));
+  yield put(analyticsUpdateFilters(action.payload.values));
   action.payload.resolve();
+  yield call(sagas.updateData, action.payload.values);
 }
 
 function* watchSubmit() {
