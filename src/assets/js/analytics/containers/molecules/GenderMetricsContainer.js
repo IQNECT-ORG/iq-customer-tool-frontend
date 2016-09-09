@@ -25,22 +25,32 @@ const mapStateToProps = (state, ownProps) => {
     // Count each gender type
     fp.countBy(search => search.gender),
     // Make them percentages
-    fp.transform(
-      (result, value, key) => {
-        result[key] = ((value / total) * 100).toFixed(0);
-      },
-      {}
-    ),
+    collection => {
+      return _.transform(
+        collection,
+        (result, value, key) => {
+          console.log(key, value);
+          result[key] = ((value / total) * 100).toFixed(0);
+        },
+        {}
+      );
+    },
     // Converting the data to the chart format
-    fp.reduce(
+    collection => _.reduce(
+      collection,
       (result, value, key) => {
         const labels = {
           'f': 'Female',
-          'm': 'Male',
-          null: 'Unknown'
+          'm': 'Male'
+        };
+
+        let label = 'Unknown';
+        if(_.has(labels, key) === true) {
+          label = labels[key];
         }
+
         result.push({
-          label: labels[key],
+          label,
           value: `${value}%`
         });
         return result;

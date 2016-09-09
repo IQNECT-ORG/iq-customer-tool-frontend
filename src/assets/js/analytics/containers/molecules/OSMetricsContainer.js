@@ -37,14 +37,16 @@ const mapStateToProps = (state, ownProps) => {
     // Count each type
     fp.countBy(search => search.deviceType),
     // Make them percentages
-    fp.transform(
+    collection => _.transform(
+      collection,
       (result, value, key) => {
         result[key] = ((value / total) * 100).toFixed(0);
       },
       {}
     ),
     // Converting the data to the chart format
-    fp.reduce(
+    collection => _.reduce(
+      collection,
       (result, value, key) => {
         result.push({
           label: key,
