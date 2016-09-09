@@ -10,18 +10,18 @@ const render = (props) => {
     <div className="row">
       <div className="col-xs-3">
         <ul className="list-unstyled">
-          <li>
-            <button type="button" onClick={ () => props.onDatePresetClick('today') }>
+          <li className="m-b-1">
+            <button className="btn btn-secondary btn-block" type="button" onClick={ () => props.onDatePresetClick('today') }>
               Today
             </button>
           </li>
-          <li>
-            <button type="button" onClick={ () => props.onDatePresetClick('thisWeek') }>
+          <li className="m-b-1">
+            <button className="btn btn-secondary btn-block" type="button" onClick={ () => props.onDatePresetClick('thisWeek') }>
               This Week
             </button>
           </li>
           <li>
-            <button type="button" onClick={ () => props.onDatePresetClick('thisMonth') }>
+            <button className="btn btn-secondary btn-block" type="button" onClick={ () => props.onDatePresetClick('thisMonth') }>
               This Month
             </button>
           </li>
