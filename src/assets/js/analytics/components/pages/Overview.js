@@ -62,40 +62,18 @@ const Overview = (props) => {
   );
 
   let notice;
+  let content;
   if(props.numberOfResults === 0) {
     notice = (
       <div className="alert alert-info" role="alert">
         Your selected filters has no results
       </div>
     );
-  }
 
-  return (
-    <DefaultLayout
-      titleRender={_ => {
-        return (
-          <Titlebar
-            title={
-              <FormattedMessage id="app.analytics.header" tagName="h1"/>
-            }
-            ctas={[
-              (
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={ e => props.onCSVDownloadClick(props.filters) }>
-                  Download CSV
-                </button>
-              ),
-              filterCTA
-            ]}/>
-        );
-      }}>
-      <div className="container container--gutter">
-        {notice}
-
-        {renderFilterTags(props)}
-
+    content = null;
+  } else {
+    content = (
+      <div>
         <div className="pane pane--filled m-b-g">
           <div className="pane__body">
             <div className="row">
@@ -188,6 +166,37 @@ const Overview = (props) => {
             <LocationMapContainer/>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <DefaultLayout
+      titleRender={_ => {
+        return (
+          <Titlebar
+            title={
+              <FormattedMessage id="app.analytics.header" tagName="h1"/>
+            }
+            ctas={[
+              (
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={ e => props.onCSVDownloadClick(props.filters) }>
+                  Download CSV
+                </button>
+              ),
+              filterCTA
+            ]}/>
+        );
+      }}>
+      <div className="container container--gutter">
+        {notice}
+
+        {renderFilterTags(props)}
+
+        {content}
       </div>
     </DefaultLayout>
   );
