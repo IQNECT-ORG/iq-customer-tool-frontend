@@ -234,6 +234,10 @@ const renderFilterTags = (props) => {
     triggerId: {
       label: 'Trigger',
       value: renderAsIs
+    },
+    frameId: {
+      label: 'Frame',
+      value: renderAsIs
     }
   };
 

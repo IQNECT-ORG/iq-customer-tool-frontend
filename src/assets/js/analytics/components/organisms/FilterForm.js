@@ -41,7 +41,8 @@ const render = (props) => {
           <FilterTrigger
             fields={props.fields}
             triggers={props.triggers}
-            onTriggerClick={props.onTriggerClick}/>
+            frames={props.frames}
+            onFrameClick={props.onFrameClick}/>
         </TabPanel>
       );
       break;

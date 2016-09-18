@@ -5,11 +5,11 @@ const render = (props) => {
   return (
     <div>
       <ul className="row">
-        {_.map(props.triggers, (trigger, index) => {
+        {_.map(props.frames, (frame, index) => {
           return (
             <li className="col-xs-3">
-              <button type="button" onClick={ () => { props.onTriggerClick(trigger, index) } }>
-                <img src={trigger.imgPreview}/>
+              <button type="button" onClick={ () => { props.onFrameClick(frame, index) } }>
+                <img className="img-fluid" src={_.get(frame, 'images.default')}/>
               </button>
             </li>
           );
