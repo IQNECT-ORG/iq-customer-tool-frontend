@@ -41,7 +41,7 @@ function* onUpdateFilters(action) {
 }
 
 function* onDownloadCSV(action) {
-  const formattedFilters = formatFilters(action.payload.filters);
+  const formattedFilters = sagas.formatFilters(action.payload.filters);
 
   try {
     let { text, response } = yield call(csvAPI, {
@@ -51,8 +51,8 @@ function* onDownloadCSV(action) {
       filter: formattedFilters
     });
 
-    const encodedUri = encodeURI(dataToCSV(text));
-    downloadCSVToFile(encodedUri);
+    const encodedUri = encodeURI(sagas.dataToCSV(text));
+    sagas.downloadCSVToFile(encodedUri);
   } catch(err) {
     throw err;
   }
